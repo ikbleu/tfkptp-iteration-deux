@@ -1,0 +1,14 @@
+#summary Adam Szpakowski's time-log for Iteration 2.
+
+= Adam Szpakowski =
+
+This is Adam Szpakowski's time-log for Iteration 2 of Dave Small's OOP class (Spring 2010 semester).
+
+
+= Time Log =
+
+== Saturday, 27 Feb ==
+=== 10:15 to ??:?? ===
+  * Began discussion on new features for this implementation
+  * Discussed possible ways to implement some of these features
+  * Did research on hexagonal grids and how to use them
