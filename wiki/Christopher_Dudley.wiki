@@ -1,0 +1,17 @@
+#summary Time log and other information about TFKPTP member Christopher Dudley.
+
+= Time Log =
+
+== Summary ==
+
+|| *Date* || *Duration* || *Description* ||
+|| 02-27 || ?? hours || Design ||
+
+== Verbose ==
+
+=== 10 - 02 - 27 ===
+ 
+==== 10:00 am - ??:?? ?m ====
+
+ * Discussion on how to fix sections of previous iteration.
+ * Discussion of new features required.
