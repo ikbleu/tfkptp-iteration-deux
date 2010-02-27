@@ -5,13 +5,13 @@
 == Summary ==
 
 || *Date* || *Duration* || *Description* ||
-|| 02-27 || ?? hours || Design ||
+|| 02-27 || 7 hours || Design ||
 
 == Verbose ==
 
 === 10 - 02 - 27 ===
  
-==== 10:00 am - ??:?? ?m ====
+==== 10:00 am - 5:00 pm ====
 
  * Discussion on how to fix sections of previous iteration.
  * Discussion of new features required.
