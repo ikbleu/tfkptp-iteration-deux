@@ -1,0 +1,20 @@
+#summary information on Alex Kagioglu that pertains to this project
+
+= Introduction =
+
+= Table of Contents =
+<wiki:toc max_depth="6" />
+
+= Tasks =
+== Controller UMLs ==
+
+= Work Log =
+== Year 2010 ==
+=== Month 02 ===
+==== Day 27 ====
+===== Time 10:00 to 17:00 =====
+  * will add details later
+=== Month 03 ===
+==== Day 02 ====
+===== Time 10:30 to 11:30 =====
+  * will add details later
