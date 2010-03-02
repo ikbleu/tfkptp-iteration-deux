@@ -16,7 +16,7 @@ This is Adam Szpakowski's time-log for Iteration 2 of Dave Small's OOP class (Sp
 
 == Tuesday, 2 Mar ==
 === 10:30 to 11:45 ===
-=== 12:15 to ??:?? ===
+=== 12:15 to 13:45 ===
   * Discussed with other group members how to implement certain features
   * Worked on UML for Map subsystem
 
