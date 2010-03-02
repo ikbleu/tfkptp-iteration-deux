@@ -18,3 +18,5 @@
 ==== Day 02 ====
 ===== Time 10:30 to 11:30 =====
   * will add details later
+===== Time 12:20 to xx:xx =====
+  * back in the dungeon. i will make a class diagram for the controller.
