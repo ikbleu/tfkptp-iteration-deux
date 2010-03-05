@@ -23,3 +23,7 @@
 ===== Time 18:05 to 20:00 =====
   * i will make the class diagram for the wheel and the controller.
   * i finished the wheel class diagram
+==== Day 04 ====
+===== Time 15:00 to 21:00 =====
+  * worked on an abstraction to allow hotkeys
+  * made a new class diagram with some interfaces.
