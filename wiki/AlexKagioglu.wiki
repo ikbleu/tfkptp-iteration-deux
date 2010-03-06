@@ -27,3 +27,10 @@
 ===== Time 15:00 to 21:00 =====
   * worked on an abstraction to allow hotkeys
   * made a new class diagram with some interfaces.
+==== Day 05 ====
+===== Time 15:00 to 17:00 =====
+  * talked with chrisW about ideas for controller.
+    * explained some things about Wheel, KeyEventInterpreter, HotKeyEditor, Saving and loading key bindings.
+===== Time 18:00 to 19:00 =====
+  * talked about some additional mouse controls with chrisD, ryan, and adam.
+  * talked to chrisD and adam about a new interface that things in model need to implement.
