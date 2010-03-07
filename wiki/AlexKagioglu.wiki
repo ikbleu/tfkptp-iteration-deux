@@ -41,3 +41,5 @@
   * will do hobo sequence diagram later.
 ===== Time 16:00 to 17:00 =====
   * working on monikers and model objects.
+===== Time 17:00 to 19:00
+  * revising wheel and brainstorming for monikers and interface x
