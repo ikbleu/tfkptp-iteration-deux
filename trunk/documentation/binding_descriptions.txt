@@ -1,0 +1,9 @@
+-Device
+---everything that can be selected by controller must implement this interface. This includes units, structures, rallypoints, and commandfactorys.
+--getBinding(): BindingCode
+---returns the bindingcode for this object. This bindingcode should be shared with objects of the same type. all units that are archers should return the same bindingcode. all commandfactories that make the attackcommand should return the same bindingcode. The binding code returned from this device should always be the same throughout the entire execution of the program as long as the type of the object does not change. for instance if a commandfactory switches from making defendcommands to attackcommands, then the binding code returned by this object should reflect that. if an archer becomes a soldier then its binding code should reflect that.
+--direct(builder: KeyEventInterpreterBuilder): void
+---calling the methods of the builder will cause a KeyEventInterpreter to be built. call setContext first and only call it once (NO NULL ARGS). calling setDevices is optional (NO NULL ARGS). calling setBehaviors is optional (NO NULL ARGS).
+
+-Behavior
+---every action that controller needs to be able to cause to happen must implement this interface. this is intended for commands. the commandfactory that makes attack commands must implement the device interface, but when direct() is called on it, it must call setBehaviors and pass in a visitablecollection containing 
