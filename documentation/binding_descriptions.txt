@@ -6,4 +6,4 @@
 ---calling the methods of the builder will cause a KeyEventInterpreter to be built. call setContext first and only call it once (NO NULL ARGS). calling setDevices is optional (NO NULL ARGS). calling setBehaviors is optional (NO NULL ARGS).
 
 -Behavior
----every action that controller needs to be able to cause to happen must implement this interface. this is intended for commands. the commandfactory that makes attack commands must implement the device interface, but when direct() is called on it, it must call setBehaviors and pass in a visitablecollection containing 
+---every action that controller needs to be able to cause to happen must implement this interface. this is intended for commands. the commandfactory that makes attack commands must implement the device interface, but when direct() is called on it, it must call setBehaviors and pass in a visitablecollection containing a Behavior for each argument that could be passed to the attack command. For a hex tile map, the behaviors would be { NE, N, NW, SW, S, SE }. Those names could all be prefixed with 'Attack' or something like that.
