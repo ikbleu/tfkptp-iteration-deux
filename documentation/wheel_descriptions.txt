@@ -1,0 +1,26 @@
+-VisitableCollection<T>:
+---allows selection of adjacent elements or specific elements
+---allows elements to be added or removed
+---allows a shallow copy to be made
+---allows objects to listen to it
+--next(): void
+---selects the next element
+--prev(): void
+---selects the previous element
+--pick(item: T): void
+---selects the element <item> if it is in the collection
+--accept(visitor: ElementVisitor<T>): void
+---visits the currently selected element with the specified visitor
+--shallowCopy(): VisitableCollection<T>
+---returns a VisitableCollection of the same elements as this VisitableCollection
+--applyToAll(visitor: CollectionVisitor): void
+---makes the visitor visit every element currently within the collection, every element added to the collection since the end of this method call, and every element removed since the end of this method call
+
+-CollectionVisitor<T>
+---allows an object to listen to a visitable collection
+--contain(item: T): void
+---notifies the visitor that the collection had the item before this visitor was listening
+--add(item: T): void
+--- notifies the visitor that the collection had the item added after the visitor started listening
+--remove(item: T): void
+--- notifies the visitor that the collection had the item removed after the visitor started listening
