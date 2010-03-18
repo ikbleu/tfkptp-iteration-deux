@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><umlet_diagram><help_text>// Uncomment the following line to change the fontsize:
+// fontsize=14
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on UML elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold ⌘ to select multiple elements
+// Use ⌘+mouse to select via lasso
+//
+// Use ± or ⌘+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press ⌘+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>10</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>70</x><y>40</y><w>120</w><h>40</h></coordinates><panel_attributes>Work Radius +1
+0/3</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>60</x><y>120</y><w>140</w><h>40</h></coordinates><panel_attributes>Worker Density +3
+1/5</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>100</x><y>50</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;70;30;30</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>320</x><y>40</y><w>130</w><h>40</h></coordinates><panel_attributes>Breed Rate +10%
+0/3</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>240</x><y>150</y><w>130</w><h>60</h></coordinates><panel_attributes>Soldier Training
+Rate +10%
+0/3</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>410</x><y>150</y><w>130</w><h>60</h></coordinates><panel_attributes>Explorer Training
+Rate +10%
+0/3</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>280</x><y>90</y><w>50</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;60;30;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>450</x><y>90</y><w>50</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;60;30;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>280</x><y>90</y><w>220</w><h>50</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>30;30;200;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>360</x><y>50</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>30;70;30;30</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>60</x><y>250</y><w>120</w><h>60</h></coordinates><panel_attributes>Ore Conversion
+Efficiency +10%
+0/3</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>220</x><y>250</y><w>130</w><h>60</h></coordinates><panel_attributes>Grain Conversion
+Efficiency +10%
+0/3</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>390</x><y>250</y><w>130</w><h>60</h></coordinates><panel_attributes>Fuel Conversion
+Efficiency +10%
+0/3</panel_attributes><additional_attributes/></element></umlet_diagram>
