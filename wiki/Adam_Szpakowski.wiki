@@ -29,6 +29,16 @@ This is Adam Szpakowski's time-log for Iteration 2 of Dave Small's OOP class (Sp
 === 14:15 to 14:45 ===
   * Worked on UML for Map subsystem
 
+== Wednesday, 17 Mar ==
+=== 18:00 to 19:45 ===
+  * Discussed with other group members how to implement certain features
+
+== Thursday, 18 Mar ==
+=== 11:00 to ??:?? ===
+  * Worked on UML for Mab subsystem
+  * Discussed with other group members how to implement certain features
+  * Finalized UML designs so programming could begin
+
 = Sources =
   * [http://www-cs-students.stanford.edu/~amitp/gameprog.html#hex List of resources on hex grids]
   * [http://www.gamedev.net/reference/articles/article1800.asp Detailed info about hex grids]
