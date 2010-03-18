@@ -7,6 +7,7 @@
 || *Date* || *Duration* || *Description* ||
 || 02-27 || 7 hours || Design ||
 || 03-04 || 1 hour || Design ||
+|| 03-18 || 6.5 hours || Design ||
 
 == Verbose ==
 
@@ -22,3 +23,11 @@
 ==== 4:00 pm - 5:00 pm ====
 
  * More discussion about internals of Model.
+
+=== 10 - 03 - 18 ===
+
+==== 11:00 am - 5:30 pm ====
+
+ * Worked on how research would work.
+ * Worked on how items will work.
+ * Discussion on various other internals of model.
