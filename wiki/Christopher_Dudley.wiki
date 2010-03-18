@@ -6,6 +6,7 @@
 
 || *Date* || *Duration* || *Description* ||
 || 02-27 || 7 hours || Design ||
+|| 03-04 || 1 hour || Design ||
 
 == Verbose ==
 
@@ -15,3 +16,9 @@
 
  * Discussion on how to fix sections of previous iteration.
  * Discussion of new features required.
+
+=== 10 - 03 - 04 ===
+
+==== 4:00 pm - 5:00 pm ====
+
+ * More discussion about internals of Model.
