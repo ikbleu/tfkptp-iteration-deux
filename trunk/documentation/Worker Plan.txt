@@ -1,0 +1,6 @@
+Workers
+-------------
+
+Individual workers will not be implemented as objects of a Worker class, as workers don't really have any stats of their own, and basically just act as a multiplier for the rate at which buildings can perform their tasks.
+
+Instead, there will be a class WorkerGroup that will contain a certain number of workers (expressed as an integer value).
