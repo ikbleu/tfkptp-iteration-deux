@@ -5,6 +5,8 @@
 
 package src.view;
 
+//import src.model.TypeCode;
+
 import java.awt.Image;
 import java.util.HashMap;
 
