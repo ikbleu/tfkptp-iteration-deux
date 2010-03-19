@@ -34,10 +34,9 @@ This is Adam Szpakowski's time-log for Iteration 2 of Dave Small's OOP class (Sp
   * Discussed with other group members how to implement certain features
 
 == Thursday, 18 Mar ==
-=== 11:00 to ??:?? ===
+=== 11:00 to 21:30 ===
   * Worked on UML for Mab subsystem
   * Discussed with other group members how to implement certain features
-  * Finalized UML designs so programming could begin
 
 = Sources =
   * [http://www-cs-students.stanford.edu/~amitp/gameprog.html#hex List of resources on hex grids]
