@@ -14,16 +14,7 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLDrawableFactory;
 import javax.media.opengl.GLEventListener;
 
-// Local imports
-// None
 
-/**
- * Example application that demonstrates how to put together a single-threaded
- * rendering system.
- *
- * @author Justin Couch
- * @version $Revision: 1.5 $
- */
 public class HelloWorld extends Frame
     implements GLEventListener
 {
