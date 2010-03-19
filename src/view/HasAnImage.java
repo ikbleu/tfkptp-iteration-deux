@@ -4,11 +4,14 @@
  */
 
 package src.view;
-
+import java.awt.image.BufferedImage;
 /**
  *
  * @author spock
  */
-public class HasAnImage {
+public abstract class HasAnImage {
+    BufferedImage bufferedImage;
+
+    abstract void refreshImage();
 
 }
