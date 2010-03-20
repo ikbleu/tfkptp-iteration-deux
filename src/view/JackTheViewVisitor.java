@@ -16,6 +16,7 @@ import src.model.interfaces.vUnit;
 
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
@@ -34,7 +35,7 @@ import java.util.Map;
     int workers = -1;
     int id = -1;
     int health = -1;
-    List<vUnit> rallypoint;
+    List<vUnit> rallyPoint;
     Map<String, Integer> rpTypeAndHealth;
 
 
@@ -55,12 +56,13 @@ import java.util.Map;
         workers = jill.workers();
         id = jill.id();
         health = jill.health();
-        /*if(instance == "Rally Point"){
-            rpTypeAndHealth = new Map<String, Integer>();
-            for(int i = 0; ){
-
+        if(instance.equals("Rally Point")){
+            rpTypeAndHealth = new HashMap<String, Integer>();
+            for(int i = 0; i < rallyPoint.size(); ++i){
+                rpTypeAndHealth.put((rallyPoint.get(i)).token(),
+                                    (rallyPoint.get(i)).health());
             }
-        }*/
+        }
         
     }
 
