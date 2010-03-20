@@ -27,22 +27,24 @@ import src.model.interfaces.vArgument;
 
 
     public void visitGroup( vGroup v ){
-
-    }
-
-    public void visitType( vType v ){
         group = v.token();
     }
 
-    public void visitInstance( vInstance v ){
+    public void visitType( vType v ){
+        type = v.token();
+    }
 
+    public void visitInstance( vInstance v ){
+        JillTheInstanceVisitor  jill= new JillTheInstanceVisitor();
+        v.accept(jill);
+        //grab more data
     }
 
     public void visitCommand( vCommand v ){
-
+        command = v.token();
     }
     
     public void visitArgument( vArgument v ){
-
+        argument = v.token();
     }
 }
