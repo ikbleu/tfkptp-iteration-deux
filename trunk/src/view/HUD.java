@@ -7,17 +7,14 @@ package src.view;
 
 import java.awt.image.BufferedImage;
 
+import src.model.interfaces.Displayable;
+
 /**
  *
  * @author spock
  */
  class HUD extends BaseImage{
     private MiniMap minimap;
-    private String groupBox;
-    private String typeBox;
-    private String commandBox;
-    private String instanceBox;
-    private int[] resources;
 
     HUD(int wid, int hei){
         imageWidth = wid;
@@ -27,20 +24,8 @@ import java.awt.image.BufferedImage;
         refreshImage();
     }
 
-    void setResources(int[] res){
-        resources = res;
-    }
+    void setStatusOverview(Displayable[] statusOverview){
 
-    void setGroupBox(String group){
-        groupBox = group;
-    }
-
-    void setTypeBox(String type){
-        typeBox = type;
-    }
-
-    void setCommandBox(String comm){
-        commandBox = comm;
     }
 
     void updateMiniMap(){
