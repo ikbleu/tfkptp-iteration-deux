@@ -1,8 +1,8 @@
-package src.model;
+package src.model.instances;
 
 import src.model.enums.ItemType;
 
-abstract class Item
+public abstract class Item extends Locatable
 {
 	ItemType type;
 	

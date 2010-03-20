@@ -2,14 +2,14 @@
  * file: WorkerGroup.java
  */
 
-package src.model;
+package src.model.instances;
 
 /**
  * Manages groups of workers that are assigned to certain tasks.
  *
  * @author Christopher Dudley
  */
-class WorkerGroup
+public abstract class WorkerGroup extends Locatable
 {
     // Number of workers in the group.
     private int numWorkers;
