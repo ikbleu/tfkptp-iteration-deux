@@ -92,3 +92,7 @@ KeyEditor
 Next				Left
 Previous			Right
 endcontext
+
+begincontext
+CloseMenu			Esc
+endcontext
