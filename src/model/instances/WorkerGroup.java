@@ -21,9 +21,6 @@ public abstract class WorkerGroup extends Locatable
     // Number of workers in the group.
     private int numWorkers;
 
-    // List of things that care if this worker group moves.
-    private ArrayList<MovementListener> movementListeners;
-
     /**
      * Creates a new worker group with no workers in it.
      */
@@ -32,7 +29,6 @@ public abstract class WorkerGroup extends Locatable
         super(location);
 
         numWorkers = 0;
-        movementListeners = new ArrayList<MovementListener>();
     }
 
     /**
@@ -68,38 +64,6 @@ public abstract class WorkerGroup extends Locatable
     protected void removeWorkers(int numRemoved)
     {
         numWorkers -= numRemoved;
-    }
-
-    /**
-     * Worker groups only ever care about the tile they are currently on.
-     *
-     * @return 0 always.
-     */
-    public int influenceRadius()
-    {
-        return 0;
-    }
-
-    /**
-     * Adds a movement listener to the worker group's list of movement
-     * listeners to signal when the group moves.
-     *
-     * @param ml the movement listener to add.
-     */
-    final public void addMovementListener(MovementListener ml)
-    {
-        movementListeners.add(ml);
-    }
-
-    protected void updateLocation( GameTile prev )
-    {
-        for(MovementListener ml : movementListeners)
-            ml.instanceMoved(this, prev);
-    }
-
-    public void addRadiusListener( RadiusListener rl )
-    {
-        // Do nothing
     }
 
     public void instanceEntered( Instance i )

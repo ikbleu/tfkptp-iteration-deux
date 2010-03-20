@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import src.model.interfaces.GameTile;
-import src.model.interfaces.MovementListener;
-import src.model.interfaces.RadiusListener;
 import src.model.interfaces.StatsListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
@@ -26,11 +24,6 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		return Collections.unmodifiableMap( stats );
 	}
 	
-	final public int influenceRadius()
-	{
-		return stats.get( "influenceRadius" );
-	}
-	
 	final public int getStat( String s )
 	{
 		return stats.get( s );
@@ -43,8 +36,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 			sl.statsChanged( this );
 		
 		if ( s.equals( "influenceRadius" ) )
-			for ( RadiusListener rl : radiusListeners )
-				rl.radiusChanged( this );
+			setInfluenceRadius( val );
 	}
 	
 	final public void modifyStat( String s, int delta )
@@ -70,27 +62,14 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 			cl.commandOccurred( c );
 	}
 	
-	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
-	final public void addMovementListener( MovementListener cl )
-	{
-		moveListeners.add( cl );
-	}
-	
 	final public void updateLocation( GameTile prev )
 	{
-		for ( MovementListener ml : moveListeners )
-			ml.instanceMoved( this, prev );
+		// don't need to do anything
 	}
 	
 	final public void accept( LocatableVisitor lv )
 	{
 		lv.visitInstance( this );
-	}
-	
-	private List< RadiusListener > radiusListeners = new LinkedList< RadiusListener >();
-	final public void addRadiusListener( RadiusListener cl )
-	{
-		radiusListeners.add( cl );
 	}
 	
 	abstract public String token();
