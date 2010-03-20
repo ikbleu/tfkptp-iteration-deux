@@ -20,42 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>10</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>140</x><y>40</y><w>280</w><h>50</h></coordinates><panel_attributes>&lt;Research&gt;
---
---
-+cost() : Map&lt;ResourceEnum, Integer&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>50</x><y>150</y><w>150</w><h>80</h></coordinates><panel_attributes>&lt;ModelResearch&gt;
---
---
-+cancel() : void
-+tick() : boolean
-+undertaken() : void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>250</x><y>60</y><w>50</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>30;30;30;60</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>100</x><y>90</y><w>320</w><h>50</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>30;30;300;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>100</x><y>90</y><w>50</w><h>80</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>30;30;30;60</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>370</x><y>90</y><w>50</w><h>80</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>30;30;30;60</additional_attributes></element><element><type>com.umlet.element.base.Note</type><coordinates><x>50</x><y>260</y><w>200</w><h>140</h></coordinates><panel_attributes>tick() returns true when
-research has been 
-completed.
-undertaken() called by
-university research is
-assigned to, to prevent
-research from being
-assigned to 2 universities.
-bg=blue</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>90</x><y>200</y><w>60</w><h>80</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>40;30;30;60</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>280</x><y>150</y><w>240</w><h>180</h></coordinates><panel_attributes>&lt;ViewResearch&gt;
+// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>10</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>170</x><y>130</y><w>280</w><h>240</h></coordinates><panel_attributes>&lt;ViewResearch&gt;
 --
 --
 +beingResearched() : boolean
-+children() : List&lt;ViewResearch&gt;
 +completionPercent() : int
++cost() : Map&lt;ResourceEnum, Integer&gt;
 +curPoints() : int
-+hasChildren() : boolean
++dependencies() : List&lt;ViewResearch&gt;
++dependents() : List&lt;ViewResearch&gt;
++hasDependencies() : boolean
++hasDependents() : boolean
 +maxPoints() : int
 +name() : String
 +ticksToComplete() : int
 +unlocked(): boolean
-</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>280</x><y>360</y><w>280</w><h>70</h></coordinates><panel_attributes>&lt;ResearchTree&gt;
+</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>170</x><y>30</y><w>280</w><h>70</h></coordinates><panel_attributes>&lt;ResearchTree&gt;
 --
 --
 +baseResearch() : List&lt;ViewResearch&gt;
-+name() : String</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Note</type><coordinates><x>50</x><y>460</y><w>430</w><h>110</h></coordinates><panel_attributes>Each individual research will be created with the knowledge
-required to makes the changes to the units, structures, etc
-that it modifies.
-Ex. Melee Atk Power up research would be created with
-references to the Melee unit factory and the list of current
-melee units and apply a bonus to their attack power.
-bg=blue</panel_attributes><additional_attributes/></element></umlet_diagram>
++name() : String</panel_attributes><additional_attributes/></element></umlet_diagram>
