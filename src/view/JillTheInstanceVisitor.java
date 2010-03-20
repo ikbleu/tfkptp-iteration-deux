@@ -28,14 +28,14 @@ import java.util.Map;
 
     public void visitUnit( vUnit u ){
         instanceType = u.token();
-        stats = u.stats();
+        //stats = u.stats();
         id = u.id();
         health = u.health();
     }
 
     public void visitStructure( vStructure s ){
         instanceType = s.token();
-        stats = s.stats();
+        //stats = s.stats();
         id = s.id();
         health = s.health();
         workers = s.workers();
@@ -44,7 +44,7 @@ import java.util.Map;
     public void visitRallyPoint( vRallyPoint r ){
         instanceType = r.token();
         workers = r.workers();
-        rallypoint = r.units();
+        //rallypoint = r.units();
     }
 
 }
