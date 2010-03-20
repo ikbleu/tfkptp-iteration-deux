@@ -31,7 +31,11 @@ public class HelloWorld extends Frame
         // to a bug in JOGL. See JOGL Issue #54 for more information on this.
         // http://jogl.dev.java.net
         setVisible(true);
-
+        addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent we){
+              System.exit(0);
+            }
+          });
         setupJOGL();
     }
 
