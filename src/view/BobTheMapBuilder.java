@@ -8,8 +8,11 @@ package src.view;
 import src.model.interfaces.Displayable;
 import src.model.enums.DecalType;
 import src.model.enums.Visibility;
+import src.model.enums.Direction;
 
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
+
 
 
 /**
@@ -17,20 +20,22 @@ import java.awt.image.BufferedImage;
  * @author spock
  */
 class BobTheMapBuilder implements MapBuilder{
-        Displayable structure;
+        String structure;
         int workers;
         int idles;
         int breeders;
         int soldiers;
+        int individualUnits;
         int[] harvesters;
         int[] resources;
         String item;
         String decal;
-        Displayable[] rallypoints;
+        LinkedList<RallyPointV> rallyPoints;
         String visibility;
         String terrain;
         BufferedImage imageBuffer;
         EnumTableSingleton enumT;
+        GraphicsTableSingleton graphicsT;
 
 
     BobTheMapBuilder(){
@@ -43,14 +48,14 @@ class BobTheMapBuilder implements MapBuilder{
         resources = null;
         item = null;
         decal = null;
-        rallypoints = null;
+        rallyPoints = null;
         visibility = null;
         terrain = null;
     }
 
 
 
-    public void setStructure(Displayable structure){
+    public void setStructure(String structure){
         this.structure = structure;
     }
     public void setWorkers(int workers){
@@ -77,8 +82,8 @@ class BobTheMapBuilder implements MapBuilder{
     public void setDecal(DecalType decal){
         this.decal = enumT.getString(decal);
     }
-    public void setRallyPoints(Displayable[] rallyP){
-        rallypoints = rallyP;
+    public void addRallyPoint(int rallyPoint, Direction d, String status){
+        rallyPoints.add(new RallyPointV(rallyPoint, d, status));
     }
     public void setVisibility(Visibility vis){
         this.visibility = enumT.getString(vis);
@@ -86,5 +91,27 @@ class BobTheMapBuilder implements MapBuilder{
     public void setTerrain(String terrain){
         this.terrain = terrain;
     }
+    public void setIndividualUnits(int individualUnits){
+        this.individualUnits = individualUnits;
+    }
+
+    void buildMe(){
+        if(terrain!=null){
+            imageBuffer = graphicsT.getGraphic(terrain);
+        }
+    }
+
+    private class RallyPointV{
+        int rallyPoint;
+        Direction direction;
+        String status;
+
+        RallyPointV(int rP, Direction di, String sta){
+            rallyPoint = rP;
+            direction = di;
+            status = sta;
+        }
+    }
+
 }
 

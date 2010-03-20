@@ -68,5 +68,7 @@ import java.util.HashMap;
         return health;
     }
 
-    //Map<>
+    Map<String, Integer> stats(){
+        return stats;
+    }
 }
