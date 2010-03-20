@@ -1,25 +1,25 @@
 begincontext
-Group
-SpinNext			CTRL+UP
-SpinPrevious 		CTRL+DOWN
+GroUp
+SpinNext			CtrlUp
+SpinPrevious 		CtrlDown
 endcontext
 
 begincontext
 Type
-SpinNext 			CTRL+LEFT
-SpinPrevious 		CTRL+RIGHT
+SpinNext 			CtrlLeft
+SpinPrevious 		CtrlRight
 endcontext
 
 begincontext
 Instance
-SpinNext 			LEFT
-SpinPrevious 		RIGHT
+SpinNext 			Left
+SpinPrevious 		Right
 endcontext
 
 begincontext
 Command
-SpinNext 			UP
-SpinPrevious 		DOWN
+SpinNext 			Up
+SpinPrevious 		Down
 endcontext
 
 begincontext
@@ -69,26 +69,26 @@ endcontext
 
 begincontext
 StructureOverview
-Next				LEFT
-Previous			RIGHT
+Next				Left
+Previous			Right
 endcontext
 
 begincontext
 UnitOverview
-Next				LEFT
-Previous			RIGHT
+Next				Left
+Previous			Right
 endcontext
 
 begincontext
 TechTreeOverview
-Left				LEFT
-Right				RIGHT
-Up					UP
-Down				DOWN
+Left				Left
+Right				Right
+Up					Up
+Down				Down
 endcontext
 
 begincontext
 KeyEditor
-Next				LEFT
-Previous			RIGHT
+Next				Left
+Previous			Right
 endcontext
