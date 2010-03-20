@@ -9,6 +9,12 @@ package src.view;
  *
  * @author spock
  */
- class KeyBindingOverview implements PopupMenu {
+ class KeyBindingOverview implements PopUpMenu {
+
+
+	public void refreshImage() {
+
+		
+	}
 
 }

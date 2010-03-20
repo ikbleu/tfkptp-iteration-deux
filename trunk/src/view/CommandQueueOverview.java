@@ -9,6 +9,11 @@ package src.view;
  *
  * @author spock
  */
-class CommandQueueOverview {
+class CommandQueueOverview extends HasAnImage{
+
+	void refreshImage() {
+
+		
+	}
 
 }
