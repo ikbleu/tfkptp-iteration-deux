@@ -12,6 +12,9 @@ import src.model.interfaces.vInstance;
 import src.model.interfaces.vCommand;
 import src.model.interfaces.vArgument;
 
+import src.model.interfaces.vUnit;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,9 +28,13 @@ import java.util.Map;
     String command = null;
     String argument = null;
 
+    //instance specific things
     Map<String, Integer> stats;
-
-
+    String instanceType = null;
+    int workers = -1;
+    int id = -1;
+    int health = -1;
+    List<vUnit> rallypoint;
 
 
     public void visitGroup( vGroup v ){
@@ -41,7 +48,8 @@ import java.util.Map;
     public void visitInstance( vInstance v ){
         JillTheInstanceVisitor  jill= new JillTheInstanceVisitor();
         v.accept(jill);
-        //grab more data
+        //health
+        
     }
 
     public void visitCommand( vCommand v ){
@@ -51,4 +59,5 @@ import java.util.Map;
     public void visitArgument( vArgument v ){
         argument = v.token();
     }
+
 }
