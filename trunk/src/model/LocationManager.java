@@ -29,10 +29,18 @@ public class LocationManager implements MovementListener
      * Creates a new LocationManager with no objects on any tiles and no objects
      * registered for movement updates.
      */
-    public LocationManager()
+    private LocationManager()
     {
         whosThere = new HashMap<GameTile, List<Locatable>>();
         whosListening = new HashMap<GameTile, List<Locatable>>();
+    }
+    
+    private static LocationManager instance = null;
+    public static LocationManager instance()
+    {
+    	if ( instance == null )
+    		instance = new LocationManager();
+    	return instance;
     }
 
     /**
