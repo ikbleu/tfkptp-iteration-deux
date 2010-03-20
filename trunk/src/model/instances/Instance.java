@@ -19,7 +19,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();
-	public Map< String, Integer > getStats()
+	public Map< String, Integer > stats()
 	{
 		return Collections.unmodifiableMap( stats );
 	}
@@ -29,7 +29,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		return stats.get( s );
 	}
 	
-	final public void setStat( String s, int val )
+	final protected void setStat( String s, int val )
 	{
 		stats.put( s, val );
 		for ( StatsListener sl : statsListeners )
@@ -60,11 +60,6 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		for ( CommandListener cl : commandListeners )
 			cl.commandOccurred( c );
-	}
-	
-	final public void updateLocation( GameTile prev )
-	{
-		// don't need to do anything
 	}
 	
 	final public void accept( LocatableVisitor lv )
