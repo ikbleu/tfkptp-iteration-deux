@@ -14,7 +14,7 @@ public abstract class Locatable {
 	public Locatable( GameTile g )
 	{
 		location = g;
-		LocationManager.instance().register( this );
+		//LocationManager.instance().register( this );
 	}
 	
 	final public GameTile location()
@@ -67,7 +67,7 @@ public abstract class Locatable {
 	final public void destroy()
 	{
 		doDestruction();
-		LocationManager.instance().unregister( this );
+		//LocationManager.instance().unregister( this );
 	}
 	protected void doDestruction() {}
 	

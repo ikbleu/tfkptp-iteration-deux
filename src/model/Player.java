@@ -25,7 +25,9 @@ public class Player implements CommandSender {
 	
 	final public void executeCommand( Command c )
 	{
-		for ( CommandListener cl : commandListeners.get( c.token() ) )
-			cl.commandOccurred( c );
+		List< CommandListener > ls = commandListeners.get( c.token() );
+		if ( ls != null )
+			for ( CommandListener cl : ls )
+				cl.commandOccurred( c );
 	}
 }

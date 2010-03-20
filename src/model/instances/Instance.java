@@ -7,6 +7,7 @@ import java.util.Map;
 
 import src.model.Player;
 import src.model.commands.Command;
+import src.model.commands.CommandFactory;
 import src.model.commands.CommandListener;
 import src.model.commands.CommandSender;
 import src.model.interfaces.GameTile;
@@ -56,7 +57,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	final public int getStat( String s )
 	{
-		return stats.get( s );
+		Integer val = stats.get( s );
+		return ( val == null ? 0 : val );
 	}
 	
 	final public int health()
@@ -160,8 +162,10 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	final public void executeCommand( Command c )
 	{
-		for ( CommandListener cl : commandListeners.get( c.token() ) )
-			cl.commandOccurred( c );
+		List< CommandListener > ls = commandListeners.get( c.token() );
+		if ( ls != null )
+			for ( CommandListener cl : ls )
+				cl.commandOccurred( c );
 		player.executeCommand( c );
 	}
 	
@@ -170,7 +174,15 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		lv.visitInstance( this );
 	}
 	
+	public void addSelectableCommand( CommandFactory cmd )
+	{
+		
+	}
 	
+	public void removeSelectableCommand( CommandFactory cmd )
+	{
+		
+	}
 	
 	abstract public String token();
 }

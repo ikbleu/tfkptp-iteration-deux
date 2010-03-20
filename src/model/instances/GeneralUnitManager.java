@@ -12,6 +12,7 @@ public class GeneralUnitManager implements InstanceExistenceListener
 	
 	public void delInstance(Instance i) {
 		--numUnits;
+		System.out.println( "we now have " + numUnits + " units" );
 	}
 	
 	public void newInstance(Instance i) {
