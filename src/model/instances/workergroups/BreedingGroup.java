@@ -6,7 +6,10 @@
 package src.model.instances.workergroups;
 
 import src.model.instances.WorkerGroup;
+import src.model.WorkerManager;
 import src.model.interfaces.GameTile;
+
+import java.util.Map;
 
 /**
  *
@@ -15,9 +18,6 @@ import src.model.interfaces.GameTile;
  */
 public class BreedingGroup extends WorkerGroup
 {
-    // Number of ticks needed per worker to create a new worker.
-    private int breedingRate;
-
     // Progress made towards making a new worker.
     private int breedingProgress;
 
@@ -28,11 +28,11 @@ public class BreedingGroup extends WorkerGroup
      *
      * @param location the tile the group is located on.
      */
-    public BreedingGroup(GameTile location)
+    public BreedingGroup(GameTile location, Map<String, Integer> stats,
+            WorkerManager manager)
     {
-        super(location);
+        super(location, stats, manager);
 
-        breedingRate = 100;
         breedingProgress = 0;
     }
 
@@ -48,10 +48,12 @@ public class BreedingGroup extends WorkerGroup
 
         breedingProgress += this.numWorkers();
 
-        numNewWorkers = breedingProgress % breedingRate;
+        numNewWorkers = breedingProgress % getStat("breedingRate");
 
         if(numNewWorkers > 0)
-            breedingProgress -= numNewWorkers * breedingRate;
+            breedingProgress -= numNewWorkers * getStat("breedingRate");
+
+        numNewWorkers = Math.min(numNewWorkers, numWorkersLeft());
 
         this.addWorkers(numNewWorkers);
         this.transferWorkers(target, numNewWorkers);
@@ -64,7 +66,6 @@ public class BreedingGroup extends WorkerGroup
      */
     public String token()
     {
-        // TODO: Make this less of a complete hack once I understand it better.
-        return "BreedingGroup";
+        return "breedingGroup";
     }
 }
