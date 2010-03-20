@@ -23,54 +23,35 @@
 // This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>8</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>504</x><y>184</y><w>240</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingVisitor
 --
-visitUnknown(unknown: Unknown): void
-visitAbsent(): void
-visitPresent(binding: BindingCode): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>528</y><w>224</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-Bound
---
-rebindTo(binding: BindingCode): void
-remove(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>96</y><w>480</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+contextUnknown(): void
+meaningUnknown(): void
+foundMeaning(meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>96</y><w>464</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingMapDirector
 --
 buildAll(builder: BindingMapBuilder): void
-buildForContext(iterator: Iterator&lt;ContextCode&gt;, builder: BindingMapBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>456</y><w>208</w><h>56</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-Unbound
---
-bindTo(binding: BindingCode): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>760</x><y>240</y><w>112</w><h>40</h></coordinates><panel_attributes>BindingCode
---
---
-getName(): String</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>760</x><y>184</y><w>112</w><h>40</h></coordinates><panel_attributes>ContextCode
---
---
-getName(): String</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>656</x><y>296</y><w>216</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+buildForContext(contexts: Iterator&lt;String&gt;, builder: BindingMapBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>656</x><y>296</y><w>216</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 LoadableSaveable
 --
 save(writer: BufferedWriter): void
 load(reader: BufferedReader): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>280</y><w>488</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 EditableKeyConfig
 --
-editBinding(context: ContextCode, event: KeyEvent, visitor: BindingEditVisitor): void
-editContext(context: ContextCode, visitor: ContextEditVisitor): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>184</y><w>408</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+editBinding(context: String, event: KeyEvent, visitor: BindingEditVisitor): void
+editContext(context: String, visitor: ContextEditVisitor): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>184</y><w>408</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 InterpretableKeyConfig
 --
-interpret(context: ContextCode, visitor: BindingVisitor): void
-register(context: ContextCode, iterator: Iterator&lt;BindingCode&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>576</x><y>96</y><w>312</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+interpret(context: String, visitor: BindingVisitor): void
+register(context: String, meanings: Iterator&lt;String&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>576</x><y>96</y><w>288</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingMapBuilder
 --
-context(context: ContextCode): void
-binding(event: KeyEvent, binding: BindingCode): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>360</y><w>240</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+context(context: String): void
+binding(event: KeyEvent, meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>360</y><w>240</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingEditVisitor
 --
-visitUnknown(unknown: Unknown): void
-visitUnbound(unbound: Unbound): void
-visitBound(bound: Bound): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>360</y><w>240</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+contextUnknown(): void
+meaningUnknown(): void
+visitBound(meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>360</y><w>240</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 ContextEditVisitor
 --
 visitUnknown(unknown: Unknown): void
-visitContext(context: Context): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>192</x><y>440</y><w>88</w><h>48</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-Unknown
---
-create(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>440</y><w>96</w><h>48</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-Context
---
-remove(): void</panel_attributes><additional_attributes/></element></umlet_diagram>
+visitContext(context: Context): void</panel_attributes><additional_attributes/></element></umlet_diagram>
