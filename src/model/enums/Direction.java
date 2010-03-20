@@ -36,4 +36,14 @@ public enum Direction
 	{
 		return Direction.values()[(this.ordinal()+5)%6];
 	}
+	
+	public Direction clockwiseOpposite()
+	{
+		return clockwise().opposite();
+	}
+	
+	public Direction counterclockwiseOpposite()
+	{
+		return counterclockwise().opposite();
+	}
 }
