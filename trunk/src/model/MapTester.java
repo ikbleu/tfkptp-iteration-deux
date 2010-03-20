@@ -88,7 +88,19 @@ public class MapTester {
 		
 		for (int i = 0; i < l2.size(); i++)
 			System.out.println(l2.get(i).direction);
-
+		
+		System.out.println("\nDirection tiles test:");
+		
+		l = MapSpacialManager.getTilesInDirection(orig, Direction.SE, 4);
+		for (int i = 0; i < l.size(); i++)
+			System.out.println(l.get(i));
+		
+		System.out.println("\nDirection tiles test 2:");
+		
+		l = MapSpacialManager.getTilesInDirection(sLoc2, Direction.SE, 4);
+		for (int i = 0; i < l.size(); i++)
+			System.out.println(l.get(i));
+		
 	}
 
 }

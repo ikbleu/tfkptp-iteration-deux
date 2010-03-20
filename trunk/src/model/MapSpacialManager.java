@@ -96,16 +96,19 @@ public class MapSpacialManager
 	
 	public static List<GameTile> getTilesInDirection(GameTile t, Direction dir, int distance)
 	{
-		return null;
+		List<GameTile> l = new ArrayList<GameTile>();
+		
+		if (distance > 0 && t.hasNeighbor(dir))
+			getTilesInDirectionHelper(l, t.getNeighbor(dir), dir, distance - 1);
+		
+		return l;
 	}
 	
-	public static GameTile getNeighborAt(GameTile t, Direction d)
+	private static void getTilesInDirectionHelper(List<GameTile> list, GameTile t, Direction dir, int distance)
 	{
-		return t.getNeighbor(d);
-	}
-	
-	public static boolean hasNeighborAt(GameTile t, Direction d)
-	{
-		return t.hasNeighbor(d);
+		list.add(t);
+		
+		if (distance >0 && t.hasNeighbor(dir))
+			getTilesInDirectionHelper(list, t.getNeighbor(dir), dir, distance - 1 );
 	}
 }
