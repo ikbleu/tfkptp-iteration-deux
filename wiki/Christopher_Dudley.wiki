@@ -8,6 +8,8 @@
 || 02-27 || 7 hours || Design ||
 || 03-04 || 1 hour || Design ||
 || 03-18 || 8 hours || Design ||
+|| 03-19 || 5 hours || Implementation ||
+|| 03-20 || 3 hours || Implementation ||
 
 == Verbose ==
 
@@ -35,3 +37,15 @@
 ==== 11:00pm - 12:00am ====
 
  * Worked more on how items and workers would be implemented.
+
+=== 10 - 03 - 19 ===
+
+==== 7:00pm - 12:00 am ====
+
+ * Implementation super fun times.
+
+=== 10 - 03 - 20 ===
+
+==== 12:00am - 3:00 am ====
+
+ * More implementation super fun times.
