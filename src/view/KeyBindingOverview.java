@@ -9,6 +9,6 @@ package src.view;
  *
  * @author spock
  */
- class KeyBindingOverview {
+ class KeyBindingOverview implements PopupMenu {
 
 }

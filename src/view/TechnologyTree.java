@@ -9,7 +9,7 @@ package src.view;
  *
  * @author spock
  */
- class TechnologyTree extends HasAnImage{
+ class TechnologyTree extends HasAnImage implements PopupMenu{
 
     TechnologyTree(){
         
