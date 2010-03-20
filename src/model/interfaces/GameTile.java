@@ -17,4 +17,5 @@ public interface GameTile {
 	 */
 	public void unmark();
 	public String getTerrainType();
+	public boolean hasNeighbor(Direction d);
 }

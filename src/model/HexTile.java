@@ -65,10 +65,16 @@ class HexTile implements GameTile
 			Direction d = Direction.N;
 			do
 			{
-				neighbors.get(d).unmark();
+				if (hasNeighbor(d))
+					neighbors.get(d).unmark();
 				d = d.clockwise();
 			} while (d != Direction.N);
 		}
+	}
+	
+	public String toString()
+	{
+		return "(" + getX() + ", " + getY() + ", " + getZ() + "): " + terrain;
 	}
 
 	public String getTerrainType()
@@ -153,5 +159,11 @@ class HexTile implements GameTile
 	public boolean isWalkable(TokenTerrainWalkability utw, Token i) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean hasNeighbor(Direction d) {
+		
+		return neighbors.get(d) != null;
 	}
 }

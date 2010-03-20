@@ -6,19 +6,21 @@ package src.model.enums;
  */
 public enum Direction
 {
-	N(-1, 1),
-	NE(0, 1),
-	SE(1, 0),
-	S(1, -1),
-	SW(0,-1),
-	NW(-1, 0);
+	N(-1, 1, "N"),
+	NE(0, 1, "NE"),
+	SE(1, 0, "SE"),
+	S(1, -1, "S"),
+	SW(0,-1, "SW"),
+	NW(-1, 0, "NW");
 	
 	public final int x, y;
+	public final String direction; 
 	
-	private Direction(int x, int y)
+	private Direction(int x, int y, String s)
 	{
 		this.x = x;
 		this.y = y;
+		direction = s;
 	}
 	
 	public Direction opposite()
