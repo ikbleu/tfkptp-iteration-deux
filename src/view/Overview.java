@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author spock
  */
- class Overview extends HasAnImage implements PopupMenu{
+ class Overview extends HasAnImage implements PopUpMenu{
     String title;
     String[] list;
     String footer;
@@ -35,6 +35,6 @@ import java.awt.image.BufferedImage;
         footer = foot;
     }
 
-    void refreshImage(){
+    public void refreshImage(){
     }
 }

@@ -17,13 +17,18 @@ import com.sun.opengl.util.Animator;
 
 /**
  *
- * @author spock
+ * @author rdshack
  */
  class ScreenManager extends JFrame{
 	 
 	 	private static final long serialVersionUID = 100;
 	 	
+	 	private PopUpMenu popUpMenu;
+	 	private CommandQueueOverview commandQueueOverview;
+	 	private MainScreen mainScreen;
 	 	
+	 	private boolean showPopUpMenu;
+	 	private boolean showCommandQueueOverview;
 		
 		private double scale;
 		private double panX;
@@ -55,7 +60,10 @@ import com.sun.opengl.util.Animator;
 		    getContentPane().add(canvas);
 		    
 		    animator = new Animator(canvas);
-		    animator.start();
+		}
+		
+		public void start(){
+			animator.start();
 		}
 		
 		public class GraphicListener implements GLEventListener {
@@ -66,6 +74,20 @@ import com.sun.opengl.util.Animator;
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 				
+				gl.glPushMatrix();
+					//translate as necessary
+					mainScreen.refreshImage();
+				gl.glPopMatrix();
+				
+				gl.glPushMatrix();
+					//translate as necessary
+					popUpMenu.refreshImage();
+				gl.glPopMatrix();
+			
+				gl.glPushMatrix();
+					//translate as necessary
+					commandQueueOverview.refreshImage();
+				gl.glPopMatrix();
 				
 			
 			}
