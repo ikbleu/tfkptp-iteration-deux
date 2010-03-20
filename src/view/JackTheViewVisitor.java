@@ -17,12 +17,21 @@ import src.model.interfaces.vArgument;
  * @author spock
  */
  class JackTheViewVisitor implements ViewVisitor{
+    String group = null;
+    String type = null;
+    String instance = null;
+    String command = null;
+    String argument = null;
+
+
+
+
     public void visitGroup( vGroup v ){
 
     }
 
     public void visitType( vType v ){
-
+        group = v.token();
     }
 
     public void visitInstance( vInstance v ){

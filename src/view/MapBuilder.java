@@ -7,9 +7,7 @@ package src.view;
 
 import src.model.interfaces.Displayable;
 import src.model.enums.DecalType;
-import src.model.enums.TerrainType;
 import src.model.enums.Visibility;
-import src.model.enums.ItemType;
 /**
  *
  * @author spock
@@ -22,9 +20,9 @@ public interface MapBuilder {
     public void setSoldiersInside(int soldiers);
     public void setHarvesters(int[] harvesters);
     public void setResources(int[] resources);
-    public void setItem(ItemType item);
+    public void setItem(String item);
     public void setDecal(DecalType decal);
     public void setRallyPoints(Displayable[] rallyPoints);
     public void setVisibility(Visibility vis);
-    public void setTerrain(TerrainType terrain);
+    public void setTerrain(String terrain);
 }

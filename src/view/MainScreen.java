@@ -14,6 +14,8 @@ import java.awt.image.BufferedImage;
 public class MainScreen extends HasAnImage{
     private ViewPort viewport;
     private HUD hud;
+    private CommandSelection commandSelection;
+    private ResourceInfo resourceInfo;
 
     MainScreen(int wid, int hei){
         imageWidth = wid;

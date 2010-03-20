@@ -8,8 +8,6 @@ package src.view;
 import java.util.HashMap;
 
 import src.model.enums.DecalType;
-import src.model.enums.ItemType;
-import src.model.enums.TerrainType;
 import src.model.enums.Direction;
 import src.model.enums.Visibility;
 
@@ -36,18 +34,6 @@ public class EnumTableSingleton {
         table.put( Direction.S, "South");
         table.put( Direction.SE, "South East");
         table.put( Direction.SW, "South West");
-        table.put( ItemType.BOULDER, "boulder");
-        table.put( ItemType.ENERGY_SRC, "energy source");
-        table.put( ItemType.FOOD_SRC, "food source");
-        table.put( ItemType.HEAL_SPRING, "heal spring");
-        table.put( ItemType.ORE_SRC, "ore source");
-        table.put( ItemType.POISON_TRAP, "poison trap");
-        table.put( TerrainType.GRASSLAND, "grassland");
-        table.put( TerrainType.OUTER_SPACE, "outer space");
-        table.put( TerrainType.SPARSE_FOREST, "sparse forest");
-        table.put( TerrainType.VOID, "void");
-        table.put( TerrainType.WATER, "water");
-
 
     }
 
