@@ -35,9 +35,7 @@
 -unmarkAll():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>656</x><y>824</y><w>312</w><h>256</h></coordinates><panel_attributes>_HexTile_
 --
 -neighbors:EnumMap&lt;Direction,HexTile&gt;
--resources:List&lt;ObjectResource&gt;
 -terrain:TerrainType
--item:Item
 -x,y,z:int
 --
 +setNeighbor(:Direction, :HexTile):void
@@ -56,32 +54,32 @@ m2=  *</panel_attributes><additional_attributes>24;24;24;64</additional_attribut
 m2=1</panel_attributes><additional_attributes>24;24;248;24</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>512</x><y>824</y><w>40</w><h>64</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>24;48;24;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>472</x><y>824</y><w>104</w><h>24</h></coordinates><panel_attributes>UnitTileAssociation</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>352</x><y>936</y><w>80</w><h>24</h></coordinates><panel_attributes>Structure</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>408</x><y>920</y><w>264</w><h>40</h></coordinates><panel_attributes>m1=1
 m2=1</panel_attributes><additional_attributes>24;24;248;24</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>512</x><y>896</y><w>40</w><h>64</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>24;48;24;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>464</x><y>896</y><w>136</w><h>24</h></coordinates><panel_attributes>StructureTileAssociation</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>344</x><y>520</y><w>150</w><h>72</h></coordinates><panel_attributes>lt=&lt;()
 r1=                      ViewableMap</panel_attributes><additional_attributes>80;24;80;56</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>408</x><y>648</y><w>120</w><h>96</h></coordinates><panel_attributes>lt=&lt;()
-r1=                     VersaTile</panel_attributes><additional_attributes>64;24;64;80;56;80</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>720</x><y>1104</y><w>120</w><h>80</h></coordinates><panel_attributes>/Item/
+r1=                     VersaTile</panel_attributes><additional_attributes>64;24;64;80;56;80</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1336</x><y>1136</y><w>120</w><h>80</h></coordinates><panel_attributes>/Item/
 --
 -type:ItemType
 --
 /+accept():void/
 +getType():ItemType
-/+blocksTile():boolean/</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>896</x><y>1208</y><w>120</w><h>56</h></coordinates><panel_attributes>Obstacle
+/+blocksTile():boolean/</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1512</x><y>1240</y><w>120</w><h>56</h></coordinates><panel_attributes>Obstacle
 --
 --
 +blocksTile():boolean
-+accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>752</x><y>1056</y><w>40</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;48</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>592</x><y>1208</y><w>120</w><h>40</h></coordinates><panel_attributes>/OneShotItem/
++accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1208</x><y>1240</y><w>120</w><h>40</h></coordinates><panel_attributes>/OneShotItem/
 --
 --
 +blocksTile():boolean
-</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>472</x><y>1288</y><w>112</w><h>56</h></coordinates><panel_attributes>OneShotHeal
+</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1088</x><y>1320</y><w>112</w><h>56</h></coordinates><panel_attributes>OneShotHeal
 --
 --
 +getHealValue():int
-+accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>616</x><y>1288</y><w>184</w><h>96</h></coordinates><panel_attributes>OneShotAddResources
++accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1232</x><y>1320</y><w>184</w><h>96</h></coordinates><panel_attributes>OneShotAddResources
 --
 -quantity:int
 -rType:ResourceType
 --
 getQuantity():int
 getResourceType():ResourceType
-accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>608</x><y>1160</y><w>184</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>168;24;168;40;104;40;24;40;24;48</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>752</x><y>1176</y><w>256</w><h>48</h></coordinates><panel_attributes/><additional_attributes>24;24;240;24;240;32</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>512</x><y>1224</y><w>136</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;24;120;40;24;40;24;64</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>608</x><y>1240</y><w>88</w><h>64</h></coordinates><panel_attributes/><additional_attributes>24;24;72;24;72;48</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>512</x><y>104</y><w>200</w><h>736</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>184;24;24;24;24;720</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>568</x><y>120</y><w>144</w><h>792</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>128;24;24;24;24;776</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>352</x><y>1016</y><w>80</w><h>24</h></coordinates><panel_attributes>RallyPoint</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>408</x><y>1000</y><w>264</w><h>40</h></coordinates><panel_attributes>m1=*
+accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1224</x><y>1192</y><w>184</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>168;24;168;40;104;40;24;40;24;48</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1368</x><y>1208</y><w>256</w><h>48</h></coordinates><panel_attributes/><additional_attributes>24;24;240;24;240;32</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1128</x><y>1256</y><w>136</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;24;120;40;24;40;24;64</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1224</x><y>1272</y><w>88</w><h>64</h></coordinates><panel_attributes/><additional_attributes>24;24;72;24;72;48</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>512</x><y>104</y><w>200</w><h>736</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>184;24;24;24;24;720</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>568</x><y>120</y><w>144</w><h>792</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>128;24;24;24;24;776</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>352</x><y>1016</y><w>80</w><h>24</h></coordinates><panel_attributes>RallyPoint</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>408</x><y>1000</y><w>264</w><h>40</h></coordinates><panel_attributes>m1=*
 m2=1</panel_attributes><additional_attributes>24;24;248;24</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>504</x><y>976</y><w>40</w><h>64</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>24;48;24;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>456</x><y>976</y><w>136</w><h>24</h></coordinates><panel_attributes>RallyPointTileAssociation</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>568</x><y>136</y><w>144</w><h>864</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>128;24;48;24;48;848;24;848</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1024</x><y>552</y><w>152</w><h>168</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
 Direction
 --
@@ -149,9 +147,9 @@ VOID</panel_attributes><additional_attributes/></element><element><type>com.umle
 accept(:Builder):void
 getMapWidth():int
 getMapHeight():int</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1016</x><y>400</y><w>320</w><h>144</h></coordinates><panel_attributes>_MapSpacialManager_
+--
+--
 {static}
---
---
 +getTilesAround(:HexTile, radius:int):List&lt;HexTile&gt;
 +getDistanceBetween(:HexTile, :HexTile):int
 +getDirections(:HexTile, :HexTile):List&lt;Direction&gt;
@@ -173,11 +171,11 @@ TerrainSafety
 --
 terrain:TerrainType
 safetyRating:boolean
-innerclass}</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>152</x><y>472</y><w>176</w><h>424</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>160;24;24;24;24;408</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>808</x><y>1288</y><w>128</w><h>56</h></coordinates><panel_attributes>OneShotDamage
+innerclass}</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>152</x><y>472</y><w>176</w><h>424</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>160;24;24;24;24;408</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1424</x><y>1320</y><w>128</w><h>56</h></coordinates><panel_attributes>OneShotDamage
 --
 --
 +getDamageValue():int
-+accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>656</x><y>1240</y><w>232</w><h>64</h></coordinates><panel_attributes/><additional_attributes>24;24;216;24;216;48</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>352</x><y>344</y><w>776</w><h>152</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>760;56;760;24;24;24;24;136</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>352</x><y>1056</y><w>80</w><h>24</h></coordinates><panel_attributes>WorkerGroup</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>408</x><y>1040</y><w>264</w><h>40</h></coordinates><panel_attributes>lt=-
++accept():void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1272</x><y>1272</y><w>232</w><h>64</h></coordinates><panel_attributes/><additional_attributes>24;24;216;24;216;48</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>352</x><y>344</y><w>776</w><h>152</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>760;56;760;24;24;24;24;136</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>352</x><y>1056</y><w>80</w><h>24</h></coordinates><panel_attributes>WorkerGroup</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>408</x><y>1040</y><w>264</w><h>40</h></coordinates><panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes><additional_attributes>24;24;248;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>440</x><y>1088</y><w>112</w><h>24</h></coordinates><panel_attributes>WorkerTileAssociation</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>472</x><y>1040</y><w>40</w><h>64</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>24;48;24;24</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>528</x><y>160</y><w>184</w><h>952</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>168;24;96;24;96;936;24;936</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>512</x><y>928</y><w>112</w><h>176</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>24;160;24;120;96;120;96;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>696</x><y>0</y><w>352</w><h>352</h></coordinates><panel_attributes>BigMap
@@ -203,7 +201,8 @@ aiMap:VisibilityMap
 +removeUnit(:Unit)
 +removeStructure(:Structure)
 +removeRallyPoint(:RallyPoint)
-+removeWorkerGroup(:WorkerGroup)</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>736</x><y>328</y><w>40</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
++removeWorkerGroup(:WorkerGroup)
+</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>736</x><y>328</y><w>40</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=  1</panel_attributes><additional_attributes>24;24;24;64</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>464</x><y>88</y><w>248</w><h>528</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
 m2=2</panel_attributes><additional_attributes>232;24;48;24;48;512;24;512</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1160</x><y>952</y><w>184</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Resource
@@ -232,4 +231,9 @@ tickList:List&lt;Tickable&gt;
 --
 register(:Tickable):void
 unregister(:Tickable):void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1360</x><y>400</y><w>232</w><h>304</h></coordinates><panel_attributes>/_CLOCK SYSTEM_/</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Interface</type><coordinates><x>0</x><y>576</y><w>176</w><h>200</h></coordinates><panel_attributes>VersaTile
---</panel_attributes><additional_attributes/></element></umlet_diagram>
+--</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1152</x><y>24</y><w>280</w><h>272</h></coordinates><panel_attributes>InstanceManager
+--
+instanceTileList:Map&lt;HexTile, List&lt;Instance&gt; &gt;
+--
+move(:Instance, :Direction):void
+</panel_attributes><additional_attributes/></element></umlet_diagram>
