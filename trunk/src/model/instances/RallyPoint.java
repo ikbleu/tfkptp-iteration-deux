@@ -2,15 +2,16 @@ package src.model.instances;
 
 import java.util.List;
 
+import src.model.Player;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.vRallyPoint;
 import src.model.interfaces.InstanceVisitor;
 import src.model.interfaces.vUnit;
 
 public class RallyPoint extends Instance implements vRallyPoint {
-	public RallyPoint( int id, GameTile g )
+	public RallyPoint( Player p, int id, GameTile g )
 	{
-		super( id, g );
+		super( p, id, g );
 	}
 	
 	final public void accept( InstanceVisitor iv )
