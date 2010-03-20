@@ -25,6 +25,10 @@ import com.sun.opengl.util.Animator;
 	 	
 	 	private ViewPort viewPort;
 	 	private HUD hud;
+	 	private KeyBindingOverview keyBindingOverview;
+	 	private Overview overview;
+	 	private TechnologyTree technologyTree;
+
 	 	private CommandQueueOverview commandQueueOverview;
 	 	
 	 	private boolean showPopUpMenu;
@@ -39,14 +43,21 @@ import com.sun.opengl.util.Animator;
 		private static final double scaleFactor = 0.8;
 		private static final int windowWidth = 1280;
 		private static final int windowHeight = 800;
+
+		private static final int hudWidth = 1280;
+		private static final int hudHeight = 250;
+		
 		
 		private Animator animator;
 
-		public ScreenManager(){
+		public ScreenManager(int mapWidth, int mapHeight){
 			
 			scale = 1.0;
 			panX = 0;
 			panY = 0;
+			
+			viewPort = new ViewPort(mapWidth, mapHeight);
+			hud = new HUD(hudWidth, hudHeight);
 			
 					
 			showPopUpMenu = false;
