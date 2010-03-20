@@ -4,7 +4,12 @@
 
 package src.model.instances;
 
+import java.util.ArrayList;
+
 import src.model.interfaces.GameTile;
+import src.model.interfaces.MovementListener;
+import src.model.interfaces.RadiusListener;
+import src.model.interfaces.LocatableVisitor;
 
 /**
  * Manages groups of workers that are assigned to certain tasks.
@@ -15,12 +20,9 @@ public abstract class WorkerGroup extends Locatable
 {
     // Number of workers in the group.
     private int numWorkers;
-    
-    // Number of ticks needed per worker to create a new worker.
-    private int breedingRate;
 
-    // Progress made towards making a new worker.
-    private int breedingProgress;
+    // List of things that care if this worker group moves.
+    private ArrayList<MovementListener> movementListeners;
 
     /**
      * Creates a new worker group with no workers in it.
@@ -30,8 +32,7 @@ public abstract class WorkerGroup extends Locatable
         super(location);
 
         numWorkers = 0;
-        breedingRate = 100;
-        breedingProgress = 0;
+        movementListeners = new ArrayList<MovementListener>();
     }
 
     /**
@@ -59,33 +60,60 @@ public abstract class WorkerGroup extends Locatable
         this.removeWorkers(numTransfering);
     }
 
-    private void addWorkers(int numAdded)
+    protected void addWorkers(int numAdded)
     {
         numWorkers += numAdded;
     }
 
-    private void removeWorkers(int numRemoved)
+    protected void removeWorkers(int numRemoved)
     {
         numWorkers -= numRemoved;
     }
 
     /**
-     * Tells the current worker group to breed. Once the worker group has
-     * finished creating new workers, it will add them to the target group.
+     * Worker groups only ever care about the tile they are currently on.
      *
-     * @param target the group to receive the new workers.
+     * @return 0 always.
      */
-    public void breed(WorkerGroup target)
+    public int influenceRadius()
     {
-        int numNewWorkers = 0;
+        return 0;
+    }
 
-        breedingProgress += numWorkers;
+    /**
+     * Adds a movement listener to the worker group's list of movement
+     * listeners to signal when the group moves.
+     *
+     * @param ml the movement listener to add.
+     */
+    final public void addMovementListener(MovementListener ml)
+    {
+        movementListeners.add(ml);
+    }
 
-        numNewWorkers = breedingProgress % breedingRate;
+    protected void updateLocation( GameTile prev )
+    {
+        for(MovementListener ml : movementListeners)
+            ml.instanceMoved(this, prev);
+    }
 
-        if(numNewWorkers > 0)
-            breedingProgress -= numNewWorkers * breedingRate;
+    public void addRadiusListener( RadiusListener rl )
+    {
+        // Do nothing
+    }
 
-        target.addWorkers(numNewWorkers);
+    public void instanceEntered( Instance i )
+    {
+        // Should never be called.
+    }
+
+    public void instanceExited( Instance i )
+    {
+        // Should never be called.
+    }
+
+    public void accept( LocatableVisitor lv )
+    {
+        lv.visitWorkerGroup(this);
     }
 }
