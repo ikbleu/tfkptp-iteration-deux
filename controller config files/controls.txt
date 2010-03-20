@@ -1,13 +1,13 @@
 begincontext
 GroUp
-SpinNext			CtrlUp
-SpinPrevious 		CtrlDown
+SpinNext			Ctrl+Up
+SpinPrevious 		Ctrl+Down
 endcontext
 
 begincontext
 Type
-SpinNext 			CtrlLeft
-SpinPrevious 		CtrlRight
+SpinNext 			Ctrl+Left
+SpinPrevious 		Ctrl+Right
 endcontext
 
 begincontext
