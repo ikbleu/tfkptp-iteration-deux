@@ -26,7 +26,7 @@ public class LocationManager implements MovementListener, RadiusListener
     private Map<GameTile, List<Locatable>> whosThere;
     private Map<GameTile, List<Locatable>> whosListening;
 
-    /**
+    /*
      * Creates a new LocationManager with no objects on any tiles and no objects
      * registered for movement updates.
      */
