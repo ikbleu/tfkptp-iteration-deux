@@ -1,12 +1,10 @@
 package src.model;
 
 import java.util.EnumMap;
-import java.util.List;
 
 import src.model.enums.Direction;
 import src.model.enums.TerrainType;
 import src.model.interfaces.GameTile;
-import src.model.interfaces.Resource;
 import src.model.interfaces.Token;
 
 class HexTile implements GameTile
@@ -28,6 +26,7 @@ class HexTile implements GameTile
 	{
 		neighbors = new EnumMap<Direction,HexTile>(Direction.class);
 		terrain = TerrainType.GRASSLAND;
+		setNeighbor(dir.opposite(),par);
 		coordinate = new MysteryPoint(par.coordinate,dir);
 		mark = false;
 		
@@ -35,10 +34,16 @@ class HexTile implements GameTile
 	
 	void setNeighbor(Direction dir, HexTile ht)
 	{
-		neighbors.put(dir, ht);
+		if (neighbors.get(dir) == null)
+			neighbors.put(dir, ht);
 	}
 	
 	public GameTile getNeighbor(Direction dir)
+	{
+		return neighbors.get(dir);
+	}
+	
+	public HexTile getNeighborHex(Direction dir)
 	{
 		return neighbors.get(dir);
 	}
@@ -68,14 +73,28 @@ class HexTile implements GameTile
 		return mark;
 	}
 	
-	void unmark()
+	public void unmark()
 	{
-		mark = false;
+		if (mark)
+		{
+			mark = false;
+			Direction d = Direction.N;
+			do
+			{
+				neighbors.get(d).unmark();
+				d = d.clockwise();
+			} while (d != Direction.N);
+		}
 	}
 
-	TerrainType getTerrainType()
+	public TerrainType getTerrainType()
 	{
 		return terrain;
+	}
+	
+	void setTerrainType(TerrainType t)
+	{
+		terrain = t;
 	}
 	
 	public int getX()
@@ -91,6 +110,21 @@ class HexTile implements GameTile
 	public int getZ()
 	{
 		return coordinate.getZ();
+	}
+	
+	public void linkNeighbors()
+	{
+		Direction d = Direction.N;
+		
+		do
+		{
+			if (neighbors.get(d) != null)
+				neighbors.get(d).setNeighbor(d.counterclockwiseOpposite(), neighbors.get(d.clockwise()));
+			if (neighbors.get(d.clockwise()) != null)
+				neighbors.get(d.clockwise()).setNeighbor(d.counterclockwise(), neighbors.get(d));
+
+			d = d.clockwise();
+		} while (d != Direction.N);
 	}
 	
 	private class MysteryPoint

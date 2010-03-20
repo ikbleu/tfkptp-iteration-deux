@@ -1,6 +1,7 @@
 package src.model.interfaces;
 
 import src.model.enums.Direction;
+import src.model.enums.TerrainType;
 import src.model.TokenTerrainWalkability;
 
 public interface GameTile {
@@ -10,5 +11,8 @@ public interface GameTile {
 	public int getX();
 	public int getY();
 	public int getZ();
-
+	public void mark();
+	public boolean isMarked();
+	public void unmark();
+	public TerrainType getTerrainType();
 }
