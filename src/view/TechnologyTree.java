@@ -9,7 +9,7 @@ package src.view;
  *
  * @author spock
  */
-public class TechnologyTree extends HasAnImage{
+ class TechnologyTree extends HasAnImage{
 
     TechnologyTree(){
         

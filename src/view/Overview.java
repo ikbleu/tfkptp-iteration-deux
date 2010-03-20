@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author spock
  */
-public class Overview extends HasAnImage{
+ class Overview extends HasAnImage{
     String title;
     String[] list;
     String footer;

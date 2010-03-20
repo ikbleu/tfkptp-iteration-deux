@@ -15,7 +15,7 @@ import src.model.interfaces.vRallyPoint;
  *
  * @author spock
  */
-public class JillTheInstanceVisitor implements InstanceVisitor{
+ class JillTheInstanceVisitor implements InstanceVisitor{
 
     
 

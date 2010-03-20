@@ -9,6 +9,6 @@ package src.view;
  *
  * @author spock
  */
-public class ScreenManager {
+ class ScreenManager {
 
 }

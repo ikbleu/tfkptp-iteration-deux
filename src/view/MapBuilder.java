@@ -27,5 +27,4 @@ public interface MapBuilder {
     public void setRallyPoints(Displayable[] rallyPoints);
     public void setVisibility(Visibility vis);
     public void setTerrain(TerrainType terrain);
-
 }
