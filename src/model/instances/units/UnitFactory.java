@@ -1,8 +1,20 @@
 package src.model.instances.units;
 
+import src.model.Player;
 import src.model.instances.InstanceFactory;
 import src.model.instances.Unit;
+import src.model.interfaces.GameTile;
 
-interface UnitFactory extends InstanceFactory {
-	public Unit makeInstance();
+abstract class UnitFactory implements InstanceFactory {
+	public UnitFactory( Player p )
+	{
+		player = p;
+	}
+	private Player player;
+	public Player player()
+	{
+		return player;
+	}
+	
+	abstract public Unit makeInstance( GameTile loc );
 }

@@ -27,9 +27,4 @@ class Ranged extends Unit {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public void destruct()
-	{
-		destroy();
-	}
 }

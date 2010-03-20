@@ -4,9 +4,13 @@ import src.model.instances.structures.StructureInitializer;
 import src.model.instances.units.UnitInitializer;
 
 public class Model {
+	public Player p; // TODO: remove (testing purposes)
 	public Model()
 	{
-		UnitInitializer.initialize();
-		StructureInitializer.initialize();
+		p = new Player();
+		// TODO: ai?
+		
+		UnitInitializer.initialize( p );
+		StructureInitializer.initialize( p );
 	}
 }

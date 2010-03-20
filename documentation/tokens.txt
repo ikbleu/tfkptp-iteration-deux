@@ -7,3 +7,6 @@ statInfluenceRadius
 **Instances
 instanceRallyPoint
 instanceRanged
+
+**Commands
+cmdMakeRanged
