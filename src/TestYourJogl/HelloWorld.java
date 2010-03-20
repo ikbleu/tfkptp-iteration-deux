@@ -1,4 +1,4 @@
-package TestYourJogl;
+package src.TestYourJogl;
 
 
 // External imports
