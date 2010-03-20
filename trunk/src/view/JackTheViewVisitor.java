@@ -23,40 +23,40 @@ import java.util.HashMap;
  * @author spock
  */
  class JackTheViewVisitor implements ViewVisitor{
-    String group = null;
-    String type = null;
-    String instance = null;
-    String command = null;
-    String argument = null;
+    private String info = null;
+    private String infoType = null;
 
     //instance specific things
-    Map<String, Integer> stats;
-    String instanceType = null;
-    int workers = -1;
-    int id = -1;
-    int health = -1;
-    List<vUnit> rallyPoint;
-    Map<String, Integer> rpTypeAndHealth;
+    private Map<String, Integer> stats;
+    private String instanceType = null;
+    private int workers = -1;
+    private int id = -1;
+    private int health = -1;
+    private List<vUnit> rallyPoint;
+    private Map<String, Integer> rpTypeAndHealth;
 
 
 
     public void visitGroup( vGroup v ){
-        group = v.token();
+        infoType = "Group";
+        info = v.token();
     }
 
     public void visitType( vType v ){
-        type = v.token();
+        infoType = "Type";
+        info = v.token();
     }
 
     public void visitInstance( vInstance v ){
+        infoType = "Instance";
         JillTheInstanceVisitor  jill= new JillTheInstanceVisitor();
         v.accept(jill);
-        instance = jill.instanceType();
+        info = jill.instanceType();
         stats = jill.stats();
         workers = jill.workers();
         id = jill.id();
         health = jill.health();
-        if(instance.equals("Rally Point")){
+        if(info.equals("Rally Point")){
             rpTypeAndHealth = new HashMap<String, Integer>();
             for(int i = 0; i < rallyPoint.size(); ++i){
                 rpTypeAndHealth.put((rallyPoint.get(i)).token(),
@@ -67,11 +67,23 @@ import java.util.HashMap;
     }
 
     public void visitCommand( vCommand v ){
-        command = v.token();
+        infoType = "Command";
+        info = v.token();
     }
     
     public void visitArgument( vArgument v ){
-        argument = v.token();
+        infoType = "Argument";
+        info = v.token();
     }
+
+    String infoType(){
+        return infoType;
+    }
+
+    String info(){
+        return info;
+    }
+
+
 
 }
