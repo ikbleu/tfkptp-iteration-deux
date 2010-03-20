@@ -5,9 +5,10 @@ import java.util.List;
 
 import src.model.enums.Direction;
 import src.model.enums.TerrainType;
+import src.model.interfaces.GameTile;
 import src.model.interfaces.Resource;
 
-class HexTile
+class HexTile implements GameTile
 {
 	private EnumMap<Direction,HexTile> neighbors;
 	private List<Resource> resources;
@@ -25,9 +26,9 @@ class HexTile
 		
 	}
 	
-	HexTile getNeighbor(Direction dir)
+	public GameTile getNeighbor(Direction dir)
 	{
-		
+		return neighbors.get(dir);
 	}
 	
 	void randomize()
