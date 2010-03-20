@@ -16,7 +16,7 @@ import src.model.interfaces.vArgument;
  *
  * @author spock
  */
-public class JackTheViewVisitor implements ViewVisitor{
+ class JackTheViewVisitor implements ViewVisitor{
     public void visitGroup( vGroup v ){
 
     }

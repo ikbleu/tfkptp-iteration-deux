@@ -8,19 +8,26 @@ package src.view;
 import src.model.interfaces.Displayable;
 import src.model.interfaces.SakuraMap;
 
+import java.awt.event.KeyListener;
+
 
 /**
  *
  * @author spock
  */
 public class View implements ViewInjection{
-    ScreenManager screenManager;
-    SakuraMap sakuraMap;
+    private ScreenManager screenManager;
+    private SakuraMap sakuraMap;
 
     public void injectionFairyLily(String code,
                                             Displayable[] direct,
                                             Displayable[] dList,
                                             Displayable selection){
+    }
+
+    public void register(SakuraMap sakura, KeyListener control){
+        sakuraMap = sakura;
+        //KeyListener statement
     }
 
 }

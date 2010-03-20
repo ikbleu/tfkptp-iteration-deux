@@ -16,7 +16,7 @@ import java.util.HashMap;
  *
  * @author spock
  */
-public class GraphicsTableSingleton {
+class GraphicsTableSingleton {
 
     HashMap< String, BufferedImage > graphics;
 

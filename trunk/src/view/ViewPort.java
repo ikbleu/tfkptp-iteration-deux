@@ -5,10 +5,19 @@
 
 package src.view;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author spock
  */
-public class ViewPort {
+public class ViewPort extends HasAnImage{
+    BufferedImage map[][];
 
+    ViewPort(){
+
+    }
+
+    void refreshImage(){
+    }
 }

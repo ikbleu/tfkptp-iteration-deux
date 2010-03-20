@@ -11,13 +11,13 @@ import java.awt.image.BufferedImage;
  *
  * @author spock
  */
-public class HUD extends BaseImage{
-    MiniMap minimap;
-    String groupBox;
-    String typeBox;
-    String commandBox;
-    String instanceBox;
-    int[] resources;
+ class HUD extends BaseImage{
+    private MiniMap minimap;
+    private String groupBox;
+    private String typeBox;
+    private String commandBox;
+    private String instanceBox;
+    private int[] resources;
 
     HUD(int wid, int hei){
         imageWidth = wid;

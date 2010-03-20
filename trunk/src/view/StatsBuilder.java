@@ -9,7 +9,7 @@ package src.view;
  *
  * @author spock
  */
-public interface StatsBuilder {
+ interface StatsBuilder {
 
     public abstract void setAttack(int attack);
     public abstract void setDefense(int defense);
