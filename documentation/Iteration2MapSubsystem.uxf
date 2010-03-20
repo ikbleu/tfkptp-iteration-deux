@@ -231,9 +231,9 @@ tickList:List&lt;Tickable&gt;
 --
 register(:Tickable):void
 unregister(:Tickable):void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1360</x><y>400</y><w>232</w><h>304</h></coordinates><panel_attributes>/_CLOCK SYSTEM_/</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Interface</type><coordinates><x>0</x><y>576</y><w>176</w><h>200</h></coordinates><panel_attributes>VersaTile
---</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1152</x><y>24</y><w>280</w><h>272</h></coordinates><panel_attributes>InstanceManager
+--</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>1152</x><y>24</y><w>280</w><h>272</h></coordinates><panel_attributes>LocatableManager
 --
-instanceTileList:Map&lt;HexTile, List&lt;Instance&gt; &gt;
+instanceTileList:Map&lt;HexTile, List&lt;Locatable&gt; &gt;
 --
 move(:Instance, :Direction):void
 </panel_attributes><additional_attributes/></element></umlet_diagram>
