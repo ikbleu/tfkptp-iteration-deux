@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.commands.Command;
+import src.model.commands.CommandListener;
+import src.model.commands.CommandSender;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HealthListener;
 import src.model.interfaces.MovementListener;
@@ -166,6 +169,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		lv.visitInstance( this );
 	}
+	
+	
 	
 	abstract public String token();
 }

@@ -15,4 +15,24 @@ public abstract class Unit extends Instance implements vUnit {
 	{
 		iv.visitUnit( this );
 	}
+	
+	public void powerUp()
+	{
+		
+	}
+	
+	public void powerDown()
+	{
+		
+	}
+	
+	public void decommission()
+	{
+		destroy();
+	}
+	
+	public void addToRallyPoint( RallyPoint rp )
+	{
+		
+	}
 }
