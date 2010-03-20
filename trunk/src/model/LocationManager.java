@@ -5,6 +5,7 @@
 package src.model;
 
 import src.model.interfaces.MovementListener;
+import src.model.interfaces.RadiusListener;
 import src.model.interfaces.GameTile;
 import src.model.instances.Locatable;
 
@@ -20,7 +21,7 @@ import java.util.HashMap;
  *
  * @author Christopher Dudley
  */
-public class LocationManager implements MovementListener
+public class LocationManager implements MovementListener, RadiusListener
 {
     private Map<GameTile, List<Locatable>> whosThere;
     private Map<GameTile, List<Locatable>> whosListening;
@@ -143,6 +144,19 @@ public class LocationManager implements MovementListener
     }
 
     /**
+     * Once notified that a thing has changed its radius, unregisters from
+     * tiles no longer being listened to and registers to new tiles being
+     * listened to.
+     *
+     * @param thing the locatable who's influence radius has changed.
+     * @param prevRadius the previous influence radius.
+     */
+    public void radiusChanged(Locatable thing, int prevRadius)
+    {
+        
+    }
+
+    /**
      * Registers a new object at a certain game tile.
      *
      * @param thing the new thing being registered.
@@ -201,6 +215,8 @@ public class LocationManager implements MovementListener
 
             listening.add(thing);
         }
+
+        thing.addMovementListener(this);
     }
 
     /**
