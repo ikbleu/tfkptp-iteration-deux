@@ -6,6 +6,8 @@ package src.model;
 
 /**
  * Manages groups of workers that are assigned to certain tasks.
+ *
+ * @author Christopher Dudley
  */
 class WorkerGroup
 {
