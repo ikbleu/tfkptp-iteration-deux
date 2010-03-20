@@ -12,6 +12,8 @@ import src.model.interfaces.vInstance;
 import src.model.interfaces.vCommand;
 import src.model.interfaces.vArgument;
 
+import java.util.Map;
+
 /**
  *
  * @author spock
@@ -22,6 +24,8 @@ import src.model.interfaces.vArgument;
     String instance = null;
     String command = null;
     String argument = null;
+
+    Map<String, Integer> stats;
 
 
 
