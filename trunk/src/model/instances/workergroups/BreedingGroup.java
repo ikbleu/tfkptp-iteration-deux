@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package src.model;
+package src.model.instances.workergroups;
 
 import src.model.instances.WorkerGroup;
 import src.model.interfaces.GameTile;
