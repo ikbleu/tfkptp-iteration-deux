@@ -1,7 +1,11 @@
 package src.model.instances;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import src.model.interfaces.GameTile;
 import src.model.interfaces.LocatableVisitor;
+import src.model.interfaces.MovementListener;
 import src.model.interfaces.RadiusListener;
 
 public abstract class Locatable {
@@ -17,16 +21,39 @@ public abstract class Locatable {
 		return location;
 	}
 	
+	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
+	final public void addMovementListener( MovementListener cl )
+	{
+		moveListeners.add( cl );
+	}
+	
 	final protected void setLocation( GameTile g )
 	{
 		GameTile prev = location;
 		location = g;
-		updateLocation( prev );
+		for ( MovementListener ml : moveListeners )
+			ml.instanceMoved( this, prev );
 	}
-	abstract protected void updateLocation( GameTile prev );
 	
-	abstract public int influenceRadius();
-	abstract public void addRadiusListener( RadiusListener rl );
+	private List< RadiusListener > radiusListeners = new LinkedList< RadiusListener >();
+	final public void addRadiusListener( RadiusListener cl )
+	{
+		radiusListeners.add( cl );
+	}
+	
+	private int influenceRadius = 0;
+	final protected void setInfluenceRadius( int rad )
+	{
+		influenceRadius = rad;
+		for ( RadiusListener rl : radiusListeners )
+			rl.radiusChanged( this );
+	}
+	
+	final public int influenceRadius()
+	{
+		return influenceRadius;
+	}
+	
 	abstract public void accept( LocatableVisitor lv );
 	abstract public void instanceEntered( Instance i );
 	abstract public void instanceExited( Instance i );
