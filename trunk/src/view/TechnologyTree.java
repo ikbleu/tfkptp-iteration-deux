@@ -9,6 +9,13 @@ package src.view;
  *
  * @author spock
  */
-public class TechnologyTree {
+public class TechnologyTree extends HasAnImage{
 
+    TechnologyTree(){
+        
+    }
+
+    void refreshImage(){
+
+    }
 }
