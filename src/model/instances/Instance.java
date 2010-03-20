@@ -49,11 +49,19 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		statsListeners.add( cl );
 	}
+	final public void removeStatsListener( StatsListener cl )
+	{
+		statsListeners.remove( cl );
+	}
 	
 	private List< CommandListener > commandListeners = new LinkedList< CommandListener >();
 	final public void addCommandListener( CommandListener cl )
 	{
 		commandListeners.add( cl );
+	}
+	final public void removeCommandListener( CommandListener cl )
+	{
+		commandListeners.remove( cl );
 	}
 	
 	final public void executeCommand( Command c )
