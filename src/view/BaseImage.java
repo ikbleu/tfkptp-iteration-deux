@@ -9,6 +9,6 @@ package src.view;
  *
  * @author spock
  */
-public abstract class BaseImage extends HasAnImage{
+abstract class BaseImage extends HasAnImage{
     GraphicsTable graphicsTable;
 }
