@@ -22,9 +22,10 @@ import com.sun.opengl.util.Animator;
  class ScreenManager extends JFrame{
 	 
 	 	private static final long serialVersionUID = 100;
+	 	
+	 	
 		
 		private double scale;
-		
 		private double panX;
 		private double panY;
 		
@@ -39,7 +40,6 @@ import com.sun.opengl.util.Animator;
 		public ScreenManager(){
 			
 			scale = 1.0;
-
 			panX = 0;
 			panY = 0;
 
@@ -65,6 +65,8 @@ import com.sun.opengl.util.Animator;
 			
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+				
+				
 			
 			}
 			
