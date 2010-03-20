@@ -2,7 +2,7 @@
  * file: ContextCode.java
  */
 
-package src.model.interfaces.keybinds;
+package src.model.interfaces;
 
 /**
  *
