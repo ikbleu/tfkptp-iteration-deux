@@ -10,7 +10,7 @@ package src.view;
 import java.awt.Image;
 import java.util.HashMap;
 
-import src.model.interfaces.TypeCode;
+import src.model.interfaces.Token;
 
 /**
  *
@@ -18,13 +18,13 @@ import src.model.interfaces.TypeCode;
  */
 public class GraphicsTable {
 
-    HashMap< TypeCode, Image > graphics;
+    HashMap< Token, Image > graphics;
 
     GraphicsTable(){
 
     }
 
-    Image getGraphic(TypeCode key){
+    Image getGraphic(Token key){
         return graphics.get(key);
     }
 
