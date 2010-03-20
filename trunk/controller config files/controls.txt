@@ -1,12 +1,94 @@
+begincontext
 Group
-GroupSpinNext		CTRL+UP
-GroupSpinPrevious 	CTRL+DOWN
+SpinNext			CTRL+UP
+SpinPrevious 		CTRL+DOWN
+endcontext
+
+begincontext
 Type
-TypeSpinNext 		CTRL+RIGHT
-TypeSpinPrevious 	CTRL+LEFT
+SpinNext 			CTRL+LEFT
+SpinPrevious 		CTRL+RIGHT
+endcontext
+
+begincontext
 Instance
-InstanceSpinNext 	LEFT
-InstanceSpinPrevious 	RIGHT
+SpinNext 			LEFT
+SpinPrevious 		RIGHT
+endcontext
+
+begincontext
 Command
-CommandSpinNext 	UP
-CommandSpinPrevious 	DOWN
+SpinNext 			UP
+SpinPrevious 		DOWN
+endcontext
+
+begincontext
+IntegerArgs
+0					0
+1					1
+2					2
+3					3
+4					4
+5					5
+6					6
+7					7
+8					8
+9					9
+endcontext
+
+begincontext
+DirectionArgs
+NW					NumPad-7
+N					NumPad-8
+NE					NumPad-9
+SW					NumPad-1
+S					NumPad-2
+SE					NumPad-3
+endcontext
+
+begincontext
+StructureArgs
+University			u
+Tower				t
+Farm				f
+Mine				m
+Capitol				c
+endcontext
+
+begincontext
+UnitArgs			
+Ranged				r
+Melee				m
+Explorer			e
+Colonist			c
+endcontext
+
+begincontext
+NoArgs				n
+endcontext
+
+begincontext
+StructureOverview
+Next				LEFT
+Previous			RIGHT
+endcontext
+
+begincontext
+UnitOverview
+Next				LEFT
+Previous			RIGHT
+endcontext
+
+begincontext
+TechTreeOverview
+Left				LEFT
+Right				RIGHT
+Up					UP
+Down				DOWN
+endcontext
+
+begincontext
+KeyEditor
+Next				LEFT
+Previous			RIGHT
+endcontext
