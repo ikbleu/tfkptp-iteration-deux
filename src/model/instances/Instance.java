@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import src.model.Player;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HealthListener;
 import src.model.interfaces.MovementListener;
@@ -16,11 +17,12 @@ import src.model.interfaces.LocatableVisitor;
 
 public abstract class Instance extends Locatable implements vInstance, CommandSender
 {
-	public Instance( int id, GameTile g )
+	public Instance( Player p, int id, GameTile g )
 	{
 		super( g );
 		
 		this.id = id;
+		player = p;
 		
 		addMovementListener( new MovementListener()
 		{
@@ -30,6 +32,12 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 					vl.locationChanged( Instance.this, prev );
 			}
 		});
+	}
+	
+	private Player player;
+	final public Player player()
+	{
+		return player;
 	}
 	
 	private int id;
@@ -128,6 +136,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		for ( CommandListener cl : commandListeners.get( c.token() ) )
 			cl.commandOccurred( c );
+		player.executeCommand( c );
 	}
 	
 	final public void accept( LocatableVisitor lv )
