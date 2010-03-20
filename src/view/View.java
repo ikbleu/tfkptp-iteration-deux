@@ -19,6 +19,10 @@ public class View implements ViewInjection{
     private ScreenManager screenManager;
     private SakuraMap sakuraMap;
 
+    public View(){
+        screenManager = new ScreenManager(15, 15);
+    }
+
     public void injectionFairyLily(String code,
                                             Displayable[] direct,
                                             Displayable[] dList,
