@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 public class ViewPort extends HasAnImage{
     BufferedImage map[][];
 
-    ViewPort(){
+    ViewPort(int wid, int hei){
 
     }
 
