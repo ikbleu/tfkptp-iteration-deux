@@ -1,7 +1,6 @@
 package src.model;
 
 import src.model.enums.Direction;
-import src.model.enums.TerrainType;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.Randomizer;
 
