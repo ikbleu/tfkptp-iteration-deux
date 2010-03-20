@@ -64,7 +64,7 @@ public abstract class Locatable {
 		return influenceRadius;
 	}
 	
-	final protected void destroy()
+	final public void destroy()
 	{
 		doDestruction();
 		LocationManager.instance().unregister( this );

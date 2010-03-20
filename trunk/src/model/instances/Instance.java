@@ -1,6 +1,5 @@
 package src.model.instances;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -47,9 +46,9 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();
-	public Map< String, Integer > stats()
+	public void stats( Map< String, Integer > m )
 	{
-		return Collections.unmodifiableMap( stats );
+		m.putAll( stats );
 	}
 	
 	final public int getStat( String s )
@@ -62,6 +61,11 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		return stats.get( "statHealth" );
 	}
 	
+	final public void takeDamage( int delta )
+	{
+		modifyStat( "statHealth", -delta );
+	}
+	
 	final protected void setStat( String s, int val )
 	{
 		stats.put( s, val );
@@ -71,6 +75,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 				hl.healthChanged( this );
 			for ( ViewListener vl : viewListeners )
 				vl.healthChanged( this );
+			if ( health() <= 0 )
+				destroy();
 		}
 		else
 		{
@@ -82,6 +88,12 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 			if ( s.equals( "statInfluenceRadius" ) )
 				setInfluenceRadius( val );
 		}
+	}
+	
+	protected void doDestruction()
+	{
+		for ( InstanceExistenceListener il : ieListeners )
+			il.delInstance( this );
 	}
 	
 	final public void modifyStat( String s, int delta )
@@ -117,6 +129,17 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	final public void removeViewListener( ViewListener cl )
 	{
 		viewListeners.remove( cl );
+	}
+	
+	private List< InstanceExistenceListener > ieListeners = new LinkedList< InstanceExistenceListener >();
+	final public void addInstanceExistenceListener( InstanceExistenceListener cl )
+	{
+		ieListeners.add( cl );
+		cl.newInstance( this );
+	}
+	final public void removeInstanceExistenceListener( InstanceExistenceListener cl )
+	{
+		ieListeners.remove( cl );
 	}
 	
 	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();

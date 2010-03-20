@@ -3,7 +3,7 @@ package src.model.interfaces;
 import java.util.Map;
 
 public interface vStructure {
-	Map< String, Integer > stats();
+	void stats( Map< String, Integer > m );
 	public int id();
 	public int health();
 	public String token();

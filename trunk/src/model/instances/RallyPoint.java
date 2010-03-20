@@ -33,9 +33,8 @@ public class RallyPoint extends Instance implements vRallyPoint {
 	}
 
 	@Override
-	public List<vUnit> units() {
+	public void units( List< vUnit > l ) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
