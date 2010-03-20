@@ -2,12 +2,12 @@
  * file: BindingCode.java
  */
 
-package src.model.interfaces.keybinds;
+package src.model.interfaces;
 
 /**
  *
  * @author Christopher Dudley
  */
-public interface BindingCode {
+public interface TypeCode {
     public String getName();
 }
