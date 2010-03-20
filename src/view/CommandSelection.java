@@ -5,6 +5,8 @@
 
 package src.view;
 
+import src.model.interfaces.Displayable;
+
 /**
  *
  * @author spock
@@ -15,6 +17,14 @@ package src.view;
     private String typeBox;
     private String commandBox;
     private String instanceBox;
+
+    CommandSelection(Displayable[] commands){
+        for(int i = 0; i < commands.length;++i){
+            JackTheViewVisitor jack = new JackTheViewVisitor();
+            commands[i].accept(jack);
+
+        }
+    }
 
     void setGroupBox(String group){
         groupBox = group;

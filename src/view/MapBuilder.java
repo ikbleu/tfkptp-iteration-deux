@@ -26,4 +26,5 @@ public interface MapBuilder {
     public void setVisibility(Visibility vis);
     public void setTerrain(String terrain);
     public void setIndividualUnits(int individualUnits);
+    public void setPlayer(String player);
 }
