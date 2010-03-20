@@ -76,4 +76,10 @@ buildForContext(contexts: Iterator&lt;String&gt;, builder: BindingMapBuilder): v
 BindingMapBuilder
 --
 context(context: String): void
-binding(event: KeyEvent, meaning: String): void</panel_attributes><additional_attributes/></element></umlet_diagram>
+binding(event: KeyEvent, meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>48</x><y>640</y><w>184</w><h>80</h></coordinates><panel_attributes>KeyCodeAndModifiers
+--
+--
+setKeyCode(keyCode : int) : void
+setModifiers(modifiers: int) : void
+getKeyCode() : int
+getModifiers() : int</panel_attributes><additional_attributes/></element></umlet_diagram>
