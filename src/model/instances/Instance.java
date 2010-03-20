@@ -13,12 +13,13 @@ import src.model.interfaces.StatsListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
 
-public abstract class Instance implements vInstance, CommandSender, Locatable
+public abstract class Instance extends Locatable implements vInstance, CommandSender
 {
 	private GameTile location;
 	public Instance( GameTile g )
 	{
 		location = g;
+		// TODO: register self with Spacial Manager
 	}
 	
 	final public GameTile location()
