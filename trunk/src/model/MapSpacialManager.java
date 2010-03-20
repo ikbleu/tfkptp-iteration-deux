@@ -13,19 +13,24 @@ public class MapSpacialManager
 		List<GameTile> l = new ArrayList<GameTile>();
 		getTilesAroundHelper(l, tile, radius);
 		tile.unmark();		
-		return null;
+		return l;
 	}
 	
 	private static void getTilesAroundHelper(List<GameTile> list, GameTile tile, int radius)
 	{
-		list.add(tile);
+		if (!tile.isMarked())
+			list.add(tile);
 		tile.mark();
+		
+		
 		if (radius > 0)
 		{
+			
 			Direction d = Direction.N;
 			do
 			{
-				getTilesAroundHelper(list, tile.getNeighbor(d), radius -1);
+				if (tile.hasNeighbor(d))
+					getTilesAroundHelper(list, tile.getNeighbor(d), radius - 1);
 				d = d.clockwise();
 			} while (d != Direction.N);
 		}
@@ -40,9 +45,11 @@ public class MapSpacialManager
 	{
 		List<Direction> l = new ArrayList<Direction>();
 		
+		System.out.println("Getting directions from " + t1 + " to " + t2);
+		
 		getDirectionsHelper(l,t1, t2);
 		
-		return null;
+		return l;
 	}
 	
 	private static void getDirectionsHelper(List<Direction> list, GameTile t1, GameTile t2)
@@ -50,25 +57,41 @@ public class MapSpacialManager
 		if (t1 == t2)
 			return;
 		
+		System.out.println(t1 + " to " + t2);
+		
 		Direction d;
 		
 		if (t1.getZ() != t2.getZ())
 		{
-			if (t1.getY() >= t2.getY())
+			if (t2.getZ() < t1.getZ()) // 
 			{
-				if (t1.getZ() < t2.getZ()) // move SE
+				if (t2.getY() < t1.getY()) // move SE
 				{
-					d = Direction.SE;
+					d = Direction.SW;
 				}
 				else
 				{
 					d = Direction.NW;
 				}
 			}
+			else
+			{
+				if (t2.getY() <= t1.getY())
+					d = Direction.SE;
+				else
+					d = Direction.NE;
+			}
+		}
+		else
+		{
+			if (t1.getY() > t2.getY())
+				d = Direction.S;
+			else
+				d = Direction.N;
 		}
 		
-		list.add(Direction.SE);
-		getDirectionsHelper(list, t1.getNeighbor(Direction.SE), t2);
+		list.add(d);
+		getDirectionsHelper(list, t1.getNeighbor(d), t2);
 	}
 	
 	public static List<GameTile> getTilesInDirection(GameTile t, Direction dir, int distance)
@@ -83,6 +106,6 @@ public class MapSpacialManager
 	
 	public static boolean hasNeighborAt(GameTile t, Direction d)
 	{
-		return t.getNeighbor(d) != null;
+		return t.hasNeighbor(d);
 	}
 }
