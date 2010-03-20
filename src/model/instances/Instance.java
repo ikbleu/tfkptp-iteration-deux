@@ -15,16 +15,9 @@ import src.model.interfaces.LocatableVisitor;
 
 public abstract class Instance extends Locatable implements vInstance, CommandSender
 {
-	private GameTile location;
 	public Instance( GameTile g )
 	{
-		location = g;
-		// TODO: register self with Spacial Manager
-	}
-	
-	final public GameTile location()
-	{
-		return location;
+		super( g );
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();
@@ -83,10 +76,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		moveListeners.add( cl );
 	}
 	
-	final public void setLocation( GameTile g )
+	final public void updateLocation( GameTile prev )
 	{
-		GameTile prev = location;
-		location = g;
 		for ( MovementListener ml : moveListeners )
 			ml.instanceMoved( this, prev );
 	}

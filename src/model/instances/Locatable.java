@@ -5,12 +5,26 @@ import src.model.interfaces.LocatableVisitor;
 import src.model.interfaces.RadiusListener;
 
 public abstract class Locatable {
-	public Locatable()
+	private GameTile location;
+	public Locatable( GameTile g )
 	{
+		location = g;
 		// TODO: register self with location manager
 	}
 	
-	abstract public GameTile location();
+	final public GameTile location()
+	{
+		return location;
+	}
+	
+	final protected void setLocation( GameTile g )
+	{
+		GameTile prev = location;
+		location = g;
+		updateLocation( prev );
+	}
+	abstract protected void updateLocation( GameTile prev );
+	
 	abstract public int influenceRadius();
 	abstract public void addRadiusListener( RadiusListener rl );
 	abstract public void accept( LocatableVisitor lv );
