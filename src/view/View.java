@@ -25,6 +25,10 @@ public class View implements ViewInjection{
                                             Displayable selection){
     }
 
+    public void injectionCloseMenu(){
+        
+    }
+
     public void register(SakuraMap sakura, KeyListener control){
         sakuraMap = sakura;
         //KeyListener statement

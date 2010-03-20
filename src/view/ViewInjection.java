@@ -16,4 +16,5 @@ public interface ViewInjection {
                                             Displayable[] direct,
                                             Displayable[] dList,
                                             Displayable selection);
+    public abstract void injectionCloseMenu();
 }
