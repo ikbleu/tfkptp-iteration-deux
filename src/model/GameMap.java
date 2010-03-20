@@ -3,15 +3,19 @@ package src.model;
 import src.model.enums.Direction;
 import src.model.enums.TerrainType;
 import src.model.interfaces.GameTile;
+import src.model.interfaces.Randomizer;
 
 public class GameMap
 {
 	private HexTile origin, startingLocation1, startingLocation2;
 	final int MAP_RADIUS = 9;
+	private Randomizer rand;
 	
 	public GameMap()
 	{
-		origin = new HexTile();
+		rand = new TerrainRandomizer();
+		
+		origin = new HexTile(rand.defaultValue());
 		populate(origin);
 		
 		for (startingLocation1 = origin;
@@ -22,8 +26,8 @@ public class GameMap
 		 	 startingLocation2.getNeighborHex(Direction.S) != null;
 		 	 startingLocation2 = startingLocation2.getNeighborHex(Direction.S));
 		
-		startingLocation1.setTerrainType(TerrainType.GRASSLAND);
-		startingLocation2.setTerrainType(TerrainType.GRASSLAND);
+		startingLocation1.setTerrainType(rand.defaultValue());
+		startingLocation2.setTerrainType(rand.defaultValue());
 	}
 	
 	public GameTile getOrigin()
@@ -62,12 +66,11 @@ public class GameMap
 		System.out.println("Making tile " + tile.getX() + " " + tile.getY() + " " + tile.getZ() + "...");
 		do
 		{
-			tile.setNeighbor(d, new HexTile(tile,d));
+			tile.setNeighbor(d, new HexTile(rand.random(), tile,d));
 			d = d.clockwise();
 		} while (d != Direction.N);
 		
 		tile.linkNeighbors();
-		tile.randomize();
 		do
 		{
 			populateHelper(tile.getNeighborHex(d), d.opposite(), MAP_RADIUS);
@@ -78,7 +81,6 @@ public class GameMap
 	
 	private void populateHelper(HexTile tile, Direction parentDir, int radius)
 	{
-		tile.randomize();
 		
 		if (radius <= 1) return;
 		
@@ -87,7 +89,7 @@ public class GameMap
 		do
 		{
 			if (d != parentDir)
-				tile.setNeighbor(d, new HexTile(tile,d));
+				tile.setNeighbor(d, new HexTile(rand.random(), tile,d));
 			d = d.clockwise();
 		} while (d != Direction.N);
 		

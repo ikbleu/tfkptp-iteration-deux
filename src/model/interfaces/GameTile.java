@@ -13,6 +13,9 @@ public interface GameTile {
 	public int getZ();
 	public void mark();
 	public boolean isMarked();
+	/**
+	 * Unmarks the tile and all tiles around it that are marked
+	 */
 	public void unmark();
-	public TerrainType getTerrainType();
+	public String getTerrainType();
 }

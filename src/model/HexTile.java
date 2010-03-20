@@ -10,22 +10,22 @@ import src.model.interfaces.Token;
 class HexTile implements GameTile
 {
 	private EnumMap<Direction,HexTile> neighbors;
-	private TerrainType terrain;
+	private String terrain;
 	private MysteryPoint coordinate;
 	private boolean mark;
 	
-	public HexTile()
+	public HexTile(String terrain)
 	{
 		neighbors = new EnumMap<Direction,HexTile>(Direction.class);
-		terrain = TerrainType.GRASSLAND;
+		this.terrain = terrain;
 		coordinate = new MysteryPoint();
 		mark = false;
 	}
 	
-	public HexTile(HexTile par, Direction dir)
+	public HexTile(String terrain, HexTile par, Direction dir)
 	{
 		neighbors = new EnumMap<Direction,HexTile>(Direction.class);
-		terrain = TerrainType.GRASSLAND;
+		this.terrain = terrain;
 		setNeighbor(dir.opposite(),par);
 		coordinate = new MysteryPoint(par.coordinate,dir);
 		mark = false;
@@ -46,21 +46,6 @@ class HexTile implements GameTile
 	public HexTile getNeighborHex(Direction dir)
 	{
 		return neighbors.get(dir);
-	}
-	
-	void randomize()
-	{
-		int i = (int)(Math.random()*100);
-		
-		if (i > 49)
-		{
-			if (i <= 79)
-				terrain = TerrainType.SPARSE_FOREST;
-			else if (i <= 94)
-				terrain = TerrainType.WATER;
-			else
-				terrain = TerrainType.OUTER_SPACE;
-		}
 	}
 	
 	public void mark()
@@ -87,12 +72,12 @@ class HexTile implements GameTile
 		}
 	}
 
-	public TerrainType getTerrainType()
+	public String getTerrainType()
 	{
 		return terrain;
 	}
 	
-	void setTerrainType(TerrainType t)
+	void setTerrainType(String t)
 	{
 		terrain = t;
 	}
@@ -140,7 +125,7 @@ class HexTile implements GameTile
 		{
 			x = par.x + dir.x;
 			y = par.y + dir.y;
-			z = par.z + dir.z;
+			z = x + y;
 		}
 		
 		public int getX()
