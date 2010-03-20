@@ -3,6 +3,7 @@ package src.model.instances;
 import java.util.LinkedList;
 import java.util.List;
 
+import src.model.LocationManager;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.LocatableVisitor;
 import src.model.interfaces.MovementListener;
@@ -13,7 +14,7 @@ public abstract class Locatable {
 	public Locatable( GameTile g )
 	{
 		location = g;
-		// TODO: register self with location manager
+		LocationManager.instance().register( this );
 	}
 	
 	final public GameTile location()
@@ -61,6 +62,13 @@ public abstract class Locatable {
 	{
 		return influenceRadius;
 	}
+	
+	final protected void destroy()
+	{
+		doDestruction();
+		LocationManager.instance().unregister( this );
+	}
+	protected void doDestruction() {}
 	
 	abstract public void accept( LocatableVisitor lv );
 	abstract public void entered( Locatable l );

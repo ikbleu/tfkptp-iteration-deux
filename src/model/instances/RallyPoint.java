@@ -8,9 +8,9 @@ import src.model.interfaces.InstanceVisitor;
 import src.model.interfaces.vUnit;
 
 public class RallyPoint extends Instance implements vRallyPoint {
-	public RallyPoint( GameTile g )
+	public RallyPoint( int id, GameTile g )
 	{
-		super( g );
+		super( id, g );
 	}
 	
 	final public void accept( InstanceVisitor iv )
@@ -29,12 +29,6 @@ public class RallyPoint extends Instance implements vRallyPoint {
 	public String token()
 	{
 		return "instanceRallyPoint";
-	}
-
-	@Override
-	public int id() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

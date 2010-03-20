@@ -5,9 +5,9 @@ import src.model.interfaces.vStructure;
 import src.model.interfaces.InstanceVisitor;
 
 public abstract class Structure extends Instance implements vStructure {
-	public Structure( GameTile g )
+	public Structure( int id, GameTile g )
 	{
-		super( g );
+		super( id, g );
 	}
 	
 	final public void accept( InstanceVisitor iv )

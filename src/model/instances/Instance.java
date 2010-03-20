@@ -16,9 +16,11 @@ import src.model.interfaces.LocatableVisitor;
 
 public abstract class Instance extends Locatable implements vInstance, CommandSender
 {
-	public Instance( GameTile g )
+	public Instance( int id, GameTile g )
 	{
 		super( g );
+		
+		this.id = id;
 		
 		addMovementListener( new MovementListener()
 		{
@@ -28,6 +30,12 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 					vl.locationChanged( Instance.this, prev );
 			}
 		});
+	}
+	
+	private int id;
+	final public int id()
+	{
+		return id;
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();

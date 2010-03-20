@@ -5,15 +5,13 @@ import src.model.interfaces.vUnit;
 import src.model.interfaces.InstanceVisitor;
 
 public abstract class Unit extends Instance implements vUnit {
-	public Unit( GameTile g )
+	public Unit( int id, GameTile g )
 	{
-		super( g );
+		super( id, g );
 	}
 	
 	final public void accept( InstanceVisitor iv )
 	{
 		iv.visitUnit( this );
 	}
-	
-	
 }
