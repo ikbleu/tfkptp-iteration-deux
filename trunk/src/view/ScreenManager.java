@@ -28,10 +28,11 @@ import com.sun.opengl.util.Animator;
 	 	private KeyBindingOverview keyBindingOverview;
 	 	private Overview overview;
 	 	private TechnologyTree technologyTree;
-
 	 	private CommandQueueOverview commandQueueOverview;
 	 	
-	 	private boolean showPopUpMenu;
+	 	private boolean showKeyBindingOverview;
+	 	private boolean showOverview;
+	 	private boolean showTechnologyTree;
 	 	private boolean showCommandQueueOverview;
 		
 		private double scale;
@@ -47,6 +48,9 @@ import com.sun.opengl.util.Animator;
 		private static final int hudWidth = 1280;
 		private static final int hudHeight = 250;
 		
+		private static final int overviewWidth = 300;
+		private static final int overviewHeight = 420;
+		
 		
 		private Animator animator;
 
@@ -59,8 +63,14 @@ import com.sun.opengl.util.Animator;
 			viewPort = new ViewPort(mapWidth, mapHeight);
 			hud = new HUD(hudWidth, hudHeight);
 			
-					
-			showPopUpMenu = false;
+			keyBindingOverview = new KeyBindingOverview();
+			overview = new Overview(overviewWidth, overviewHeight);
+			technologyTree = new TechnologyTree();
+			commandQueueOverview = new CommandQueueOverview();
+			
+			showKeyBindingOverview = false;
+			showOverview = false;
+			showTechnologyTree = false;
 			showCommandQueueOverview = false;
 
 			setSize(windowWidth, windowHeight);
@@ -80,6 +90,7 @@ import com.sun.opengl.util.Animator;
 		public void start(){
 			animator.start();
 		}
+
 		
 		public class GraphicListener implements GLEventListener {
 			
