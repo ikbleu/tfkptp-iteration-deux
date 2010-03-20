@@ -1,5 +1,7 @@
 package src.model;
 
+import src.model.instances.WorkerGroup;
+
 public class WorkerGroupTileAssociation
 {
 	WorkerGroup workergroup;
