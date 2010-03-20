@@ -36,7 +36,7 @@ public abstract class Locatable {
 		GameTile prev = location;
 		location = g;
 		for ( MovementListener ml : moveListeners )
-			ml.instanceMoved( this, prev );
+			ml.locationChanged( this, prev );
 	}
 	
 	private List< RadiusListener > radiusListeners = new LinkedList< RadiusListener >();

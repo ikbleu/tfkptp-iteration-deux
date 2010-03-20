@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import src.model.interfaces.GameTile;
+import src.model.interfaces.HealthListener;
+import src.model.interfaces.MovementListener;
 import src.model.interfaces.StatsListener;
+import src.model.interfaces.ViewListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
 
@@ -16,6 +19,15 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	public Instance( GameTile g )
 	{
 		super( g );
+		
+		addMovementListener( new MovementListener()
+		{
+			public void locationChanged( Locatable l, GameTile prev )
+			{
+				for ( ViewListener vl : viewListeners )
+					vl.locationChanged( Instance.this, prev );
+			}
+		});
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();
@@ -29,14 +41,31 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		return stats.get( s );
 	}
 	
+	final public int health()
+	{
+		return stats.get( "statHealth" );
+	}
+	
 	final protected void setStat( String s, int val )
 	{
 		stats.put( s, val );
-		for ( StatsListener sl : statsListeners )
-			sl.statsChanged( this );
-		
-		if ( s.equals( "statInfluenceRadius" ) )
-			setInfluenceRadius( val );
+		if ( stats.equals( "statHealth" ) )
+		{
+			for ( HealthListener hl : healthListeners )
+				hl.healthChanged( this );
+			for ( ViewListener vl : viewListeners )
+				vl.healthChanged( this );
+		}
+		else
+		{
+			for ( StatsListener sl : statsListeners )
+				sl.statsChanged( this );
+			for ( ViewListener vl : viewListeners )
+				vl.statsChanged( this );
+			
+			if ( s.equals( "statInfluenceRadius" ) )
+				setInfluenceRadius( val );
+		}
 	}
 	
 	final public void modifyStat( String s, int delta )
@@ -52,6 +81,26 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	final public void removeStatsListener( StatsListener cl )
 	{
 		statsListeners.remove( cl );
+	}
+	
+	private List< HealthListener > healthListeners = new LinkedList< HealthListener >();
+	final public void addHealthListener( HealthListener cl )
+	{
+		healthListeners.add( cl );
+	}
+	final public void removeHealthListener( HealthListener cl )
+	{
+		healthListeners.remove( cl );
+	}
+	
+	private List< ViewListener > viewListeners = new LinkedList< ViewListener >();
+	final public void addViewListener( ViewListener cl )
+	{
+		viewListeners.add( cl );
+	}
+	final public void removeViewListener( ViewListener cl )
+	{
+		viewListeners.remove( cl );
 	}
 	
 	private List< CommandListener > commandListeners = new LinkedList< CommandListener >();
