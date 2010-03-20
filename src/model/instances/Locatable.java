@@ -53,9 +53,10 @@ public abstract class Locatable {
 	private int influenceRadius = 0;
 	final protected void setInfluenceRadius( int rad )
 	{
+		int prev = influenceRadius;
 		influenceRadius = rad;
 		for ( RadiusListener rl : radiusListeners )
-			rl.radiusChanged( this );
+			rl.radiusChanged( this, prev );
 	}
 	
 	final public int influenceRadius()
