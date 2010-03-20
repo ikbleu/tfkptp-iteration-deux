@@ -52,4 +52,21 @@ import java.util.HashMap;
         r.units(rallypoint);
     }
 
+    String instanceType(){
+        return instanceType;
+    }
+
+    int workers(){
+        return workers;
+    }
+
+    int id(){
+        return id;
+    }
+
+    int health(){
+        return health;
+    }
+
+    //Map<>
 }
