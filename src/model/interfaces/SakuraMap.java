@@ -14,5 +14,5 @@ import src.view.MapBuilder;
 public interface SakuraMap {
     public int mapWidth();
     public int mapHeight();
-    public void build(MapBuilder b);
+    public void build(MapBuilder[][] b);
 }
