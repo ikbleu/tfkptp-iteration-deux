@@ -30,4 +30,5 @@ public abstract class Locatable {
 	abstract public void accept( LocatableVisitor lv );
 	abstract public void instanceEntered( Instance i );
 	abstract public void instanceExited( Instance i );
+	abstract public String token();
 }

@@ -92,4 +92,6 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		radiusListeners.add( cl );
 	}
+	
+	abstract public String token();
 }

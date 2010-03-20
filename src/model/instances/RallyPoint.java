@@ -22,4 +22,9 @@ public class RallyPoint extends Instance implements vRallyPoint {
 	public void instanceExited(Instance i) {
 		// stop attacking it?
 	}
+	
+	public String token()
+	{
+		return "rallyPoint";
+	}
 }
