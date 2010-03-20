@@ -285,6 +285,7 @@ public class LocationManager implements MovementListener, RadiusListener
         }
 
         thing.addMovementListener(this);
+        thing.addRadiusListener(this);
     }
 
     /**
@@ -331,5 +332,8 @@ public class LocationManager implements MovementListener, RadiusListener
                     thing.exited(l);
             }
         }
+
+        thing.removeMovementListener(this);
+        thing.removeRadiusListener(this);
     }
 }
