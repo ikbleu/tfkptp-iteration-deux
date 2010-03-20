@@ -103,19 +103,22 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		viewListeners.remove( cl );
 	}
 	
-	private List< CommandListener > commandListeners = new LinkedList< CommandListener >();
-	final public void addCommandListener( CommandListener cl )
+	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();
+	final public void addCommandListener( String token, CommandListener cl )
 	{
-		commandListeners.add( cl );
+		if ( ! commandListeners.containsKey( token ) )
+			commandListeners.put( token, new LinkedList< CommandListener >() );
+		commandListeners.get( token ).add( cl );
 	}
-	final public void removeCommandListener( CommandListener cl )
+	final public void removeCommandListener( String token, CommandListener cl )
 	{
-		commandListeners.remove( cl );
+		if ( commandListeners.containsKey( token ) )
+			commandListeners.get( token ).remove( cl );
 	}
 	
 	final public void executeCommand( Command c )
 	{
-		for ( CommandListener cl : commandListeners )
+		for ( CommandListener cl : commandListeners.get( c.token() ) )
 			cl.commandOccurred( c );
 	}
 	
