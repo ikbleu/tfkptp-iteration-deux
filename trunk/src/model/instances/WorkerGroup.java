@@ -66,12 +66,12 @@ public abstract class WorkerGroup extends Locatable
         numWorkers -= numRemoved;
     }
 
-    public void instanceEntered( Instance i )
+    public void entered( Locatable i )
     {
         // Should never be called.
     }
 
-    public void instanceExited( Instance i )
+    public void exited( Locatable i )
     {
         // Should never be called.
     }

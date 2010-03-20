@@ -35,7 +35,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		for ( StatsListener sl : statsListeners )
 			sl.statsChanged( this );
 		
-		if ( s.equals( "influenceRadius" ) )
+		if ( s.equals( "statInfluenceRadius" ) )
 			setInfluenceRadius( val );
 	}
 	
