@@ -1,7 +1,6 @@
 package src.model.interfaces;
 
 import src.model.enums.Direction;
-import src.model.enums.TerrainType;
 import src.model.TokenTerrainWalkability;
 
 public interface GameTile {
