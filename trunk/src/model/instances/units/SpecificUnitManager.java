@@ -1,19 +1,30 @@
 package src.model.instances.units;
 
-import src.model.Player;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
+import src.model.instances.Unit;
+import src.model.interfaces.GameTile;
 
 public abstract class SpecificUnitManager implements InstanceExistenceListener {
-	public SpecificUnitManager(GeneralUnitManager m) {
+	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f) {
 		manager = m;
+		factory = f;
 	}
 	private GeneralUnitManager manager; 
+	private UnitFactory factory;
 	
-	protected boolean canMakeUnit()
+	public boolean canMakeUnit()
 	{
 		return canMakeSpecificUnit() && manager.canMakeUnit();
+	}
+	
+	// precondition: canMakeUnit() is true
+	final public Unit makeUnit( GameTile g )
+	{
+		Unit u = factory.makeInstance( g );
+		u.addInstanceExistenceListener( this );
+		return u;
 	}
 	
 	abstract protected boolean canMakeSpecificUnit();

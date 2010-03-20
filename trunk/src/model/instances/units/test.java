@@ -2,13 +2,10 @@ package src.model.instances.units;
 
 import src.model.Model;
 import src.model.Player;
-import src.model.TokenTerrainWalkability;
-import src.model.enums.Direction;
-import src.model.instances.Command;
-import src.model.instances.CommandVisitor;
+import src.model.commands.Command;
+import src.model.commands.CommandVisitor;
 import src.model.instances.Instance;
 import src.model.interfaces.GameTile;
-import src.model.interfaces.Token;
 
 public class test {
 	public static void main( String[] args )
@@ -38,6 +35,12 @@ public class test {
 			public String token() {
 				// TODO Auto-generated method stub
 				return "cmdMakeRanged";
+			}
+
+			@Override
+			public int numTicks() {
+				// TODO Auto-generated method stub
+				return 0;
 			}
 			
 		});

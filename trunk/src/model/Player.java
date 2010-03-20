@@ -5,9 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import src.model.instances.Command;
-import src.model.instances.CommandListener;
-import src.model.instances.CommandSender;
+import src.model.commands.Command;
+import src.model.commands.CommandListener;
+import src.model.commands.CommandSender;
 
 public class Player implements CommandSender {
 	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();
