@@ -11,7 +11,9 @@ import src.model.interfaces.vStructure;
 import src.model.interfaces.vRallyPoint;
 
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
@@ -28,14 +30,16 @@ import java.util.Map;
 
     public void visitUnit( vUnit u ){
         instanceType = u.token();
-        //stats = u.stats();
+        stats = new HashMap<String, Integer>();
+        u.stats(stats);
         id = u.id();
         health = u.health();
     }
 
     public void visitStructure( vStructure s ){
         instanceType = s.token();
-        //stats = s.stats();
+        stats = new HashMap<String, Integer>();
+        s.stats(stats);
         id = s.id();
         health = s.health();
         workers = s.workers();
@@ -44,7 +48,8 @@ import java.util.Map;
     public void visitRallyPoint( vRallyPoint r ){
         instanceType = r.token();
         workers = r.workers();
-        //rallypoint = r.units();
+        rallypoint = new LinkedList<vUnit>();
+        r.units(rallypoint);
     }
 
 }
