@@ -10,19 +10,21 @@ package src.view;
 import java.awt.Image;
 import java.util.HashMap;
 
+import src.model.interfaces.TypeCode;
+
 /**
  *
  * @author spock
  */
 public class GraphicsTable {
 
-    HashMap< String, Image > graphics;
+    HashMap< TypeCode, Image > graphics;
 
     GraphicsTable(){
 
     }
 
-    Image getGraphic(String key){
+    Image getGraphic(TypeCode key){
         return graphics.get(key);
     }
 
