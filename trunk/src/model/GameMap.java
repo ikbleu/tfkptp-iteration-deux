@@ -14,7 +14,7 @@ public class GameMap
 	{
 		rand = new TerrainRandomizer();
 		
-		origin = new HexTile(rand.defaultValue());
+		origin = new HexTile(rand.random());
 		populate(origin);
 		
 		for (startingLocation1 = origin;
