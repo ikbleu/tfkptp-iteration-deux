@@ -23,9 +23,10 @@ import com.sun.opengl.util.Animator;
 	 
 	 	private static final long serialVersionUID = 100;
 	 	
+	 	private ViewPort viewPort;
+	 	private HUD hud;
 	 	private PopUpMenu popUpMenu;
 	 	private CommandQueueOverview commandQueueOverview;
-	 	private MainScreen mainScreen;
 	 	
 	 	private boolean showPopUpMenu;
 	 	private boolean showCommandQueueOverview;
@@ -47,6 +48,10 @@ import com.sun.opengl.util.Animator;
 			scale = 1.0;
 			panX = 0;
 			panY = 0;
+			
+					
+			showPopUpMenu = false;
+			showCommandQueueOverview = false;
 
 			setSize(windowWidth, windowHeight);
 			setTitle("Robot Unicorns...ATTACK!");
@@ -75,8 +80,7 @@ import com.sun.opengl.util.Animator;
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 				
 				gl.glPushMatrix();
-					//translate as necessary
-					mainScreen.refreshImage();
+
 				gl.glPopMatrix();
 				
 				gl.glPushMatrix();
