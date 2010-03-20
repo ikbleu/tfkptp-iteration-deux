@@ -153,7 +153,75 @@ public class LocationManager implements MovementListener, RadiusListener
      */
     public void radiusChanged(Locatable thing, int prevRadius)
     {
-        
+        int newRadius = thing.influenceRadius();
+        GameTile location = thing.location();
+        List<GameTile> oldZone = MapSpacialManager.getTilesAround(location, prevRadius);
+        List<GameTile> newZone = MapSpacialManager.getTilesAround(location, newRadius);
+
+        if(newRadius > prevRadius)
+        {
+            for(GameTile gt : newZone)
+            {
+                if(!oldZone.contains(gt))
+                {
+                    // thing now listening to this tile as well.
+                    List<Locatable> listeningHere = whosListening.get(gt);
+
+                    if(listeningHere == null)
+                    {
+                        listeningHere = new ArrayList<Locatable>();
+                        whosListening.put(gt, listeningHere);
+                    }
+
+                    listeningHere.add(thing);
+
+                    // Let thing know about objects on this tile.
+                    List<Locatable> stuffHere = whosThere.get(gt);
+
+                    if(stuffHere == null)
+                    {
+                        stuffHere = new ArrayList<Locatable>();
+                        whosThere.put(gt, stuffHere);
+                    }
+
+                    for(Locatable l : stuffHere)
+                    {
+                        if(l != thing)
+                            thing.entered(l);
+                    }
+                }
+            }
+        }
+        else if(prevRadius > newRadius)
+        {
+            for(GameTile gt : oldZone)
+            {
+                if(!newZone.contains(gt))
+                {
+                    // thing no longer listening to this tile.
+                    List<Locatable> listeningHere = whosListening.get(gt);
+
+                    if(listeningHere == null || !listeningHere.remove(thing))
+                        throw new RuntimeException("Tried to unregister thing from listening to tile, wasn't registred there.");
+
+                    // Let thing know that objects on this tile have left its
+                    // influence radius
+                    List<Locatable> stuffHere = whosThere.get(gt);
+
+                    if(stuffHere == null)
+                    {
+                        stuffHere = new ArrayList<Locatable>();
+                        whosThere.put(gt, stuffHere);
+                    }
+
+                    for(Locatable l : stuffHere)
+                    {
+                        if(l != thing)
+                            thing.exited(l);
+                    }
+                }
+            }
+        }
     }
 
     /**
