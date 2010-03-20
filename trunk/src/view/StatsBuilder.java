@@ -11,4 +11,9 @@ package src.view;
  */
 public interface StatsBuilder {
 
+    public abstract void setAttack(int attack);
+    public abstract void setDefense(int defense);
+    public abstract void setArmor(int armor);
+    public abstract void setSpeed(int speed);
+
 }

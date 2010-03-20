@@ -9,8 +9,10 @@ import java.awt.image.BufferedImage;
  *
  * @author spock
  */
-public abstract class HasAnImage {
-    BufferedImage bufferedImage;
+abstract class HasAnImage {
+    int imageWidth;
+    int imageHeight;
+    BufferedImage imageBuffer;
 
     abstract void refreshImage();
 

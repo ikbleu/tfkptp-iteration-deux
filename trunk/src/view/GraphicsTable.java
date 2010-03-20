@@ -20,8 +20,10 @@ public class GraphicsTable {
 
     HashMap< Token, Image > graphics;
 
-    GraphicsTable(){
-
+    GraphicsTable(Token[] keys, Image[] images){
+        for(int i = 0; i<keys.length;++i){
+            graphics.put( keys[i], images[i] );
+        }
     }
 
     Image getGraphic(Token key){
