@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  class Overview extends HasAnImage{
     String title;
     String[] list;
-    String footer;
+    String subTitle;
 
     Overview(int wid, int hei){
         imageWidth = wid;
@@ -31,8 +31,8 @@ import java.awt.image.BufferedImage;
         list = li;
     }
 
-    void setFooter(String foot){
-        footer = foot;
+    void setSubTitle(String foot){
+        subTitle = foot;
     }
 
     public void refreshImage(){

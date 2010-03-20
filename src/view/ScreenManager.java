@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package src.view;
 
@@ -21,6 +18,14 @@ import com.sun.opengl.util.Animator;
  */
  class ScreenManager extends JFrame{
 	 
+	 	enum OptionalDisplay{
+	 		NONE,
+	 		KEYBINDING,
+	 		OVERVIEW,
+	 		TECHNOLOGY,
+	 		COMMANDQUEUE;
+	 	}
+	 
 	 	private static final long serialVersionUID = 100;
 	 	
 	 	private ViewPort viewPort;
@@ -30,10 +35,7 @@ import com.sun.opengl.util.Animator;
 	 	private TechnologyTree technologyTree;
 	 	private CommandQueueOverview commandQueueOverview;
 	 	
-	 	private boolean showKeyBindingOverview;
-	 	private boolean showOverview;
-	 	private boolean showTechnologyTree;
-	 	private boolean showCommandQueueOverview;
+	 	private OptionalDisplay optionalDisplay;
 		
 		private double scale;
 		private double panX;
@@ -68,10 +70,7 @@ import com.sun.opengl.util.Animator;
 			technologyTree = new TechnologyTree();
 			commandQueueOverview = new CommandQueueOverview();
 			
-			showKeyBindingOverview = false;
-			showOverview = false;
-			showTechnologyTree = false;
-			showCommandQueueOverview = false;
+			optionalDisplay = OptionalDisplay.NONE;
 
 			setSize(windowWidth, windowHeight);
 			setTitle("Robot Unicorns...ATTACK!");
@@ -90,6 +89,12 @@ import com.sun.opengl.util.Animator;
 		public void start(){
 			animator.start();
 		}
+		
+		public void updateOverview(String title, String subTitle, String[] list) {
+			overview.setTitle(title);
+			overview.setSubTitle(subTitle);
+			overview.setList(list);
+		}
 
 		
 		public class GraphicListener implements GLEventListener {
@@ -101,19 +106,51 @@ import com.sun.opengl.util.Animator;
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 				
 				gl.glPushMatrix();
-
+					//translate as necessary
+					viewPort.refreshImage();
 				gl.glPopMatrix();
 				
 				gl.glPushMatrix();
 					//translate as necessary
-					//popUpMenu.refreshImage();
+					hud.refreshImage();
 				gl.glPopMatrix();
+				
+				switch(optionalDisplay) {
+				
+					case NONE: break;
+					case KEYBINDING: 
+						
+						gl.glPushMatrix();
+							//translate as necessary
+							keyBindingOverview.refreshImage();
+						gl.glPopMatrix();
+						break;
+						
+					case OVERVIEW: 
+						
+						gl.glPushMatrix();
+							//translate as necessary
+							overview.refreshImage();
+						gl.glPopMatrix();
+						break;
+						
+					case TECHNOLOGY: 
+						
+						gl.glPushMatrix();
+							//translate as necessary
+							technologyTree.refreshImage();
+						gl.glPopMatrix();
+						break;
+						
+					case COMMANDQUEUE: 
+						
+						gl.glPushMatrix();
+							//translate as necessary
+							commandQueueOverview.refreshImage();
+						gl.glPopMatrix();
+						break;
+				}
 			
-				gl.glPushMatrix();
-					//translate as necessary
-					commandQueueOverview.refreshImage();
-				gl.glPopMatrix();
-				
 			
 			}
 			
