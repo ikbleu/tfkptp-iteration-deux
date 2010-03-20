@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>8</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>32</x><y>432</y><w>64</w><h>24</h></coordinates><panel_attributes>File</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>528</x><y>424</y><w>240</w><h>104</h></coordinates><panel_attributes>KeyMap
+// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>8</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>0</x><y>432</y><w>64</w><h>24</h></coordinates><panel_attributes>File</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>528</x><y>424</y><w>240</w><h>104</h></coordinates><panel_attributes>KeyMap
 --
 contexts: List&lt;String&gt;
 contextToBinding : Map&lt;String, Binding&gt;
@@ -29,7 +29,7 @@ bindingToContext :Map&lt;Binding, String&gt;
 setContext(context : String)
 getMeaning(keyEvent : KeyEvent) : String
 
-</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>576</x><y>200</y><w>40</w><h>240</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;24;224</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>160</x><y>56</y><w>168</w><h>56</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>736</x><y>200</y><w>40</w><h>240</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;24;224</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>160</x><y>56</y><w>168</w><h>56</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Ultrament
 --
 getElementList() : ElementList
@@ -45,13 +45,13 @@ getName() : String
 getBinding(): String
 </panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Note</type><coordinates><x>160</x><y>0</y><w>144</w><h>48</h></coordinates><panel_attributes>Ultrament is for displaying
 key bindings to View
-bg=blue</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>736</x><y>408</y><w>48</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>120;176;120;176</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>144</x><y>424</y><w>352</w><h>80</h></coordinates><panel_attributes>FileThingy
+bg=blue</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>736</x><y>408</y><w>48</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>120;176;120;176</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>144</x><y>424</y><w>352</w><h>80</h></coordinates><panel_attributes>FileHandler
 --
 KeyMapReader
 KeyMapWriter
 --
 writeFile(BindingMapDirector,BufferedWriter) : void
-readFile(BindingMapBuilder, BufferedReader) : void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>520</x><y>280</y><w>40</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;24;144</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>72</x><y>416</y><w>88</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>24;24;72;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>688</x><y>624</y><w>160</w><h>56</h></coordinates><panel_attributes>Binding
+readFile(BindingMapBuilder, BufferedReader) : void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>520</x><y>280</y><w>40</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;24;144</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>40</x><y>416</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>24;24;104;24</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>688</x><y>624</y><w>160</w><h>56</h></coordinates><panel_attributes>Binding
 --
 -meaning : String
 -k : KeyCodeAndModifiers
@@ -60,7 +60,7 @@ readFile(BindingMapBuilder, BufferedReader) : void</panel_attributes><additional
 
 --
 toKeyEvent(keyRepresentation : String) : KeyCodeAndModifiers
-toString(e : KeyCodeAndModifiers) : String</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>432</x><y>480</y><w>40</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;40;24;144</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>624</x><y>504</y><w>160</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;48;144;48;144;120</additional_attributes></element><element><type>com.umlet.element.custom.Text</type><coordinates><x>736</x><y>600</y><w>24</w><h>16</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>232</x><y>136</y><w>432</w><h>88</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+toString(e : KeyCodeAndModifiers) : String</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>432</x><y>480</y><w>40</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;40;24;144</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>624</x><y>504</y><w>160</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;48;144;48;144;120</additional_attributes></element><element><type>com.umlet.element.custom.Text</type><coordinates><x>736</x><y>600</y><w>24</w><h>16</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>536</x><y>136</y><w>384</w><h>88</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 EditableKeyConfig
 --
 bindMeaning(context: String, meaning: String, event: KeyEvent): boolean
@@ -70,11 +70,11 @@ removeContext(context: String): boolean</panel_attributes><additional_attributes
 BindingMapDirector
 --
 buildAll(builder: BindingMapBuilder): void
-buildForContext(contexts: Iterator&lt;String&gt;, builder: BindingMapBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>168</x><y>328</y><w>288</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+buildForContext(contexts: Iterator&lt;String&gt;, builder: BindingMapBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>144</x><y>328</y><w>312</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingMapBuilder
 --
 context(context: String): void
-binding(event: KeyEvent, meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>696</y><w>144</w><h>56</h></coordinates><panel_attributes>KeyCodeAndModifiers
+binding(event: KeyCodeAndModifiers, meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>696</y><w>144</w><h>56</h></coordinates><panel_attributes>KeyCodeAndModifiers
 --
 --
 getKeyCode() : int
@@ -82,4 +82,8 @@ getModifiers() : int</panel_attributes><additional_attributes/></element><elemen
 --
 save(BindingMapDirector)</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>160</x><y>640</y><w>144</w><h>48</h></coordinates><panel_attributes>KeyMapReader
 --
-load(BindingMapBuilder)</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>264</x><y>480</y><w>40</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;24;24;160</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>56</x><y>480</y><w>224</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>208;24;24;160</additional_attributes></element></umlet_diagram>
+load(BindingMapBuilder)</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>264</x><y>480</y><w>40</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;24;24;160</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>56</x><y>480</y><w>224</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>208;24;24;160</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>8</x><y>288</y><w>80</w><h>48</h></coordinates><panel_attributes>Initializer
+--
+KeyMap
+controls: File
+</panel_attributes><additional_attributes/></element></umlet_diagram>
