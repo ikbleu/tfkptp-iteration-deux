@@ -1,0 +1,12 @@
+Group
+GroupSpinNext		CTRL+UP
+GroupSpinPrevious 	CTRL+DOWN
+Type
+TypeSpinNext 		CTRL+RIGHT
+TypeSpinPrevious 	CTRL+LEFT
+Instance
+InstanceSpinNext 	LEFT
+InstanceSpinPrevious 	RIGHT
+Command
+CommandSpinNext 	UP
+CommandSpinPrevious 	DOWN
