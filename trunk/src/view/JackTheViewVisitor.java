@@ -35,6 +35,8 @@ import java.util.Map;
     int id = -1;
     int health = -1;
     List<vUnit> rallypoint;
+    Map<String, Integer> rpTypeAndHealth;
+
 
 
     public void visitGroup( vGroup v ){
@@ -48,7 +50,17 @@ import java.util.Map;
     public void visitInstance( vInstance v ){
         JillTheInstanceVisitor  jill= new JillTheInstanceVisitor();
         v.accept(jill);
-        //health
+        instance = jill.instanceType();
+        stats = jill.stats();
+        workers = jill.workers();
+        id = jill.id();
+        health = jill.health();
+        /*if(instance == "Rally Point"){
+            rpTypeAndHealth = new Map<String, Integer>();
+            for(int i = 0; ){
+
+            }
+        }*/
         
     }
 
