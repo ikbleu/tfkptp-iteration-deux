@@ -1,5 +1,11 @@
 package src.model.interfaces;
 
-public interface vStructure {
+import java.util.Map;
 
+public interface vStructure {
+	Map< String, Integer > stats();
+	public int id();
+	public int health();
+	public String token();
+	public int workers();
 }
