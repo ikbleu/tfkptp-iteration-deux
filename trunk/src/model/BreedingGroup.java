@@ -57,8 +57,14 @@ public class BreedingGroup extends WorkerGroup
         this.transferWorkers(target, numNewWorkers);
     }
 
+    /**
+     * Returns a string token that denotes the type of the locatable object.
+     *
+     * @return the string type of the object.
+     */
     public String token()
     {
+        // TODO: Make this less of a complete hack once I understand it better.
         return "BreedingGroup";
     }
 }
