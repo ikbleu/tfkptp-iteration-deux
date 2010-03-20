@@ -1,14 +1,16 @@
 package src.model.instances;
 
 import src.model.enums.ItemType;
+import src.model.interfaces.GameTile;
 
 public abstract class Item extends Locatable
 {
 	ItemType type;
 	
-	public Item(ItemType type)
+	public Item(ItemType type, GameTile location)
 	{
-		this.type = type;
+            super(location);
+            this.type = type;
 	}
 	
 	public abstract void accept(/* ?? */);

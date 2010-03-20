@@ -4,6 +4,8 @@
 
 package src.model.instances;
 
+import src.model.interfaces.GameTile;
+
 /**
  * Manages groups of workers that are assigned to certain tasks.
  *
@@ -23,8 +25,10 @@ public abstract class WorkerGroup extends Locatable
     /**
      * Creates a new worker group with no workers in it.
      */
-    public WorkerGroup()
+    public WorkerGroup(GameTile location)
     {
+        super(location);
+
         numWorkers = 0;
         breedingRate = 100;
         breedingProgress = 0;

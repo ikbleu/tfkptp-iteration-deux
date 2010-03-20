@@ -1,6 +1,6 @@
 package src.model.enums;
 
-public enum Decal
+public enum DecalType
 {
 	NONE,
 	SKULL_XBONES,
