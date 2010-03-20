@@ -9,7 +9,7 @@ class RangedFactory extends UnitFactory {
 		super( p );
 	}
 	
-	public Ranged makeInstance( GameTile loc ) {
+	public Ranged doMakeInstance( GameTile loc ) {
 		// TODO: assign IDs
 		return new Ranged( player(), 0, loc );
 	}
