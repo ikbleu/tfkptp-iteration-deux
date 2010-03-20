@@ -33,6 +33,7 @@ class BobTheMapBuilder implements MapBuilder{
         LinkedList<RallyPointV> rallyPoints;
         String visibility;
         String terrain;
+        String player;
         BufferedImage imageBuffer;
         EnumTableSingleton enumT;
         GraphicsTableSingleton graphicsT;
@@ -51,6 +52,8 @@ class BobTheMapBuilder implements MapBuilder{
         rallyPoints = null;
         visibility = null;
         terrain = null;
+        individualUnits = -1;
+        player = null;
     }
 
 
@@ -93,6 +96,10 @@ class BobTheMapBuilder implements MapBuilder{
     }
     public void setIndividualUnits(int individualUnits){
         this.individualUnits = individualUnits;
+    }
+
+    public void setPlayer(String player){
+        this.player = player;
     }
 
     void buildMe(){
