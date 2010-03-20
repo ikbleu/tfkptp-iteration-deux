@@ -1,5 +1,7 @@
 package src.model;
 
+import src.model.interfaces.GameTile;
+
 class GameMap
 {
 	HexTile origin, startingLocation1, startingLocation2;
@@ -10,17 +12,17 @@ class GameMap
 		
 	}
 	
-	public HexTile getOrigin()
+	public GameTile getOrigin()
 	{
 		return origin;
 	}
 	
-	public HexTile getStartingLocation1()
+	public GameTile getStartingLocation1()
 	{
 		return startingLocation1;
 	}
 	
-	public HexTile getStartingLocation2()
+	public GameTile getStartingLocation2()
 	{
 		return startingLocation2;
 	}

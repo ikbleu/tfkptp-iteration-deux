@@ -7,23 +7,35 @@ import src.model.enums.Direction;
 import src.model.enums.TerrainType;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.Resource;
+import src.model.interfaces.Token;
 
 class HexTile implements GameTile
 {
 	private EnumMap<Direction,HexTile> neighbors;
-	private List<Resource> resources;
 	private TerrainType terrain;
-	private Item item;
 	private MysteryPoint coordinate;
+	private boolean mark;
 	
 	public HexTile()
 	{
+		neighbors = new EnumMap<Direction,HexTile>(Direction.class);
+		terrain = TerrainType.GRASSLAND;
+		coordinate = new MysteryPoint();
+		mark = false;
+	}
+	
+	public HexTile(HexTile par, Direction dir)
+	{
+		neighbors = new EnumMap<Direction,HexTile>(Direction.class);
+		terrain = TerrainType.GRASSLAND;
+		coordinate = new MysteryPoint(par.coordinate,dir);
+		mark = false;
 		
 	}
 	
 	void setNeighbor(Direction dir, HexTile ht)
 	{
-		
+		neighbors.put(dir, ht);
 	}
 	
 	public GameTile getNeighbor(Direction dir)
@@ -33,47 +45,37 @@ class HexTile implements GameTile
 	
 	void randomize()
 	{
+		int i = (int)(Math.random()*100);
 		
+		if (i > 49)
+		{
+			if (i <= 79)
+				terrain = TerrainType.SPARSE_FOREST;
+			else if (i <= 94)
+				terrain = TerrainType.WATER;
+			else
+				terrain = TerrainType.OUTER_SPACE;
+		}
 	}
 	
-	void mark()
+	public void mark()
 	{
-		
+		mark = true;
 	}
 	
-	boolean isMarked()
+	public boolean isMarked()
 	{
-		
+		return mark;
 	}
 	
 	void unmark()
 	{
-		
-	}
-	
-	void populate(int radius)
-	{
-		
+		mark = false;
 	}
 
-	boolean isWalkableOn(UnitTerrainWalkability utw, UnitType type)
-	{
-		
-	}
-	
-	boolean isSafeToWalkOn(UnitTerrainWalkability utw, UnitType type)
-	{
-		
-	}
-	
-	void acceptItemVisitor(ItemVisitor visitor)
-	{
-		
-	}
-	
 	TerrainType getTerrainType()
 	{
-		
+		return terrain;
 	}
 	
 	public int getX()
@@ -121,5 +123,17 @@ class HexTile implements GameTile
 		{
 			return z;
 		}
+	}
+
+	@Override
+	public boolean isSafeToWalkOn(TokenTerrainWalkability utw, Token i) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isWalkable(TokenTerrainWalkability utw, Token i) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
