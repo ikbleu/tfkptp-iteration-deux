@@ -25,7 +25,6 @@ import com.sun.opengl.util.Animator;
 	 	
 	 	private ViewPort viewPort;
 	 	private HUD hud;
-	 	private PopUpMenu popUpMenu;
 	 	private CommandQueueOverview commandQueueOverview;
 	 	
 	 	private boolean showPopUpMenu;
@@ -85,7 +84,7 @@ import com.sun.opengl.util.Animator;
 				
 				gl.glPushMatrix();
 					//translate as necessary
-					popUpMenu.refreshImage();
+					//popUpMenu.refreshImage();
 				gl.glPopMatrix();
 			
 				gl.glPushMatrix();

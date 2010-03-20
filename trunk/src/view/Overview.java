@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author spock
  */
- class Overview extends HasAnImage implements PopUpMenu{
+ class Overview extends HasAnImage{
     String title;
     String[] list;
     String footer;
