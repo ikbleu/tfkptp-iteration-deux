@@ -29,7 +29,7 @@ visitPresent(binding: BindingCode): void</panel_attributes><additional_attribute
 Bound
 --
 rebindTo(binding: BindingCode): void
-remove(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>104</y><w>480</w><h>64</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+remove(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>80</x><y>96</y><w>480</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingMapDirector
 --
 buildAll(builder: BindingMapBuilder): void
@@ -54,14 +54,11 @@ editContext(context: ContextCode, visitor: ContextEditVisitor): void</panel_attr
 InterpretableKeyConfig
 --
 interpret(context: ContextCode, visitor: BindingVisitor): void
-register(context: ContextCode, iterator: Iterator&lt;BindingCode&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>576</x><y>64</y><w>336</w><h>104</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+register(context: ContextCode, iterator: Iterator&lt;BindingCode&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>576</x><y>96</y><w>312</w><h>72</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingMapBuilder
 --
-start(): void
-end(): void
-startContext(context: ContextCode): void
-endContext(): void
-addBinding(event: KeyEvent, binding: BindingCode): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>360</y><w>240</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+context(context: ContextCode): void
+binding(event: KeyEvent, binding: BindingCode): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>360</y><w>240</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingEditVisitor
 --
 visitUnknown(unknown: Unknown): void
