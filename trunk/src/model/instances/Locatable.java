@@ -22,9 +22,13 @@ public abstract class Locatable {
 	}
 	
 	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
-	final public void addMovementListener( MovementListener cl )
+	final public void addMovementListener( MovementListener ml )
 	{
-		moveListeners.add( cl );
+		moveListeners.add( ml );
+	}
+	final public void removeMovementListener( MovementListener ml )
+	{
+		moveListeners.remove( ml );
 	}
 	
 	final protected void setLocation( GameTile g )
@@ -39,6 +43,10 @@ public abstract class Locatable {
 	final public void addRadiusListener( RadiusListener cl )
 	{
 		radiusListeners.add( cl );
+	}
+	final public void removeRadiusListener( RadiusListener cl )
+	{
+		radiusListeners.remove( cl );
 	}
 	
 	private int influenceRadius = 0;
