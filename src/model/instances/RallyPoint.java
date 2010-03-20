@@ -18,17 +18,17 @@ public class RallyPoint extends Instance implements vRallyPoint {
 		iv.visitRallyPoint( this );
 	}
 	
-	public void instanceEntered(Instance i) {
+	public void entered(Locatable l) {
 		// attack it?
 	}
 	
-	public void instanceExited(Instance i) {
+	public void exited(Locatable l) {
 		// stop attacking it?
 	}
 	
 	public String token()
 	{
-		return "rallyPoint";
+		return "instanceRallyPoint";
 	}
 
 	@Override
