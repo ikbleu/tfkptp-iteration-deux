@@ -12,7 +12,7 @@ public class Model {
 	
 	public Model( HandFactory hFact )
 	{
-		human = new Player( true, hFact, null, null );
+		human = new Player( true, hFact, null, null, null );
 		p = human; // TODO: remove
 		// TODO: ai? map?
 		
