@@ -84,6 +84,10 @@ import java.util.HashMap;
         return info;
     }
 
+    int id(){
+        return id;
+    }
+
 
 
 }
