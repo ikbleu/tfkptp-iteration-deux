@@ -1,7 +1,6 @@
 package src.model.commands;
 
 import src.model.control.Behavior;
-import src.model.instances.Instance;
 
 abstract public class Argument implements Behavior {
 	public Argument( String m )
@@ -16,5 +15,10 @@ abstract public class Argument implements Behavior {
 	final public String meaning() {
 		// TODO Auto-generated method stub
 		return meaning;
+	}
+	
+	final public String comparable()
+	{
+		return meaning();
 	}
 }

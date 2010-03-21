@@ -258,8 +258,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 
 
 	@Override
-	final public <S> Comparable<S> comparable() {
+	final public String comparable() {
 		// TODO Auto-generated method stub
-		return null;
+		return meaning();
 	}
 }

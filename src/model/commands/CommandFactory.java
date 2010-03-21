@@ -10,10 +10,6 @@ import src.util.Hand;
 public abstract class CommandFactory implements Device {
 	public CommandFactory( Player p, String token, int numTicks )
 	{
-		this( p, token, numTicks, p.handFactory().make( Behavior.class ) );
-	}
-	private CommandFactory( Player p, String token, int numTicks, Hand< Behavior > hand )
-	{
 		hand = p.handFactory().make( Behavior.class );
 		this.token = token;
 		this.numTicks = numTicks;

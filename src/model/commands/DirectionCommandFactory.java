@@ -19,12 +19,6 @@ public class DirectionCommandFactory extends CommandFactory {
 					d.setDirection( dir );
 					i.executeCommand( d );
 				}
-
-				@Override
-				public <S> Comparable<S> comparable() {
-					// TODO Auto-generated method stub
-					return null;
-				}
 			});
 	}
 	
@@ -34,8 +28,8 @@ public class DirectionCommandFactory extends CommandFactory {
 	}
 
 	@Override
-	public <S> Comparable<S> comparable() {
+	public String comparable() {
 		// TODO Auto-generated method stub
-		return null;
+		return meaning();
 	}
 }

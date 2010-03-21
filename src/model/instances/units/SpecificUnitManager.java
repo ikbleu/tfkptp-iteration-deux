@@ -17,6 +17,7 @@ import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
+import src.model.instances.RallyPoint;
 import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.InstanceAdapter;
@@ -98,13 +99,13 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdDefend", 0));
 		u.addRallyPointCommand( new MoveCommandFactory(player, "cmdMove", 0));
 		
-		Instance.addGlobalInstanceExistenceListener( new InstanceExistenceListener() {
+		final InstanceExistenceListener iel = new InstanceExistenceListener() {
 			public void delInstance(Instance i) {
 				if ( i == u )
 					Instance.removeGlobalInstanceExistenceListener( this );
 				else
 					i.accept( new InstanceAdapter() {
-						public void visitRallyPoint( vRallyPoint rp )
+						public void visitRallyPoint( RallyPoint rp )
 						{
 							rpcf.setInstance( u );
 						}
@@ -112,11 +113,21 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 			}
 			public void newInstance(Instance i) {
 				i.accept( new InstanceAdapter() {
-					public void visitRallyPoint( vRallyPoint rp )
+					public void visitRallyPoint( RallyPoint rp )
 					{
 						rpcf.setInstance( u );
 					}
 				});
+			}
+		};
+		Instance.addGlobalInstanceExistenceListener( iel );
+		
+		u.addInstanceExistenceListener( new InstanceExistenceListener() {
+			public void delInstance(Instance i) {
+				
+			}
+			public void newInstance(Instance i) {
+				Instance.removeGlobalInstanceExistenceListener( iel );
 			}
 		});
 
