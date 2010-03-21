@@ -21,6 +21,7 @@ import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureIO;
 
 import src.model.interfaces.Displayable;
+import src.util.SimpleMovingAverageTimer;
 /**
  *
  * @author rdshack
