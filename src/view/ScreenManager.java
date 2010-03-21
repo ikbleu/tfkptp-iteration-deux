@@ -123,24 +123,22 @@ import com.sun.opengl.util.texture.TextureIO;
 				
 				//render different components
 				renderHUD(gl);
+                                renderCommandSelection(gl);
 
 			}
             
-            private void renderHUD(GL gl) {
+                private void renderHUD(GL gl) {
             	
-    			try {
 
-    				BufferedImage hud = ImageIO.read(new File("artwork/unicornhud.png"));	//read in image to use as texture
-    				hud_tex = TextureIO.newTexture(hud,true);					
-    				
-
-    			} catch (GLException e) {
-    				e.printStackTrace();
-    			} catch (IOException e) {
-    				e.printStackTrace();
+    			try{
+                            BufferedImage hud = ImageIO.read(new File("artwork/unicornhud.png"));
+                            hud_tex = TextureIO.newTexture(hud,true);
     			}
+                        catch (Exception e) {
+    				e.printStackTrace();
+    			} 
             
-            	hud_tex.bind();
+                        hud_tex.bind();
  
 	    		gl.glPushMatrix();
 
@@ -173,10 +171,47 @@ import com.sun.opengl.util.texture.TextureIO;
 	    				
 	    			gl.glEnd();
 	    			
-    			gl.glPopMatrix();
+                            gl.glPopMatrix();
     			hud_tex.dispose();
 
-            }
+                        }
+                        private void renderCommandSelection(GL gl) {
+
+                            try {
+    				commandSelection_tex = TextureIO.newTexture(commandSelection.image(),true);
+                            }
+                            catch (GLException e) {
+    				e.printStackTrace();
+                            }
+
+                            double csWidth = .15626;
+                            double csBoxHeight = .08125;
+                            double boxes = commandSelection.boxes();
+                            commandSelection_tex.bind();
+
+                            gl.glPushMatrix();
+
+                            gl.glBegin(GL.GL_POLYGON);
+
+                                gl.glTexCoord2d(0.0, 0.0);
+	    			gl.glVertex2d(1.0-csWidth,0.0);
+
+                                gl.glTexCoord2d(0.0, 1.0);
+	    			gl.glVertex2d(1.0-csWidth, csBoxHeight*boxes);
+
+                                gl.glTexCoord2d(1.0, 1.0);
+	    			gl.glVertex2d(1.0, csBoxHeight*boxes);
+
+                                gl.glTexCoord2d(1.0, 0.0);
+	    			gl.glVertex2d(1.0, 0.0);
+
+
+                            gl.glEnd();
+
+                            gl.glPopMatrix();
+                            commandSelection_tex.dispose();
+
+                        }
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
 			
