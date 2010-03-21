@@ -5,7 +5,11 @@
 
 package src.view;
 
+import src.model.instances.RallyPoint;
+import src.model.instances.Structure;
+import src.model.instances.Unit;
 import src.model.interfaces.InstanceVisitor;
+import src.model.interfaces.vInstanceVisitor;
 import src.model.interfaces.vUnit;
 import src.model.interfaces.vStructure;
 import src.model.interfaces.vRallyPoint;
@@ -19,7 +23,7 @@ import java.util.HashMap;
  *
  * @author spock
  */
- class JillTheInstanceVisitor implements InstanceVisitor{
+ class JillTheInstanceVisitor implements vInstanceVisitor{
  String instanceType = null;
  int workers = -1;
  int id = -1;

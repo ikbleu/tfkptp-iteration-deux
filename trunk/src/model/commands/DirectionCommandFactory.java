@@ -9,7 +9,7 @@ public class DirectionCommandFactory extends CommandFactory {
 		super( p, token, numTicks );
 	}
 	
-	public void setInstance( final Instance i )
+	protected void doSetInstance( final Instance i )
 	{
 		for ( final Direction dir : Direction.values() )
 			addArgument( new Argument( dir.name() ) {
@@ -19,11 +19,23 @@ public class DirectionCommandFactory extends CommandFactory {
 					d.setDirection( dir );
 					i.executeCommand( d );
 				}
+
+				@Override
+				public <S> Comparable<S> comparable() {
+					// TODO Auto-generated method stub
+					return null;
+				}
 			});
 	}
 	
 	public DirectionCommand makeCommand(Instance i)
 	{
 		return new DirectionCommand( token(), i, numTicks() );
+	}
+
+	@Override
+	public <S> Comparable<S> comparable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

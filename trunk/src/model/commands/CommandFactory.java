@@ -10,6 +10,10 @@ import src.util.Hand;
 public abstract class CommandFactory implements Device {
 	public CommandFactory( Player p, String token, int numTicks )
 	{
+		this( p, token, numTicks, p.handFactory().make( Behavior.class ) );
+	}
+	private CommandFactory( Player p, String token, int numTicks, Hand< Behavior > hand )
+	{
 		hand = p.handFactory().make( Behavior.class );
 		this.token = token;
 		this.numTicks = numTicks;
@@ -19,7 +23,19 @@ public abstract class CommandFactory implements Device {
 	private int numTicks;
 	
 	abstract public Command makeCommand( Instance i );
-	abstract public void setInstance( Instance i );
+	final public void setInstance( Instance i )
+	{
+		instance = i;
+		hand.clear();
+		doSetInstance( i );
+	}
+	abstract protected void doSetInstance( Instance i );
+	private Instance instance;
+	
+	final public Instance instance()
+	{
+		return instance;
+	}
 	
 	final public String token()
 	{
@@ -28,6 +44,10 @@ public abstract class CommandFactory implements Device {
 	final public int numTicks()
 	{
 		return numTicks;
+	}
+	final public Hand< Behavior > hand()
+	{
+		return hand;
 	}
 	
 	final public String context() { return "Command"; }

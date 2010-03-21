@@ -8,13 +8,19 @@ public class NoArgsCommandFactory extends CommandFactory {
 		super( p, token, numTicks );
 	}
 	
-	public void setInstance( final Instance i )
+	protected void doSetInstance( final Instance i )
 	{
-		// add command arguments
+		// no arguments
 	}
 	
 	public NoArgsCommand makeCommand(Instance i)
 	{
 		return new NoArgsCommand( token(), i, numTicks() );
+	}
+
+	@Override
+	public <S> Comparable<S> comparable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -13,6 +13,7 @@ import src.model.enums.Direction;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayerVisitor;
 import src.model.interfaces.MovementListener;
+import src.model.interfaces.vInstanceVisitor;
 import src.model.interfaces.vRallyPoint;
 import src.model.interfaces.InstanceVisitor;
 import src.model.interfaces.vUnit;
@@ -45,6 +46,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 				// TODO Auto-generated method stub
 				return token() + id();
 			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			
 		};
 		
@@ -68,6 +75,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			public String meaning() {
 				return "Entire";
 			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		});
 		armyHand.add( new Device()
 		{
@@ -81,6 +94,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			
 			public String meaning() {
 				return "BattleGroup";
+			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 		armyHand.add( new Device()
@@ -96,6 +115,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			public String meaning() {
 				return "Reinforcements";
 			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		});
 	}
 	private Device armyDevice;
@@ -107,6 +132,11 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 	private List< vUnit > reinfList;
 	
 	final public void accept( InstanceVisitor iv )
+	{
+		iv.visitRallyPoint( this );
+	}
+	
+	final public void accept( vInstanceVisitor iv )
 	{
 		iv.visitRallyPoint( this );
 	}

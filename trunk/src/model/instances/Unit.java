@@ -7,6 +7,7 @@ import src.model.Player;
 import src.model.commands.CommandFactory;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayerVisitor;
+import src.model.interfaces.vInstanceVisitor;
 import src.model.interfaces.vUnit;
 import src.model.interfaces.InstanceVisitor;
 
@@ -17,6 +18,11 @@ public abstract class Unit extends Instance implements vUnit {
 	}
 	
 	final public void accept( InstanceVisitor iv )
+	{
+		iv.visitUnit( this );
+	}
+	
+	final public void accept( vInstanceVisitor iv )
 	{
 		iv.visitUnit( this );
 	}
