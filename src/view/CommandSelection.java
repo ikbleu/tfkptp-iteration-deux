@@ -39,7 +39,7 @@ import java.awt.Color;
         typeBox = null;
         commandBox = null;
         instanceBox = null;
-        boxes = 0;
+        boxes = 4;
         for(int i = 0;commands != null && i < commands.length;++i){
             JackTheViewVisitor jack = new JackTheViewVisitor();
             commands[i].accept(jack);
@@ -92,8 +92,10 @@ import java.awt.Color;
         if(boxes == 0){
             boxes = 1;
         }
+
         imageBuffer = new BufferedImage( BoxWidth, BoxHeight * boxes,
                                         BufferedImage.TYPE_INT_ARGB );
+
 
         graphix = imageBuffer.createGraphics();
 
@@ -112,7 +114,10 @@ import java.awt.Color;
          *
          *
          */
-
+         groupBox = "Hello";
+         specialBox = "me";
+         typeBox = "test";
+         commandBox = "hi";
         boxNumber = 0;
         if(groupBox!=null){
             graphix.setColor( Color.WHITE );
@@ -149,6 +154,10 @@ import java.awt.Color;
             graphix.drawString( instanceBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
+    }
+
+    float boxes(){
+        return (float)boxes;
     }
 
 }
