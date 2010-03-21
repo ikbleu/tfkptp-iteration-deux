@@ -72,11 +72,12 @@ import src.model.interfaces.Displayable;
 		private static final int overviewHeight = 420;
 
 
-        //Textures
-        Texture hud_tex;
+                //Textures
+                Texture hud_tex;
 		Texture commandSelection_tex;
-        Texture resourceInfo_tex;
-        Texture ViewPortTest_tex;
+                Texture resourceInfo_tex;
+                Texture ViewPortTest_tex;
+                Texture[][] ViewPortTex;
 		
 		private Animator animator;
 
@@ -87,6 +88,7 @@ import src.model.interfaces.Displayable;
 			panY = 0;
 			
 			viewPort = new ViewPort(mapWidth, mapHeight);
+                        ViewPortTex = new Texture[mapHeight][mapWidth];
 			hud = new HUD(hudWidth, hudHeight);
 			
 			keyBindingOverview = new KeyBindingOverview();
@@ -94,8 +96,10 @@ import src.model.interfaces.Displayable;
 			technologyTree = new TechnologyTree();
 			commandQueueOverview = new CommandQueueOverview();
 
-            commandSelection = new CommandSelection(null);
-            resourceInfo = new ResourceInfo();
+                        commandSelection = new CommandSelection(null);
+                        resourceInfo = new ResourceInfo();
+
+                        
 			
 			optionalDisplay = OptionalDisplay.NONE;
 
@@ -108,11 +112,13 @@ import src.model.interfaces.Displayable;
 			
 			GraphicListener listener = new GraphicListener();
 			GLCanvas canvas = new GLCanvas(new GLCapabilities());
-		    canvas.addGLEventListener(listener);
+                        canvas.addGLEventListener(listener);
 
-		    getContentPane().add(canvas);
+                        getContentPane().add(canvas);
 		    
-		    animator = new Animator(canvas);
+                        animator = new Animator(canvas);
+
+                        
 		    
 		    this.validate();
 		}
@@ -127,14 +133,51 @@ import src.model.interfaces.Displayable;
 			overview.setList(list);
 		}
 
-        void setStatusOverview(Displayable[] d){
-            hud.setStatusOverview(d);
-            hud.refreshImage();
-        }
+                void setStatusOverview(Displayable[] d){
+                    hud.setStatusOverview(d);
+                    hud.refreshImage();
+                    try{
+                        hud_tex = TextureIO.newTexture(hud.image(),true);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
-        void setCommandSelection(Displayable[] d){
-            commandSelection = new CommandSelection(d);
-        }
+                void setCommandSelection(Displayable[] d){
+                    commandSelection = new CommandSelection(d);
+                    try {
+    			commandSelection_tex = TextureIO.newTexture(commandSelection.image(),true);
+                    }
+                    catch (GLException e) {
+    			e.printStackTrace();
+                    }
+                }
+
+                void updateViewPort(){
+                    viewPort.refreshImage();
+                    //for testing
+                    for(int i = 0; i < 15; ++i){
+                        for(int j =0; j < 15; ++j){
+                            try{
+                                ViewPortTex[i][j] = TextureIO.newTexture(graphicsTable.getGraphic("Grassland"),true);
+                            }
+                            catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+
+                void updateResourceInfo(){
+                    resourceInfo.refreshImage();
+                    try {
+                        resourceInfo_tex = TextureIO.newTexture(resourceInfo.image(),true);
+                    }
+                    catch (GLException e) {
+                        e.printStackTrace();
+                    }
+                }
 
 		
 		class GraphicListener implements GLEventListener {
@@ -144,7 +187,8 @@ import src.model.interfaces.Displayable;
 			
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-				
+
+                                System.out.println("Hello");
 				//render different components
 				gl.glPushMatrix();
 			
@@ -162,14 +206,7 @@ import src.model.interfaces.Displayable;
 			}
             
             private void renderHUD(GL gl) {
-            	
-
-    			try{
-                    hud_tex = TextureIO.newTexture(hud.image(),true);
-    			}
-                    catch (Exception e) {
-    				e.printStackTrace();
-    			} 
+            	 
             
                 hud_tex.bind();
  
@@ -193,17 +230,10 @@ import src.model.interfaces.Displayable;
 	    			gl.glEnd();
 	    			
                 gl.glPopMatrix();
-    			hud_tex.dispose();
 
             }
             private void renderCommandSelection(GL gl) {
 
-                try {
-    				commandSelection_tex = TextureIO.newTexture(commandSelection.image(),true);
-                }
-                catch (GLException e) {
-    				e.printStackTrace();
-                }
 
                 double csWidth = .15626;
                 double csBoxHeight = .08125;
@@ -230,18 +260,12 @@ import src.model.interfaces.Displayable;
                 gl.glEnd();
 
                 gl.glPopMatrix();
-                commandSelection_tex.dispose();
 
             }
 
             private void renderResourceInfo(GL gl) {
 
-                 try {
-    				resourceInfo_tex = TextureIO.newTexture(resourceInfo.image(),true);
-                 }
-                 catch (GLException e) {
-    				e.printStackTrace();
-                 }
+                 
 
                  double riWidth = .2578125;
                  double riHeight = .1125;
@@ -268,7 +292,6 @@ import src.model.interfaces.Displayable;
                  gl.glEnd();
 
                  gl.glPopMatrix();
-                 resourceInfo_tex.dispose();
 
             }
 			
@@ -295,7 +318,10 @@ import src.model.interfaces.Displayable;
 					gl.glEnable(GL.GL_TEXTURE_2D);								//enable 2D textures
 					gl.glEnable(GL.GL_BLEND);
 					gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-
+                                        updateViewPort();
+                                         setStatusOverview(null);
+                                         updateResourceInfo();
+                                         setCommandSelection(null);
 					
 				} 
 				
@@ -338,21 +364,16 @@ import src.model.interfaces.Displayable;
                             
                 for(int i = 0; i < height; ++i){
                      for(int j =0; j < width; ++j){
-                            renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio));
+                            renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio), i, j);
                      }
                  }
             }
 
-            private void renderViewPortHex(GL gl, double x, double y) {
+            private void renderViewPortHex(GL gl, double x, double y, int i, int j) {
 
-            	try{
-            		ViewPortTest_tex = TextureIO.newTexture(graphicsTable.getGraphic("Grassland"),true);
-            	}
-            	catch (Exception e) {
-            		e.printStackTrace();
-            	}
+            	
 
-                ViewPortTest_tex.bind();
+                        ViewPortTex[i][j].bind();
 
 				gl.glBegin(GL.GL_POLYGON);
 
@@ -375,8 +396,6 @@ import src.model.interfaces.Displayable;
 					gl.glVertex2d(x-.05, y+.0866025*(screenRatio));
 
 				gl.glEnd();
-
-                ViewPortTest_tex.dispose();
 			}
 		}
 
