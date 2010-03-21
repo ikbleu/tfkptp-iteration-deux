@@ -17,11 +17,13 @@ import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayer;
 import src.model.interfaces.HasPlayerVisitor;
 import src.model.interfaces.HealthListener;
+import src.model.interfaces.InstanceVisitor;
 import src.model.interfaces.MovementListener;
 import src.model.interfaces.StatsListener;
 import src.model.interfaces.ViewListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
+import src.model.interfaces.vInstanceVisitor;
 import src.util.Hand;
 
 public abstract class Instance extends Locatable implements vInstance, CommandSender, Device, HasPlayer
@@ -205,6 +207,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		lv.visitInstance( this );
 	}
+	abstract public void accept( vInstanceVisitor v );
+	abstract public void accept( InstanceVisitor v );
 	
 	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
 	final public void addMovementListener( MovementListener ml )
