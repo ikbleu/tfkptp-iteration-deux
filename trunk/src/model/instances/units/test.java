@@ -11,6 +11,7 @@ import src.util.handv1.HandFactoryImp;
 public class test {
 	public static void main( String[] args )
 	{
+		System.out.println( "lol" );
 		Player p = new Model( new HandFactoryImp() ).p;
 		System.out.println( "cmdMakeRanged" );
 		p.executeCommand( new NoArgsCommand( "cmdMakeRanged", null, 0 ) );

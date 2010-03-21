@@ -175,8 +175,8 @@ public class RangedManager extends SpecificUnitManager {
 	}
 
 	@Override
-	public <S> Comparable<S> comparable() {
+	public String comparable() {
 		// TODO Auto-generated method stub
-		return null;
+		return meaning();
 	}
 }
