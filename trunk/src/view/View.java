@@ -41,7 +41,7 @@ public class View implements ViewInjection{
 
     public void register(SakuraMap sakura, KeyListener control){
         sakuraMap = sakura;
-        //KeyListener statement
+        screenManager.addKeyListener(control);
     }
 
 }
