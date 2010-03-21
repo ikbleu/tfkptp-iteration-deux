@@ -31,6 +31,7 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
     
     final private boolean DEBUGGING = true; // TODO: remove references to this
 
+    private List<Instance> thingsThere;
     private List<Locatable> thingsListening;
 
     /*
@@ -42,6 +43,7 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
         whosThere = new HashMap<GameTile, List<Instance>>();
         whosListening = new HashMap<GameTile, List<Locatable>>();
 
+        thingsThere = new ArrayList<Instance>();
         thingsListening = new ArrayList<Locatable>();
     }
     
@@ -85,6 +87,8 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
             if(l != thing)
                 l.entered(thing);
         }
+
+        thingsThere.add(thing);
     }
 
     public void registerListening(Locatable thing)
@@ -143,6 +147,8 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
             if(l != thing)
                 l.exited(thing);
         }
+
+        thingsThere.remove(thing);
     }
 
     public void unregisterListening(Locatable thing)
@@ -213,10 +219,12 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
         registerListening(thing);
     }
 
-	@Override
-	public void applyToAll(InstanceFunction iF, Player p)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+    public void applyToAll(InstanceFunction iF, Player p)
+    {
+        for(Instance i : thingsThere)
+        {
+            if(i.getPlayer() == p)
+                iF.execute(i);
+        }
+    }
 }
