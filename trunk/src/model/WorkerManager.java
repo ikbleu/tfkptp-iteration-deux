@@ -53,7 +53,7 @@ public class WorkerManager implements WorkerGroupFactory
         harvestStats = new HashMap<String, Integer>();
 
         harvestStats.put("density", 1);
-        harvestStats.put("harvestRate", 1);
+        harvestStats.put("harvestRate", 10);
 
         normalStats = new HashMap<String, Integer>();
 
