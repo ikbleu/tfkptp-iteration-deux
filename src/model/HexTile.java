@@ -311,4 +311,55 @@ class HexTile implements GameTile
 		
 		return m;
 	}
+
+	public int calculateDistance(int horiz, int vert)
+	{
+		int k = horiz - vert;
+		
+		return (Math.abs(getX() - k) + Math.abs(getY() - vert) + Math.abs(getZ() - horiz))/2;
+	}
+
+	public GameTile getTileAt2DCoordinate(int horiz, int vert)
+	{
+		return getTileAt(horiz, vert);
+	}
+	
+	private GameTile getTileAt(int horiz, int vert)
+	{
+		if (getZ() == horiz && getY() == vert)
+			return this;
+		
+		Direction d;
+		
+		if (this.getZ() != horiz)
+		{
+			if (horiz < this.getZ()) // 
+			{
+				if (vert < this.getY()) // move SE
+				{
+					d = Direction.SW;
+				}
+				else
+				{
+					d = Direction.NW;
+				}
+			}
+			else
+			{
+				if (vert <= this.getY())
+					d = Direction.SE;
+				else
+					d = Direction.NE;
+			}
+		}
+		else
+		{
+			if (this.getY() > vert)
+				d = Direction.S;
+			else
+				d = Direction.N;
+		}
+		return neighbors.get(d).getTileAt(horiz, vert);
+	}
+	
 }
