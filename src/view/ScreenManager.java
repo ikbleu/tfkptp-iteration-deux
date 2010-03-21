@@ -156,6 +156,7 @@ import src.model.interfaces.Displayable;
                                 gl.glPopMatrix();
 
                                 renderHUD(gl);
+                                renderCommandSelection(gl);
 				renderResourceInfo(gl);
 
 			}
