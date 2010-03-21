@@ -8,6 +8,8 @@ import src.model.Player;
 
 import src.model.interfaces.GameTile;
 import src.model.interfaces.LocatableVisitor;
+import src.model.interfaces.HasPlayer;
+import src.model.interfaces.HasPlayerVisitor;
 
 import java.util.Map;
 
@@ -18,7 +20,7 @@ import src.model.WorkerManager;
  *
  * @author Christopher Dudley
  */
-public abstract class WorkerGroup extends Locatable
+public abstract class WorkerGroup extends Locatable implements HasPlayer
 {
     // Number of workers in the group.
     private int numWorkers;
@@ -80,7 +82,13 @@ public abstract class WorkerGroup extends Locatable
      */
     protected void addWorkers(int numAdded)
     {
+        boolean inactive = (numWorkers == 0);
+
         numWorkers += numAdded;
+
+        if(inactive && numAdded > 0)
+            manager.becomeActive(this);
+        
         manager.workersAdded(numAdded);
     }
 
@@ -91,7 +99,13 @@ public abstract class WorkerGroup extends Locatable
      */
     protected void removeWorkers(int numRemoved)
     {
+        boolean active = (numWorkers > 0);
+
         numWorkers -= numRemoved;
+
+        if(active && numWorkers == 0)
+            manager.becomeInactive(this);
+
         manager.workersRemoved(numRemoved);
     }
 
@@ -121,7 +135,7 @@ public abstract class WorkerGroup extends Locatable
      *
      * @return the player that owns the worker group.
      */
-    public Player player()
+    public Player getPlayer()
     {
         return manager.player();
     }
@@ -151,6 +165,11 @@ public abstract class WorkerGroup extends Locatable
     public void accept( LocatableVisitor lv )
     {
         lv.visitWorkerGroup(this);
+    }
+
+    public void accept(HasPlayerVisitor hpv)
+    {
+        hpv.visitWorkerGroup(this);
     }
 
     @Override
