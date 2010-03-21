@@ -4,6 +4,8 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import src.control.interfaces.*;
 
@@ -96,6 +98,25 @@ public class KeyMap implements
 	public boolean unbindMeaning(String context, String meaning) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	public String toString()
+	{
+		String toReturn=null;
+		Set<Entry<String, List<Binding>>>  s = contextToBindings.entrySet();
+		Iterator<Entry<String,List<Binding>>> i = s.iterator();
+		while(i.hasNext())
+		{
+			Entry<String,List<Binding>> e = i.next();
+			toReturn=toReturn.concat(e.getKey()+'\n');
+			Iterator<Binding> bindingListIterator = e.getValue().iterator();
+			while(bindingListIterator.hasNext())
+			{
+				Binding b = bindingListIterator.next();
+				toReturn = toReturn.concat(b.toString());
+			}
+			toReturn = toReturn.concat(" \n");
+		}
+		return toReturn;
 	}
 
 

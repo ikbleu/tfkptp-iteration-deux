@@ -1,7 +1,9 @@
 package src.control;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -9,13 +11,29 @@ import src.control.interfaces.*;
 
 public class FileHandler {
 	
+	public static void main(String[] args)
+	{
+		KeyMap m = new KeyMap();
+		BufferedReader r;
+		try{
+		r = new BufferedReader(new FileReader("control config files/controls.txt"));
+		readFile(m,r);
+		}catch (FileNotFoundException ex) {
+        ex.printStackTrace();
+		}catch (IOException ex) {
+        ex.printStackTrace(); 
+        System.out.println(m);
+	}
+    
+	}
+	
 	public static final String BEGINCONTEXT = "begincontext";
 	public static final String ENDCONTEXT = "endcontext";
 
 	public void writeFile(BindingMapDirector director, BufferedWriter writer)
 	{
 	}
-	public void readFile(BindingMapBuilder builder, BufferedReader reader)
+	public static void readFile(BindingMapBuilder builder, BufferedReader reader)
 	{
 		 try {
 	          	String line = null;
