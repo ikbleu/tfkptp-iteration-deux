@@ -28,6 +28,7 @@ public class ResourceManager
     private static final double DELTA_GRAIN_CONV = 0.5;
     private static final double DELTA_FUEL_CONV = 0.5;
 
+    private Map<String, Integer> rawResources;
     private Map<String, Integer> resources;
     private Map<String, String> conversions;
     private Map<String, Double> conversionRates;
@@ -48,6 +49,11 @@ public class ResourceManager
         conversionRates.put("rscOre", BASE_ORE_CONV);
         conversionRates.put("rscGrain", BASE_GRAIN_CONV);
         conversionRates.put("rscFuel", BASE_FUEL_CONV);
+
+        rawResources = new HashMap<String, Integer>();
+        rawResources.put("rscOre", 0);
+        rawResources.put("rscGrain", 0);
+        rawResources.put("rscFuel", 0);
 
         owner = p;
 
@@ -141,6 +147,14 @@ public class ResourceManager
         return canSpend;
     }
 
+    public void harvested(String type, int amountHarvested, int numWorkers)
+    {
+        int curVal = rawResources.get(type);
+        rawResources.put(type, curVal + amountHarvested);
+
+        convert(type, numWorkers);
+    }
+
     /**
      * Converts the specified raw resource type to its usable resource type
      * at a rate modified by the number of workers working on the conversion.
@@ -148,7 +162,7 @@ public class ResourceManager
      * @param type the type of raw resource to convert.
      * @param numWorkers the number of workers converting the resource.
      */
-    public void convert(String type, int numWorkers)
+    private void convert(String type, int numWorkers)
     {
         if(!conversions.containsKey(type))
             throw new RuntimeException("Asked to convert non-raw type.");
@@ -157,11 +171,11 @@ public class ResourceManager
 
         int maxToConvert = (int) (numWorkers * convRate);
 
-        int curRaw = resources.get(type);
+        int curRaw = rawResources.get(type);
 
         int amtToConvert = Math.min(maxToConvert, curRaw);
 
-        resources.put(type, curRaw - amtToConvert);
+        rawResources.put(type, curRaw - amtToConvert);
 
         int curUsable = resources.get(conversions.get(type));
 

@@ -19,7 +19,7 @@ public class Bomb implements ItemEffect
     private int maxDamage;
     private int radius;
 
-    private float decay;
+    private double decay;
 
     /**
      * Creates a new bomb with a specified maximum damage dealth, a maximum
@@ -29,7 +29,7 @@ public class Bomb implements ItemEffect
      * @param radius the radius the bomb effects.
      * @param decay the rate at which the explosion damage decays.
      */
-    public Bomb(int maxDamage, int radius, float decay)
+    public Bomb(int maxDamage, int radius, double decay)
     {
         this.maxDamage = maxDamage;
         this.radius = radius;
@@ -63,5 +63,10 @@ public class Bomb implements ItemEffect
     public int radius()
     {
         return radius;
+    }
+
+    public String type()
+    {
+        return "itemDamage";
     }
 }

@@ -35,6 +35,12 @@ rscFood
 rscMetal
 rscEnergy
 
+**Items
+itemDamage
+itemHeal
+itemResource
+itemObstacle
+
 **Commands
 cmdMakeRanged
 cmdMakeMelee

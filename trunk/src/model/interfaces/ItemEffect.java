@@ -36,4 +36,11 @@ public interface ItemEffect
      * @return the radius of the effect if it has one, -1 if not.
      */
     public int radius();
+
+    /**
+     * Returns a string token for the type of effect.
+     *
+     * @return the type of the effect.
+     */
+    public String type();
 }
