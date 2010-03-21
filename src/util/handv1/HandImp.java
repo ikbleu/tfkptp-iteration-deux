@@ -10,11 +10,11 @@ import java.util.HashSet;
  * @author kagioglu
  */
 class HandImp<T> implements Hand<T> {
-    protected Set<T> set;
+    private Set<T> data;
     HandImp(Class<T> clazz) {
-        this.set = new HashSet();
+        this.data = new HashSet();
     }
-    public boolean add(T item) { return this.set.add(item); }
-    public boolean remove(T item) { return this.set.remove(item); }
-    public Lens<T> spawnLens() { throw new RuntimeException("TODO"); }
+    public boolean add(T item) { return this.data.add(item); }
+    public boolean remove(T item) { return this.data.remove(item); }
+    public Lens<T> spawnLens() { return new LensImp<T>(this.data); }
 }
