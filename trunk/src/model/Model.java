@@ -7,7 +7,7 @@ public class Model {
 	public Player p; // TODO: remove (testing purposes)
 	public Model()
 	{
-		p = new Player();
+		p = new Player( true );
 		// TODO: ai?
 		
 		UnitInitializer.initialize( p );

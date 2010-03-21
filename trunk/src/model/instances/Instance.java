@@ -11,6 +11,8 @@ import src.model.commands.Command;
 import src.model.commands.CommandFactory;
 import src.model.commands.CommandListener;
 import src.model.commands.CommandSender;
+import src.model.control.Device;
+import src.model.control.KeyEventInterpreterBuilder;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HealthListener;
 import src.model.interfaces.MovementListener;
@@ -19,7 +21,7 @@ import src.model.interfaces.ViewListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
 
-public abstract class Instance extends Locatable implements vInstance, CommandSender
+public abstract class Instance extends Locatable implements vInstance, CommandSender, Device
 {
 	public Instance( Player p, int id, GameTile g )
 	{
@@ -41,6 +43,21 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	final public int id()
 	{
 		return id;
+	}
+	
+	final public String context()
+	{
+		return "Instance";
+	}
+	
+	final public String meaning()
+	{
+		return token() + id();
+	}
+	
+	final public void direct(KeyEventInterpreterBuilder builder)
+	{
+		
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();

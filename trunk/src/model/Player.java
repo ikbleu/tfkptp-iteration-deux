@@ -11,6 +11,17 @@ import src.model.commands.CommandSender;
 import src.model.interfaces.InstanceHolder;
 
 public class Player implements CommandSender {
+	public Player( boolean isH )
+	{
+		isHuman = isH;
+	}
+	private boolean isHuman;
+	
+	public boolean isHuman()
+	{
+		return isHuman;
+	}
+	
 	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();
 	final public void addCommandListener( String token, CommandListener cl )
 	{
