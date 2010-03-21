@@ -42,6 +42,7 @@ import com.sun.opengl.util.texture.TextureIO;
 	 	private TechnologyTree technologyTree;
 	 	private CommandQueueOverview commandQueueOverview;
                 private CommandSelection commandSelection;
+                private ResourceInfo resourceInfo;
 	 	
 	 	private OptionalDisplay optionalDisplay;
 		
@@ -60,9 +61,12 @@ import com.sun.opengl.util.texture.TextureIO;
 		
 		private static final int overviewWidth = 300;
 		private static final int overviewHeight = 420;
-		
+
+
+                //Textures
                 Texture hud_tex;
 		Texture commandSelection_tex;
+                Texture resourceInfo_tex;
 		
 		private Animator animator;
 
@@ -81,6 +85,7 @@ import com.sun.opengl.util.texture.TextureIO;
 			commandQueueOverview = new CommandQueueOverview();
 
                         commandSelection = new CommandSelection(null);
+                        resourceInfo = new ResourceInfo();
 			
 			optionalDisplay = OptionalDisplay.NONE;
 
@@ -124,6 +129,7 @@ import com.sun.opengl.util.texture.TextureIO;
 				//render different components
 				renderHUD(gl);
                                 renderCommandSelection(gl);
+                                renderResourceInfo(gl);
 
 			}
             
@@ -209,6 +215,44 @@ import com.sun.opengl.util.texture.TextureIO;
 
                             gl.glPopMatrix();
                             commandSelection_tex.dispose();
+
+                        }
+
+                        private void renderResourceInfo(GL gl) {
+
+                            try {
+    				resourceInfo_tex = TextureIO.newTexture(resourceInfo.image(),true);
+                            }
+                            catch (GLException e) {
+    				e.printStackTrace();
+                            }
+
+                            double riWidth = .2578125;
+                            double riHeight = .1125;
+
+                            resourceInfo_tex.bind();
+
+                            gl.glPushMatrix();
+
+                            gl.glBegin(GL.GL_POLYGON);
+
+                                gl.glTexCoord2d(0.0, 0.0);
+	    			gl.glVertex2d(0.0,0.0);
+
+                                gl.glTexCoord2d(0.0, 1.0);
+	    			gl.glVertex2d(0.0, riHeight);
+
+                                gl.glTexCoord2d(1.0, 1.0);
+	    			gl.glVertex2d(riWidth, riHeight);
+
+                                gl.glTexCoord2d(1.0, 0.0);
+	    			gl.glVertex2d(riWidth, 0.0);
+
+
+                            gl.glEnd();
+
+                            gl.glPopMatrix();
+                            resourceInfo_tex.dispose();
 
                         }
 			

@@ -7,7 +7,6 @@ package src.view;
 
 //import src.model.TypeCode;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.io.File;
@@ -26,6 +25,9 @@ class GraphicsTableSingleton {
         graphics = new HashMap<String, BufferedImage>();
         try{
             graphics.put( "hud", ImageIO.read(new File("artwork/unicornhud.png")));
+            graphics.put( "Stars", ImageIO.read(new File("artwork/rbStar.jpg")));
+            graphics.put( "rbDust", ImageIO.read(new File("artwork/rbDust.jpg")));
+            graphics.put( "Dreams", ImageIO.read(new File("artwork/rbDream.jpg")));
         }
         catch(Exception e){
             System.out.println("Massive Fail");

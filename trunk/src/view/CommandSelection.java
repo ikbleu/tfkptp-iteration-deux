@@ -28,7 +28,7 @@ import java.awt.Color;
     private int BoxWidth = 200;
     private int BoxHeight = 65;
     private int WordIndentW = 15;
-    private int WordIndentH = 55;
+    private int WordIndentH = 47;
     private int boxes = 0;
     private int boxNumber = 0;
     private Graphics2D graphix;
@@ -39,7 +39,7 @@ import java.awt.Color;
         typeBox = null;
         commandBox = null;
         instanceBox = null;
-        boxes = 4;
+        boxes = 0;
         for(int i = 0;commands != null && i < commands.length;++i){
             JackTheViewVisitor jack = new JackTheViewVisitor();
             commands[i].accept(jack);
@@ -103,61 +103,62 @@ import java.awt.Color;
                                   RenderingHints.VALUE_ANTIALIAS_ON );
 
         // background image
-        graphix.setStroke( new BasicStroke( 2.5f ) );
+        graphix.setStroke( new BasicStroke( 4.0f ) );
 
         graphix.setColor( Color.RED );
-        Font f1 = new Font( "Times Roman", Font.BOLD, 30 );
+        Font f1 = new Font( "Times Roman", Font.BOLD, 22 );
         graphix.setFont( f1 );
 
         /*
          * Testing code upcoming
          *
-         *
+         *not anymore!!! ...for now!
          */
-         groupBox = "Hello";
-         specialBox = "me";
-         typeBox = "test";
-         commandBox = "hi";
         boxNumber = 0;
         if(groupBox!=null){
-            graphix.setColor( Color.WHITE );
+            graphix.setColor( Color.MAGENTA );
             graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.CYAN );
+            graphix.setColor( Color.PINK );
+            graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( groupBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(specialBox!=null){
-            graphix.setColor( Color.WHITE );
+            graphix.setColor( Color.MAGENTA );
             graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.CYAN );
+            graphix.setColor( Color.PINK );
+            graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( specialBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(typeBox!=null){
-            graphix.setColor( Color.WHITE );
+            graphix.setColor( Color.MAGENTA );
             graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.CYAN );
+            graphix.setColor( Color.PINK );
+            graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( typeBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(commandBox!=null){
-            graphix.setColor( Color.WHITE );
+            graphix.setColor( Color.MAGENTA );
             graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.CYAN );
+            graphix.setColor( Color.PINK );
+            graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( commandBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(instanceBox!=null){
-            graphix.setColor( Color.WHITE );
+            graphix.setColor( Color.MAGENTA );
             graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.CYAN );
+            graphix.setColor( Color.PINK );
+            graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( instanceBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
     }
 
-    float boxes(){
-        return (float)boxes;
+    int boxes(){
+        return boxes;
     }
 
 }
