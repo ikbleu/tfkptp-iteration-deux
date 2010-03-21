@@ -141,6 +141,22 @@ public abstract class WorkerGroup extends Locatable implements HasPlayer
     }
 
     /**
+     * Determines if the specified object with a player associated with it has
+     * the same player as the current worker group.
+     *
+     * @param hs the object with which to compare players.
+     *
+     * @return true if the players are the same, false otherwise.
+     */
+    public boolean hasSamePlayer(HasPlayer hs)
+    {
+        if(getPlayer().equals(hs.getPlayer()))
+            return true;
+        else
+            return false;
+    }
+
+    /**
      * Workers don't care when other objects are within their influence radius,
      * so this does nothing.
      *
