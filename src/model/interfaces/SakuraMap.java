@@ -5,6 +5,8 @@
 
 package src.model.interfaces;
 
+import java.util.Map;
+
 import src.view.MapBuilder;
 
 /**
@@ -15,4 +17,5 @@ public interface SakuraMap {
     public int mapWidth();
     public int mapHeight();
     public void build(MapBuilder[][] b);
+    public Map<String, Integer> getPlayerResources();
 }
