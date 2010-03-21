@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 import src.control.interfaces.*;
+import src.model.control.BindingMapBuilder;
+import src.model.control.BindingMapDirector;
 
 public class FileHandler {
 	

@@ -5,7 +5,9 @@ import src.model.commands.CommandAdapter;
 import src.model.commands.CommandFactory;
 import src.model.commands.CommandListener;
 import src.model.commands.NoArgsCommand;
+import src.model.commands.NoArgsCommandFactory;
 import src.model.commands.RallyPointCommand;
+import src.model.commands.RallyPointCommandFactory;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
@@ -35,24 +37,28 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener {
 		u.addCommandListener( "cmdDecommission", new CommandListener() {
 			public void commandOccurred( Command c )
 			{
+				if ( ! c.when().equals( "execute" ) ) return;
 				u.decommission();
 			}
 		});
 		u.addCommandListener( "cmdPowerUp", new CommandListener() {
 			public void commandOccurred( Command c )
 			{
+				if ( ! c.when().equals( "execute" ) ) return;
 				u.powerUp();
 			}
 		});
 		u.addCommandListener( "cmdPowerDown", new CommandListener() {
 			public void commandOccurred( Command c )
 			{
+				if ( ! c.when().equals( "execute" ) ) return;
 				u.powerDown();
 			}
 		});
 		u.addCommandListener( "cmdRallyPoint", new CommandListener() {
 			public void commandOccurred( Command c )
 			{
+				if ( ! c.when().equals( "execute" ) ) return;
 				c.accept( new CommandAdapter()
 				{
 					public void visitRallyPointCommand(RallyPointCommand mc) {
@@ -62,25 +68,32 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener {
 			}
 		});
 		
-		u.addSelectableCommand( new CommandFactory()
+		u.addSelectableCommand( new NoArgsCommandFactory()
 		{
-			public Command makeCommand( Instance i )
+			public NoArgsCommand makeCommand( Instance i )
 			{
-				return new NoArgsCommand( "cmdPowerUp", i, 10 );
+				return new NoArgsCommand( "cmdPowerUp", i, 0 );
 			}
 		});
-		u.addSelectableCommand( new CommandFactory()
+		u.addSelectableCommand( new NoArgsCommandFactory()
 		{
-			public Command makeCommand( Instance i )
+			public NoArgsCommand makeCommand( Instance i )
 			{
-				return new NoArgsCommand( "cmdPowerDown", i, 10 );
+				return new NoArgsCommand( "cmdPowerDown", i, 0 );
 			}
 		});
-		u.addSelectableCommand( new CommandFactory()
+		u.addSelectableCommand( new RallyPointCommandFactory()
 		{
-			public Command makeCommand( Instance i )
+			public RallyPointCommand makeCommand( Instance i )
 			{
-				return new NoArgsCommand( "cmdRallyPoint", i, 10 );
+				return new RallyPointCommand( "cmdRallyPoint", i, 0 );
+			}
+		});
+		u.addSelectableCommand( new NoArgsCommandFactory()
+		{
+			public NoArgsCommand makeCommand( Instance i )
+			{
+				return new NoArgsCommand( "cmdDecommission", i, 0 );
 			}
 		});
 

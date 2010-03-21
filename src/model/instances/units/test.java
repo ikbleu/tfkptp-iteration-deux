@@ -11,7 +11,7 @@ public class test {
 		System.out.println( "cmdMakeRanged" );
 		p.executeCommand( new NoArgsCommand( "cmdMakeRanged", null, 0 ) );
 		System.out.println( "cmdArcherAP1" );
-		p.executeCommand( new NoArgsCommand( "cmdArcherAP1", null, 0 ) );
+		p.executeCommand( new NoArgsCommand( "cmdResRangedAtkPow", null, 0 ) );
 		System.out.println( "cmdMakeRanged" );
 		p.executeCommand( new NoArgsCommand( "cmdMakeRanged", null, 0 ) );
 		System.out.println( "cmdDecommission" );
