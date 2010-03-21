@@ -29,7 +29,7 @@ editDescendant(editor: KeyEditor): void</panel_attributes><additional_attributes
 Behavior
 --
 meaning(): String
-do(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>30</y><w>350</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+execute(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>30</y><w>350</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Device
 --
 meaning(): String
