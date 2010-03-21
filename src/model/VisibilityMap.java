@@ -85,8 +85,22 @@ public class VisibilityMap implements HasPlayerVisitor
 		{
 			i2.next().accept(this);
 		}
+		
+		updateResources();
 	}
 	
+	private void updateResources() {
+		// TODO Auto-generated method stub
+		Set<GameTile> tiles = seenTiles.keySet();
+		
+		Iterator<GameTile> i = tiles.iterator();
+		while (i.hasNext())
+		{
+			GameTile loc = i.next();
+			Map<String, Integer> m = resourcesOnTile.get(loc);
+		}
+	}
+
 	@Override
 	public void visitRallyPoint(RallyPoint rp)
 	{
@@ -106,7 +120,7 @@ public class VisibilityMap implements HasPlayerVisitor
 		s.add(rpid);
 		
 		rallyPointAffectedTiles.put(loc, s);
-		
+		playerAffectedTiles.put(loc, new Boolean(rp.getPlayer().isHuman()));
 	}
 
 	@Override
@@ -116,7 +130,7 @@ public class VisibilityMap implements HasPlayerVisitor
 		String sType = s.token();
 		
 		structureAffectedTiles.put(loc, sType);
-		
+		playerAffectedTiles.put(loc, new Boolean(s.getPlayer().isHuman()));		
 	}
 
 	@Override
@@ -142,7 +156,23 @@ public class VisibilityMap implements HasPlayerVisitor
 	@Override
 	public void visitWorkerGroup(WorkerGroup wg) {
 		// TODO Auto-generated method stub
+		GameTile loc = wg.location();
+		WorkerID wgid = new WorkerID(wg);
 		
+		Set<WorkerID> s;
+		
+		if (!workerAffectedTiles.containsKey(loc))
+		{
+			s = new HashSet<WorkerID>();
+		}
+		else
+		{
+			s = workerAffectedTiles.get(loc);
+		}
+		s.add(wgid);
+		
+		workerAffectedTiles.put(loc, s);
+		playerAffectedTiles.put(loc, new Boolean(wg.getPlayer().isHuman()));
 	}
 	
 	private class RPPointingID
