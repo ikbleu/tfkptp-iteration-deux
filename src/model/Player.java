@@ -15,11 +15,17 @@ import src.util.Hand;
 import src.util.HandFactory;
 import src.util.Lens;
 
-public class Player implements CommandSender {
-	public Player( boolean isH, HandFactory hF )
+public class Player implements CommandSender
+{
+	GameMap map;
+	GameTile startingLocation;
+	
+	public Player( boolean isH, HandFactory hF, GameMap m, GameTile startLoc )
 	{
 		isHuman = isH;
 		handFactory = hF;
+		map = m;
+		startingLocation = startLoc;
 		myHand = handFactory.make( Device.class );
 	}
 	private Hand< Device > myHand;
@@ -80,7 +86,6 @@ public class Player implements CommandSender {
 	
 	public GameTile startingLocation()
 	{
-		return null;
-		// TODO: adam implement this
+		return startingLocation;
 	}
 }
