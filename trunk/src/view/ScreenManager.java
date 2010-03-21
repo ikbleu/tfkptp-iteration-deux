@@ -80,6 +80,7 @@ import src.util.SimpleMovingAverageTimer;
                 Texture resourceInfo_tex;
                 Texture ViewPortTest_tex;
                 Texture[][] ViewPortTex;
+                Texture overview_tex;
 		
 		private Animator animator;
 
@@ -132,13 +133,11 @@ import src.util.SimpleMovingAverageTimer;
 			animator.start();
 		}
 		
-		void updateOverview(String title, String subTitle, String[] list) {
-			overview.setTitle(title);
-			overview.setSubTitle(subTitle);
-			overview.setList(list);
+		void updateOverview(Displayable[] direct, Displayable[] dList, Displayable selected) {
+
 		}
 
-                void setStatusOverview(Displayable[] d){
+                void updateStatusOverview(Displayable[] d){
                     hud.setStatusOverview(d);
                     hud.refreshImage();
                     try{
@@ -149,7 +148,7 @@ import src.util.SimpleMovingAverageTimer;
                     }
                 }
 
-                void setCommandSelection(Displayable[] d){
+                void updateCommandSelection(Displayable[] d){
                     commandSelection = new CommandSelection(d);
                     try {
     			commandSelection_tex = TextureIO.newTexture(commandSelection.image(),true);
@@ -183,6 +182,17 @@ import src.util.SimpleMovingAverageTimer;
                         e.printStackTrace();
                     }
                 }
+                
+                void updateOverview(){
+                	optionalDisplay = OptionalDisplay.OVERVIEW;
+                    overview.refreshImage();
+                    try {
+                        overview_tex = TextureIO.newTexture(overview.image(),true);
+                    }
+                    catch (GLException e) {
+                        e.printStackTrace();
+                    }
+                }
 
 		
 		class GraphicListener implements GLEventListener {
@@ -197,18 +207,15 @@ import src.util.SimpleMovingAverageTimer;
 
                 //System.out.println(timer.marksPerSecond());
 				//render different components
-				gl.glPushMatrix();
-			
-                                    gl.glScaled(scale, scale, 1.0f);
-                                    //gl.glTranslated(offX,offY,0.0);
-                                    //updateOffset();
-                                    renderMap(gl, 15, 15);
-				
-                                gl.glPopMatrix();
 
-                                renderHUD(gl);
-                                renderCommandSelection(gl);
+                renderMap(gl, 15, 15);
+                renderHUD(gl);
+                renderCommandSelection(gl);
 				renderResourceInfo(gl);
+				
+				switch(optionalDisplay) {
+					case OVERVIEW: renderOverview(gl); break;
+				}
 
 			}
             
@@ -301,6 +308,36 @@ import src.util.SimpleMovingAverageTimer;
                  gl.glPopMatrix();
 
             }
+            
+            private void renderOverview(GL gl) {
+            	
+                double oWidth = .35;
+                double oHeight = .60;
+
+                overview_tex.bind();
+
+                gl.glPushMatrix();
+
+                gl.glBegin(GL.GL_POLYGON);
+
+                	gl.glTexCoord2d(0.0, 0.0);
+                	gl.glVertex2d(0.4,0.1);
+
+                	gl.glTexCoord2d(1.0, 0.0);
+                	gl.glVertex2d(0.4+oWidth, 0.1);
+
+                	gl.glTexCoord2d(1.0, 1.0);
+                	gl.glVertex2d(0.4+oWidth, 0.1+oHeight);
+
+                	gl.glTexCoord2d(0.0, 1.0);
+                	gl.glVertex2d(0.4, 0.1+oHeight);
+
+
+                gl.glEnd();
+
+                gl.glPopMatrix();
+            	
+            }
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
 			
@@ -326,9 +363,11 @@ import src.util.SimpleMovingAverageTimer;
 					gl.glEnable(GL.GL_BLEND);
 					gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
                                         updateViewPort();
-                                         setStatusOverview(null);
+                                         updateStatusOverview(null);
                                          updateResourceInfo();
-                                         setCommandSelection(null);
+                                         updateCommandSelection(null);
+                                         updateOverview();
+                                         
 					
 				} 
 				
@@ -368,12 +407,19 @@ import src.util.SimpleMovingAverageTimer;
             private void renderMap(GL gl, int height, int width){
                 double beginX =  .5 - (((double)width)/2.0 * .2);
                 double beginY =  .5 - (((double)height)/2.0 * .173205 * (screenRatio));
-                            
-                for(int i = 0; i < height; ++i){
-                     for(int j =0; j < width; ++j){
-                            renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio), i, j);
-                     }
-                 }
+                         
+                
+                gl.glPushMatrix();
+	                gl.glScaled(scale, scale, 1.0f);
+	                //gl.glTranslated(offX,offY,0.0);
+	                //updateOffset();
+	                
+	                for(int i = 0; i < height; ++i){
+	                     for(int j =0; j < width; ++j){
+	                            renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio), i, j);
+	                     }
+	                 }
+	            gl.glPopMatrix();
             }
 
             private void renderViewPortHex(GL gl, double x, double y, int i, int j) {
