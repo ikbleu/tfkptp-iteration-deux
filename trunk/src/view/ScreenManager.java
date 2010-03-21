@@ -166,20 +166,8 @@ import src.model.interfaces.Displayable;
 	    				gl.glTexCoord2d(0,0);
 	    				gl.glVertex2d(0,0.7);
 	    				
-	    				gl.glTexCoord2d(0.26, 0);
-	    				gl.glVertex2d(0.26,0.7);
-	    				
-	    				gl.glTexCoord2d(0.26, 0.2);
-	    				gl.glVertex2d(0.26,0.75);
-	    				
-	    				gl.glTexCoord2d(0.63, 0.2);
-	    				gl.glVertex2d(0.63,0.75);
-	    				
-	    				gl.glTexCoord2d(0.66, 0.13);
-	    				gl.glVertex2d(0.66,0.72);
-	    				
 	    				gl.glTexCoord2d(1, 0);
-	    				gl.glVertex2d(1, 0.72);
+	    				gl.glVertex2d(1, 0.70);
 	    				
 	    				gl.glTexCoord2d(1, 1);
 	    				gl.glVertex2d(1, 1);

@@ -17,6 +17,7 @@ import src.model.interfaces.vUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  *
@@ -33,7 +34,9 @@ import java.util.HashMap;
     private int id = -1;
     private int health = -1;
     private List<vUnit> rallyPoint;
-    private Map<String, Integer> rpTypeAndHealth;
+    private LinkedList<String> rpType;
+    private LinkedList<Integer> rpHealth;
+
 
 
 
@@ -57,10 +60,11 @@ import java.util.HashMap;
         id = jill.id();
         health = jill.health();
         if(info.equals("Rally Point")){
-            rpTypeAndHealth = new HashMap<String, Integer>();
+            rpType = new LinkedList<String>();
+            rpHealth = new LinkedList<Integer>();
             for(int i = 0; i < rallyPoint.size(); ++i){
-                rpTypeAndHealth.put((rallyPoint.get(i)).token(),
-                                    (rallyPoint.get(i)).health());
+                rpType.add(rallyPoint.get(i).token());
+                rpHealth.add(rallyPoint.get(i).health());
             }
         }
         
@@ -92,8 +96,12 @@ import java.util.HashMap;
         return stats;
     }
 
-    Map<String, Integer> rpTypeAndHealth(){
-        return rpTypeAndHealth;
+    LinkedList<String> rpType(){
+        return rpType;
+    }
+
+    LinkedList<Integer> rpHealth(){
+        return rpHealth;
     }
 
     int health(){
