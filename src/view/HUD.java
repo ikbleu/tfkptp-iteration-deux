@@ -66,7 +66,8 @@ import src.model.interfaces.vInstance;
     void refreshImage(){
     	imageBuffer = graphicsTable.getGraphic("hud");
         graphix = imageBuffer.createGraphics();
-        graphix.setColor(Color.BLACK);
+        graphix.setColor(Color.GREEN);
+        
 
     }
 
