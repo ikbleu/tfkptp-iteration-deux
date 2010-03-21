@@ -3,9 +3,9 @@ package src.model;
 import java.util.Set;
 
 import src.model.enums.Direction;
-import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.StringRandomizer;
+import src.view.MapBuilder;
 
 public class GameMap
 {
@@ -114,4 +114,24 @@ public class GameMap
 		} while (d != Direction.N);
 		
 	}
+	
+	public GameTile acceptBuilder(MapBuilder mb, int horiz, int vert)
+	{
+		if (isValid2DCoordinate(horiz, vert))
+		{
+			GameTile gt = origin.getTileAt2DCoordinate(horiz,vert);
+			mb.setTerrain(gt.getTerrainType());
+			return gt;
+		}
+		return null;
+	}
+	
+	private boolean isValid2DCoordinate(int horiz, int vert)
+	{
+		if (origin.calculateDistance(horiz - MAP_RADIUS, vert - MAP_RADIUS) > MAP_RADIUS)
+			return false;
+		
+		return true;
+	}
+	
 }

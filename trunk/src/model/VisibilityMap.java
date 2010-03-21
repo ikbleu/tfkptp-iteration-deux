@@ -3,10 +3,10 @@ package src.model;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import src.model.enums.DecalType;
 import src.model.enums.Direction;
 import src.model.enums.Visibility;
 import src.model.instances.RallyPoint;
@@ -16,6 +16,13 @@ import src.model.instances.WorkerGroup;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayer;
 import src.model.interfaces.HasPlayerVisitor;
+import src.view.MapBuilder;
+
+/**
+ * 
+ * @author Adam
+ *
+ */
 
 public class VisibilityMap implements HasPlayerVisitor
 {
@@ -23,10 +30,12 @@ public class VisibilityMap implements HasPlayerVisitor
 	private Map<GameTile, StructID> structureOnTile;
 	private Map<GameTile, Set<RPPointingID> > rallyPointsOnTile;
 	private Map<GameTile, Set<WorkerID> > workersOnTile;
-	private Map<GameTile, Map<String, Integer> > resourcesOnTile;
-	private Set<GameTile> exploredTiles;
-	private Map<GameTile, Visibility> seenTiles;
 	private Map<GameTile, Boolean> playerOwningTile;
+	
+	private Map<GameTile, Map<String, Integer> > resourcesOnTile;
+	private Map<GameTile, DecalType> exploredTiles;
+	private Map<GameTile, Visibility> seenTiles;
+	
 	
 	private Map<GameTile, Integer> unitAffectedTiles;
 	private Map<GameTile, Set<RPPointingID> > rallyPointAffectedTiles;
@@ -40,9 +49,11 @@ public class VisibilityMap implements HasPlayerVisitor
 		structureOnTile = new HashMap<GameTile, StructID>();
 		rallyPointsOnTile = new HashMap<GameTile, Set<RPPointingID> >();
 		workersOnTile = new HashMap<GameTile, Set<WorkerID> >();
-		resourcesOnTile = new HashMap<GameTile, Map<String, Integer> >();
-		exploredTiles = new HashSet<GameTile>();
 		playerOwningTile = new HashMap<GameTile, Boolean>();
+		
+		resourcesOnTile = new HashMap<GameTile, Map<String, Integer> >();
+		exploredTiles = new HashMap<GameTile, DecalType>();
+		
 		
 		unitAffectedTiles = new HashMap<GameTile, Integer>();
 		structureAffectedTiles = new HashMap<GameTile, StructID>();
@@ -87,6 +98,18 @@ public class VisibilityMap implements HasPlayerVisitor
 		}
 		
 		updateResources();
+		
+		unitsPerTile.putAll(unitAffectedTiles);
+		structureOnTile.putAll(structureAffectedTiles);
+		rallyPointsOnTile.putAll(rallyPointAffectedTiles);
+		workersOnTile.putAll(workerAffectedTiles);
+		playerOwningTile.putAll(playerAffectedTiles);
+		
+		unitAffectedTiles.clear();
+		structureAffectedTiles.clear();
+		rallyPointAffectedTiles.clear();
+		workerAffectedTiles.clear();
+		playerAffectedTiles.clear();
 	}
 	
 	private void updateResources()
@@ -98,7 +121,7 @@ public class VisibilityMap implements HasPlayerVisitor
 		{
 			GameTile loc = i.next();
 			
-			if (exploredTiles.contains(loc))
+			if (exploredTiles.containsKey(loc))
 			{
 				resourcesOnTile.put(loc, loc.getResources());
 				
@@ -256,9 +279,71 @@ public class VisibilityMap implements HasPlayerVisitor
 		}
 	}
 	
-	public void explore(List<GameTile> tileList)
+	public void explore(Map<GameTile, DecalType> tileList)
 	{
-		exploredTiles.addAll(tileList);
+		exploredTiles.putAll(tileList);
 		
+	}
+
+	public void acceptBuilder(MapBuilder mapBuilder, GameTile location)
+	{
+		// TODO Auto-generated method stub
+		if (unitsPerTile.containsKey(location))
+		{
+			mapBuilder.setIndividualUnits(unitsPerTile.get(location).intValue());
+		}
+		
+		if (structureOnTile.containsKey(location))
+		{
+			mapBuilder.setStructure(structureOnTile.get(location).getType());
+			mapBuilder.setSoldiersInside(structureOnTile.get(location).getNumSoldiers());
+		}
+		
+		if (rallyPointsOnTile.containsKey(location))
+		{
+			Set<RPPointingID> rpIDs = rallyPointsOnTile.get(location);
+			
+			Iterator<RPPointingID> i = rpIDs.iterator();
+			
+			while (i.hasNext())
+			{
+				RPPointingID rpid = i.next();
+				mapBuilder.addRallyPoint(rpid.getRallyID(), rpid.getFacingDirection(), rpid.getAction());
+			}
+			
+		}
+		
+		if (workersOnTile.containsKey(location))
+		{
+			Iterator<WorkerID> i = workersOnTile.get(location).iterator();
+			
+			while (i.hasNext())
+			{
+				WorkerID wid = i.next();
+				mapBuilder.addWorkerGroup(wid.groupType(), wid.numWorkers());
+			}
+		}
+		
+		if (playerOwningTile.containsKey(location))
+		{
+			if (playerOwningTile.get(location).booleanValue())
+				mapBuilder.setPlayer("Human");
+			else
+				mapBuilder.setPlayer("Enemy");
+		}
+		
+		if (seenTiles.containsKey(location))
+		{
+			mapBuilder.setVisibility(seenTiles.get(location));
+		}
+		else
+		{
+			mapBuilder.setVisibility(Visibility.SHROUDED);
+		}
+		
+		if (resourcesOnTile.containsKey(location))
+		{
+			mapBuilder.setResources(resourcesOnTile.get(location));
+		}
 	}
 }

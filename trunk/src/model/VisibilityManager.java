@@ -1,9 +1,13 @@
 package src.model;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import src.model.enums.DecalType;
 import src.model.interfaces.GameTile;
+import src.model.interfaces.HasPlayer;
 import src.model.interfaces.InstanceHolder;
+import src.model.interfaces.ItemVisibilityHolder;
 import src.model.interfaces.SakuraMap;
 import src.view.MapBuilder;
 
@@ -14,6 +18,7 @@ public class VisibilityManager implements SakuraMap
 	GameMap gameMap;
 	HasPlayerManager playerStuff;
 	InstanceHolder playerInstances;
+	ItemVisibilityHolder items;
 	
 	public VisibilityManager(Player player, GameMap map, HasPlayerManager m)
 	{
@@ -29,18 +34,28 @@ public class VisibilityManager implements SakuraMap
 		GetVisibleTiles gvt = new GetVisibleTiles();
 		playerInstances.applyToAll(gvt, player);
 		
-		playerStuff.getThingsIn(gvt.getVisibleTiles());
+		Set<HasPlayer> hasPlayers = playerStuff.getThingsIn(gvt.getVisibleTiles());
+		visibleMap.updateVisibility(gvt.getVisibleTiles(), hasPlayers);
 	}
 	
 	@Override
 	public void build(MapBuilder[][] b) {
 		// TODO Auto-generated method stub
+		for (int i = 0; i < b.length; i++)
+			for (int j = 0; j < b[i].length;j++)
+			{
+				GameTile loc = gameMap.acceptBuilder(b[i][j], i, j);
+				if (loc != null)
+				{
+					visibleMap.acceptBuilder(b[i][j], loc);
+				}
+			}
 
 	}
 
-	public void exploreTiles(List<GameTile> tileList)
+	public void exploreTiles(Map<GameTile, DecalType> exploredTiles)
 	{
-		visibleMap.explore(tileList);
+		visibleMap.explore(exploredTiles);
 	}
 	
 	@Override
