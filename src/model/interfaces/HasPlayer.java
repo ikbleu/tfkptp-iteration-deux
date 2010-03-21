@@ -6,5 +6,6 @@ import src.model.interfaces.HasPlayerVisitor;
 public interface HasPlayer 
 {
 	public Player getPlayer();
+	public boolean hasSamePlayer(HasPlayer hs);
 	public void accept(HasPlayerVisitor hpv);
 }

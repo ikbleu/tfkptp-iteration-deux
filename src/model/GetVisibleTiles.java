@@ -25,9 +25,7 @@ public class GetVisibleTiles implements InstanceFunction
 	}
 	
 	public void execute(Instance i) {
-		List<GameTile> tiles = i.getVisibleTiles();
-		
-		visibleTiles.addAll(tiles);
+		visibleTiles.addAll(i.getVisibleTiles());
 	}
 	
 	public void clear()
