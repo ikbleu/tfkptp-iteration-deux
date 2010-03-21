@@ -13,6 +13,7 @@ import src.model.enums.Direction;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -24,7 +25,7 @@ class BobTheMapBuilder implements MapBuilder{
         private String structure;
         private int soldiers;
         private int individualUnits;
-        private int[] resources;
+        private Map<String, Integer> resources;
         private HashMap<String, Integer> workerGroups = new HashMap<String, Integer>();
         private String item;
         private String decal;
@@ -58,7 +59,7 @@ class BobTheMapBuilder implements MapBuilder{
     public void setSoldiersInside(int soldiers){
         this.soldiers = soldiers;
     }
-    public void setResources(int[] resources){
+    public void setResources(Map<String, Integer> resources){
         this.resources = resources;
     }
     public void setItem(String item){
