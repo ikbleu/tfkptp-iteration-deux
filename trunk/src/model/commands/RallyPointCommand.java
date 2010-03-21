@@ -14,6 +14,12 @@ public class RallyPointCommand extends Command {
 	
 	public RallyPoint getRallyPoint()
 	{
-		return null;
+		return rallyPoint;
 	}
+	
+	public void setRallyPoint( RallyPoint rp )
+	{
+		rallyPoint = rp;
+	}
+	private RallyPoint rallyPoint;
 }

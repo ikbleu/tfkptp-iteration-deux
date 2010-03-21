@@ -34,7 +34,7 @@ public abstract class Unit extends Instance implements vUnit {
 	
 	public void addToRallyPoint( RallyPoint rp )
 	{
-		
+		rp.addUnit( this );
 	}
 	
 	public void accept( HasPlayerVisitor v )

@@ -14,14 +14,17 @@ import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
 import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
+import src.util.Hand;
 
 public abstract class SpecificUnitManager implements InstanceExistenceListener, Device {
-	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f) {
+	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f, Hand< Device > h ) {
 		manager = m;
 		factory = f;
+		hand = h;
 	}
 	private GeneralUnitManager manager; 
 	private UnitFactory factory;
+	private Hand< Device > hand;
 	
 	public boolean canMakeUnit()
 	{
@@ -112,12 +115,14 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 	abstract protected boolean canMakeSpecificUnit();
 	
 	public void delInstance(Instance i) {
+		hand.remove( i );
 		manager.delInstance( i );
 		doDelInstance( i );
 	}
 	abstract protected void doDelInstance( Instance i );
 	
 	public void newInstance(Instance i) {
+		hand.add( i );
 		manager.newInstance( i );
 		doNewInstance( i );
 	}
@@ -130,6 +135,6 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 	
 	final public void direct(KeyEventInterpreterBuilder builder)
 	{
-		// TODO: implement
+		builder.devices( hand.spawnLens() );
 	}
 }

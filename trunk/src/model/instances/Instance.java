@@ -212,7 +212,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	public void moveTo( GameTile loc )
 	{
-		GameTile prev = location();;
+		GameTile prev = location();
 		setLocation( loc );
 		for ( MovementListener ml : moveListeners )
 			ml.locationChanged( this, prev );
