@@ -19,14 +19,17 @@ public class Player implements CommandSender
 {
 	GameMap map;
 	GameTile startingLocation;
+        ResourceManager rscManager;
 	
-	public Player( boolean isH, HandFactory hF, GameMap m, GameTile startLoc )
+	public Player( boolean isH, HandFactory hF, GameMap m, GameTile startLoc,
+                ResourceManager rm)
 	{
 		isHuman = isH;
 		handFactory = hF;
 		map = m;
 		startingLocation = startLoc;
 		myHand = handFactory.make( Device.class );
+                rscManager = rm;
 	}
 	private Hand< Device > myHand;
 	
@@ -88,4 +91,9 @@ public class Player implements CommandSender
 	{
 		return startingLocation;
 	}
+
+        public Map<String, Integer> resourceCount()
+        {
+            return rscManager.getAllAmounts();
+        }
 }
