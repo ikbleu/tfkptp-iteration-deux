@@ -41,7 +41,7 @@ public class Bomb implements ItemEffect
         GameTile target = i.location();
         int distance = source.getDistanceFrom(target);
 
-        int damageTaken = Math.max(0, (int) (maxDamage * (1 - distance * decay)));
+        int damageTaken = (int) (maxDamage * (Math.pow(1 - decay, distance)));
         i.takeDamage(damageTaken);
     }
 
