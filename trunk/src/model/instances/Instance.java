@@ -14,6 +14,8 @@ import src.model.commands.CommandSender;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.interfaces.GameTile;
+import src.model.interfaces.HasPlayer;
+import src.model.interfaces.HasPlayerVisitor;
 import src.model.interfaces.HealthListener;
 import src.model.interfaces.MovementListener;
 import src.model.interfaces.StatsListener;
@@ -21,7 +23,7 @@ import src.model.interfaces.ViewListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
 
-public abstract class Instance extends Locatable implements vInstance, CommandSender, Device
+public abstract class Instance extends Locatable implements vInstance, CommandSender, Device, HasPlayer
 {
 	public Instance( Player p, int id, GameTile g )
 	{
@@ -222,4 +224,16 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Player getPlayer()
+	{
+		return player;
+	}
+	
+	public boolean hasSamePlayer(HasPlayer hs)
+	{
+		return player == hs.getPlayer();
+	}
+	
+	public abstract void accept(HasPlayerVisitor hpv);
 }
