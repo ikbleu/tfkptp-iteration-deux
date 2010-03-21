@@ -9,6 +9,7 @@ import src.view.MapBuilder;
 
 public class VisibilityManager implements SakuraMap
 {
+	Player player;
 	VisibilityMap visibleMap;
 	GameMap gameMap;
 	HasPlayerManager playerStuff;
@@ -16,6 +17,7 @@ public class VisibilityManager implements SakuraMap
 	
 	public VisibilityManager(Player player, GameMap map, HasPlayerManager m)
 	{
+		this.player = player;
 		gameMap = map;
 		visibleMap = new VisibilityMap();
 		playerStuff = m;
