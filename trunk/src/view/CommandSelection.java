@@ -115,15 +115,13 @@ import java.awt.Color;
          *
          *
          */
+        
         groupBox = "Unit";
         typeBox = "Unicorn";
         instanceBox = "Unicorn 3";
 
         boxNumber = 0;
         if(groupBox!=null){
-            graphix.setColor( Color.MAGENTA );
-            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            //graphix.setColor( Color.PINK );
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
             graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
@@ -131,9 +129,6 @@ import java.awt.Color;
             ++boxNumber;
         }
         if(specialBox!=null){
-            graphix.setColor( Color.MAGENTA );
-            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            //graphix.setColor( Color.PINK );
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
             graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
@@ -141,9 +136,6 @@ import java.awt.Color;
             ++boxNumber;
         }
         if(typeBox!=null){
-            graphix.setColor( Color.MAGENTA );
-            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            //graphix.setColor( Color.PINK );
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
             graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
@@ -151,9 +143,6 @@ import java.awt.Color;
             ++boxNumber;
         }
         if(commandBox!=null){
-            graphix.setColor( Color.MAGENTA );
-            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            //graphix.setColor( Color.PINK );
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
             graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
@@ -161,9 +150,6 @@ import java.awt.Color;
             ++boxNumber;
         }
         if(instanceBox!=null){
-            graphix.setColor( Color.MAGENTA );
-            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            //graphix.setColor( Color.PINK );
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
             graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
