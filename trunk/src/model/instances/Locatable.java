@@ -3,9 +3,9 @@ package src.model.instances;
 import java.util.LinkedList;
 import java.util.List;
 
+import src.model.AoEManager;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.LocatableVisitor;
-import src.model.interfaces.MovementListener;
 import src.model.interfaces.RadiusListener;
 
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public abstract class Locatable implements Serializable
 	public Locatable( GameTile g )
 	{
 		location = g;
-		//LocationManager.instance().register( this );
+		AoEManager.instance().registerListening( this );
 	}
 	
 	final public GameTile location()
@@ -24,22 +24,9 @@ public abstract class Locatable implements Serializable
 		return location;
 	}
 	
-	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
-	final public void addMovementListener( MovementListener ml )
-	{
-		moveListeners.add( ml );
-	}
-	final public void removeMovementListener( MovementListener ml )
-	{
-		moveListeners.remove( ml );
-	}
-	
 	final protected void setLocation( GameTile g )
 	{
-		GameTile prev = location;
 		location = g;
-		for ( MovementListener ml : moveListeners )
-			ml.locationChanged( this, prev );
 	}
 	
 	private List< RadiusListener > radiusListeners = new LinkedList< RadiusListener >();
@@ -69,12 +56,12 @@ public abstract class Locatable implements Serializable
 	final public void destroy()
 	{
 		doDestruction();
-		//LocationManager.instance().unregister( this );
+		AoEManager.instance().unregisterListening( this );
 	}
 	protected void doDestruction() {}
 	
 	abstract public void accept( LocatableVisitor lv );
-	abstract public void entered( Locatable l );
-	abstract public void exited( Locatable l );
+	abstract public void entered( Instance l );
+	abstract public void exited( Instance l );
 	abstract public String token();
 }

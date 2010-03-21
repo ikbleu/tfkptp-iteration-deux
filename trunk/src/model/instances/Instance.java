@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import src.model.AoEManager;
 import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.CommandFactory;
@@ -27,14 +28,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		this.id = id;
 		player = p;
 		
-		addMovementListener( new MovementListener()
-		{
-			public void locationChanged( Locatable l, GameTile prev )
-			{
-				for ( ViewListener vl : viewListeners )
-					vl.locationChanged( Instance.this, prev );
-			}
-		});
+		AoEManager.instance().registerLocation( this );
 	}
 	
 	private Player player;
@@ -99,6 +93,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		for ( InstanceExistenceListener il : ieListeners )
 			il.delInstance( this );
+		AoEManager.instance().unregisterLocation( this );
 	}
 	
 	final public void modifyStat( String s, int delta )
@@ -174,6 +169,16 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		lv.visitInstance( this );
 	}
 	
+	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
+	final public void addMovementListener( MovementListener ml )
+	{
+		moveListeners.add( ml );
+	}
+	final public void removeMovementListener( MovementListener ml )
+	{
+		moveListeners.remove( ml );
+	}
+	
 	public void addSelectableCommand( CommandFactory cmd )
 	{
 		
@@ -185,6 +190,16 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 	
 	abstract public String token();
+	
+	public void moveTo( GameTile loc )
+	{
+		GameTile prev = location();;
+		setLocation( loc );
+		for ( MovementListener ml : moveListeners )
+			ml.locationChanged( this, prev );
+		for ( ViewListener vl : viewListeners )
+			vl.locationChanged( this, prev );
+	}
 
 	public List<GameTile> getVisibleTiles() {
 		// TODO Auto-generated method stub

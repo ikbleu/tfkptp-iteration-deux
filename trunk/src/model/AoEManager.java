@@ -26,6 +26,8 @@ public class AoEManager implements MovementListener, RadiusListener
 {
     private Map<GameTile, List<Instance>> whosThere;
     private Map<GameTile, List<Locatable>> whosListening;
+    
+    final private boolean DEBUGGING = true; // TODO: remove references to this
 
     private List<Locatable> thingsListening;
 
@@ -51,6 +53,7 @@ public class AoEManager implements MovementListener, RadiusListener
 
     public void registerLocation(Instance thing)
     {
+    	if ( DEBUGGING ) return;
         registerLocation(thing, thing.location());
     }
 
@@ -84,6 +87,7 @@ public class AoEManager implements MovementListener, RadiusListener
 
     public void registerListening(Locatable thing)
     {
+    	if ( DEBUGGING ) return;
         if(thingsListening.contains(thing))
             throw new RuntimeException("Already registered for listening!");
 
@@ -110,6 +114,7 @@ public class AoEManager implements MovementListener, RadiusListener
 
     public void unregisterLocation(Instance thing)
     {
+    	if ( DEBUGGING ) return;
         unregisterLocation(thing, thing.location());
     }
 
@@ -140,6 +145,7 @@ public class AoEManager implements MovementListener, RadiusListener
 
     public void unregisterListening(Locatable thing)
     {
+    	if ( DEBUGGING ) return;
         unregisterListening(thing, thing.location(), thing.influenceRadius());
     }
 
