@@ -24,5 +24,9 @@ public class Binding{
 	{
 		return key;
 	}
+	public String toString()
+	{
+		return meaning + "\t\t\t\t\t ModifiersCode: "+ key.getModifiers() +"KeCode: "+ key.getKeyCode();
+	}
 
 }
