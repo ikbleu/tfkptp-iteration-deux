@@ -1,6 +1,8 @@
 package src.model;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,6 +37,23 @@ public class ResourceMaker implements IntRandomizer
 		return possibleResources.keySet();
 	}
 	
+	public Set<Resource> getResources(boolean random)
+	{
+		Iterator<String> i = possibleResourceValues().iterator();
+		
+		Set<Resource> s = new HashSet<Resource>();
+		
+		while (i.hasNext())
+		{
+			if (random)
+				s.add(getRandomAmountResource(i.next()));
+			else
+				s.add(getDefaultAmountResource(i.next()));
+		}
+		
+		return s;
+	}
+	
 	public Resource getRandomAmountResource(String s)
 	{
 		if (!possibleResources.containsKey(s))
@@ -42,6 +61,22 @@ public class ResourceMaker implements IntRandomizer
 		
 		Resource r;
 		int amount = random();
+		
+		if (possibleResources.get(s).booleanValue())
+			r = new RenewableResource(s, amount, clock);
+		else
+			r = new NonRenewableResource(s, amount);
+		
+		return r;
+	}
+	
+	public Resource getDefaultAmountResource(String s)
+	{
+		if (!possibleResources.containsKey(s))
+			return null;
+		
+		Resource r;
+		int amount = defaultValue();
 		
 		if (possibleResources.get(s).booleanValue())
 			r = new RenewableResource(s, amount, clock);
