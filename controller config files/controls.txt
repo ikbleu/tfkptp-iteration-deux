@@ -1,5 +1,5 @@
 begincontext
-GroUp
+Group
 SpinNext			Ctrl+Up
 SpinPrevious 		Ctrl+Down
 endcontext
@@ -96,3 +96,7 @@ endcontext
 begincontext
 CloseMenu			Esc
 endcontext
+
+EndGame				CTRL+ALT+Q
+UnboundAction		
+					
