@@ -46,12 +46,12 @@ public class Obstacle extends Item
         iv.visitObstacle(this);
     }
 
-    public void exited(Locatable thing)
+    public void exited(Instance thing)
     {
         // Obstacles don't care about things near them.
     }
 
-    public void entered(Locatable thing)
+    public void entered(Instance thing)
     {
         // Obstacles don't care about things near them.
     }

@@ -7,7 +7,6 @@ package src.model.instances;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.ItemVisitor;
 
-import src.model.instances.Locatable;
 import src.model.instances.Instance;
 
 import java.util.List;
@@ -56,18 +55,14 @@ public class OneShotItem extends Item
         iv.visitOneShot(this);
     }
 
-    public void entered(Locatable thing)
+    public void entered(Instance thing)
     {
-        AddInstancesVisitor addy = new AddInstancesVisitor(withinRadius);
-
-        thing.accept(addy);
+        withinRadius.add(thing);
     }
 
-    public void exited(Locatable thing)
+    public void exited(Instance thing)
     {
-        RemoveInstancesVisitor remmy = new RemoveInstancesVisitor(withinRadius);
-
-        thing.accept(remmy);
+        withinRadius.remove(thing);
     }
 
     /**
