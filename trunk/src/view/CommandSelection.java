@@ -27,7 +27,8 @@ import java.awt.Color;
     private String context = null;
     private int BoxWidth = 200;
     private int BoxHeight = 65;
-    private int WordIndent = 15;
+    private int WordIndentW = 15;
+    private int WordIndentH = 55;
     private int boxes = 0;
     private int boxNumber = 0;
     private Graphics2D graphix;
@@ -56,7 +57,7 @@ import java.awt.Color;
                 ++boxes;
             }
             else if(context.equals("Instance")){
-                instanceBox = jack.info();
+                instanceBox = jack.info() + " "  + jack.id();
                 ++boxes;
             }
             else if(context.equals("Command")){
@@ -88,7 +89,10 @@ import java.awt.Color;
     }
 
     void refreshImage(){
-        imageBuffer = new BufferedImage( BoxWidth, BoxHeight* /*boxes*/1/**/,
+        if(boxes == 0){
+            boxes = 1;
+        }
+        imageBuffer = new BufferedImage( BoxWidth, BoxHeight * boxes,
                                         BufferedImage.TYPE_INT_ARGB );
 
         graphix = imageBuffer.createGraphics();
@@ -100,17 +104,50 @@ import java.awt.Color;
         graphix.setStroke( new BasicStroke( 2.5f ) );
 
         graphix.setColor( Color.RED );
-        Font f1 = new Font( "Times Roman", Font.BOLD, 15 );
+        Font f1 = new Font( "Times Roman", Font.BOLD, 30 );
         graphix.setFont( f1 );
-        graphix.drawString( "test", 20, 35 );
-        f1 = new Font( "Times Roman", Font.BOLD, 13 );
-        graphix.setFont( f1 );
-        //tes   tetsteat
-        graphix.fillRect( 0, 0, BoxWidth, BoxHeight * boxNumber);
-        //
+
+        /*
+         * Testing code upcoming
+         *
+         *
+         */
+
         boxNumber = 0;
         if(groupBox!=null){
-            graphix.fillRect( 0, 0, BoxWidth, BoxHeight * boxNumber);
+            graphix.setColor( Color.WHITE );
+            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            graphix.setColor( Color.CYAN );
+            graphix.drawString( groupBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
+            ++boxNumber;
+        }
+        if(specialBox!=null){
+            graphix.setColor( Color.WHITE );
+            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            graphix.setColor( Color.CYAN );
+            graphix.drawString( specialBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
+            ++boxNumber;
+        }
+        if(typeBox!=null){
+            graphix.setColor( Color.WHITE );
+            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            graphix.setColor( Color.CYAN );
+            graphix.drawString( typeBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
+            ++boxNumber;
+        }
+        if(commandBox!=null){
+            graphix.setColor( Color.WHITE );
+            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            graphix.setColor( Color.CYAN );
+            graphix.drawString( commandBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
+            ++boxNumber;
+        }
+        if(instanceBox!=null){
+            graphix.setColor( Color.WHITE );
+            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            graphix.setColor( Color.CYAN );
+            graphix.drawString( instanceBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
+            ++boxNumber;
         }
     }
 
