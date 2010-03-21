@@ -45,7 +45,7 @@ next(): void
 prev(): void
 skipTo(item T): void
 current(): T</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>220</x><y>60</y><w>150</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-HandFactory&lt;T&gt;
+HandFactory
 --
 make(): Hand&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>420</x><y>60</y><w>310</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 OrderingFactory&lt;T&gt;
