@@ -49,6 +49,7 @@ import src.model.interfaces.Displayable;
         private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
 	 	
 	 	private OptionalDisplay optionalDisplay;
+	 	private SimpleMovingAverageTimer timer;
 
         private double screenRatio = 1.6;
 		
@@ -82,6 +83,9 @@ import src.model.interfaces.Displayable;
 		private Animator animator;
 
 		ScreenManager(int mapWidth, int mapHeight){
+			
+			timer = new SimpleMovingAverageTimer();
+			timer.start();
 			
 			scale = 1.0;
 			panX = 0;
@@ -184,11 +188,13 @@ import src.model.interfaces.Displayable;
 			
 
 			public void display(GLAutoDrawable drawable) {
+				
+				timer.mark();
 			
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-                                System.out.println("Hello");
+                System.out.println(timer.marksPerSecond());
 				//render different components
 				gl.glPushMatrix();
 			
