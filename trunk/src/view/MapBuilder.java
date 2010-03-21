@@ -14,11 +14,8 @@ import src.model.enums.Direction;
  */
 public interface MapBuilder {
     public void setStructure(String structure);
-    public void setWorkers(int workers);
-    public void setIdle(int idles);
-    public void setBreeding(int breeders);
+    public void addWorkerGroup(String type, int workers);
     public void setSoldiersInside(int soldiers);
-    public void setHarvesters(int[] harvesters);
     public void setResources(int[] resources);
     public void setItem(String item);
     public void setDecal(DecalType decal);
