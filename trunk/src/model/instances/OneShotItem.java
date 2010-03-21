@@ -77,12 +77,14 @@ public class OneShotItem extends Item
     {
         if(effect.areaEffect())
         {
+            this.setInfluenceRadius(effect.radius());
+
             for(Instance i : withinRadius)
-                effect.apply(i);
+                effect.apply(i, location());
         }
         else
         {
-            effect.apply(trigger);
+            effect.apply(trigger, location());
         }
     }
 }
