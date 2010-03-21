@@ -7,12 +7,15 @@ package src.model;
 import src.model.interfaces.WorkerGroupFactory;
 import src.model.interfaces.GameTile;
 
+import src.model.instances.WorkerGroup;
 import src.model.instances.workergroups.BreedingGroup;
 import src.model.instances.workergroups.HarvestingGroup;
 import src.model.instances.workergroups.NormalWorkerGroup;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Manages and creates new groups of workers.
@@ -26,6 +29,9 @@ public class WorkerManager implements WorkerGroupFactory
     private Map<String, Integer> breedStats;
     private Map<String, Integer> harvestStats;
     private Map<String, Integer> normalStats;
+
+    // The list of active worker groups (more than 0 workers)
+    private List<WorkerGroup> active;
 
     // Total number of workers that can be in existance.
     private static final int MAX_WORKERS = 100;
@@ -52,6 +58,41 @@ public class WorkerManager implements WorkerGroupFactory
         normalStats = new HashMap<String, Integer>();
 
         normalStats.put("density", MAX_WORKERS);
+
+        active = new ArrayList<WorkerGroup>();
+    }
+
+    /**
+     * Flags a worker group as active if it has workers added to it after being
+     * empty.
+     *
+     * @param wg the worker group becoming active.
+     */
+    public void becomeActive(WorkerGroup wg)
+    {
+        if(wg.numWorkers() > 0)
+        {
+            active.add(wg);
+            HasPlayerManager.getInstance().add(wg.location(), wg);
+        }
+        else
+            throw new RuntimeException("A group with no workers can't be active.");
+    }
+
+    /**
+     * Flags a worker group as inactive if it loses all of its workers.
+     *
+     * @param wg the worker group becoming inactive.
+     */
+    public void becomeInactive(WorkerGroup wg)
+    {
+        if(wg.numWorkers() == 0)
+        {
+            active.remove(wg);
+            HasPlayerManager.getInstance().remove(wg.location(), wg);
+        }
+        else
+            throw new RuntimeException("A group with workers can't be inactive.");
     }
 
     /**
