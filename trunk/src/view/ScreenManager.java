@@ -128,7 +128,7 @@ import com.sun.opengl.util.texture.TextureIO;
             
             private void renderHUD(GL gl) {
             	
-    			/*try {
+    			try {
 
     				BufferedImage hud = ImageIO.read(new File("artwork/unicornhud.png"));	//read in image to use as texture
     				hud_tex = TextureIO.newTexture(hud,true);					
@@ -138,38 +138,43 @@ import com.sun.opengl.util.texture.TextureIO;
     				e.printStackTrace();
     			} catch (IOException e) {
     				e.printStackTrace();
-    			}*/
+    			}
             
-            	//hud_tex.bind();
+            	hud_tex.bind();
  
 	    		gl.glPushMatrix();
 
 	    			gl.glBegin(GL.GL_POLYGON);
 	    			
-	    				gl.glTexCoord2d(0.0, 0.0);
-	    				gl.glVertex2d(-1,1);
+	    				gl.glTexCoord2d(0,1);
+	    				gl.glVertex2d(0,1);
 	    				
-	    				gl.glTexCoord2d(0.0, 1.0);
-	    				gl.glVertex2d(-1,0.33);
+	    				gl.glTexCoord2d(0,0);
+	    				gl.glVertex2d(0,0.7);
 	    				
-	    				gl.glTexCoord2d(0.0, 1.0);
-	    				gl.glVertex2d(-0.47,0.33);
+	    				gl.glTexCoord2d(0.26, 0);
+	    				gl.glVertex2d(0.26,0.7);
 	    				
-	    				gl.glVertex2d(-0.47,0.38);
+	    				gl.glTexCoord2d(0.26, 0.2);
+	    				gl.glVertex2d(0.26,0.75);
 	    				
-	    				gl.glVertex2d(0.28,0.38);
+	    				gl.glTexCoord2d(0.63, 0.2);
+	    				gl.glVertex2d(0.63,0.75);
 	    				
-	    				gl.glVertex2d(0.32,0.35);
+	    				gl.glTexCoord2d(0.66, 0.13);
+	    				gl.glVertex2d(0.66,0.72);
 	    				
-	    				gl.glVertex2d(1, 0.35);
+	    				gl.glTexCoord2d(1, 0);
+	    				gl.glVertex2d(1, 0.72);
 	    				
+	    				gl.glTexCoord2d(1, 1);
 	    				gl.glVertex2d(1, 1);
 	    				
 	    				
 	    			gl.glEnd();
 	    			
     			gl.glPopMatrix();
-    			//hud_tex.dispose();
+    			hud_tex.dispose();
 
             }
 			

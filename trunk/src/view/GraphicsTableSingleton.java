@@ -21,12 +21,7 @@ class GraphicsTableSingleton {
     HashMap< String, BufferedImage > graphics;
 
     private GraphicsTableSingleton(){
-        try{
-            //graphics.put( "Sample String", ImageIO.read(new File("artwork/sample_file.jpg"));
-        }
-        catch(Exception E){
-            System.out.println("Image loading failed.");
-        }
+      
     }
 
     BufferedImage getGraphic(String key){
