@@ -7,6 +7,9 @@ package src.model;
 import src.model.interfaces.WorkerGroupFactory;
 import src.model.interfaces.GameTile;
 
+import src.model.commands.CommandListener;
+import src.model.commands.Command;
+
 import src.model.instances.WorkerGroup;
 import src.model.instances.workergroups.BreedingGroup;
 import src.model.instances.workergroups.HarvestingGroup;
@@ -43,6 +46,16 @@ public class WorkerManager implements WorkerGroupFactory
     // Total number of workers that can be in existance.
     private static final int MAX_WORKERS = 100;
 
+    // Base stats
+    private static final int BASE_BREED_RATE = 100;
+    private static final int BASE_DENSITY = 1;
+    private static final int BASE_HARVEST_RATE = 10;
+
+    // Stat modifications
+    private static final int DELTA_BREED_RATE = -10;
+    private static final int DELTA_DENSITY = 1;
+    private static final int DELTA_HARVEST_RATE = 1;
+
     // Total number of workers currently in existance.
     private int totalWorkers;
 
@@ -60,7 +73,9 @@ public class WorkerManager implements WorkerGroupFactory
         harvestStats = new HashMap<String, Integer>();
 
         harvestStats.put("density", 1);
-        harvestStats.put("harvestRate", 10);
+        harvestStats.put("oreRate", 10);
+        harvestStats.put("grainRate", 10);
+        harvestStats.put("fuelRate", 10);
 
         normalStats = new HashMap<String, Integer>();
 
@@ -68,6 +83,65 @@ public class WorkerManager implements WorkerGroupFactory
 
         active = new ArrayList<WorkerGroup>();
         harvesters = new HashMap<GameTile, HarvestingGroup>();
+
+        initCommListeners();
+    }
+
+    private void initCommListeners()
+    {
+        owner.addCommandListener("cmdResWorkDesnity", new CommandListener() {
+            public void commandOccurred(Command com)
+            {
+                if(com.when().equals("execute"))
+                {
+                    int prevDensity = harvestStats.get("density");
+                    harvestStats.put("density", prevDensity + DELTA_DENSITY);
+                }
+            }
+        });
+
+        owner.addCommandListener("cmdResWorkerBreeding", new CommandListener() {
+           public void commandOccurred(Command com)
+           {
+               if(com.when().equals("execute"))
+               {
+                   int prevRate = breedStats.get("breedingRate");
+                   breedStats.put("breedingRate", prevRate + DELTA_BREED_RATE);
+               }
+           }
+        });
+
+        owner.addCommandListener("cmdResWorkerOre", new CommandListener() {
+            public void commandOccurred(Command com)
+            {
+                if(com.when().equals("execute"))
+                {
+                    int prevRate = harvestStats.get("oreRate");
+                    harvestStats.put("oreRate", prevRate + DELTA_HARVEST_RATE);
+                }
+            }
+        });
+
+        owner.addCommandListener("cmdResWorkerGrain", new CommandListener() {
+            public void commandOccurred(Command com)
+            {
+                if(com.when().equals("execute"))
+                {
+                    int prevRate = harvestStats.get("grainRate");
+                    harvestStats.put("grainRate", prevRate + DELTA_HARVEST_RATE);
+                }
+            }
+        });
+        owner.addCommandListener("cmdResWorkerFuel", new CommandListener() {
+            public void commandOccurred(Command com)
+            {
+                if(com.when().equals("execute"))
+                {
+                    int prevRate = harvestStats.get("fuelRate");
+                    harvestStats.put("fuelRate", prevRate + DELTA_HARVEST_RATE);
+                }
+            }
+        });
     }
 
     /**
