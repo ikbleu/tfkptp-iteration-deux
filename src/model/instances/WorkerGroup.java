@@ -178,6 +178,22 @@ public abstract class WorkerGroup extends Locatable implements HasPlayer
         // Workers don't care about what exits their influence radius
     }
 
+    public boolean move( GameTile newLoc )
+    {
+        if(numWorkers == 0)
+            return false;
+
+        if(manager.move(this, newLoc))
+        {
+            this.setLocation(newLoc);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void accept( LocatableVisitor lv )
     {
         lv.visitWorkerGroup(this);

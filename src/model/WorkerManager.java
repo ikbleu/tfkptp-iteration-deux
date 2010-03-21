@@ -12,6 +12,8 @@ import src.model.instances.workergroups.BreedingGroup;
 import src.model.instances.workergroups.HarvestingGroup;
 import src.model.instances.workergroups.NormalWorkerGroup;
 
+import src.model.exceptions.YoureDoingItWrongException;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -26,12 +28,17 @@ public class WorkerManager implements WorkerGroupFactory
 {
     private Player owner;
 
+    private HasPlayerManager hpm = HasPlayerManager.getInstance();
+
     private Map<String, Integer> breedStats;
     private Map<String, Integer> harvestStats;
     private Map<String, Integer> normalStats;
 
     // The list of active worker groups (more than 0 workers)
     private List<WorkerGroup> active;
+
+    // The map of groups of workers dedicated to harvesting and their locations.
+    private Map<GameTile, HarvestingGroup> harvesters;
 
     // Total number of workers that can be in existance.
     private static final int MAX_WORKERS = 100;
@@ -60,6 +67,7 @@ public class WorkerManager implements WorkerGroupFactory
         normalStats.put("density", MAX_WORKERS);
 
         active = new ArrayList<WorkerGroup>();
+        harvesters = new HashMap<GameTile, HarvestingGroup>();
     }
 
     /**
@@ -73,7 +81,7 @@ public class WorkerManager implements WorkerGroupFactory
         if(wg.numWorkers() > 0)
         {
             active.add(wg);
-            HasPlayerManager.getInstance().add(wg.location(), wg);
+            hpm.add(wg.location(), wg);
         }
         else
             throw new RuntimeException("A group with no workers can't be active.");
@@ -89,7 +97,7 @@ public class WorkerManager implements WorkerGroupFactory
         if(wg.numWorkers() == 0)
         {
             active.remove(wg);
-            HasPlayerManager.getInstance().remove(wg.location(), wg);
+            hpm.remove(wg.location(), wg);
         }
         else
             throw new RuntimeException("A group with workers can't be inactive.");
@@ -127,6 +135,25 @@ public class WorkerManager implements WorkerGroupFactory
         return MAX_WORKERS - totalWorkers;
     }
 
+    public boolean move(WorkerGroup wg, GameTile destination)
+    {
+        boolean moveSuccessful = false;
+
+        try
+        {
+            if(hpm.move(wg.location(), destination, wg))
+            {
+                moveSuccessful = true;
+            }
+        }
+        catch(YoureDoingItWrongException e)
+        {
+            moveSuccessful = false;
+        }
+
+        return moveSuccessful;
+    }
+
     /**
      * Returns the player that owns the worker groups managed by the manager.
      *
@@ -160,7 +187,9 @@ public class WorkerManager implements WorkerGroupFactory
      */
     public HarvestingGroup newHarvestingGroup(GameTile location, String resourceType)
     {
-        return new HarvestingGroup(location, harvestStats, this, resourceType);
+        HarvestingGroup newHGroup = new HarvestingGroup(location, harvestStats, this, resourceType);
+        harvesters.put(location, newHGroup);
+        return newHGroup;
     }
 
     /**
