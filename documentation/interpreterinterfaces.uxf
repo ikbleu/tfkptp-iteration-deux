@@ -37,8 +37,8 @@ context(): String
 direct(builder: KeyEventInterpreterBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>160</y><w>330</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 KeyEventInterpreterBuilder
 --
-devices(devices: Lens&lt;Device&gt;): void
-behaviors(behaviors: Lens&lt;Behavior&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>270</y><w>340</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+devices(lens: Lens&lt;Device&gt;): void
+behaviors(lens: Lens&lt;Behavior&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>270</y><w>340</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 EditableKeyEventInterpreter
 --
 directMeToYourParent(editor: KeyEditor): void
