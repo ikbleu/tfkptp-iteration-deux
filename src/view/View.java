@@ -21,6 +21,7 @@ public class View implements ViewInjection{
 
     public View(){
         screenManager = new ScreenManager(15, 15);
+        screenManager.start();
     }
 
     public void injectionFairyLily(String code,
