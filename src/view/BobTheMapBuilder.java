@@ -12,6 +12,7 @@ import src.model.enums.Direction;
 
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import java.util.HashMap;
 
 
 
@@ -20,23 +21,24 @@ import java.util.LinkedList;
  * @author spock
  */
 class BobTheMapBuilder implements MapBuilder{
-        String structure;
-        int workers;
-        int idles;
-        int breeders;
-        int soldiers;
-        int individualUnits;
-        int[] harvesters;
-        int[] resources;
-        String item;
-        String decal;
-        LinkedList<RallyPointV> rallyPoints;
-        String visibility;
-        String terrain;
-        String player;
-        BufferedImage imageBuffer;
-        EnumTableSingleton enumT;
-        GraphicsTableSingleton graphicsT;
+        private String structure;
+        private int workers;
+        private int idles;
+        private int breeders;
+        private int soldiers;
+        private int individualUnits;
+        private int[] harvesters;
+        private int[] resources;
+        private HashMap<String, Integer> workerGroups = new HashMap<String, Integer>();
+        private String item;
+        private String decal;
+        private LinkedList<RallyPointV> rallyPoints;
+        private String visibility;
+        private String terrain;
+        private String player;
+        private BufferedImage imageBuffer;
+        private EnumTableSingleton enumT;
+        private GraphicsTableSingleton graphicsT;
 
 
     BobTheMapBuilder(){
@@ -61,20 +63,8 @@ class BobTheMapBuilder implements MapBuilder{
     public void setStructure(String structure){
         this.structure = structure;
     }
-    public void setWorkers(int workers){
-        this.workers = workers;
-    }
-    public void setIdle(int idles){
-        this.idles = idles;
-    }
-    public void setBreeding(int breeders){
-        this.breeders = breeders;
-    }
     public void setSoldiersInside(int soldiers){
         this.soldiers = soldiers;
-    }
-    public void setHarvesters(int[] harvesters){
-        this.harvesters = harvesters;
     }
     public void setResources(int[] resources){
         this.resources = resources;
@@ -97,7 +87,9 @@ class BobTheMapBuilder implements MapBuilder{
     public void setIndividualUnits(int individualUnits){
         this.individualUnits = individualUnits;
     }
-
+    public void addWorkerGroup(String type, int workers){
+       workerGroups.put(type, workers);
+    }
     public void setPlayer(String player){
         this.player = player;
     }
