@@ -6,4 +6,5 @@ package src.util;
  */
 public interface DoYouHas<T> {
     boolean contains(T item);
+    boolean isEmpty();
 }
