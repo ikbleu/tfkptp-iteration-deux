@@ -30,7 +30,17 @@ public class HarvestingGroup extends WorkerGroup
 
         this.resourceType = resourceType;
 
-        token = "wg" + resourceType;
+        token = "unknown";
+
+        if(resourceType != null)
+        {
+            if(resourceType.equals("rscGrain"))
+                token = "wgGrain";
+            else if(resourceType.equals("rscOre"))
+                token = "wgOre";
+            else if(resourceType.equals("rscFuel"))
+                token = "wgFuel";
+        }
     }
 
     /**

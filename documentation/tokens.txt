@@ -25,6 +25,14 @@ wgFuel
 wgStaff
 wgIdle
 
+**Resources
+rscGrain
+rscOre
+rscFuel
+rscFood
+rscMetal
+rscEnergy
+
 **Commands
 cmdMakeRanged
 cmdMakeMelee
