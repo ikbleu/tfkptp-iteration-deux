@@ -25,13 +25,13 @@ class Ranged extends Unit {
 	}
 	
 	@Override
-	public void entered(Locatable l) {
+	public void entered(Instance l) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void exited(Locatable l) {
+	public void exited(Instance l) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -20,11 +20,11 @@ public class RallyPoint extends Instance implements vRallyPoint {
 		iv.visitRallyPoint( this );
 	}
 	
-	public void entered(Locatable l) {
+	public void entered(Instance l) {
 		// attack it?
 	}
 	
-	public void exited(Locatable l) {
+	public void exited(Instance l) {
 		// stop attacking it?
 	}
 	
