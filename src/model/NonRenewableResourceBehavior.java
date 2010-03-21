@@ -38,4 +38,9 @@ public class NonRenewableResourceBehavior implements ResourceBehavior
 		
 		return n;
 	}
+	
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return currentResources;
+	}
 }

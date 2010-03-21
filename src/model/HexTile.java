@@ -2,8 +2,10 @@ package src.model;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import src.model.enums.Direction;
@@ -293,5 +295,20 @@ class HexTile implements GameTile
 		
 		if (distance >0 && t.hasNeighbor(dir))
 			getTilesInDirectionHelper(list, t.getNeighbor(dir), dir, distance - 1 );
+	}
+
+	public Map<String, Integer> getResources() {
+		// TODO Auto-generated method stub
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		
+		Iterator<Resource> i = resources.iterator();
+		
+		while (i.hasNext())
+		{
+			Resource r = i.next();
+			m.put(r.getResourceType(), r.getAmount());
+		}
+		
+		return m;
 	}
 }

@@ -97,7 +97,20 @@ public class VisibilityMap implements HasPlayerVisitor
 		while (i.hasNext())
 		{
 			GameTile loc = i.next();
-			Map<String, Integer> m = resourcesOnTile.get(loc);
+			
+			if (exploredTiles.contains(loc))
+			{
+				resourcesOnTile.put(loc, loc.getResources());
+				
+			}
+			else
+			{
+				Map<String, Integer> m = resourcesOnTile.get(loc);
+				Iterator<String> j = m.keySet().iterator();
+				while (j.hasNext())
+					m.put(j.next(), new Integer(-1));
+				resourcesOnTile.put(loc, m);
+			}
 		}
 	}
 

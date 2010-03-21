@@ -1,6 +1,7 @@
 package src.model.interfaces;
 
 import java.util.List;
+import java.util.Map;
 
 import src.model.enums.Direction;
 import src.model.TokenTerrainWalkability;
@@ -21,6 +22,7 @@ public interface GameTile {
 	public String getTerrainType();
 	public boolean hasNeighbor(Direction d);
 	public Resource getResource(String s);
+	public Map<String, Integer> getResources();
 	
 	// spacial methods
 	public List<GameTile> getTilesAround(int radius);
