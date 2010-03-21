@@ -8,18 +8,34 @@ import java.util.Map;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.commands.CommandSender;
+import src.model.control.Device;
+import src.model.interfaces.GameTile;
 import src.model.interfaces.InstanceHolder;
+import src.util.Hand;
+import src.util.HandFactory;
+import src.util.Lens;
 
 public class Player implements CommandSender {
-	public Player( boolean isH )
+	public Player( boolean isH, HandFactory hF )
 	{
 		isHuman = isH;
+		handFactory = hF;
+		myHand = handFactory.make( Device.class );
 	}
+	private Hand< Device > myHand;
+	
 	private boolean isHuman;
 	
 	public boolean isHuman()
 	{
 		return isHuman;
+	}
+	
+	private HandFactory handFactory;
+	
+	public HandFactory handFactory()
+	{
+		return handFactory;
 	}
 	
 	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();
@@ -45,5 +61,26 @@ public class Player implements CommandSender {
 	public InstanceHolder instanceHolder() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void addDevice( Device d )
+	{
+		myHand.add( d );
+	}
+	
+	public void removeDevice( Device d )
+	{
+		myHand.remove( d );
+	}
+	
+	public Lens< Device > lens()
+	{
+		return myHand.spawnLens();
+	}
+	
+	public GameTile startingLocation()
+	{
+		return null;
+		// TODO: adam implement this
 	}
 }

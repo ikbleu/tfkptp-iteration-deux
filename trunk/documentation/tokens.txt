@@ -38,6 +38,7 @@ cmdMakeRanged
 cmdMakeMelee
 cmdMakeExplorer
 cmdMakeColonist
+cmdMakeRallyPoint
 
 cmdBuildFort
 cmdBuildCapital

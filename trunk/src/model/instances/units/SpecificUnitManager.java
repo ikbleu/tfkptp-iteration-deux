@@ -2,19 +2,20 @@ package src.model.instances.units;
 
 import src.model.commands.Command;
 import src.model.commands.CommandAdapter;
-import src.model.commands.CommandFactory;
 import src.model.commands.CommandListener;
 import src.model.commands.NoArgsCommand;
 import src.model.commands.NoArgsCommandFactory;
 import src.model.commands.RallyPointCommand;
 import src.model.commands.RallyPointCommandFactory;
+import src.model.control.Device;
+import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
 import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
 
-public abstract class SpecificUnitManager implements InstanceExistenceListener {
+public abstract class SpecificUnitManager implements InstanceExistenceListener, Device {
 	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f) {
 		manager = m;
 		factory = f;
@@ -72,14 +73,14 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener {
 		{
 			public NoArgsCommand makeCommand( Instance i )
 			{
-				return new NoArgsCommand( "cmdPowerUp", i, 0 );
+				return new NoArgsCommand( "cmdPowerUp", i, 10 );
 			}
 		});
 		u.addSelectableCommand( new NoArgsCommandFactory()
 		{
 			public NoArgsCommand makeCommand( Instance i )
 			{
-				return new NoArgsCommand( "cmdPowerDown", i, 0 );
+				return new NoArgsCommand( "cmdPowerDown", i, 1 );
 			}
 		});
 		u.addSelectableCommand( new RallyPointCommandFactory()
@@ -98,6 +99,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener {
 		});
 
 		u.addInstanceExistenceListener( this );
+		u.addInstanceExistenceListener( factory );
 		lastUnit = u; // TODO: remove
 		return u;
 	}
@@ -120,4 +122,14 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener {
 		doNewInstance( i );
 	}
 	abstract protected void doNewInstance( Instance i );
+	
+	final public String context()
+	{
+		return "Type";
+	}
+	
+	final public void direct(KeyEventInterpreterBuilder builder)
+	{
+		// TODO: implement
+	}
 }
