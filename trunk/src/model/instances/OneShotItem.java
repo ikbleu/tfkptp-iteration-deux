@@ -7,6 +7,7 @@ package src.model.instances;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.ItemVisitor;
 import src.model.interfaces.ItemEffect;
+import src.model.ItemManager;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class OneShotItem extends Item
 
     private ItemEffect effect;
 
+    private boolean triggered;
+    private Instance trigger;
+
     /**
      * Creates a new one-shot item of the specified type at the specified
      * location.
@@ -34,6 +38,8 @@ public class OneShotItem extends Item
         super(type, location);
         withinRadius = new ArrayList<Instance>();
         this.effect = effect;
+        triggered = false;
+        trigger = null;
     }
 
     /**
@@ -60,11 +66,22 @@ public class OneShotItem extends Item
     public void entered(Instance thing)
     {
         withinRadius.add(thing);
+        if(!triggered)
+        {
+            triggered = true;
+            trigger = thing;
+        }
     }
 
     public void exited(Instance thing)
     {
         withinRadius.remove(thing);
+    }
+
+    public void tick()
+    {
+        if(triggered)
+            use(trigger);
     }
 
     /**
@@ -73,7 +90,7 @@ public class OneShotItem extends Item
      *
      * @param trigger the instance that triggered the item's use.
      */
-    public void use(Instance trigger)
+    private void use(Instance trigger)
     {
         if(effect.areaEffect())
         {
@@ -86,5 +103,9 @@ public class OneShotItem extends Item
         {
             effect.apply(trigger, location());
         }
+
+        ItemManager.getInstance().removeItem(this);
+
+        this.destroy();
     }
 }
