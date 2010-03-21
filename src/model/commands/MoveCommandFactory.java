@@ -8,7 +8,7 @@ public class MoveCommandFactory extends CommandFactory {
 		super( p, token, numTicks );
 	}
 	
-	public void setInstance( final Instance i )
+	protected void doSetInstance( final Instance i )
 	{
 		// add command arguments
 	}
@@ -16,5 +16,11 @@ public class MoveCommandFactory extends CommandFactory {
 	public MoveCommand makeCommand(Instance i)
 	{
 		return new MoveCommand( token(), i, numTicks() );
+	}
+
+	@Override
+	public <S> Comparable<S> comparable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

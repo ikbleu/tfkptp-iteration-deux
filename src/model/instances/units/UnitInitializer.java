@@ -27,6 +27,12 @@ public final class UnitInitializer {
 			{
 				builder.devices( hand.spawnLens() );
 			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		
 		hand.add( new RangedManager( p, m ) );

@@ -19,6 +19,8 @@ import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
 import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
+import src.model.interfaces.InstanceAdapter;
+import src.model.interfaces.vRallyPoint;
 import src.util.Hand;
 
 public abstract class SpecificUnitManager implements InstanceExistenceListener, Device {
@@ -88,12 +90,35 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		
 		u.addSelectableCommand( new NoArgsCommandFactory(player,"cmdPowerUp", 10) );
 		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdPowerDown", 1 ));
-		u.addSelectableCommand( new RallyPointCommandFactory(player,"cmdRallyPoint", 0));
+		final RallyPointCommandFactory rpcf = new RallyPointCommandFactory(player,"cmdRallyPoint", 0);
+		u.addSelectableCommand( rpcf );
 		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdDecommission", 0));
 		
 		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdAttack", 0));
 		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdDefend", 0));
 		u.addRallyPointCommand( new MoveCommandFactory(player, "cmdMove", 0));
+		
+		Instance.addGlobalInstanceExistenceListener( new InstanceExistenceListener() {
+			public void delInstance(Instance i) {
+				if ( i == u )
+					Instance.removeGlobalInstanceExistenceListener( this );
+				else
+					i.accept( new InstanceAdapter() {
+						public void visitRallyPoint( vRallyPoint rp )
+						{
+							rpcf.setInstance( u );
+						}
+					});
+			}
+			public void newInstance(Instance i) {
+				i.accept( new InstanceAdapter() {
+					public void visitRallyPoint( vRallyPoint rp )
+					{
+						rpcf.setInstance( u );
+					}
+				});
+			}
+		});
 
 		u.addInstanceExistenceListener( this );
 		u.addInstanceExistenceListener( factory );

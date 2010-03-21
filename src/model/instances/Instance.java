@@ -35,6 +35,9 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		commandHand = p.handFactory().make( Device.class );
 		
 		AoEManager.instance().registerLocation( this );
+		
+		for ( InstanceExistenceListener il : globalListeners )
+			il.newInstance( this );
 	}
 	private Hand< Device > commandHand;
 	
@@ -115,6 +118,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		for ( InstanceExistenceListener il : ieListeners )
 			il.delInstance( this );
+		for ( InstanceExistenceListener il : globalListeners )
+				il.delInstance( this );
 		AoEManager.instance().unregisterLocation( this );
 	}
 	
@@ -164,6 +169,16 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		ieListeners.remove( cl );
 	}
 	
+	private static List< InstanceExistenceListener > globalListeners = new LinkedList< InstanceExistenceListener >();
+	public static void addGlobalInstanceExistenceListener( InstanceExistenceListener cl )
+	{
+		globalListeners.add( cl );
+	}
+	public static void removeGlobalInstanceExistenceListener( InstanceExistenceListener cl )
+	{
+		globalListeners.remove( cl );
+	}
+	
 	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();
 	final public void addCommandListener( String token, CommandListener cl )
 	{
@@ -203,6 +218,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	public void addSelectableCommand( CommandFactory cmd )
 	{
+		cmd.setInstance( this );
 		commandHand.add( cmd );
 	}
 	
@@ -239,4 +255,11 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 	
 	public abstract void accept(HasPlayerVisitor hpv);
+
+
+	@Override
+	final public <S> Comparable<S> comparable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

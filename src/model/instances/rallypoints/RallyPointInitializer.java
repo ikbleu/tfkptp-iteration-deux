@@ -27,6 +27,12 @@ public class RallyPointInitializer {
 			{
 				builder.devices( rpHand.spawnLens() );
 			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		};
 		Device d2 = new Device()
 		{
@@ -43,6 +49,12 @@ public class RallyPointInitializer {
 			public void direct(KeyEventInterpreterBuilder builder)
 			{
 				builder.devices( armyHand.spawnLens() );
+			}
+
+			@Override
+			public <S> Comparable<S> comparable() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		};
 		
