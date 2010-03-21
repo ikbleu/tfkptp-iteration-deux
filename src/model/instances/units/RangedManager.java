@@ -35,10 +35,11 @@ public class RangedManager extends SpecificUnitManager {
 	private Player player;
 	
 	public RangedManager(Player p, GeneralUnitManager m) {
-		super( m, new RangedFactory( p ), p.handFactory().make( Device.class ) );
+		super( m, new RangedFactory( p ), p, p.handFactory().make( Device.class ) );
 		player = p;
 		
 		unitFactory().modDefaultStat( "statHealth", STAT_BASE_HEALTH);
+		unitFactory().modDefaultStat( "statMaxHealth", STAT_BASE_HEALTH);
 		unitFactory().modDefaultStat( "statInfluenceRadius", STAT_BASE_INFLRAD);
 		unitFactory().modDefaultStat( "statVisibilityRadius", STAT_BASE_VISRAD);
 		unitFactory().modDefaultStat( "statAttackPower", STAT_BASE_ATKPOW);
@@ -92,7 +93,7 @@ public class RangedManager extends SpecificUnitManager {
 		p.addCommandListener( "cmdResRangedHealth", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute" )
-					unitFactory().modDefaultStat( "statHealth", STAT_DELTA_HEALTH);
+					unitFactory().modDefaultStat( "statMaxHealth", STAT_DELTA_HEALTH);
 			}
 		});
 		
@@ -156,7 +157,7 @@ public class RangedManager extends SpecificUnitManager {
 		player.addCommandListener( "cmdResRangedHealth", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute" )
-					i.modifyStat( "statHealth", STAT_DELTA_HEALTH);
+					i.modifyStat( "statMaxHealth", STAT_DELTA_HEALTH);
 			}
 		});
 		

@@ -18,7 +18,7 @@ public class DirectionCommand extends Command {
 		return direction;
 	}
 	
-	public void setRallyPoint( Direction d )
+	public void setDirection( Direction d )
 	{
 		direction = d;
 	}
