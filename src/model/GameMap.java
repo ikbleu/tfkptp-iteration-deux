@@ -2,13 +2,13 @@ package src.model;
 
 import src.model.enums.Direction;
 import src.model.interfaces.GameTile;
-import src.model.interfaces.Randomizer;
+import src.model.interfaces.StringRandomizer;
 
 public class GameMap
 {
 	private HexTile origin, startingLocation1, startingLocation2;
 	final int MAP_RADIUS = 9;
-	private Randomizer rand;
+	private StringRandomizer rand;
 	
 	public GameMap()
 	{

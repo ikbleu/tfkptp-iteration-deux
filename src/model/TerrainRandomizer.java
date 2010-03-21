@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import src.model.interfaces.Randomizer;
+import src.model.interfaces.StringRandomizer;
 
-public class TerrainRandomizer implements Randomizer
+public class TerrainRandomizer implements StringRandomizer
 {
 	private Map<String, Integer> map;
 	

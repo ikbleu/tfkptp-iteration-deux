@@ -1,8 +1,6 @@
 package src.model.interfaces;
 
-import java.util.Map;
-
 public interface Resource {
-	public void harvest(Map<Object, Integer> m);
+	public int harvest(int i);
 	public String getResourceType();
 }

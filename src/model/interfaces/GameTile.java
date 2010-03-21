@@ -1,6 +1,5 @@
 package src.model.interfaces;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import src.model.enums.Direction;
