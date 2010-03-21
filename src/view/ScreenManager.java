@@ -2,6 +2,11 @@
 
 package src.view;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCanvas;
@@ -10,6 +15,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.swing.JFrame;
 import com.sun.opengl.util.Animator;
+import com.sun.opengl.util.ImageUtil;
 
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureIO;
@@ -54,8 +60,9 @@ import com.sun.opengl.util.texture.TextureIO;
 		
 		private static final int overviewWidth = 300;
 		private static final int overviewHeight = 420;
-
-                Texture commandSelection_tex;
+		
+		//DELETE THESE EVENTUALLY
+        Texture hud_tex;
 		
 		
 		private Animator animator;
@@ -114,53 +121,47 @@ import com.sun.opengl.util.texture.TextureIO;
 			
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-
-				renderTexturedHex(gl, 0, 0, 1.0);
-
-				render(gl, GL.GL_RENDER);
+				
+				//render different components
+				renderHUD(gl);
 
 			}
+            
+            private void renderHUD(GL gl) {
+            	
+    			/*try {
 
-                        private void render(GL gl, int mode) {
+    				BufferedImage hud = ImageIO.read(new File("artwork/unicornhud.png"));	//read in image to use as texture
+    				hud_tex = TextureIO.newTexture(hud,true);					
+    				
 
-                            try{
-                                commandSelection_tex = TextureIO.newTexture(
-                                        commandSelection.image(), true);
-                            }
-                            catch(Exception E){
-                                System.out.println("Oh No!");
-                            }
+    			} catch (GLException e) {
+    				e.printStackTrace();
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}*/
+            
+            	//hud_tex.bind();
+ 
+	    		gl.glPushMatrix();
 
-                            gl.glPushMatrix();
+	    			gl.glBegin(GL.GL_POLYGON);
+	    			
+	    				gl.glVertex2d(-5,3);
+	    				gl.glVertex2d(-5,1);
+	    				gl.glVertex2d(-2.25,1);
+	    				gl.glVertex2d(-2.25,1.3);
+	    				gl.glVertex2d(1.5,1.3);
+	    				
+	    				//gl.glVertex2d()
+	    				//gl.glVertex2d(-2.5,3);
+	    				
+	    			gl.glEnd();
+	    			
+    			gl.glPopMatrix();
+    			//hud_tex.dispose();
 
-                            gl.glTranslated(0,0,1);
-                            
-                            gl.glScaled(scale, scale, 1.0f);
-
-                            commandSelection_tex.bind();
-
-                            gl.glBegin(GL.GL_QUADS);
-
-				gl.glTexCoord2d(1.0, 0.0);
-				gl.glVertex2d(5.0,-3.0);
-
-				gl.glTexCoord2d(0.0, 0.0);
-				gl.glVertex2d(3.43,-3.0);
-
-                                gl.glTexCoord2d(0.0, 1.0);
-				gl.glVertex2d(3.43,-2.5125);
-
-				gl.glTexCoord2d(1.0, 1.0);
-				gl.glVertex2d(5.0,-2.5125);
-
-
-                            gl.glEnd();
-
-                            commandSelection_tex.dispose();
-
-                            gl.glPopMatrix();
-
-                        }
+            }
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
 			
@@ -185,12 +186,7 @@ import com.sun.opengl.util.texture.TextureIO;
 					gl.glEnable(GL.GL_TEXTURE_2D);								//enable 2D textures
 					gl.glEnable(GL.GL_BLEND);
 					gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-					
-					gl.glMatrixMode(GL.GL_PROJECTION);
-					gl.glLoadIdentity();
-					gl.glOrtho(-5.0, 5.0, -3.0, 3.0, -3.0, 3.0);	//specifies rendering box
-					gl.glMatrixMode(GL.GL_MODELVIEW);
-					gl.glLoadIdentity();
+
 					
 				} 
 				
@@ -199,7 +195,7 @@ import com.sun.opengl.util.texture.TextureIO;
 				} 
 			}
 			
-			private void renderTexturedHex(GL gl, double x, double y, double sideLength) {
+			private void renderHex(GL gl, double x, double y, double sideLength) {
 				
 				double r = sideLength*Math.cos(0.523);  //0.523 radians = 30 degrees
 				double h = sideLength*Math.sin(0.523);
