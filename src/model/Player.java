@@ -8,6 +8,7 @@ import java.util.Map;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.commands.CommandSender;
+import src.model.interfaces.InstanceHolder;
 
 public class Player implements CommandSender {
 	private Map< String, List< CommandListener > > commandListeners = new HashMap< String, List< CommandListener > >();
@@ -29,5 +30,9 @@ public class Player implements CommandSender {
 		if ( ls != null )
 			for ( CommandListener cl : ls )
 				cl.commandOccurred( c );
+	}
+	public InstanceHolder instanceHolder() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
