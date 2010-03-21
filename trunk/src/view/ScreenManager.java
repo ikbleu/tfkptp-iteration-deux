@@ -74,6 +74,7 @@ import com.sun.opengl.util.Animator;
 
 			setSize(windowWidth, windowHeight);
 			setTitle("Robot Unicorns...ATTACK!");
+			setVisible(true);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setResizable(false);
 			
@@ -104,54 +105,9 @@ import com.sun.opengl.util.Animator;
 			
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+
+				System.out.println("displaying");
 				
-				gl.glPushMatrix();
-					//translate as necessary
-					viewPort.refreshImage();
-				gl.glPopMatrix();
-				
-				gl.glPushMatrix();
-					//translate as necessary
-					hud.refreshImage();
-				gl.glPopMatrix();
-				
-				switch(optionalDisplay) {
-				
-					case NONE: break;
-					case KEYBINDING: 
-						
-						gl.glPushMatrix();
-							//translate as necessary
-							keyBindingOverview.refreshImage();
-						gl.glPopMatrix();
-						break;
-						
-					case OVERVIEW: 
-						
-						gl.glPushMatrix();
-							//translate as necessary
-							overview.refreshImage();
-						gl.glPopMatrix();
-						break;
-						
-					case TECHNOLOGY: 
-						
-						gl.glPushMatrix();
-							//translate as necessary
-							technologyTree.refreshImage();
-						gl.glPopMatrix();
-						break;
-						
-					case COMMANDQUEUE: 
-						
-						gl.glPushMatrix();
-							//translate as necessary
-							commandQueueOverview.refreshImage();
-						gl.glPopMatrix();
-						break;
-				}
-			
-			
 			}
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
