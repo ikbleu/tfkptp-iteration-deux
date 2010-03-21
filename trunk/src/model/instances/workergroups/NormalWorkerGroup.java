@@ -18,14 +18,17 @@ import java.util.Map;
  */
 public class NormalWorkerGroup extends WorkerGroup
 {
+    private String token;
+
     public NormalWorkerGroup(GameTile location, Map<String, Integer> stats,
-            WorkerManager manager)
+            WorkerManager manager, String type)
     {
         super(location, stats, manager);
+        token = type;
     }
 
     public String token()
     {
-        return "normalGroup";
+        return token;
     }
 }

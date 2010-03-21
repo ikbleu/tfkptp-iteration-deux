@@ -3,13 +3,15 @@ package src.model.instances;
 import java.util.LinkedList;
 import java.util.List;
 
-import src.model.LocationManager;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.LocatableVisitor;
 import src.model.interfaces.MovementListener;
 import src.model.interfaces.RadiusListener;
 
-public abstract class Locatable {
+import java.io.Serializable;
+
+public abstract class Locatable implements Serializable
+{
 	private GameTile location;
 	public Locatable( GameTile g )
 	{
