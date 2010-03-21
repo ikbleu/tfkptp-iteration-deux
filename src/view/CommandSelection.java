@@ -8,6 +8,11 @@ package src.view;
 import src.model.interfaces.Displayable;
 
 import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.BasicStroke;
+import java.awt.Font;
+import java.awt.Color;
 
 /**
  *
@@ -25,6 +30,7 @@ import java.awt.image.BufferedImage;
     private int WordIndent = 15;
     private int boxes = 0;
     private int boxNumber = 0;
+    private Graphics2D graphix;
 
     CommandSelection(Displayable[] commands){
         groupBox = null;
@@ -33,7 +39,7 @@ import java.awt.image.BufferedImage;
         commandBox = null;
         instanceBox = null;
         boxes = 0;
-        for(int i = 0; i < commands.length;++i){
+        for(int i = 0;commands != null && i < commands.length;++i){
             JackTheViewVisitor jack = new JackTheViewVisitor();
             commands[i].accept(jack);
             context = jack.infoType();
@@ -82,11 +88,29 @@ import java.awt.image.BufferedImage;
     }
 
     void refreshImage(){
-        imageBuffer = new BufferedImage( BoxWidth, BoxHeight*boxes,
+        imageBuffer = new BufferedImage( BoxWidth, BoxHeight* /*boxes*/1/**/,
                                         BufferedImage.TYPE_INT_ARGB );
+
+        graphix = imageBuffer.createGraphics();
+
+        graphix.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
+                                  RenderingHints.VALUE_ANTIALIAS_ON );
+
+        // background image
+        graphix.setStroke( new BasicStroke( 2.5f ) );
+
+        graphix.setColor( Color.RED );
+        Font f1 = new Font( "Times Roman", Font.BOLD, 15 );
+        graphix.setFont( f1 );
+        graphix.drawString( "test", 20, 35 );
+        f1 = new Font( "Times Roman", Font.BOLD, 13 );
+        graphix.setFont( f1 );
+        //tes   tetsteat
+        graphix.fillRect( 0, 0, BoxWidth, BoxHeight * boxNumber);
+        //
         boxNumber = 0;
         if(groupBox!=null){
-
+            graphix.fillRect( 0, 0, BoxWidth, BoxHeight * boxNumber);
         }
     }
 

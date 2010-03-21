@@ -15,5 +15,8 @@ abstract class HasAnImage {
     BufferedImage imageBuffer;
 
     abstract void refreshImage();
+    BufferedImage image(){
+        return imageBuffer;
+    }
 
 }
