@@ -1,7 +1,5 @@
-package src.control.interfaces;
+package src.model.control;
 
-import src.model.control.Behavior;
-import src.model.control.Device;
 import src.util.Lens;
 
 /**
