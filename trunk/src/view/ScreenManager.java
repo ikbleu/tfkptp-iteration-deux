@@ -43,21 +43,21 @@ import src.model.interfaces.Displayable;
 	 	private Overview overview;
 	 	private TechnologyTree technologyTree;
 	 	private CommandQueueOverview commandQueueOverview;
-                private CommandSelection commandSelection;
-                private ResourceInfo resourceInfo;
+        private CommandSelection commandSelection;
+        private ResourceInfo resourceInfo;
 
-                private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
+        private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
 	 	
 	 	private OptionalDisplay optionalDisplay;
 
-                private double screenRatio = 1.6;
+        private double screenRatio = 1.6;
 		
 		private double scale;
 		private double panX;
 		private double panY;
 
-                private double hexWidth = .200;
-                private double hexHeight = .173205;
+        private double hexWidth = .200;
+        private double hexHeight = .173205;
 		
 		private GLCanvas canvas;
 		
@@ -72,11 +72,11 @@ import src.model.interfaces.Displayable;
 		private static final int overviewHeight = 420;
 
 
-                //Textures
-                Texture hud_tex;
+        //Textures
+        Texture hud_tex;
 		Texture commandSelection_tex;
-                Texture resourceInfo_tex;
-                Texture ViewPortTest_tex;
+        Texture resourceInfo_tex;
+        Texture ViewPortTest_tex;
 		
 		private Animator animator;
 
@@ -94,8 +94,8 @@ import src.model.interfaces.Displayable;
 			technologyTree = new TechnologyTree();
 			commandQueueOverview = new CommandQueueOverview();
 
-                        commandSelection = new CommandSelection(null);
-                        resourceInfo = new ResourceInfo();
+            commandSelection = new CommandSelection(null);
+            resourceInfo = new ResourceInfo();
 			
 			optionalDisplay = OptionalDisplay.NONE;
 
@@ -127,14 +127,14 @@ import src.model.interfaces.Displayable;
 			overview.setList(list);
 		}
 
-                void setStatusOverview(Displayable[] d){
-                    hud.setStatusOverview(d);
-                    hud.refreshImage();
-                }
+        void setStatusOverview(Displayable[] d){
+            hud.setStatusOverview(d);
+            hud.refreshImage();
+        }
 
-                void setCommandSelection(Displayable[] d){
-                    commandSelection = new CommandSelection(d);
-                }
+        void setCommandSelection(Displayable[] d){
+            commandSelection = new CommandSelection(d);
+        }
 
 		
 		class GraphicListener implements GLEventListener {
@@ -156,22 +156,21 @@ import src.model.interfaces.Displayable;
                                 gl.glPopMatrix();
 
                                 renderHUD(gl);
-                                renderCommandSelection(gl);
-                                renderResourceInfo(gl);
+				renderResourceInfo(gl);
 
 			}
             
-                private void renderHUD(GL gl) {
+            private void renderHUD(GL gl) {
             	
 
     			try{
-                            hud_tex = TextureIO.newTexture(hud.image(),true);
+                    hud_tex = TextureIO.newTexture(hud.image(),true);
     			}
-                        catch (Exception e) {
+                    catch (Exception e) {
     				e.printStackTrace();
     			} 
             
-                        hud_tex.bind();
+                hud_tex.bind();
  
 	    		gl.glPushMatrix();
 
@@ -192,85 +191,85 @@ import src.model.interfaces.Displayable;
 	    				
 	    			gl.glEnd();
 	    			
-                            gl.glPopMatrix();
+                gl.glPopMatrix();
     			hud_tex.dispose();
 
-                        }
-                        private void renderCommandSelection(GL gl) {
+            }
+            private void renderCommandSelection(GL gl) {
 
-                            try {
+                try {
     				commandSelection_tex = TextureIO.newTexture(commandSelection.image(),true);
-                            }
-                            catch (GLException e) {
+                }
+                catch (GLException e) {
     				e.printStackTrace();
-                            }
+                }
 
-                            double csWidth = .15626;
-                            double csBoxHeight = .08125;
-                            double boxes = commandSelection.boxes();
-                            commandSelection_tex.bind();
+                double csWidth = .15626;
+                double csBoxHeight = .08125;
+                double boxes = commandSelection.boxes();
+                commandSelection_tex.bind();
 
-                            gl.glPushMatrix();
+                gl.glPushMatrix();
 
-                            gl.glBegin(GL.GL_POLYGON);
+                gl.glBegin(GL.GL_POLYGON);
 
-                                gl.glTexCoord2d(0.0, 0.0);
-	    			gl.glVertex2d(1.0-csWidth,0.0);
+                gl.glTexCoord2d(0.0, 0.0);
+	    		gl.glVertex2d(1.0-csWidth,0.0);
 
-                                gl.glTexCoord2d(0.0, 1.0);
-	    			gl.glVertex2d(1.0-csWidth, csBoxHeight*boxes);
+                gl.glTexCoord2d(0.0, 1.0);
+	    		gl.glVertex2d(1.0-csWidth, csBoxHeight*boxes);
 
-                                gl.glTexCoord2d(1.0, 1.0);
-	    			gl.glVertex2d(1.0, csBoxHeight*boxes);
+                gl.glTexCoord2d(1.0, 1.0);
+	    		gl.glVertex2d(1.0, csBoxHeight*boxes);
 
-                                gl.glTexCoord2d(1.0, 0.0);
-	    			gl.glVertex2d(1.0, 0.0);
+                gl.glTexCoord2d(1.0, 0.0);
+	    		gl.glVertex2d(1.0, 0.0);
 
 
-                            gl.glEnd();
+                gl.glEnd();
 
-                            gl.glPopMatrix();
-                            commandSelection_tex.dispose();
+                gl.glPopMatrix();
+                commandSelection_tex.dispose();
 
-                        }
+            }
 
-                        private void renderResourceInfo(GL gl) {
+            private void renderResourceInfo(GL gl) {
 
-                            try {
+                 try {
     				resourceInfo_tex = TextureIO.newTexture(resourceInfo.image(),true);
-                            }
-                            catch (GLException e) {
+                 }
+                 catch (GLException e) {
     				e.printStackTrace();
-                            }
+                 }
 
-                            double riWidth = .2578125;
-                            double riHeight = .1125;
+                 double riWidth = .2578125;
+                 double riHeight = .1125;
 
-                            resourceInfo_tex.bind();
+                 resourceInfo_tex.bind();
 
-                            gl.glPushMatrix();
+                 gl.glPushMatrix();
 
-                            gl.glBegin(GL.GL_POLYGON);
+                 gl.glBegin(GL.GL_POLYGON);
 
-                                gl.glTexCoord2d(0.0, 0.0);
-	    			gl.glVertex2d(0.0,0.0);
+                 	gl.glTexCoord2d(0.0, 0.0);
+                 	gl.glVertex2d(0.0,0.0);
 
-                                gl.glTexCoord2d(0.0, 1.0);
-	    			gl.glVertex2d(0.0, riHeight);
+                 	gl.glTexCoord2d(0.0, 1.0);
+                 	gl.glVertex2d(0.0, riHeight);
 
-                                gl.glTexCoord2d(1.0, 1.0);
-	    			gl.glVertex2d(riWidth, riHeight);
+                 	gl.glTexCoord2d(1.0, 1.0);
+                 	gl.glVertex2d(riWidth, riHeight);
 
-                                gl.glTexCoord2d(1.0, 0.0);
-	    			gl.glVertex2d(riWidth, 0.0);
+                 	gl.glTexCoord2d(1.0, 0.0);
+                 	gl.glVertex2d(riWidth, 0.0);
 
 
-                            gl.glEnd();
+                 gl.glEnd();
 
-                            gl.glPopMatrix();
-                            resourceInfo_tex.dispose();
+                 gl.glPopMatrix();
+                 resourceInfo_tex.dispose();
 
-                        }
+            }
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
 			
@@ -332,27 +331,27 @@ import src.model.interfaces.Displayable;
 				gl.glEnd();
 			}
                         
-                        private void renderMap(GL gl, int height, int width){
-                            double beginX =  .5 - (((double)width)/2.0 * .2);
-                            double beginY =  .5 - (((double)height)/2.0 * .173205 * (screenRatio));
+            private void renderMap(GL gl, int height, int width){
+                double beginX =  .5 - (((double)width)/2.0 * .2);
+                double beginY =  .5 - (((double)height)/2.0 * .173205 * (screenRatio));
                             
-                            for(int i = 0; i < height; ++i){
-                                for(int j =0; j < width; ++j){
-                                    renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio));
-                                }
-                            }
-                        }
+                for(int i = 0; i < height; ++i){
+                     for(int j =0; j < width; ++j){
+                            renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio));
+                     }
+                 }
+            }
 
-                        private void renderViewPortHex(GL gl, double x, double y) {
+            private void renderViewPortHex(GL gl, double x, double y) {
 
-                            try{
-                                ViewPortTest_tex = TextureIO.newTexture(graphicsTable.getGraphic("Grassland"),true);
-                            }
-                            catch (Exception e) {
-    				e.printStackTrace();
-                            }
+            	try{
+            		ViewPortTest_tex = TextureIO.newTexture(graphicsTable.getGraphic("Grassland"),true);
+            	}
+            	catch (Exception e) {
+            		e.printStackTrace();
+            	}
 
-                                ViewPortTest_tex.bind();
+                ViewPortTest_tex.bind();
 
 				gl.glBegin(GL.GL_POLYGON);
 
@@ -376,7 +375,7 @@ import src.model.interfaces.Displayable;
 
 				gl.glEnd();
 
-                                ViewPortTest_tex.dispose();
+                ViewPortTest_tex.dispose();
 			}
 		}
 
