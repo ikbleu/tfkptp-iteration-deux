@@ -19,14 +19,20 @@ import src.model.interfaces.HasPlayerVisitor;
 
 public class VisibilityMap implements HasPlayerVisitor
 {
-	Map<GameTile, Integer> unitsPerTile;
-	Map<GameTile, String> structureOnTile;
-	Map<GameTile, Set<RPPointingID> > rallyPointsOnTile;
-	Map<GameTile, Set<WorkerID> > workersOnTile;
-	Map<GameTile, Map<String, Integer> > resourcesOnTile;
-	Set<GameTile> exploredTiles;
-	Map<GameTile, Visibility> seenTiles;
-	Map<GameTile, String> playerOwningTile;
+	private Map<GameTile, Integer> unitsPerTile;
+	private Map<GameTile, String> structureOnTile;
+	private Map<GameTile, Set<RPPointingID> > rallyPointsOnTile;
+	private Map<GameTile, Set<WorkerID> > workersOnTile;
+	private Map<GameTile, Map<String, Integer> > resourcesOnTile;
+	private Set<GameTile> exploredTiles;
+	private Map<GameTile, Visibility> seenTiles;
+	private Map<GameTile, String> playerOwningTile;
+	
+	private Map<GameTile, Integer> unitAffectedTiles;
+	private Map<GameTile, RPPointingID> rallyPointAffectedTiles;
+	private Map<GameTile, String> structureAffectedTiles;
+	private Map<GameTile, String> playerAffectedTiles;
+	private Map<GameTile, WorkerID> workerAffectedTiles;
 
 	public VisibilityMap()
 	{
@@ -55,12 +61,19 @@ public class VisibilityMap implements HasPlayerVisitor
 			seenTiles.put(i.next(), Visibility.VISIBLE);
 		}
 		
-		Iterator<HasPlayer> i2 = 
+		Iterator<HasPlayer> i2 = hasPlayers.iterator();
+		
+		while (i2.hasNext())
+		{
+			i2.next().accept(this);
+		}
 	}
 	
 	@Override
-	public void visitRallyPoint(RallyPoint rp) {
+	public void visitRallyPoint(RallyPoint rp)
+	{
 		// TODO Auto-generated method stub
+		GameTile loc = rp.location();
 		
 	}
 
