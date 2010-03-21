@@ -123,35 +123,35 @@ import java.awt.Color;
         boxNumber = 0;
         if(groupBox!=null){
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
-            graphix.setColor(Color.BLACK);
+            graphix.setColor(Color.WHITE);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( groupBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(specialBox!=null){
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
-            graphix.setColor(Color.BLACK);
+            graphix.setColor(Color.WHITE);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( specialBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(typeBox!=null){
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
-            graphix.setColor(Color.BLACK);
+            graphix.setColor(Color.WHITE);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( typeBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(commandBox!=null){
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
-            graphix.setColor(Color.BLACK);
+            graphix.setColor(Color.WHITE);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( commandBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(instanceBox!=null){
             graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
-            graphix.setColor(Color.BLACK);
+            graphix.setColor(Color.WHITE);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( instanceBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
