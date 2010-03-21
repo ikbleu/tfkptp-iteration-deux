@@ -11,7 +11,8 @@ import javax.media.opengl.GLException;
 import javax.swing.JFrame;
 import com.sun.opengl.util.Animator;
 
-
+import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureIO;
 /**
  *
  * @author rdshack
@@ -34,6 +35,7 @@ import com.sun.opengl.util.Animator;
 	 	private Overview overview;
 	 	private TechnologyTree technologyTree;
 	 	private CommandQueueOverview commandQueueOverview;
+                private CommandSelection commandSelection;
 	 	
 	 	private OptionalDisplay optionalDisplay;
 		
@@ -52,6 +54,8 @@ import com.sun.opengl.util.Animator;
 		
 		private static final int overviewWidth = 300;
 		private static final int overviewHeight = 420;
+
+                Texture commandSelection_tex;
 		
 		
 		private Animator animator;
@@ -69,6 +73,8 @@ import com.sun.opengl.util.Animator;
 			overview = new Overview(overviewWidth, overviewHeight);
 			technologyTree = new TechnologyTree();
 			commandQueueOverview = new CommandQueueOverview();
+
+                        commandSelection = new CommandSelection(null);
 			
 			optionalDisplay = OptionalDisplay.NONE;
 
@@ -110,9 +116,51 @@ import com.sun.opengl.util.Animator;
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
 				renderTexturedHex(gl, 0, 0, 1.0);
-				
+
+				render(gl, GL.GL_RENDER);
 
 			}
+
+                        private void render(GL gl, int mode) {
+
+                            try{
+                                commandSelection_tex = TextureIO.newTexture(
+                                        commandSelection.image(), true);
+                            }
+                            catch(Exception E){
+                                System.out.println("Oh No!");
+                            }
+
+                            gl.glPushMatrix();
+
+                            gl.glTranslated(0,0,1);
+                            
+                            gl.glScaled(scale, scale, 1.0f);
+
+                            commandSelection_tex.bind();
+
+                            gl.glBegin(GL.GL_QUADS);
+
+				gl.glTexCoord2d(1.0, 0.0);
+				gl.glVertex2d(5.0,-3.0);
+
+				gl.glTexCoord2d(0.0, 0.0);
+				gl.glVertex2d(3.43,-3.0);
+
+                                gl.glTexCoord2d(0.0, 1.0);
+				gl.glVertex2d(3.43,-2.5125);
+
+				gl.glTexCoord2d(1.0, 1.0);
+				gl.glVertex2d(5.0,-2.5125);
+
+
+                            gl.glEnd();
+
+                            commandSelection_tex.dispose();
+
+                            gl.glPopMatrix();
+
+                        }
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
 			
@@ -124,7 +172,7 @@ import com.sun.opengl.util.Animator;
 				gl.glViewport(0, 0, w, h);
 				gl.glMatrixMode(GL.GL_PROJECTION);
 				gl.glLoadIdentity();
-				gl.glOrtho(-5.0, 5.0, -3.0, 3.0, -3.0, 3.0);	//specifies rendering box
+				gl.glOrtho(-5.0, 5.0, 3.0, -3.0, -3.0, 3.0);	//specifies rendering box
 				gl.glMatrixMode(GL.GL_MODELVIEW);
 				gl.glLoadIdentity();
 			}
