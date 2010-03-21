@@ -196,11 +196,12 @@ public class WorkerManager implements WorkerGroupFactory
      * Creates a new worker group that does not have any special capabilities.
      *
      * @param location the location at which the worker group is being created.
+     * @param staff whether or not the worker group is staffing a building.
      *
      * @return the new NormalWorkerGroup.
      */
-    public NormalWorkerGroup newNormalWorkerGroup(GameTile location, String type)
+    public NormalWorkerGroup newNormalWorkerGroup(GameTile location, boolean staff)
     {
-        return new NormalWorkerGroup(location, normalStats, this, type);
+        return new NormalWorkerGroup(location, normalStats, this, staff);
     }
 }

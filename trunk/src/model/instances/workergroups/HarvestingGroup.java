@@ -30,7 +30,7 @@ public class HarvestingGroup extends WorkerGroup
 
         this.resourceType = resourceType;
 
-        token = resourceType + "Group";
+        token = "wg" + resourceType;
     }
 
     /**
