@@ -96,7 +96,7 @@ public class AoEManager implements MovementListener, RadiusListener
         GameTile location = thing.location();
         int radius = thing.influenceRadius();
 
-        List<GameTile> inRadius = MapSpacialManager.getTilesAround(location, radius);
+        List<GameTile> inRadius = location.getTilesAround(radius);
 
         for(GameTile gt : inRadius)
         {
@@ -156,7 +156,7 @@ public class AoEManager implements MovementListener, RadiusListener
 
         thingsListening.remove(thing);
 
-        List<GameTile> inRadius = MapSpacialManager.getTilesAround(location, radius);
+        List<GameTile> inRadius = location.getTilesAround(radius);
 
         for(GameTile gt : inRadius)
         {

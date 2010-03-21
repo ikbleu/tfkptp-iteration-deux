@@ -8,8 +8,6 @@ import src.model.interfaces.ItemEffect;
 import src.model.interfaces.GameTile;
 import src.model.instances.Instance;
 
-import src.model.MapSpacialManager;
-
 /**
  * Contains the effect for an item that blows up, damaging all units within a
  * certain radius once activated.
@@ -41,7 +39,7 @@ public class Bomb implements ItemEffect
     public void apply(Instance i, GameTile source)
     {
         GameTile target = i.location();
-        int distance = MapSpacialManager.getDistanceBetween(source, target);
+        int distance = source.getDistanceFrom(target);
 
         int damageTaken = Math.max(0, (int) (maxDamage * (1 - distance * decay)));
         i.takeDamage(damageTaken);
