@@ -12,13 +12,14 @@ import src.model.control.KeyEventInterpreterBuilder;
 import src.model.enums.Direction;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayerVisitor;
+import src.model.interfaces.MovementListener;
 import src.model.interfaces.vRallyPoint;
 import src.model.interfaces.InstanceVisitor;
 import src.model.interfaces.vUnit;
 import src.util.Hand;
 import src.model.interfaces.InstanceAdapter;
 
-public class RallyPoint extends Instance implements vRallyPoint, InstanceExistenceListener {
+public class RallyPoint extends Instance implements vRallyPoint, InstanceExistenceListener, MovementListener {
 	private static final boolean DEBUGGING = true; // TODO: remove
 	public RallyPoint( Player p, int id, GameTile g )
 	{
@@ -176,6 +177,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 
 	@Override
 	public void newInstance(Instance i) {
+		i.addMovementListener( this );
+		locationChanged( i, null );
+	}
+	
+	public void locationChanged( Instance i, GameTile prev )
+	{
 		entireHand.add( i );
 		if ( DEBUGGING || location().getDistanceFrom( i.location() ) == 0 )
 			bgHand.add( i );
@@ -195,11 +202,9 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		calculateProperties( i );
 	}
 	
-	private Map< String, CommandFactory > commands = new HashMap< String, CommandFactory >();
-	
 	private void calculateProperties( Instance i )
 	{
-		// visibility radius, influence radius, available commands
+		// visibility radius, move speed, available commands
 		System.out.println( "the rally point is recalculating properties" );
 		i.accept( new InstanceAdapter() {
 			public void visitUnit( vUnit u )
@@ -208,12 +213,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 				u.rallyCommands( rpCommands );
 				for ( CommandFactory f : rpCommands )
 				{
-					commands.remove( f.token() );
 					removeSelectableCommand( f );
 				}
 			}
 		});
 		
+		int moveSpeed = 0, visRad = 0;
 		for ( vUnit u : bgList )
 		{
 			System.out.println( "unit in bg" );
@@ -221,9 +226,21 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			u.rallyCommands( rpCommands );
 			for ( CommandFactory f : rpCommands )
 			{
-				commands.put( f.token(), f );
+				System.out.println( "adding command: " + f.token() );
 				addSelectableCommand( f );
 			}
+			
+			Map< String, Integer > m = new HashMap< String, Integer >();
+			u.stats( m );
+			int ms = m.get( "statMoveSpeed" );
+			int vr = m.get( "statVisibilityRadius" );
+			moveSpeed = moveSpeed == 0 ? ms : Math.min( ms, moveSpeed );
+			visRad = visRad == 0 ? vr : Math.max( vr, visRad );
 		}
+		
+		setStat( "statMoveSpeed", moveSpeed );
+		setStat( "statVisibilityRadius", visRad );
+		
+		System.out.printf( "my move speed is %d and vis rad is %d\n", getStat( "statMoveSpeed" ), getStat( "statVisibilityRadius" ) );
 	}
 }
