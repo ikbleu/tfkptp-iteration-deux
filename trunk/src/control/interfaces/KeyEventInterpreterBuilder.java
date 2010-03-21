@@ -8,5 +8,5 @@ import src.util.Lens;
  */
 public interface KeyEventInterpreterBuilder {
     void devices(Lens<Device> lens);
-    void behaviors(Lens<Behavior> behavior);
+    void behaviors(Lens<Behavior> lens);
 }
