@@ -22,6 +22,14 @@ public class VisibilityManager implements SakuraMap
 		playerInstances = player.instanceHolder();
 	}
 	
+	public void update()
+	{
+		GetVisibleTiles gvt = new GetVisibleTiles();
+		playerInstances.applyToAll(gvt);
+		
+		
+	}
+	
 	@Override
 	public void build(MapBuilder[][] b) {
 		// TODO Auto-generated method stub

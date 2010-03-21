@@ -1,5 +1,8 @@
 package src.model;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +14,7 @@ import src.model.instances.Structure;
 import src.model.instances.Unit;
 import src.model.instances.WorkerGroup;
 import src.model.interfaces.GameTile;
+import src.model.interfaces.HasPlayer;
 import src.model.interfaces.HasPlayerVisitor;
 
 public class VisibilityMap implements HasPlayerVisitor
@@ -24,6 +28,36 @@ public class VisibilityMap implements HasPlayerVisitor
 	Map<GameTile, Visibility> seenTiles;
 	Map<GameTile, String> playerOwningTile;
 
+	public VisibilityMap()
+	{
+		unitsPerTile = new HashMap<GameTile, Integer>();
+		structureOnTile = new HashMap<GameTile, String>();
+		rallyPointsOnTile = new HashMap<GameTile, Set<RPPointingID> >();
+		workersOnTile = new HashMap<GameTile, Set<WorkerID> >();
+		resourcesOnTile = new HashMap<GameTile, Map<String, Integer> >();
+		exploredTiles = new HashSet<GameTile>();
+		playerOwningTile = new HashMap<GameTile, String>();
+	}
+	
+	public void updateVisibility(Set<GameTile> newVisibles, Set<HasPlayer> hasPlayers)
+	{
+		Set<GameTile> forgotten = seenTiles.keySet();
+		Iterator<GameTile> i = forgotten.iterator();
+		
+		while (i.hasNext())
+		{
+			seenTiles.put(i.next(), Visibility.NON_VISIBLE);
+		}
+		
+		i = newVisibles.iterator();
+		while (i.hasNext())
+		{
+			seenTiles.put(i.next(), Visibility.VISIBLE);
+		}
+		
+		Iterator<HasPlayer> i2 = 
+	}
+	
 	@Override
 	public void visitRallyPoint(RallyPoint rp) {
 		// TODO Auto-generated method stub
