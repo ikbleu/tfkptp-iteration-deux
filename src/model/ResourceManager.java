@@ -175,4 +175,13 @@ public class ResourceManager
     {
         return Collections.unmodifiableMap(resources);
     }
+
+    public void addAmmount(String type, int amount)
+    {
+        if(!resources.containsKey(type))
+            throw new RuntimeException("Attempting to add invalid resource type.");
+
+        int curVal = resources.get(type);
+        resources.put(type, curVal + amount);
+    }
 }
