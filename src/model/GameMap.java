@@ -1,6 +1,9 @@
 package src.model;
 
+import java.util.Set;
+
 import src.model.enums.Direction;
+import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.StringRandomizer;
 
@@ -9,10 +12,14 @@ public class GameMap
 	private HexTile origin, startingLocation1, startingLocation2;
 	final int MAP_RADIUS = 9;
 	private StringRandomizer rand;
+	ResourceMaker resourceGrabber;
+	Set<String> resourceTypes;
 	
-	public GameMap()
+	public GameMap(Model m)
 	{
 		rand = new TerrainRandomizer();
+		resourceGrabber = new ResourceMaker(m.getClock());
+		resourceTypes = resourceGrabber.possibleResourceValues();
 		
 		origin = new HexTile(rand.random());
 		populate(origin);
@@ -26,7 +33,12 @@ public class GameMap
 		 	 startingLocation2 = startingLocation2.getNeighborHex(Direction.S));
 		
 		startingLocation1.setTerrainType(rand.defaultValue());
+		startingLocation1.setResources(resourceGrabber.getResources(false));
+		
 		startingLocation2.setTerrainType(rand.defaultValue());
+		startingLocation2.setResources(resourceGrabber.getResources(false));
+		
+		
 	}
 	
 	public GameTile getOrigin()
@@ -80,7 +92,7 @@ public class GameMap
 	
 	private void populateHelper(HexTile tile, Direction parentDir, int radius)
 	{
-		
+		tile.setResources(resourceGrabber.getResources(true));
 		if (radius <= 1) return;
 		
 		//System.out.println("Making tile " + tile.getX() + " " + tile.getY() + " " + tile.getZ() + "...");

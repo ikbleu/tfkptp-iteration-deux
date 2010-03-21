@@ -20,6 +20,7 @@ public interface GameTile {
 	public void unmark();
 	public String getTerrainType();
 	public boolean hasNeighbor(Direction d);
+	public Resource getResource(String s);
 	
 	// spacial methods
 	public List<GameTile> getTilesAround(int radius);
