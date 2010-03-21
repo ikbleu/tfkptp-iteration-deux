@@ -45,12 +45,19 @@ import src.model.interfaces.Displayable;
 	 	private CommandQueueOverview commandQueueOverview;
                 private CommandSelection commandSelection;
                 private ResourceInfo resourceInfo;
+
+                private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
 	 	
 	 	private OptionalDisplay optionalDisplay;
+
+                private double screenRatio = 1.6;
 		
 		private double scale;
 		private double panX;
 		private double panY;
+
+                private double hexWidth = .200;
+                private double hexHeight = .173205;
 		
 		private GLCanvas canvas;
 		
@@ -69,6 +76,7 @@ import src.model.interfaces.Displayable;
                 Texture hud_tex;
 		Texture commandSelection_tex;
                 Texture resourceInfo_tex;
+                Texture ViewPortTest_tex;
 		
 		private Animator animator;
 
@@ -138,7 +146,16 @@ import src.model.interfaces.Displayable;
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 				
 				//render different components
-				renderHUD(gl);
+				gl.glPushMatrix();
+			
+                                    gl.glScaled(scale, scale, 1.0f);
+                                    //gl.glTranslated(offX,offY,0.0);
+                                    //updateOffset();
+                                    renderMap(gl, 15, 15);
+				
+                                gl.glPopMatrix();
+
+                                renderHUD(gl);
                                 renderCommandSelection(gl);
                                 renderResourceInfo(gl);
 
@@ -313,6 +330,53 @@ import src.model.interfaces.Displayable;
 					gl.glVertex2d(x+h, y-r);
 
 				gl.glEnd();
+			}
+                        
+                        private void renderMap(GL gl, int height, int width){
+                            double beginX =  .5 - (((double)width)/2.0 * .2);
+                            double beginY =  .5 - (((double)height)/2.0 * .173205 * (screenRatio));
+                            
+                            for(int i = 0; i < height; ++i){
+                                for(int j =0; j < width; ++j){
+                                    renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio));
+                                }
+                            }
+                        }
+
+                        private void renderViewPortHex(GL gl, double x, double y) {
+
+                            try{
+                                ViewPortTest_tex = TextureIO.newTexture(graphicsTable.getGraphic("Grassland"),true);
+                            }
+                            catch (Exception e) {
+    				e.printStackTrace();
+                            }
+
+                                ViewPortTest_tex.bind();
+
+				gl.glBegin(GL.GL_POLYGON);
+
+					gl.glTexCoord2d(0.0, 0.5);
+					gl.glVertex2d(x-.1,y);
+
+					gl.glTexCoord2d(0.25, 0);
+					gl.glVertex2d(x-.05,y-.0866025*(screenRatio));
+
+					gl.glTexCoord2d(0.75, 0);
+					gl.glVertex2d(x+.05, y-.0866025*(screenRatio));
+
+					gl.glTexCoord2d(1.0, .5);
+					gl.glVertex2d(x+.1, y);
+
+					gl.glTexCoord2d(.75, 1.0);
+					gl.glVertex2d(x+.05, y+.0866025*(screenRatio));
+
+					gl.glTexCoord2d(.25, 1.0);
+					gl.glVertex2d(x-.05, y+.0866025*(screenRatio));
+
+				gl.glEnd();
+
+                                ViewPortTest_tex.dispose();
 			}
 		}
 
