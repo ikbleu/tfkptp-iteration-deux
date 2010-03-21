@@ -1,16 +1,14 @@
-package src.model.instances.units;
+package src.model.instances.rallypoints;
 
 import src.model.Player;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
-import src.model.instances.GeneralUnitManager;
+import src.model.instances.units.RangedManager;
 import src.util.Hand;
 
-public final class UnitInitializer {
+public class RallyPointInitializer {
 	public static void initialize( final Player p )
 	{
-		GeneralUnitManager m = new GeneralUnitManager();
-		
 		final Hand< Device > hand = p.handFactory().make( Device.class );
 		Device d = new Device()
 		{
@@ -21,7 +19,7 @@ public final class UnitInitializer {
 			
 			public String meaning()
 			{
-				return "Unit";
+				return "Rally Point";
 			}
 			
 			public void direct(KeyEventInterpreterBuilder builder)
@@ -30,8 +28,7 @@ public final class UnitInitializer {
 			}
 		};
 		
-		hand.add( new RangedManager( p, m ) );
-		// TODO: other managers
+		new RallyPointManager( p, hand );
 		
 		p.addDevice( d );
 	}

@@ -165,4 +165,9 @@ public class RangedManager extends SpecificUnitManager {
 			}
 		});
 	}
+	
+	public String meaning()
+	{
+		return "Ranged";
+	}
 }
