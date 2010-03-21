@@ -18,7 +18,7 @@ import java.awt.Color;
  *
  * @author spock
  */
- class CommandSelection extends HasAnImage{
+ class CommandSelection extends BaseImage{
     private String groupBox = null;
     private String specialBox = null;
     private String typeBox = null;
@@ -39,7 +39,8 @@ import java.awt.Color;
         typeBox = null;
         commandBox = null;
         instanceBox = null;
-        boxes = 0;
+        //normally starts at 0 but eidted for testing
+        boxes = 3;
         for(int i = 0;commands != null && i < commands.length;++i){
             JackTheViewVisitor jack = new JackTheViewVisitor();
             commands[i].accept(jack);
@@ -112,45 +113,59 @@ import java.awt.Color;
         /*
          * Testing code upcoming
          *
-         *not anymore!!! ...for now!
+         *
          */
+        groupBox = "Unit";
+        typeBox = "Unicorn";
+        instanceBox = "Unicorn 3";
+
         boxNumber = 0;
         if(groupBox!=null){
             graphix.setColor( Color.MAGENTA );
-            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.PINK );
+            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            //graphix.setColor( Color.PINK );
+            graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
+            graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( groupBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(specialBox!=null){
             graphix.setColor( Color.MAGENTA );
-            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.PINK );
+            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            //graphix.setColor( Color.PINK );
+            graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
+            graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( specialBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(typeBox!=null){
             graphix.setColor( Color.MAGENTA );
-            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.PINK );
+            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            //graphix.setColor( Color.PINK );
+            graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
+            graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( typeBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(commandBox!=null){
             graphix.setColor( Color.MAGENTA );
-            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.PINK );
+            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            //graphix.setColor( Color.PINK );
+            graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
+            graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( commandBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;
         }
         if(instanceBox!=null){
             graphix.setColor( Color.MAGENTA );
-            graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
-            graphix.setColor( Color.PINK );
+            //graphix.fillRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
+            //graphix.setColor( Color.PINK );
+            graphix.drawImage( graphicsTable.getGraphic("Command"), 0, BoxHeight * boxNumber, null);
+            graphix.setColor(Color.BLACK);
             graphix.drawRect( 0, BoxHeight * boxNumber, BoxWidth, BoxHeight * (boxNumber+1));
             graphix.drawString( instanceBox, WordIndentW, WordIndentH + BoxHeight * boxNumber);
             ++boxNumber;

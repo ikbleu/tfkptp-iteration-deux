@@ -30,6 +30,9 @@ class GraphicsTableSingleton {
             graphics.put( "Dreams", ImageIO.read(new File("artwork/rbDream.jpg")));
             graphics.put( "Unicorn", ImageIO.read(new File("artwork/rbuni.jpg")));
             graphics.put( "Dolphin", ImageIO.read(new File("artwork/rbdolph.jpg")));
+            graphics.put( "UnicornB", ImageIO.read(new File("artwork/rbuniB.jpg")));
+            graphics.put( "DolphinB", ImageIO.read(new File("artwork/rbdolphB.jpg")));
+            graphics.put( "Command", ImageIO.read(new File("artwork/rbCommand.jpg")));
         }
         catch(Exception e){
             System.out.println("Massive Fail");
