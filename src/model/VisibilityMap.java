@@ -26,13 +26,13 @@ public class VisibilityMap implements HasPlayerVisitor
 	private Map<GameTile, Map<String, Integer> > resourcesOnTile;
 	private Set<GameTile> exploredTiles;
 	private Map<GameTile, Visibility> seenTiles;
-	private Map<GameTile, String> playerOwningTile;
+	private Map<GameTile, Boolean> playerOwningTile;
 	
 	private Map<GameTile, Integer> unitAffectedTiles;
-	private Map<GameTile, RPPointingID> rallyPointAffectedTiles;
+	private Map<GameTile, Set<RPPointingID> > rallyPointAffectedTiles;
 	private Map<GameTile, String> structureAffectedTiles;
-	private Map<GameTile, String> playerAffectedTiles;
-	private Map<GameTile, WorkerID> workerAffectedTiles;
+	private Map<GameTile, Boolean> playerAffectedTiles;
+	private Map<GameTile, Set<WorkerID> > workerAffectedTiles;
 
 	public VisibilityMap()
 	{
@@ -42,7 +42,13 @@ public class VisibilityMap implements HasPlayerVisitor
 		workersOnTile = new HashMap<GameTile, Set<WorkerID> >();
 		resourcesOnTile = new HashMap<GameTile, Map<String, Integer> >();
 		exploredTiles = new HashSet<GameTile>();
-		playerOwningTile = new HashMap<GameTile, String>();
+		playerOwningTile = new HashMap<GameTile, Boolean>();
+		
+		unitAffectedTiles = new HashMap<GameTile, Integer>();
+		structureAffectedTiles = new HashMap<GameTile, String>();
+		rallyPointAffectedTiles = new HashMap<GameTile, Set<RPPointingID> >();
+		workerAffectedTiles = new HashMap<GameTile, Set<WorkerID> >();
+		playerAffectedTiles = new HashMap<GameTile, Boolean>();
 	}
 	
 	public void updateVisibility(Set<GameTile> newVisibles, Set<HasPlayer> hasPlayers)
@@ -61,6 +67,18 @@ public class VisibilityMap implements HasPlayerVisitor
 			seenTiles.put(i.next(), Visibility.VISIBLE);
 		}
 		
+		i = newVisibles.iterator();
+		while (i.hasNext())
+		{
+			GameTile x = i.next();
+			
+			rallyPointsOnTile.remove(x);
+			unitsPerTile.remove(x);
+			structureOnTile.remove(x);
+			workersOnTile.remove(x);
+			playerOwningTile.remove(x);
+		}
+		
 		Iterator<HasPlayer> i2 = hasPlayers.iterator();
 		
 		while (i2.hasNext())
@@ -72,21 +90,53 @@ public class VisibilityMap implements HasPlayerVisitor
 	@Override
 	public void visitRallyPoint(RallyPoint rp)
 	{
-		// TODO Auto-generated method stub
 		GameTile loc = rp.location();
+		RPPointingID rpid = new RPPointingID(rp);
+		
+		Set<RPPointingID> s;
+		
+		if (!rallyPointAffectedTiles.containsKey(loc))
+		{
+			s = new HashSet<RPPointingID>();
+		}
+		else
+		{
+			s = rallyPointAffectedTiles.get(loc);
+		}
+		s.add(rpid);
+		
+		rallyPointAffectedTiles.put(loc, s);
 		
 	}
 
 	@Override
-	public void visitStructure(Structure s) {
-		// TODO Auto-generated method stub
+	public void visitStructure(Structure s)
+	{
+		GameTile loc = s.location();
+		String sType = s.token();
+		
+		structureAffectedTiles.put(loc, sType);
 		
 	}
 
 	@Override
-	public void visitUnit(Unit u) {
-		// TODO Auto-generated method stub
+	public void visitUnit(Unit u)
+	{
+		GameTile loc = u.location();
 		
+		Integer i;
+		
+		if (!unitAffectedTiles.containsKey(loc))
+		{
+			i = new Integer(1);
+		}
+		else
+		{
+			i = new Integer(unitAffectedTiles.get(loc).intValue() + 1);
+		}
+		
+		unitAffectedTiles.put(loc, i);
+		playerAffectedTiles.put(loc, new Boolean(u.getPlayer().isHuman()));
 	}
 
 	@Override
