@@ -78,6 +78,7 @@ import com.sun.opengl.util.Animator;
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setResizable(false);
 			
+			
 			GraphicListener listener = new GraphicListener();
 			GLCanvas canvas = new GLCanvas(new GLCapabilities());
 		    canvas.addGLEventListener(listener);
@@ -85,6 +86,8 @@ import com.sun.opengl.util.Animator;
 		    getContentPane().add(canvas);
 		    
 		    animator = new Animator(canvas);
+		    
+		    this.validate();
 		}
 		
 		public void start(){
@@ -106,8 +109,9 @@ import com.sun.opengl.util.Animator;
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-				System.out.println("displaying");
+				renderTexturedHex(gl, 0, 0, 1.0);
 				
+
 			}
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
@@ -133,12 +137,46 @@ import com.sun.opengl.util.Animator;
 					gl.glEnable(GL.GL_TEXTURE_2D);								//enable 2D textures
 					gl.glEnable(GL.GL_BLEND);
 					gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-
+					
+					gl.glMatrixMode(GL.GL_PROJECTION);
+					gl.glLoadIdentity();
+					gl.glOrtho(-5.0, 5.0, -3.0, 3.0, -3.0, 3.0);	//specifies rendering box
+					gl.glMatrixMode(GL.GL_MODELVIEW);
+					gl.glLoadIdentity();
+					
 				} 
 				
 				catch (GLException e) {
 					e.printStackTrace();
 				} 
+			}
+			
+			private void renderTexturedHex(GL gl, double x, double y, double sideLength) {
+				
+				double r = sideLength*Math.cos(0.523);  //0.523 radians = 30 degrees
+				double h = sideLength*Math.sin(0.523);
+
+				gl.glBegin(GL.GL_POLYGON);
+				
+					gl.glTexCoord2d(0.0, 0.3);
+					gl.glVertex2d(x,y);
+
+					gl.glTexCoord2d(0.0, 0.7);
+					gl.glVertex2d(x+h, y+r);
+					
+					gl.glTexCoord2d(0.5, 1.0);
+					gl.glVertex2d(x+h+sideLength, y+r);
+			
+					gl.glTexCoord2d(1.0, 0.7);
+					gl.glVertex2d(x+2*h+sideLength, y);
+			
+					gl.glTexCoord2d(1.0, 0.3);
+					gl.glVertex2d(x+h+sideLength, y-r);
+			
+					gl.glTexCoord2d(0.5, 0.0);
+					gl.glVertex2d(x+h, y-r);
+
+				gl.glEnd();
 			}
 		}
 
