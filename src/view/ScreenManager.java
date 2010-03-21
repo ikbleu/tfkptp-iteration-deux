@@ -147,14 +147,24 @@ import com.sun.opengl.util.texture.TextureIO;
 
 	    			gl.glBegin(GL.GL_POLYGON);
 	    			
-	    				gl.glVertex2d(-5,3);
-	    				gl.glVertex2d(-5,1);
-	    				gl.glVertex2d(-2.25,1);
+	    				//gl.glTexCoord2d(0.0, 0.0);
+	    				gl.glVertex2d(-1,1);
+	    				
+	    				//gl.glTexCoord2d(0.0, 1.0);
+	    				gl.glVertex2d(-1,1);
+	    				
+	    				gl.glVertex2d(-225,1);
+	    				
 	    				gl.glVertex2d(-2.25,1.3);
+	    				
 	    				gl.glVertex2d(1.5,1.3);
 	    				
-	    				//gl.glVertex2d()
-	    				//gl.glVertex2d(-2.5,3);
+	    				gl.glVertex2d(1.75, 1.1);
+	    				
+	    				gl.glVertex2d(5, 1.1);
+	    				
+	    				gl.glVertex2d(5, 3.0);
+	    				
 	    				
 	    			gl.glEnd();
 	    			
@@ -173,7 +183,7 @@ import com.sun.opengl.util.texture.TextureIO;
 				gl.glViewport(0, 0, w, h);
 				gl.glMatrixMode(GL.GL_PROJECTION);
 				gl.glLoadIdentity();
-				gl.glOrtho(-5.0, 5.0, 3.0, -3.0, -3.0, 3.0);	//specifies rendering box
+				gl.glOrtho(-1.0, 1.0, 1.0, -1.0, -1.0, 1.0);	//specifies rendering box
 				gl.glMatrixMode(GL.GL_MODELVIEW);
 				gl.glLoadIdentity();
 			}
