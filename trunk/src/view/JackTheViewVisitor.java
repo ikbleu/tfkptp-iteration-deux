@@ -88,6 +88,18 @@ import java.util.HashMap;
         return id;
     }
 
+    Map<String, Integer> stats(){
+        return stats;
+    }
+
+    Map<String, Integer> rpTypeAndHealth(){
+        return rpTypeAndHealth;
+    }
+
+    int health(){
+        return health;
+    }
+
 
 
 }
