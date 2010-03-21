@@ -25,20 +25,20 @@ KeyEventInterpreter
 --
 interpret(int: InterpretableKeyConfig): void
 editAncestor(editor: KeyEditor): void
-editDescendant(editor: KeyEditor): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>410</x><y>50</y><w>210</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+editDescendant(editor: KeyEditor): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>410</x><y>50</y><w>140</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Behavior
 --
-binding(): Meaning
+meaning(): String
 do(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>30</y><w>350</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Device
 --
-binding(): String
+meaning(): String
 context(): String
-direct(builder: KeyEventInterpreterBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>160</y><w>500</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+direct(builder: KeyEventInterpreterBuilder): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>160</y><w>330</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 KeyEventInterpreterBuilder
 --
-devices(devices: Lens&lt;Device&gt;, next: String, prev: String): void
-behaviors(behaviors: Lens&lt;Behavior&gt;, next: String, prev: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>270</y><w>340</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+devices(devices: Lens&lt;Device&gt;): void
+behaviors(behaviors: Lens&lt;Behavior&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>40</x><y>270</y><w>340</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 EditableKeyEventInterpreter
 --
 directMeToYourParent(editor: KeyEditor): void

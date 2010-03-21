@@ -20,28 +20,38 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>10</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>250</x><y>130</y><w>200</w><h>100</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>10</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>220</x><y>150</y><w>200</w><h>110</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Hand&lt;T&gt;
 --
 add(item: T): boolean
 remove(item: T): boolean
-spawnLens(): Lens&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>250</x><y>340</y><w>290</w><h>120</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+spawnLens(): Lens&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>220</x><y>370</y><w>330</w><h>120</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Iter&lt;T&gt;
 --
-next(visitor: Visitor&lt;T&gt;): void
-prev(visitor: Visitor&lt;T&gt;): void
-skipTo(item: T, visitor: Visitor&lt;T&gt;): void
-accept(visitor: Visitor&lt;T&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>560</x><y>370</y><w>160</w><h>100</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
-Visitor&lt;T&gt;
+next(visitor: DataVisitor&lt;T&gt;): void
+prev(visitor: DataVisitor&lt;T&gt;): void
+skipTo(item: T, visitor: DataVisitor&lt;T&gt;): void
+accept(visitor: DataVisitor&lt;T&gt;): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>570</x><y>400</y><w>160</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+DataVisitor&lt;T&gt;
 --
 found(item: T): void
-invalid(item: T): void
-notFound(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>250</x><y>250</y><w>290</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+missing(): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>220</x><y>280</y><w>280</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Lens&lt;T&gt;
 --
-spawnIter(ordering: Ordering): Iter&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>560</x><y>250</y><w>160</w><h>100</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+iter(factory: OrderingFactory): Iter&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>570</x><y>260</y><w>160</w><h>120</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 Ordering&lt;T&gt;
 --
-next(): T
-prev(): T
-skipTo(item T): void</panel_attributes><additional_attributes/></element></umlet_diagram>
+next(): void
+prev(): void
+skipTo(item T): void
+current(): T</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>220</x><y>60</y><w>150</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+HandFactory&lt;T&gt;
+--
+make(): Hand&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>420</x><y>60</y><w>310</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+OrderingFactory&lt;T&gt;
+--
+make(dyh: DoYouHas&lt;T&gt;): Ordering&lt;T&gt;</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>530</x><y>150</y><w>200</w><h>90</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+DoYouHas&lt;T&gt;
+--
+contains(item: T): boolean
+isEmpty(): boolean</panel_attributes><additional_attributes/></element></umlet_diagram>
