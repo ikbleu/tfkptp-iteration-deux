@@ -6,8 +6,7 @@ package src.model.instances;
 
 import src.model.interfaces.GameTile;
 import src.model.interfaces.ItemVisitor;
-
-import src.model.instances.Instance;
+import src.model.interfaces.ItemEffect;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -21,6 +20,8 @@ public class OneShotItem extends Item
 {
     private List<Instance> withinRadius;
 
+    private ItemEffect effect;
+
     /**
      * Creates a new one-shot item of the specified type at the specified
      * location.
@@ -28,10 +29,11 @@ public class OneShotItem extends Item
      * @param type the type of the item.
      * @param location the location of the item.
      */
-    public OneShotItem(String type, GameTile location)
+    public OneShotItem(String type, GameTile location, ItemEffect effect)
     {
         super(type, location);
         withinRadius = new ArrayList<Instance>();
+        this.effect = effect;
     }
 
     /**
@@ -68,9 +70,19 @@ public class OneShotItem extends Item
     /**
      * Causes the item to apply its affect to the instances within its
      * radius.
+     *
+     * @param trigger the instance that triggered the item's use.
      */
-    public void use()
+    public void use(Instance trigger)
     {
-
+        if(effect.areaEffect())
+        {
+            for(Instance i : withinRadius)
+                effect.apply(i);
+        }
+        else
+        {
+            effect.apply(trigger);
+        }
     }
 }

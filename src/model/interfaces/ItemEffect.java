@@ -19,4 +19,12 @@ public interface ItemEffect
      * @param i the instance to apply the effect to.
      */
     public void apply(Instance i);
+
+    /**
+     * Returns whether or not the item has an area effect or only affects the
+     * thing that triggered it.
+     *
+     * @return whether the item has an area effect (true) or single-target effect (false)
+     */
+    public boolean areaEffect();
 }
