@@ -36,9 +36,17 @@ public abstract class Unit extends Instance implements vUnit {
 		destroy();
 	}
 	
+	private RallyPoint rallyPoint = null;
 	public void addToRallyPoint( RallyPoint rp )
 	{
 		rp.addUnit( this );
+		rallyPoint = rp;
+	}
+	
+	public void removeFromRallyPoint()
+	{
+		rallyPoint.removeUnit( this );
+		rallyPoint = null;
 	}
 	
 	public void accept( HasPlayerVisitor v )
@@ -55,5 +63,10 @@ public abstract class Unit extends Instance implements vUnit {
 	public void rallyCommands( List< CommandFactory > l )
 	{
 		l.addAll( rallyCommands );
+	}
+	
+	public boolean isInRallyPoint()
+	{
+		return rallyPoint != null;
 	}
 }

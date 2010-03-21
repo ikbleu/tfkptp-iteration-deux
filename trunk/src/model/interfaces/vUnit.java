@@ -13,4 +13,5 @@ public interface vUnit
 	public String token();
 	public void rallyCommands( List< CommandFactory > l );
 	public GameTile location();
+	boolean isInRallyPoint();
 }

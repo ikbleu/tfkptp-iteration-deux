@@ -111,11 +111,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		iv.visitRallyPoint( this );
 	}
 	
-	public void entered(Instance l) {
+	public void entered(Instance i) {
 		// attack it?
+		i.player();
 	}
 	
-	public void exited(Instance l) {
+	public void exited(Instance i) {
 		// stop attacking it?
 	}
 	
@@ -126,7 +127,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 
 	@Override
 	public void units( List< vUnit > l ) {
-		// TODO Auto-generated method stub
+		l.addAll( entireList );
 	}
 
 	@Override
@@ -173,6 +174,11 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			}
 		});
 		calculateProperties( i );
+	}
+	
+	public void removeUnit( Unit u )
+	{
+		delInstance( u );
 	}
 
 	@Override

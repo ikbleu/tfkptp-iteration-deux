@@ -1,7 +1,20 @@
 package src.model.commands;
 
+import src.model.Player;
 import src.model.instances.Instance;
 
-abstract public class MoveCommandFactory extends CommandFactory {
-	abstract public MoveCommand makeCommand(Instance i);
+public class MoveCommandFactory extends CommandFactory {
+	public MoveCommandFactory( Player p, String token, int numTicks ) { 
+		super( p, token, numTicks );
+	}
+	
+	public void setInstance( final Instance i )
+	{
+		// add command arguments
+	}
+	
+	public MoveCommand makeCommand(Instance i)
+	{
+		return new MoveCommand( token(), i, numTicks() );
+	}
 }

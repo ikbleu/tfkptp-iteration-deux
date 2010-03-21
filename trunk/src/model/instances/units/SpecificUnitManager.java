@@ -1,5 +1,6 @@
 package src.model.instances.units;
 
+import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.CommandAdapter;
 import src.model.commands.CommandListener;
@@ -21,14 +22,16 @@ import src.model.interfaces.GameTile;
 import src.util.Hand;
 
 public abstract class SpecificUnitManager implements InstanceExistenceListener, Device {
-	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f, Hand< Device > h ) {
+	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f, Player p, Hand< Device > h ) {
 		manager = m;
 		factory = f;
 		hand = h;
+		player = p;
 	}
 	private GeneralUnitManager manager; 
 	private UnitFactory factory;
 	private Hand< Device > hand;
+	private Player player;
 	
 	public boolean canMakeUnit()
 	{
@@ -75,61 +78,22 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 				});
 			}
 		});
-		
-		u.addSelectableCommand( new NoArgsCommandFactory()
-		{
-			public NoArgsCommand makeCommand( Instance i )
+		u.addCommandListener( "cmdRemoveRallyPoint", new CommandListener() {
+			public void commandOccurred( Command c )
 			{
-				return new NoArgsCommand( "cmdPowerUp", i, 10 );
+				if ( ! c.when().equals( "execute" ) ) return;
+				u.removeFromRallyPoint();
 			}
-			public String token() { return "cmdPowerUp"; }
-		});
-		u.addSelectableCommand( new NoArgsCommandFactory()
-		{
-			public NoArgsCommand makeCommand( Instance i )
-			{
-				return new NoArgsCommand( "cmdPowerDown", i, 1 );
-			}
-			public String token() { return "cmdPowerDown"; }
-		});
-		u.addSelectableCommand( new RallyPointCommandFactory()
-		{
-			public RallyPointCommand makeCommand( Instance i )
-			{
-				return new RallyPointCommand( "cmdRallyPoint", i, 0 );
-			}
-			public String token() { return "cmdRallyPoint"; }
-		});
-		u.addSelectableCommand( new NoArgsCommandFactory()
-		{
-			public NoArgsCommand makeCommand( Instance i )
-			{
-				return new NoArgsCommand( "cmdDecommission", i, 0 );
-			}
-			public String token() { return "cmdDecommission"; }
 		});
 		
-		u.addRallyPointCommand( new DirectionCommandFactory() {
-			public DirectionCommand makeCommand( Instance i )
-			{
-				return new DirectionCommand( "cmdAttack", i, 0 );
-			}
-			public String token() { return "cmdAttack"; }
-		});
-		u.addRallyPointCommand( new DirectionCommandFactory() {
-			public DirectionCommand makeCommand( Instance i )
-			{
-				return new DirectionCommand( "cmdDefend", i, 0 );
-			}
-			public String token() { return "cmdDefend"; }
-		});
-		u.addRallyPointCommand( new MoveCommandFactory() {
-			public MoveCommand makeCommand( Instance i )
-			{
-				return new MoveCommand( "cmdMove", i, 0 );
-			}
-			public String token() { return "cmdMove"; }
-		});
+		u.addSelectableCommand( new NoArgsCommandFactory(player,"cmdPowerUp", 10) );
+		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdPowerDown", 1 ));
+		u.addSelectableCommand( new RallyPointCommandFactory(player,"cmdRallyPoint", 0));
+		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdDecommission", 0));
+		
+		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdAttack", 0));
+		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdDefend", 0));
+		u.addRallyPointCommand( new MoveCommandFactory(player, "cmdMove", 0));
 
 		u.addInstanceExistenceListener( this );
 		u.addInstanceExistenceListener( factory );
