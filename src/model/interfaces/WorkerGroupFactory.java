@@ -40,9 +40,9 @@ public interface WorkerGroupFactory
      * Creates a new worker group that does not have any special capabilities.
      *
      * @param location the location at which the worker group is being created.
-     * @param type the string representation of the group's type.
+     * @param staff whether or not the group is staffing a building.
      *
      * @return the new NormalWorkerGroup.
      */
-    public NormalWorkerGroup newNormalWorkerGroup(GameTile location, String type);
+    public NormalWorkerGroup newNormalWorkerGroup(GameTile location, boolean staff);
 }

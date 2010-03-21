@@ -17,6 +17,14 @@ instanceMelee
 instanceExplorer
 instanceColonist
 
+**WorkerGroups
+wgBreeding
+wgGrain
+wgOre
+wgFuel
+wgStaff
+wgIdle
+
 **Commands
 cmdMakeRanged
 cmdMakeMelee

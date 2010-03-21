@@ -66,6 +66,6 @@ public class BreedingGroup extends WorkerGroup
      */
     public String token()
     {
-        return "breedingGroup";
+        return "wgBreeding";
     }
 }
