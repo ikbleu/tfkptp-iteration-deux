@@ -12,27 +12,17 @@ class Ranged extends Unit {
 	public Ranged( Player p, int id, GameTile g )
 	{
 		super( p, id, g );
-		addStatsListener( new StatsListener() {
-			public void statsChanged( Instance i )
-			{
-				System.out.println( "my AP is now " + getStat( "statAP" ) );
-			}
-		});
 	}
 	
 	public String token() {
 		return "instanceRanged";
 	}
 	
-	@Override
 	public void entered(Instance l) {
-		// TODO Auto-generated method stub
-		
+		// aww, no one cares
 	}
-
-	@Override
+	
 	public void exited(Instance l) {
-		// TODO Auto-generated method stub
-		
+		// how pathetic
 	}
 }

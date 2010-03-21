@@ -1,4 +1,4 @@
-package src.control.interfaces;
+package src.model.control;
 
 /**
  *
