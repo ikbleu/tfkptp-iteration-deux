@@ -12,12 +12,13 @@ public class Model {
 	
 	public Model( HandFactory hFact )
 	{
-		human = new Player( true, hFact );
+		human = new Player( true, hFact, null, null );
+		p = human; // TODO: remove
 		// TODO: ai? map?
 		
-		UnitInitializer.initialize( p );
-		StructureInitializer.initialize( p );
-		RallyPointInitializer.initialize( p );
+		UnitInitializer.initialize( human );
+		StructureInitializer.initialize( human );
+		RallyPointInitializer.initialize( human );
 	}
 	
 	public Clock getClock()

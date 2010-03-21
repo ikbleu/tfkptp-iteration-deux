@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.instances.InstanceExistenceListener;
 import src.model.instances.InstanceFactory;
 import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
 
-abstract class UnitFactory implements InstanceFactory {
+abstract class UnitFactory implements InstanceFactory, InstanceExistenceListener {
 	public UnitFactory( Player p )
 	{
 		player = p;

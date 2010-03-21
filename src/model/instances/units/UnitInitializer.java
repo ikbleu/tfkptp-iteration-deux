@@ -10,7 +10,6 @@ public final class UnitInitializer {
 	public static void initialize( final Player p )
 	{
 		GeneralUnitManager m = new GeneralUnitManager();
-		
 		final Hand< Device > hand = p.handFactory().make( Device.class );
 		Device d = new Device()
 		{

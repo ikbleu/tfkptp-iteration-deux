@@ -9,7 +9,8 @@ import src.util.Hand;
 public class RallyPointInitializer {
 	public static void initialize( final Player p )
 	{
-		final Hand< Device > hand = p.handFactory().make( Device.class );
+		final Hand< Device > rpHand = p.handFactory().make( Device.class );
+		final Hand< Device > armyHand = p.handFactory().make( Device.class );
 		Device d = new Device()
 		{
 			public String context()
@@ -24,12 +25,30 @@ public class RallyPointInitializer {
 			
 			public void direct(KeyEventInterpreterBuilder builder)
 			{
-				builder.devices( hand.spawnLens() );
+				builder.devices( rpHand.spawnLens() );
+			}
+		};
+		Device d2 = new Device()
+		{
+			public String context()
+			{
+				return "Group";
+			}
+			
+			public String meaning()
+			{
+				return "Army";
+			}
+			
+			public void direct(KeyEventInterpreterBuilder builder)
+			{
+				builder.devices( armyHand.spawnLens() );
 			}
 		};
 		
-		new RallyPointManager( p, hand );
+		new RallyPointManager( p, rpHand, armyHand );
 		
 		p.addDevice( d );
+		p.addDevice( d2 );
 	}
 }

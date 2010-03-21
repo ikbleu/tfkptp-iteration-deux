@@ -3,8 +3,10 @@ package src.model.instances.units;
 import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
+import src.model.control.Device;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
+import src.util.Hand;
 
 public class RangedManager extends SpecificUnitManager {
 	private static final int MAX_RANGED = 10;
@@ -33,7 +35,7 @@ public class RangedManager extends SpecificUnitManager {
 	private Player player;
 	
 	public RangedManager(Player p, GeneralUnitManager m) {
-		super( m, new RangedFactory( p ) );
+		super( m, new RangedFactory( p ), p.handFactory().make( Device.class ) );
 		player = p;
 		
 		unitFactory().modDefaultStat( "statHealth", STAT_BASE_HEALTH);

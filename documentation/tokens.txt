@@ -9,6 +9,7 @@ statDefensePower
 statArmor
 statMoveSpeed
 statEfficiency
+statNumSoldiers
 
 **Instances
 instanceRallyPoint
@@ -47,6 +48,11 @@ cmdBuildFarm
 cmdBuildObsTower
 cmdBuildUniversity
 cmdBuildPowerPlant
+
+cmdPowerUp
+cmdPowerDown
+cmdRallyPoint
+cmdDecommission
 
 cmdResWorkRadius
 cmdResWorkDensity
