@@ -22,6 +22,7 @@ import src.model.interfaces.StatsListener;
 import src.model.interfaces.ViewListener;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
+import src.util.Hand;
 
 public abstract class Instance extends Locatable implements vInstance, CommandSender, Device, HasPlayer
 {
@@ -31,9 +32,11 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		
 		this.id = id;
 		player = p;
+		commandHand = p.handFactory().make( Device.class );
 		
 		AoEManager.instance().registerLocation( this );
 	}
+	private Hand< Device > commandHand;
 	
 	private Player player;
 	final public Player player()
@@ -59,7 +62,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	final public void direct(KeyEventInterpreterBuilder builder)
 	{
-		
+		builder.devices( commandHand.spawnLens() );
 	}
 	
 	private Map< String, Integer > stats = new HashMap< String, Integer >();
@@ -200,12 +203,12 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	public void addSelectableCommand( CommandFactory cmd )
 	{
-		
+		commandHand.add( cmd );
 	}
 	
 	public void removeSelectableCommand( CommandFactory cmd )
 	{
-		
+		commandHand.remove( cmd );
 	}
 	
 	abstract public String token();

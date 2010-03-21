@@ -3,6 +3,10 @@ package src.model.instances.units;
 import src.model.commands.Command;
 import src.model.commands.CommandAdapter;
 import src.model.commands.CommandListener;
+import src.model.commands.DirectionCommand;
+import src.model.commands.DirectionCommandFactory;
+import src.model.commands.MoveCommand;
+import src.model.commands.MoveCommandFactory;
 import src.model.commands.NoArgsCommand;
 import src.model.commands.NoArgsCommandFactory;
 import src.model.commands.RallyPointCommand;
@@ -78,6 +82,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 			{
 				return new NoArgsCommand( "cmdPowerUp", i, 10 );
 			}
+			public String token() { return "cmdPowerUp"; }
 		});
 		u.addSelectableCommand( new NoArgsCommandFactory()
 		{
@@ -85,6 +90,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 			{
 				return new NoArgsCommand( "cmdPowerDown", i, 1 );
 			}
+			public String token() { return "cmdPowerDown"; }
 		});
 		u.addSelectableCommand( new RallyPointCommandFactory()
 		{
@@ -92,6 +98,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 			{
 				return new RallyPointCommand( "cmdRallyPoint", i, 0 );
 			}
+			public String token() { return "cmdRallyPoint"; }
 		});
 		u.addSelectableCommand( new NoArgsCommandFactory()
 		{
@@ -99,6 +106,29 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 			{
 				return new NoArgsCommand( "cmdDecommission", i, 0 );
 			}
+			public String token() { return "cmdDecommission"; }
+		});
+		
+		u.addRallyPointCommand( new DirectionCommandFactory() {
+			public DirectionCommand makeCommand( Instance i )
+			{
+				return new DirectionCommand( "cmdAttack", i, 0 );
+			}
+			public String token() { return "cmdAttack"; }
+		});
+		u.addRallyPointCommand( new DirectionCommandFactory() {
+			public DirectionCommand makeCommand( Instance i )
+			{
+				return new DirectionCommand( "cmdDefend", i, 0 );
+			}
+			public String token() { return "cmdDefend"; }
+		});
+		u.addRallyPointCommand( new MoveCommandFactory() {
+			public MoveCommand makeCommand( Instance i )
+			{
+				return new MoveCommand( "cmdMove", i, 0 );
+			}
+			public String token() { return "cmdMove"; }
 		});
 
 		u.addInstanceExistenceListener( this );
