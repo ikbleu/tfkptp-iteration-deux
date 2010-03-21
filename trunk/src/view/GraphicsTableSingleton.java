@@ -10,6 +10,8 @@ package src.view;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -21,7 +23,13 @@ class GraphicsTableSingleton {
     HashMap< String, BufferedImage > graphics;
 
     private GraphicsTableSingleton(){
-      
+        graphics = new HashMap<String, BufferedImage>();
+        try{
+            graphics.put( "hud", ImageIO.read(new File("artwork/unicornhud.png")));
+        }
+        catch(Exception e){
+            System.out.println("Massive Fail");
+        }
     }
 
     BufferedImage getGraphic(String key){

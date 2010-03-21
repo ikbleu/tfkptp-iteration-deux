@@ -131,8 +131,7 @@ import com.sun.opengl.util.texture.TextureIO;
             	
 
     			try{
-                            BufferedImage hud = ImageIO.read(new File("artwork/unicornhud.png"));
-                            hud_tex = TextureIO.newTexture(hud,true);
+                            hud_tex = TextureIO.newTexture(hud.image(),true);
     			}
                         catch (Exception e) {
     				e.printStackTrace();

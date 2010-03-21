@@ -10,5 +10,5 @@ package src.view;
  * @author spock
  */
 abstract class BaseImage extends HasAnImage{
-    GraphicsTableSingleton graphicsTable;
+    GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
 }
