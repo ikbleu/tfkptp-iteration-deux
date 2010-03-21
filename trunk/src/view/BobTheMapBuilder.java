@@ -22,12 +22,8 @@ import java.util.HashMap;
  */
 class BobTheMapBuilder implements MapBuilder{
         private String structure;
-        private int workers;
-        private int idles;
-        private int breeders;
         private int soldiers;
         private int individualUnits;
-        private int[] harvesters;
         private int[] resources;
         private HashMap<String, Integer> workerGroups = new HashMap<String, Integer>();
         private String item;
@@ -43,11 +39,7 @@ class BobTheMapBuilder implements MapBuilder{
 
     BobTheMapBuilder(){
         structure = null;
-        workers = -1;
-        idles = -1;
-        breeders = -1;
         soldiers = -1;
-        harvesters = null;
         resources = null;
         item = null;
         decal = null;
