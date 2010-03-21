@@ -23,6 +23,7 @@ public class IterImp<T> implements Iter<T> {
             if(item == null) { throw new RuntimeException("no null allowed!"); }
             else { return this.data.contains(item); }
         }
+        public boolean isEmpty() { return this.data.isEmpty(); }
     }
     
     IterImp(Object lock, Set<T> data, OrderingFactory<T> factory) {
