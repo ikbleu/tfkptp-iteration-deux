@@ -5,5 +5,5 @@ package src.util;
  * @author kagioglu
  */
 public interface HandFactory {
-    <T> Hand<T> make(Class<T> clazz);
+    <T extends HasComparable> Hand<T> make(Class<T> clazz);
 }
