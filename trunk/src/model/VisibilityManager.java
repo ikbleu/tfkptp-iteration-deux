@@ -69,4 +69,10 @@ public class VisibilityManager implements SakuraMap
 		return gameMap.getDiameter();
 	}
 
+	@Override
+	public Map<String, Integer> getPlayerResources()
+	{
+		return player.resourceCount();
+	}
+
 }
