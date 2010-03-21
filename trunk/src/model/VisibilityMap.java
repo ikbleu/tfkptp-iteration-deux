@@ -3,12 +3,14 @@ package src.model;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import src.model.enums.DecalType;
 import src.model.enums.Direction;
 import src.model.enums.Visibility;
+import src.model.instances.Item;
 import src.model.instances.RallyPoint;
 import src.model.instances.Structure;
 import src.model.instances.Unit;
@@ -32,6 +34,7 @@ public class VisibilityMap implements HasPlayerVisitor
 	private Map<GameTile, Set<WorkerID> > workersOnTile;
 	private Map<GameTile, Boolean> playerOwningTile;
 	
+	private Map<GameTile, String> itemOnTile;
 	private Map<GameTile, Map<String, Integer> > resourcesOnTile;
 	private Map<GameTile, DecalType> exploredTiles;
 	private Map<GameTile, Visibility> seenTiles;
@@ -51,9 +54,11 @@ public class VisibilityMap implements HasPlayerVisitor
 		workersOnTile = new HashMap<GameTile, Set<WorkerID> >();
 		playerOwningTile = new HashMap<GameTile, Boolean>();
 		
+		itemOnTile = new HashMap<GameTile, String>();
 		resourcesOnTile = new HashMap<GameTile, Map<String, Integer> >();
 		exploredTiles = new HashMap<GameTile, DecalType>();
 		
+		seenTiles = new HashMap<GameTile, Visibility>();	
 		
 		unitAffectedTiles = new HashMap<GameTile, Integer>();
 		structureAffectedTiles = new HashMap<GameTile, StructID>();
@@ -62,7 +67,8 @@ public class VisibilityMap implements HasPlayerVisitor
 		playerAffectedTiles = new HashMap<GameTile, Boolean>();
 	}
 	
-	public void updateVisibility(Set<GameTile> newVisibles, Set<HasPlayer> hasPlayers)
+	public void updateVisibility(Set<GameTile> newVisibles, Set<HasPlayer> hasPlayers,
+									List<Item> items)
 	{
 		Set<GameTile> forgotten = seenTiles.keySet();
 		Iterator<GameTile> i = forgotten.iterator();
@@ -97,7 +103,8 @@ public class VisibilityMap implements HasPlayerVisitor
 			i2.next().accept(this);
 		}
 		
-		updateResources();
+		updateResources(newVisibles);
+		updateItems(newVisibles, items);
 		
 		unitsPerTile.putAll(unitAffectedTiles);
 		structureOnTile.putAll(structureAffectedTiles);
@@ -112,11 +119,28 @@ public class VisibilityMap implements HasPlayerVisitor
 		playerAffectedTiles.clear();
 	}
 	
-	private void updateResources()
-	{
-		Set<GameTile> tiles = seenTiles.keySet();
+	private void updateItems(Set<GameTile> newVisibles, List<Item> items) {
+		// TODO Auto-generated method stub
+		Iterator<GameTile> i = newVisibles.iterator();
+		while (i.hasNext())
+		{
+			GameTile loc = i.next();
+			itemOnTile.remove(loc);
+		}
 		
-		Iterator<GameTile> i = tiles.iterator();
+		for (int j = 0; j < items.size(); j++)
+		{
+			Item x = items.get(j);
+			if (newVisibles.contains(x.location()))
+			{
+				itemOnTile.put(x.location(), x.token());
+			}
+		}
+	}
+
+	private void updateResources(Set<GameTile> visibles)
+	{	
+		Iterator<GameTile> i = visibles.iterator();
 		while (i.hasNext())
 		{
 			GameTile loc = i.next();
@@ -168,6 +192,9 @@ public class VisibilityMap implements HasPlayerVisitor
 
 	public void visitUnit(Unit u)
 	{
+		if (u.isInRallyPoint())
+			return;
+		
 		GameTile loc = u.location();
 		
 		Integer i;
@@ -345,5 +372,16 @@ public class VisibilityMap implements HasPlayerVisitor
 		{
 			mapBuilder.setResources(resourcesOnTile.get(location));
 		}
+		
+		if (itemOnTile.containsKey(location))
+		{
+			mapBuilder.setItem(itemOnTile.get(location));
+		}
+		
+		if (exploredTiles.containsKey(location))
+		{
+			mapBuilder.setDecal(exploredTiles.get(location));
+		}
+		
 	}
 }
