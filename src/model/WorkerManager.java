@@ -129,8 +129,8 @@ public class WorkerManager implements WorkerGroupFactory
      *
      * @return the new NormalWorkerGroup.
      */
-    public NormalWorkerGroup newNormalWorkerGroup(GameTile location)
+    public NormalWorkerGroup newNormalWorkerGroup(GameTile location, String type)
     {
-        return new NormalWorkerGroup(location, normalStats, this);
+        return new NormalWorkerGroup(location, normalStats, this, type);
     }
 }

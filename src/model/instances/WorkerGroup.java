@@ -152,4 +152,10 @@ public abstract class WorkerGroup extends Locatable
     {
         lv.visitWorkerGroup(this);
     }
+
+    @Override
+    public void doDestruction()
+    {
+        manager.workersRemoved(numWorkers);
+    }
 }
