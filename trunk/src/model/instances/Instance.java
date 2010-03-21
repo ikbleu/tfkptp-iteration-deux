@@ -91,6 +91,15 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	{
 		modifyStat( "statHealth", -delta );
 	}
+
+        final public void heal( int delta )
+        {
+            int curHealth = getStat("statHealth");
+            int maxHealth = getStat("statMaxHealth");
+
+            int healing = Math.min(maxHealth - curHealth, delta);
+            modifyStat( "statHealth", delta );
+        }
 	
 	final protected void setStat( String s, int val )
 	{

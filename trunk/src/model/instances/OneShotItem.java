@@ -7,6 +7,7 @@ package src.model.instances;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.ItemVisitor;
 import src.model.interfaces.ItemEffect;
+import src.model.interfaces.InstanceVisitor;
 import src.model.ItemManager;
 
 import java.util.List;
@@ -96,8 +97,15 @@ public class OneShotItem extends Item
         {
             this.setInfluenceRadius(effect.radius());
 
+            IsRallyPointVisitor isrv = new IsRallyPointVisitor();
+
             for(Instance i : withinRadius)
-                effect.apply(i, location());
+            {
+                i.accept(isrv);
+
+                if(!isrv.isRallyPoint())
+                    effect.apply(i, location());
+            }
         }
         else
         {
@@ -107,5 +115,37 @@ public class OneShotItem extends Item
         ItemManager.getInstance().removeItem(this);
 
         this.destroy();
+    }
+
+    private class IsRallyPointVisitor implements InstanceVisitor
+    {
+        private boolean isRallyPoint;
+
+        public IsRallyPointVisitor()
+        {
+            isRallyPoint = false;
+        }
+
+        public void visitRallyPoint(RallyPoint rp)
+        {
+            isRallyPoint = true;
+        }
+
+        public void visitUnit(Unit u)
+        {
+            isRallyPoint = false;
+        }
+
+        public void visitStructure(Structure s)
+        {
+            isRallyPoint= false;
+        }
+
+        public boolean isRallyPoint()
+        {
+            boolean wasRallyPoint = isRallyPoint;
+            isRallyPoint = false;
+            return wasRallyPoint;
+        }
     }
 }
