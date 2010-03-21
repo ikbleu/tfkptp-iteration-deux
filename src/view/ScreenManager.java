@@ -61,9 +61,8 @@ import com.sun.opengl.util.texture.TextureIO;
 		private static final int overviewWidth = 300;
 		private static final int overviewHeight = 420;
 		
-		//DELETE THESE EVENTUALLY
-        Texture hud_tex;
-		
+                Texture hud_tex;
+		Texture commandSelection_tex;
 		
 		private Animator animator;
 
