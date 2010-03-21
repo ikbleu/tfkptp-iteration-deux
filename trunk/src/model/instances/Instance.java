@@ -185,4 +185,9 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 	
 	abstract public String token();
+
+	public List<GameTile> getVisibleTiles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

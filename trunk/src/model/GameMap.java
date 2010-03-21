@@ -49,9 +49,9 @@ public class GameMap
 		return MAP_RADIUS;
 	}
 	
-	public VisibilityMap toVisibility()
+	public int getDiameter()
 	{
-		return new VisibilityMap();
+		return 2 * MAP_RADIUS + 1;
 	}
 	
 	public void unmarkAll()

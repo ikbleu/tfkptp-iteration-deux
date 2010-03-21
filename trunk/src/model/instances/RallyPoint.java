@@ -3,6 +3,7 @@ package src.model.instances;
 import java.util.List;
 
 import src.model.Player;
+import src.model.enums.Direction;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.vRallyPoint;
 import src.model.interfaces.InstanceVisitor;
@@ -41,5 +42,15 @@ public class RallyPoint extends Instance implements vRallyPoint {
 	public int workers() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public Direction getFacingDirection()
+	{
+		throw new RuntimeException("TODO");
+	}
+	
+	public String getCurrentAction()
+	{
+		throw new RuntimeException("TODO");
 	}
 }
