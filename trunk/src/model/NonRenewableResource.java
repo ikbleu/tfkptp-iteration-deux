@@ -25,4 +25,10 @@ class NonRenewableResource implements Resource
 		return behavior.harvest(i);
 	}
 
+	@Override
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return behavior.getAmount();
+	}
+
 }

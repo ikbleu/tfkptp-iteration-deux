@@ -26,4 +26,8 @@ class RenewableResource implements Resource
 		return behavior.harvest(i);
 	}
 
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return behavior.getAmount();
+	}
 }

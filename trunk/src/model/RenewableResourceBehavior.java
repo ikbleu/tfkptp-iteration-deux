@@ -52,4 +52,8 @@ public class RenewableResourceBehavior implements ResourceBehavior, Tickable
 			currentResources = MAX_RESOURCES;
 	}
 
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return currentResources;
+	}
 }
