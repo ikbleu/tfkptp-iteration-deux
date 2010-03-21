@@ -28,6 +28,8 @@ class GraphicsTableSingleton {
             graphics.put( "Stars", ImageIO.read(new File("artwork/rbStar.jpg")));
             graphics.put( "rbDust", ImageIO.read(new File("artwork/rbDust.jpg")));
             graphics.put( "Dreams", ImageIO.read(new File("artwork/rbDream.jpg")));
+            graphics.put( "Unicorn", ImageIO.read(new File("artwork/rbuni.jpg")));
+            graphics.put( "Dolphin", ImageIO.read(new File("artwork/rbdolph.jpg")));
         }
         catch(Exception e){
             System.out.println("Massive Fail");
