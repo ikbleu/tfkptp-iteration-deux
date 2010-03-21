@@ -16,4 +16,10 @@ public class CommandAdapter implements CommandVisitor {
 		
 	}
 
+	@Override
+	public void visitDirectionCommand(DirectionCommand directionCommand) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
