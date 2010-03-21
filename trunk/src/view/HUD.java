@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.awt.BasicStroke;
 import java.util.LinkedList;
+import java.awt.Font;
 
 import src.model.interfaces.Displayable;
 import src.model.interfaces.vInstance;
@@ -27,9 +28,12 @@ import src.model.interfaces.vInstance;
     private int miniAvHeight = 50;
     private int healthBarHeight = 10;
     private int shift = 65;
+    private int statShift = 22;
     private LinkedList<String> soType;
     private LinkedList<Integer> soHealth;
     private Map<String, Integer> soStats;
+    private Font f1 = new Font( "Times Roman", Font.BOLD, 17 );
+    private Font f2 = new Font( "Times Roman", Font.BOLD, 25 );
 
 
     HUD(int wid, int hei){
@@ -78,6 +82,7 @@ import src.model.interfaces.vInstance;
     	imageBuffer = graphicsTable.getGraphic("hud");
         graphix = imageBuffer.createGraphics();
         graphix.setStroke(new BasicStroke(2.0f));
+        graphix.setFont(f1);
         //testdata
         soType = new LinkedList<String>();
         soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
@@ -87,6 +92,12 @@ import src.model.interfaces.vInstance;
         soHealth.add(76);soHealth.add(76);soHealth.add(76);soHealth.add(76);soHealth.add(76);soHealth.add(76);
         soHealth.add(85);soHealth.add(85);soHealth.add(85);soHealth.add(85);soHealth.add(85);soHealth.add(85);
         soHealth.add(100);soHealth.add(100);soHealth.add(100);
+        //more testing
+        soStats = new HashMap<String, Integer>();
+        soStats.put("Attack", 88);
+        soStats.put("Defense", 76);
+        soStats.put("Armor", 140);
+        soStats.put("Speed", 2);
 
         if(soType!=null){
             if(soStats != null){
@@ -96,6 +107,15 @@ import src.model.interfaces.vInstance;
                                  healthBarHeight);
                 graphix.setColor(Color.MAGENTA);
                 graphix.drawRect(325, 100, miniAvWidth, miniAvHeight+healthBarHeight);
+
+                graphix.setColor(Color.PINK);
+                graphix.setFont(f2);
+                graphix.drawString("Instance Stats:", 1000, 100);
+                graphix.setFont(f1);
+                graphix.drawString("Attack: "+soStats.get("Attack"), 1000, 130);
+                graphix.drawString("Defense: "+soStats.get("Defense"), 1000, 130+statShift*1);
+                graphix.drawString("Armor: "+soStats.get("Armor"), 1000, 130+statShift*2);
+                graphix.drawString("Speed: "+soStats.get("Speed"), 1000, 130+statShift*3);
             }
             else{
                 for(int g = 0; g < soType.size();++g){

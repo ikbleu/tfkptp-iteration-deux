@@ -167,7 +167,7 @@ import src.model.interfaces.Displayable;
 	    				gl.glVertex2d(0,0.7);
 	    				
 	    				gl.glTexCoord2d(1, 0);
-	    				gl.glVertex2d(1, 0.70);
+	    				gl.glVertex2d(1, 0.7);
 	    				
 	    				gl.glTexCoord2d(1, 1);
 	    				gl.glVertex2d(1, 1);
