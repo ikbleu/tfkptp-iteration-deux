@@ -85,7 +85,7 @@ import src.model.interfaces.vInstance;
         graphix.setFont(f1);
         //testdata
         soType = new LinkedList<String>();
-        soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
+        soType.add("Dolphin");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
         soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
         soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
         soHealth = new LinkedList<Integer>();
@@ -116,6 +116,7 @@ import src.model.interfaces.vInstance;
                 graphix.drawString("Defense: "+soStats.get("Defense"), 1000, 130+statShift*1);
                 graphix.drawString("Armor: "+soStats.get("Armor"), 1000, 130+statShift*2);
                 graphix.drawString("Speed: "+soStats.get("Speed"), 1000, 130+statShift*3);
+                graphix.drawImage(graphicsTable.getGraphic(soType.get(0)+"B"), 825, 83, null);
             }
             else{
                 for(int g = 0; g < soType.size();++g){
