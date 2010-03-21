@@ -4,6 +4,8 @@
 
 package src.model;
 
+import src.model.interfaces.InstanceFunction;
+import src.model.interfaces.InstanceHolder;
 import src.model.interfaces.MovementListener;
 import src.model.interfaces.RadiusListener;
 import src.model.interfaces.GameTile;
@@ -22,7 +24,7 @@ import java.util.HashMap;
  *
  * @author Christopher Dudley
  */
-public class AoEManager implements MovementListener, RadiusListener
+public class AoEManager implements MovementListener, RadiusListener, InstanceHolder
 {
     private Map<GameTile, List<Instance>> whosThere;
     private Map<GameTile, List<Locatable>> whosListening;
@@ -210,4 +212,11 @@ public class AoEManager implements MovementListener, RadiusListener
         unregisterListening(thing, location, prevRadius);
         registerListening(thing);
     }
+
+	@Override
+	public void applyToAll(InstanceFunction iF, Player p)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }
