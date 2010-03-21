@@ -14,6 +14,8 @@ abstract class HasAnImage {
     int imageHeight;
     BufferedImage imageBuffer;
 
+    EnumTableSingleton enumTable = EnumTableSingleton.getInstance();
+
     abstract void refreshImage();
     BufferedImage image(){
         return imageBuffer;

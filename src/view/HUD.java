@@ -17,6 +17,7 @@ import src.model.interfaces.Displayable;
     private MiniMap minimap;
 
     HUD(int wid, int hei){
+        graphicsTable = GraphicsTableSingleton.getInstance();
         imageWidth = wid;
         imageHeight = hei;
         imageBuffer = new BufferedImage( wid, hei, BufferedImage.TYPE_INT_ARGB );
@@ -32,7 +33,7 @@ import src.model.interfaces.Displayable;
     }
 
     void refreshImage(){
-    //	imageBuffer = graphicsTable.getGraphic("hud");
+    	imageBuffer = graphicsTable.getGraphic("hud");
     }
 
 }
