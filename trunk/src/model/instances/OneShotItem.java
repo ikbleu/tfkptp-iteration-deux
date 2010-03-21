@@ -7,13 +7,21 @@ package src.model.instances;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.ItemVisitor;
 
+import src.model.instances.Locatable;
+import src.model.instances.Instance;
+
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Represents an item that has an effect and is destroyed after being used.
  *
  * @author Christopher Dudley
  */
-public abstract class OneShotItem extends Item
+public class OneShotItem extends Item
 {
+    private List<Instance> withinRadius;
+
     /**
      * Creates a new one-shot item of the specified type at the specified
      * location.
@@ -24,6 +32,7 @@ public abstract class OneShotItem extends Item
     public OneShotItem(String type, GameTile location)
     {
         super(type, location);
+        withinRadius = new ArrayList<Instance>();
     }
 
     /**
@@ -45,5 +54,28 @@ public abstract class OneShotItem extends Item
     public void accept(ItemVisitor iv)
     {
         iv.visitOneShot(this);
+    }
+
+    public void entered(Locatable thing)
+    {
+        AddInstancesVisitor addy = new AddInstancesVisitor(withinRadius);
+
+        thing.accept(addy);
+    }
+
+    public void exited(Locatable thing)
+    {
+        RemoveInstancesVisitor remmy = new RemoveInstancesVisitor(withinRadius);
+
+        thing.accept(remmy);
+    }
+
+    /**
+     * Causes the item to apply its affect to the instances within its
+     * radius.
+     */
+    public void use()
+    {
+
     }
 }
