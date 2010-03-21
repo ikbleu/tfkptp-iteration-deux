@@ -29,6 +29,10 @@ public class View implements ViewInjection{
                                             Displayable[] direct,
                                             Displayable[] dList,
                                             Displayable selection){
+        if(code.equals("HUD")){
+            screenManager.setCommandSelection(dList);
+            screenManager.setStatusOverview(dList);
+        }
     }
 
     public void injectionCloseMenu(){

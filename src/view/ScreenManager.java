@@ -19,6 +19,8 @@ import com.sun.opengl.util.ImageUtil;
 
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureIO;
+
+import src.model.interfaces.Displayable;
 /**
  *
  * @author rdshack
@@ -70,7 +72,7 @@ import com.sun.opengl.util.texture.TextureIO;
 		
 		private Animator animator;
 
-		public ScreenManager(int mapWidth, int mapHeight){
+		ScreenManager(int mapWidth, int mapHeight){
 			
 			scale = 1.0;
 			panX = 0;
@@ -107,18 +109,27 @@ import com.sun.opengl.util.texture.TextureIO;
 		    this.validate();
 		}
 		
-		public void start(){
+		void start(){
 			animator.start();
 		}
 		
-		public void updateOverview(String title, String subTitle, String[] list) {
+		void updateOverview(String title, String subTitle, String[] list) {
 			overview.setTitle(title);
 			overview.setSubTitle(subTitle);
 			overview.setList(list);
 		}
 
+                void setStatusOverview(Displayable[] d){
+                    hud.setStatusOverview(d);
+                    hud.refreshImage();
+                }
+
+                void setCommandSelection(Displayable[] d){
+                    commandSelection = new CommandSelection(d);
+                }
+
 		
-		public class GraphicListener implements GLEventListener {
+		class GraphicListener implements GLEventListener {
 			
 
 			public void display(GLAutoDrawable drawable) {
