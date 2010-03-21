@@ -1,7 +1,7 @@
 package src.model.interfaces;
 
-import src.model.instances.Locatable;
+import src.model.instances.Instance;
 
 public interface MovementListener {
-	public void locationChanged( Locatable l, GameTile previous );
+	public void locationChanged( Instance i, GameTile previous );
 }
