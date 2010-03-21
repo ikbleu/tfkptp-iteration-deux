@@ -130,9 +130,9 @@ public abstract class WorkerGroup extends Locatable
      * Workers don't care when other objects are within their influence radius,
      * so this does nothing.
      *
-     * @param i the locatable object that has entered the worker's influence radius.
+     * @param i the instance object that has entered the worker's influence radius.
      */
-    public void entered( Locatable i )
+    public void entered( Instance i )
     {
         // Workers don't care what enters their influence radius
     }
@@ -141,9 +141,9 @@ public abstract class WorkerGroup extends Locatable
      * Workers don't care when other objects are within their influence radius,
      * so this does nothing.
      *
-     * @param i the locatable object that has entered the worker's influence radius.
+     * @param i the instance object that has entered the worker's influence radius.
      */
-    public void exited( Locatable i )
+    public void exited( Instance i )
     {
         // Workers don't care about what exits their influence radius
     }
