@@ -6,6 +6,5 @@ package src.util;
  */
 public interface DataVisitor<T> {
     void found(T item);
-    void invalid(T item);
     void missing();
 }
