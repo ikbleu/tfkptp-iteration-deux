@@ -2,6 +2,7 @@ package src.model.instances;
 
 import src.model.Player;
 import src.model.interfaces.GameTile;
+import src.model.interfaces.HasPlayerVisitor;
 import src.model.interfaces.vStructure;
 import src.model.interfaces.InstanceVisitor;
 
@@ -14,5 +15,10 @@ public abstract class Structure extends Instance implements vStructure {
 	final public void accept( InstanceVisitor iv )
 	{
 		iv.visitStructure( this );
+	}
+	
+	public void accept( HasPlayerVisitor v )
+	{
+		v.visitStructure( this );
 	}
 }
