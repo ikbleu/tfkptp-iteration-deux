@@ -20,7 +20,7 @@ import src.model.interfaces.HasPlayerVisitor;
 public class VisibilityMap implements HasPlayerVisitor
 {
 	private Map<GameTile, Integer> unitsPerTile;
-	private Map<GameTile, String> structureOnTile;
+	private Map<GameTile, StructID> structureOnTile;
 	private Map<GameTile, Set<RPPointingID> > rallyPointsOnTile;
 	private Map<GameTile, Set<WorkerID> > workersOnTile;
 	private Map<GameTile, Map<String, Integer> > resourcesOnTile;
@@ -30,14 +30,14 @@ public class VisibilityMap implements HasPlayerVisitor
 	
 	private Map<GameTile, Integer> unitAffectedTiles;
 	private Map<GameTile, Set<RPPointingID> > rallyPointAffectedTiles;
-	private Map<GameTile, String> structureAffectedTiles;
+	private Map<GameTile, StructID> structureAffectedTiles;
 	private Map<GameTile, Boolean> playerAffectedTiles;
 	private Map<GameTile, Set<WorkerID> > workerAffectedTiles;
 
 	public VisibilityMap()
 	{
 		unitsPerTile = new HashMap<GameTile, Integer>();
-		structureOnTile = new HashMap<GameTile, String>();
+		structureOnTile = new HashMap<GameTile, StructID>();
 		rallyPointsOnTile = new HashMap<GameTile, Set<RPPointingID> >();
 		workersOnTile = new HashMap<GameTile, Set<WorkerID> >();
 		resourcesOnTile = new HashMap<GameTile, Map<String, Integer> >();
@@ -45,7 +45,7 @@ public class VisibilityMap implements HasPlayerVisitor
 		playerOwningTile = new HashMap<GameTile, Boolean>();
 		
 		unitAffectedTiles = new HashMap<GameTile, Integer>();
-		structureAffectedTiles = new HashMap<GameTile, String>();
+		structureAffectedTiles = new HashMap<GameTile, StructID>();
 		rallyPointAffectedTiles = new HashMap<GameTile, Set<RPPointingID> >();
 		workerAffectedTiles = new HashMap<GameTile, Set<WorkerID> >();
 		playerAffectedTiles = new HashMap<GameTile, Boolean>();
@@ -89,8 +89,8 @@ public class VisibilityMap implements HasPlayerVisitor
 		updateResources();
 	}
 	
-	private void updateResources() {
-		// TODO Auto-generated method stub
+	private void updateResources()
+	{
 		Set<GameTile> tiles = seenTiles.keySet();
 		
 		Iterator<GameTile> i = tiles.iterator();
@@ -114,7 +114,6 @@ public class VisibilityMap implements HasPlayerVisitor
 		}
 	}
 
-	@Override
 	public void visitRallyPoint(RallyPoint rp)
 	{
 		GameTile loc = rp.location();
@@ -136,17 +135,14 @@ public class VisibilityMap implements HasPlayerVisitor
 		playerAffectedTiles.put(loc, new Boolean(rp.getPlayer().isHuman()));
 	}
 
-	@Override
 	public void visitStructure(Structure s)
 	{
 		GameTile loc = s.location();
-		String sType = s.token();
 		
-		structureAffectedTiles.put(loc, sType);
+		structureAffectedTiles.put(loc, new StructID(s.token(),s.getStat("numSoldiers")));
 		playerAffectedTiles.put(loc, new Boolean(s.getPlayer().isHuman()));		
 	}
 
-	@Override
 	public void visitUnit(Unit u)
 	{
 		GameTile loc = u.location();
@@ -166,9 +162,8 @@ public class VisibilityMap implements HasPlayerVisitor
 		playerAffectedTiles.put(loc, new Boolean(u.getPlayer().isHuman()));
 	}
 
-	@Override
-	public void visitWorkerGroup(WorkerGroup wg) {
-		// TODO Auto-generated method stub
+	public void visitWorkerGroup(WorkerGroup wg)
+	{
 		GameTile loc = wg.location();
 		WorkerID wgid = new WorkerID(wg);
 		
@@ -239,6 +234,28 @@ public class VisibilityMap implements HasPlayerVisitor
 		}
 	}
 
+	private class StructID
+	{
+		private String type;
+		private int numSoldiers;
+		
+		public StructID(String s, int n)
+		{
+			type = s;
+			numSoldiers = n;
+		}
+		
+		public String getType()
+		{
+			return type;
+		}
+		
+		public int getNumSoldiers()
+		{
+			return numSoldiers;
+		}
+	}
+	
 	public void explore(List<GameTile> tileList)
 	{
 		exploredTiles.addAll(tileList);
