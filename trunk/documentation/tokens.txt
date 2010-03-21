@@ -120,6 +120,9 @@ cmdResUnivArmor
 cmdResUnivHealth
 cmdResUnivEfficiency
 
+cmdResWorkerOre
+cmdResWorkerGrain
+cmdResWorkerFuel
 cmdResWorkerMetal
 cmdResWorkerFood
 cmdResWorkerEnergy
