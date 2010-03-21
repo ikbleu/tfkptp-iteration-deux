@@ -91,16 +91,14 @@ public class ResourceManager
     }
 
     /**
-     * Attempts to spend the specified amount of resources. If there are enough
-     * resources to spend for each type, the resources will be subtracted and
-     * true returned. A false will be returned otherwise and no resources will
-     * be spent.
+     * Checks to see if the specified amounts of resources to spend are within
+     * the amounts of resources the player has.
      *
-     * @param toSpend a map of resource type to the amount to spend of it.
+     * @param toSpend the amounts of each resource to spend.
      *
-     * @return whether or not the resources were spent.
+     * @return whether or not there are enough resources to spend that much.
      */
-    public boolean spend(Map<String, Integer> toSpend)
+    public boolean canSpend(Map<String, Integer> toSpend)
     {
         boolean canSpend = true;
 
@@ -112,6 +110,23 @@ public class ResourceManager
             if(resources.get(type) < toSpend.get(type))
                 canSpend = false;
         }
+
+        return canSpend;
+    }
+
+    /**
+     * Attempts to spend the specified amount of resources. If there are enough
+     * resources to spend for each type, the resources will be subtracted and
+     * true returned. A false will be returned otherwise and no resources will
+     * be spent.
+     *
+     * @param toSpend a map of resource type to the amount to spend of it.
+     *
+     * @return whether or not the resources were spent.
+     */
+    public boolean spend(Map<String, Integer> toSpend)
+    {
+        boolean canSpend = canSpend(toSpend);
 
         if(canSpend)
         {
