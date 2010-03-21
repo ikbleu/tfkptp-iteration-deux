@@ -32,6 +32,7 @@ import src.model.interfaces.Displayable;
     }
 
     void refreshImage(){
+    //	imageBuffer = graphicsTable.getGraphic("hud");
     }
 
 }

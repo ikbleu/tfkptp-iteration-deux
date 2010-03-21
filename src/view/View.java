@@ -20,6 +20,7 @@ public class View implements ViewInjection{
     private SakuraMap sakuraMap;
 
     public View(){
+    	GraphicsTableSingleton.getInstance();
         screenManager = new ScreenManager(15, 15);
         screenManager.start();
     }
