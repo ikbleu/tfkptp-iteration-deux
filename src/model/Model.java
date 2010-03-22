@@ -26,7 +26,6 @@ public class Model {
 		
 		try {
 			c = new DethKlok(orderList, TICK_LENGTH);
-			c.start();
 		} catch (YoureDoingItWrongException e)
 		{
 			e.printStackTrace();
@@ -54,6 +53,8 @@ public class Model {
 		UnitInitializer.initialize( human );
 		StructureInitializer.initialize( human );
 		RallyPointInitializer.initialize( human );
+		
+		c.start();
 	}
 	
 	public Clock getClock()

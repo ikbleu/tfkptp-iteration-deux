@@ -29,7 +29,7 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
     private Map<GameTile, List<Instance>> whosThere;
     private Map<GameTile, List<Locatable>> whosListening;
     
-    final private boolean DEBUGGING = true; // TODO: remove references to this
+    final private boolean DEBUGGING = false; // TODO: remove references to this
 
     private List<Instance> thingsThere;
     private List<Locatable> thingsListening;
