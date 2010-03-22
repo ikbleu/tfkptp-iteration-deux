@@ -47,6 +47,17 @@ This is Adam Szpakowski's time-log for Iteration 2 of Dave Small's OOP class (Sp
 === 10:50 to 24:00 ===
   * Programming
 
+== Sunday, 21 Mar ==
+=== 00:00 to 3:15 ===
+=== 10:50 to 24:00 ===
+  * Programming
+
+== Monday, 22 Mar ==
+=== 00:00 to 4:45 ===
+=== 08:30 to 16:45 ===
+  * Programming
+  * Panicking
+
 = Sources =
   * [http://www-cs-students.stanford.edu/~amitp/gameprog.html#hex List of resources on hex grids]
   * [http://www.gamedev.net/reference/articles/article1800.asp Detailed info about hex grids]
