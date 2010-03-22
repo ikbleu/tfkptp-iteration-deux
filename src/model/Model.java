@@ -12,7 +12,6 @@ import src.model.interfaces.Clock;
 import src.util.HandFactory;
 
 public class Model {
-	public Player p; // TODO: remove (testing purposes)
 	private DethKlok c;
 	private GameMap map; 
 	
@@ -48,7 +47,6 @@ public class Model {
 		
 		human = new Player( true, hFact, map, map.getStartingLocation1(), rm, c);
                 rm.setPlayer(human);
-		p = human; // TODO: remove
 		// TODO: ai? map?
 
                 WorkerManager wm = new WorkerManager(human, rm);

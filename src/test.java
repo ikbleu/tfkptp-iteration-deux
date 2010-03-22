@@ -14,7 +14,7 @@ public class test {
 	public static void main( String[] args )
 	{
                 Model m = new Model( new HandFactoryImp() );
-		Player p = m.p;
+		Player p = m.human();
 
 		System.out.println( "cmdMakeRanged" );
 		p.executeCommand( new NoArgsCommand( "cmdMakeRanged", null, 0 ) );
