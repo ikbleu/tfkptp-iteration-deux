@@ -45,6 +45,8 @@ public class VisibilityMap implements HasPlayerVisitor
 	private Map<GameTile, StructID> structureAffectedTiles;
 	private Map<GameTile, Boolean> playerAffectedTiles;
 	private Map<GameTile, Set<WorkerID> > workerAffectedTiles;
+	
+	private final boolean DEBUGGING = true;
 
 	public VisibilityMap()
 	{
