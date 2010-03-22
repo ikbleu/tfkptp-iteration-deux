@@ -57,6 +57,16 @@ public class HasPlayerManager
 		
 	}
 	
+	public Player getPlayerOf(GameTile t)
+	{
+		if (!hasPlayerMap.containsKey(t))
+			return null;
+		
+		Set<HasPlayer> s = hasPlayerMap.get(t);
+		return s.iterator().next().getPlayer();
+		
+	}
+	
 	public boolean move(GameTile to, GameTile from, HasPlayer hp) throws YoureDoingItWrongException
 	{
 		if(!hasPlayerMap.containsKey(to))

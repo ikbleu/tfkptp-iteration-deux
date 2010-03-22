@@ -82,7 +82,14 @@ class HexTile implements GameTile
 	
 	public String toString()
 	{
-		return "(" + getX() + ", " + getY() + ", " + getZ() + "): " + terrain;
+		String s = "(" + getX() + ", " + getY() + ", " + getZ() + "): " + terrain + "\n";
+		
+		for (Resource resource : resources)
+		{
+			s += resource.getResourceType() + ": " + resource.getAmount() + "\n";
+		}
+		
+		return s;
 	}
 
 	public String getTerrainType()
