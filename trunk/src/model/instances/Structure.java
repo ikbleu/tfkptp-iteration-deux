@@ -1,5 +1,7 @@
 package src.model.instances;
 
+import java.util.Map;
+
 import src.model.Player;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayerVisitor;
@@ -26,5 +28,23 @@ public abstract class Structure extends Instance implements vStructure {
 	public void accept( HasPlayerVisitor v )
 	{
 		v.visitStructure( this );
+	}
+	
+	@Override
+	public Map<String, Integer> getUpkeep() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void sentUpkeep(Map<String, Integer> resources) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int workers() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
