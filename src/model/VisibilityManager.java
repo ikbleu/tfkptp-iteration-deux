@@ -1,12 +1,12 @@
 package src.model;
 
-import java.util.HashSet;
-import java.util.List;
+//import java.util.HashSet;
+//import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import src.model.enums.DecalType;
-import src.model.enums.Direction;
+//import src.model.enums.Direction;
 import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayer;
@@ -45,7 +45,7 @@ public class VisibilityManager implements SakuraMap, Tickable
 		}
 	}
 	
-	private boolean DEBUG = true;
+	//private boolean DEBUG = true;
 	
 	public void update()
 	{
@@ -65,7 +65,6 @@ public class VisibilityManager implements SakuraMap, Tickable
 	
 	@Override
 	public void build(MapBuilder[][] b) {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < b.length; i++)
 		{	
 			for (int j = 0; j < b[i].length;j++)
