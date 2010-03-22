@@ -24,7 +24,7 @@ import src.model.interfaces.GameTile;
 import src.util.handv1.HandFactoryImp;
 import src.view.View;
 
-public class test {
+public class RunGame {
 	public static void main( String[] args )
 	{
         Model m = new Model( new HandFactoryImp() );
