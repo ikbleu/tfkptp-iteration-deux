@@ -69,8 +69,6 @@ class GraphicsTableSingleton {
             graphics.put( "MoveSE", ImageIO.read(new File("artwork/arrows/MoveSE.png")));
             graphics.put( "MoveNE", ImageIO.read(new File("artwork/arrows/MoveNE.png")));
 
-
-
             graphics.put( "EnergyT", ImageIO.read(new File("artwork/BlackStar.PNG")));
             graphics.put( "FoodT", ImageIO.read(new File("artwork/circle.png")));
             graphics.put( "OreT", ImageIO.read(new File("artwork/DarkMoon.PNG")));
