@@ -5,7 +5,7 @@ import java.util.Map;
 
 import src.model.commands.CommandFactory;
 
-public interface vUnit 
+public interface vUnit extends vInstance
 {
 	void stats( Map< String, Integer > m );
 	public int id();
