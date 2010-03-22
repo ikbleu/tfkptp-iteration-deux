@@ -46,7 +46,7 @@ public class VisibilityMap implements HasPlayerVisitor
 	private Map<GameTile, Boolean> playerAffectedTiles;
 	private Map<GameTile, Set<WorkerID> > workerAffectedTiles;
 	
-	private final boolean DEBUGGING = true;
+	private final boolean DEBUGGING = false;
 
 	public VisibilityMap()
 	{
@@ -339,7 +339,6 @@ public class VisibilityMap implements HasPlayerVisitor
 			mapBuilder.setVisibility(Visibility.NON_VISIBLE);
 			return;
 		}
-		System.out.println(location);
 		
 		if (unitsPerTile.containsKey(location))
 		{
@@ -388,6 +387,8 @@ public class VisibilityMap implements HasPlayerVisitor
 		
 		if (seenTiles.containsKey(location))
 		{
+			System.out.println(location);
+			System.out.println("is in VisibilityMap");
 			mapBuilder.setVisibility(seenTiles.get(location));
 		}
 		else
