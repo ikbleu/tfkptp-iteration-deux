@@ -1,5 +1,7 @@
 package src.model.instances.units;
 
+import java.util.Map;
+
 import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.CommandAdapter;
@@ -27,19 +29,80 @@ import src.model.interfaces.vType;
 import src.util.Hand;
 
 public abstract class SpecificUnitManager implements InstanceExistenceListener, Device, vType {
-	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f, Player p, Hand< Device > h ) {
+	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f, Player p, Hand< Device > h, 
+			Map< String, Integer > baseStats, final Map< String, Integer > deltaStats, Map< String, Integer > resourceCost,
+			String researchID ) {
 		manager = m;
 		factory = f;
 		hand = h;
 		player = p;
+		this.deltaStats = deltaStats;
+		this.researchID = researchID;
+		this.resourceCost = resourceCost;
+		
+		for ( Map.Entry< String, Integer > e : baseStats.entrySet() )
+			factory.modDefaultStat( e.getKey(), e.getValue() );
+		
+		p.addCommandListener( "cmdRes" + researchID + "VisRadius", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statVisibilityRadius", deltaStats.get( "statVisibilityRadius" ) );
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "AtkPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statAttackPower", deltaStats.get( "statAttackPower" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "DefPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statDefensePower", deltaStats.get( "statDefensePower" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Armor", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statArmor", deltaStats.get( "statArmor" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Movement", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statMoveSpeed", deltaStats.get( "statMoveSpeed" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Health", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statMaxHealth", deltaStats.get( "statMaxHealth" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Efficiency", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					unitFactory().modDefaultStat( "statEfficiency", deltaStats.get( "statEfficiency" ));
+			}
+		});
 	}
 	private GeneralUnitManager manager; 
 	private UnitFactory factory;
 	private Hand< Device > hand;
 	private Player player;
+	private Map< String, Integer > deltaStats;
+	private String researchID;
+	private Map< String, Integer > resourceCost;
 	
 	public boolean canMakeUnit()
 	{
+		// TODO: check resources
 		return canMakeSpecificUnit() && manager.canMakeUnit();
 	}
 	
@@ -48,6 +111,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 	// precondition: canMakeUnit() is true
 	final public Unit makeUnit( GameTile g )
 	{
+		// TODO: subtract resources
 		final Unit u = factory.makeInstance( g );
 		
 		u.addCommandListener( "cmdDecommission", new CommandListener() {
@@ -130,6 +194,55 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 			}
 			public void newInstance(Instance i) {
 				
+			}
+		});
+
+		player.addCommandListener( "cmdRes" + researchID + "VisRadius", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statVisibilityRadius", deltaStats.get( "statVisibilityRadius" ) );
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "AtkPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statAttackPower", deltaStats.get( "statAttackPower" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "DefPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statDefensePower", deltaStats.get( "statDefensePower" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Armor", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statArmor", deltaStats.get( "statArmor" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Movement", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statMoveSpeed", deltaStats.get( "statMoveSpeed" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Health", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statMaxHealth", deltaStats.get( "statMaxHealth" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Efficiency", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					u.modifyStat( "statEfficiency", deltaStats.get( "statEfficiency" ));
 			}
 		});
 

@@ -375,6 +375,6 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
          */
         public void sentUpkeep(Map<String, Integer> resources)
         {
-
+        	
         }
 }

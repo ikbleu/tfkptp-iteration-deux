@@ -28,8 +28,8 @@ class Ranged extends Unit {
 		// how pathetic
 	}
 
-        public void sentUpkeep(Map<String, Integer> resources)
-        {
+    public void sentUpkeep(Map<String, Integer> resources)
+    {
 
-        }
+    }
 }
