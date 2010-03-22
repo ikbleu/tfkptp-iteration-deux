@@ -255,8 +255,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 
 	public List<GameTile> getVisibleTiles() {
-		// TODO Auto-generated method stub
-		return null;
+		int visRad = getStat("statVisibilityRadius");
+                return location().getTilesAround(visRad);
 	}
 	
 	public Player getPlayer()
