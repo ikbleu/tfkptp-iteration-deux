@@ -30,7 +30,7 @@ import src.model.interfaces.Displayable;
     	
     	title = "TestTitle";
     	subTitle = "TestSub";
-    	selected = 0;
+    	selected = 1;
 
         imageWidth = 604;
         imageHeight = 517;
@@ -67,9 +67,10 @@ import src.model.interfaces.Displayable;
     	
     	if(code == "SO")
     		title = "Structure Overview";
-    	else
+    	else if(code == "UO")
     		title = "Unit Overview";
-
+    	else
+    		title = "Technology Tree";
     	
     }
 
@@ -77,7 +78,7 @@ import src.model.interfaces.Displayable;
     	
     	//testing
     	dir = new String[] {"RallyPoint2", "Archer1"};
-    	instance = new String[] {"Shoot", "Move", "Swim"};
+    	instance = new String[] {"Shoot", "Move", "Swim", "Jump", "Eat", "Bake", "Fly", "Smooch", "Jog", "Write Poetry", "Sing", "Stalk", "Skip", "Dream", "Go on a Road Trip", "Paint", "Eat Sushi"};
     	
     	
         graphix.drawImage(graphicsTable.getGraphic("Overview"), 0, 0, null);
@@ -92,13 +93,15 @@ import src.model.interfaces.Displayable;
         		graphix.drawString(dir[i], 60 + 20*i, 150 + 28*i);
         	}
         
-        
+        	int j=Math.max(0,selected-4);
         	if(instance!=null) {
-        		for(int i=0; i<instance.length; i++) {
-        			if(selected==i)
-        				graphix.setColor(Color.PINK);
-        			graphix.drawString(instance[i], 90 + 20*dir.length, 210 + 28*i);
-        			graphix.setColor(Color.WHITE);
+        		for(int i=0; i<8; i++) {
+	        		if(selected==j)
+	        			graphix.setColor(Color.PINK);
+	        		graphix.drawString(instance[j], 90 + 20*dir.length, 210 + 28*i);
+	        		graphix.setColor(Color.WHITE);
+	        		if(++j>=instance.length)
+	        			break;
         		}
         	}
         }

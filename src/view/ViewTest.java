@@ -15,6 +15,6 @@ public class ViewTest {
     public static void main(String[] args) {
         View viewTest = new View();
         Displayable[] dt = new Displayable[1];
-        viewTest.injectionFairyLily("SO", dt, dt, dt[0]);
+        viewTest.injectionFairyLily("TT", dt, dt, dt[0]);
     }
 }
