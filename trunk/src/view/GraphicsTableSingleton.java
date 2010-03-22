@@ -49,15 +49,31 @@ class GraphicsTableSingleton {
             graphics.put( "rbDust", ImageIO.read(new File("artwork/rbDust.jpg")));
             graphics.put( "Dreams", ImageIO.read(new File("artwork/rbDream.jpg")));
 
-            graphics.put( "Ranged", ImageIO.read(new File("artwork/rbuni.jpg")));
-            graphics.put( "Melee", ImageIO.read(new File("artwork/rbdolph.jpg")));
-            graphics.put( "Explorer", ImageIO.read(new File("artwork/narwhal.jpg")));
-            graphics.put( "Colonist", ImageIO.read(new File("artwork/rainbowBrite.jpg")));
+            graphics.put( "instanceRanged", ImageIO.read(new File("artwork/rbuni.jpg")));
+            graphics.put( "instanceMelee", ImageIO.read(new File("artwork/rbdolph.jpg")));
+            graphics.put( "instanceExplorer", ImageIO.read(new File("artwork/narwhal.jpg")));
+            graphics.put( "instanceColonist", ImageIO.read(new File("artwork/rainbowBrite.jpg")));
+            graphics.put( "instanceCapital", ImageIO.read(new File("artwork/castle.jpg")));
+            graphics.put( "instanceFortress", ImageIO.read(new File("artwork/fortt.jpg")));
+            graphics.put( "instanceTower", ImageIO.read(new File("artwork/towerr.jpg")));
+            graphics.put( "instanceFarm", ImageIO.read(new File("artwork/barnn.jpg")));
+            graphics.put( "instancePowerPlant", ImageIO.read(new File("artwork/powerplantt.jpg")));
+            graphics.put( "instanceUniversity", ImageIO.read(new File("artwork/univ.jpg")));
+            //graphics.put( "instanceMine", ImageIO.read(new File("artwork/minee.gif")));
 
-            graphics.put( "RangedB", ImageIO.read(new File("artwork/rbuniB.jpg")));
-            graphics.put( "MeleeB", ImageIO.read(new File("artwork/rbdolphB.jpg")));
-            graphics.put( "ExplorerB", ImageIO.read(new File("artwork/narwhalB.jpg")));
-            graphics.put( "ColonistB", ImageIO.read(new File("artwork/rainbowBriteB.jpg")));
+            graphics.put( "instanceCapitalB", ImageIO.read(new File("artwork/castleB.jpg")));
+            graphics.put( "instanceFortressB", ImageIO.read(new File("artwork/fortB.jpg")));
+            graphics.put( "instanceTowerB", ImageIO.read(new File("artwork/towerB.jpg")));
+            graphics.put( "instanceFarmB", ImageIO.read(new File("artwork/barnB.jpg")));
+            graphics.put( "instancePowerPlantB", ImageIO.read(new File("artwork/powerplantB.jpg")));
+            graphics.put( "instanceUniversityB", ImageIO.read(new File("artwork/univB.jpg")));
+            //graphics.put( "instanceMineB", ImageIO.read(new File("artwork/mineB.gif")));
+            System.out.println("greetings");
+
+            graphics.put( "instanceRangedB", ImageIO.read(new File("artwork/rbuniB.jpg")));
+            graphics.put( "instanceMeleeB", ImageIO.read(new File("artwork/rbdolphB.jpg")));
+            graphics.put( "instanceExplorerB", ImageIO.read(new File("artwork/narwhalB.jpg")));
+            graphics.put( "instanceColonistB", ImageIO.read(new File("artwork/rainbowBriteB.jpg")));
 
             graphics.put( "Command", ImageIO.read(new File("artwork/rbCommand.jpg")));
             graphics.put( "GRASSLAND", ImageIO.read(new File("artwork/grassland.png")));
