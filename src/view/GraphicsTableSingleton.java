@@ -34,6 +34,8 @@ class GraphicsTableSingleton {
             graphics.put( "DolphinB", ImageIO.read(new File("artwork/rbdolphB.jpg")));
             graphics.put( "Command", ImageIO.read(new File("artwork/rbCommand.jpg")));
             graphics.put( "Grassland", ImageIO.read(new File("artwork/grassland.png")));
+            graphics.put( "DefendN", ImageIO.read(new File("artwork/testarrow.png")));
+            graphics.put( "base", ImageIO.read(new File("artwork/castle.jpg")));
             graphics.put( "Overview", ImageIO.read(new File("artwork/overview.png")));
         }
         catch(Exception e){
