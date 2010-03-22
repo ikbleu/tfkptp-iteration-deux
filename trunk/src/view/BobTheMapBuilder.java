@@ -28,7 +28,7 @@ class BobTheMapBuilder implements MapBuilder{
         private String structure;
         private int soldiers;
         private int individualUnits;
-        private Map<String, Integer> resources;
+        private Map<String, Integer> resources = new HashMap<String, Integer>();
         private HashMap<String, Integer> workerGroups = new HashMap<String, Integer>();
         private String item;
         private String decal;
@@ -55,7 +55,7 @@ class BobTheMapBuilder implements MapBuilder{
         resources = null;
         item = null;
         decal = null;
-        rallyPoints = null;
+        rallyPoints = new LinkedList<RallyPointV>();
         visibility = null;
         terrain = null;
         individualUnits = -1;
@@ -153,7 +153,7 @@ class BobTheMapBuilder implements MapBuilder{
         }
         structure = null;
         soldiers = -1;
-        resources = null;
+        resources = new HashMap<String,Integer>();
         item = null;
         decal = null;
         rallyPoints = null;
@@ -177,38 +177,38 @@ class BobTheMapBuilder implements MapBuilder{
             graphix.setColor(Color.BLACK);
             if(structure != null)
             graphix.drawImage(graphicsT.getGraphic(structure), centerX - idsSize/2, centerY - idsSize/2 , idsSize, idsSize, null);
-            if(resources.get("Energy")!=null){
+            if(resources.containsKey("Energy")){
                 graphix.setColor(Color.WHITE);
                 graphix.drawImage(graphicsT.getGraphic("EnergyT"), centerX - 8*imageSpacing, centerY - idsSize - 20, 30,30, null);
                 graphix.drawString(""+resources.get("Energy"), centerX - 5*imageSpacing, centerY - idsSize );          
             }
-            if(resources.get("Ore")!=null){
+            if(resources.containsKey(("Ore"))){
                 graphix.drawImage(graphicsT.getGraphic("OreT"), centerX - 28*imageSpacing, centerY - idsSize - 20, 30,30, null);
                 graphix.drawString(""+resources.get("Ore"), centerX - 25*imageSpacing, centerY - idsSize );
             }
-            if(resources.get("Food")!=null){
+            if(resources.containsKey(("Food"))){
                 graphix.drawImage(graphicsT.getGraphic("FoodT"), centerX + 12*imageSpacing, centerY - idsSize - 20, 30,30, null);
                 graphix.drawString(""+resources.get("Food"), centerX + 15*imageSpacing, centerY - idsSize );
             }
-            if(workerGroups.get("wgGrain")!=null){
+            if(workerGroups.containsKey(("wgGrain"))){
                 graphix.drawImage(graphicsT.getGraphic("FoodT"), centerX - 8*imageSpacing, centerY + 2*idsSize - 20, 30,30, null);
                 graphix.drawString(""+workerGroups.get("wgGrain"), centerX - 5*imageSpacing, centerY + 2*idsSize );
             }
-            if(workerGroups.get("wgOre")!=null){
+            if(workerGroups.containsKey(("wgOre"))){
                 graphix.drawImage(graphicsT.getGraphic("OreT"), centerX - 8*imageSpacing, centerY + 2*idsSize - 20, 30,30, null);
                 graphix.drawString(""+workerGroups.get("wgOre"), centerX - 5*imageSpacing, centerY + 2*idsSize );
             }
-            if(workerGroups.get("wgFuel")!=null){
+            if(workerGroups.containsKey(("wgFuel"))){
                 graphix.drawImage(graphicsT.getGraphic("EnergyT"), centerX - 8*imageSpacing, centerY + 2*idsSize - 20, 30,30, null);
                 graphix.drawString(""+workerGroups.get("wgFuel"), centerX - 5*imageSpacing, centerY + 2*idsSize );
             }
-            if(workerGroups.get("wgIdle")!=null){
+            if(workerGroups.containsKey(("wgIdle"))){
                 graphix.drawString("I: "+workerGroups.get("wgIdle"), centerX + 1*idsSize , centerY + 2*imageSpacing);
             }
-            if(workerGroups.get("wgBreeding")!=null){
+            if(workerGroups.containsKey(("wgBreeding"))){
                 graphix.drawString("B: "+workerGroups.get("wgBreeding"), centerX - 2*idsSize - 3*imageSpacing, centerY + 2*imageSpacing);
             }
-            if(workerGroups.get("wgStaff")!=null){
+            if(workerGroups.containsKey(("wgStaff"))){
                 graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
             }
         }
