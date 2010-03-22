@@ -25,7 +25,6 @@ public class OneShotItem extends Item
     private ItemEffect effect;
 
     private boolean triggered;
-    private Instance trigger;
 
     /**
      * Creates a new one-shot item of the specified type at the specified
@@ -40,7 +39,6 @@ public class OneShotItem extends Item
         withinRadius = new ArrayList<Instance>();
         this.effect = effect;
         triggered = false;
-        trigger = null;
     }
 
     /**
@@ -70,19 +68,13 @@ public class OneShotItem extends Item
         if(!triggered)
         {
             triggered = true;
-            trigger = thing;
+            use(thing);
         }
     }
 
     public void exited(Instance thing)
     {
         withinRadius.remove(thing);
-    }
-
-    public void tick()
-    {
-        if(triggered)
-            use(trigger);
     }
 
     /**

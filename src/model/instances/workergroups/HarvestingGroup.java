@@ -5,7 +5,9 @@
 package src.model.instances.workergroups;
 
 import src.model.interfaces.GameTile;
+import src.model.interfaces.Resource;
 import src.model.WorkerManager;
+import src.model.ResourceManager;
 
 import src.model.instances.WorkerGroup;
 
@@ -19,14 +21,17 @@ import java.util.Map;
  */
 public class HarvestingGroup extends WorkerGroup
 {
+    private ResourceManager rscMan;
+
     private String resourceType;
 
     private String token;
 
     public HarvestingGroup(GameTile location, Map<String, Integer> stats,
-            WorkerManager manager, String resourceType)
+            WorkerManager manager, String resourceType, ResourceManager rscMan)
     {
         super(location, stats, manager);
+        this.rscMan = rscMan;
 
         this.resourceType = resourceType;
 
@@ -48,7 +53,12 @@ public class HarvestingGroup extends WorkerGroup
      */
     public void harvest()
     {
-        //TODO: code this once I know how player and tiles handle resources.
+        GameTile location = location();
+        Resource res = location.getResource(resourceType);
+        int harvestAmt = getStat(resourceType + "Rate") * numWorkers();
+        int actHarvest = res.harvest(harvestAmt);
+
+        rscMan.harvested(resourceType, actHarvest);
     }
 
     public String token()
