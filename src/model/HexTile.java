@@ -228,6 +228,34 @@ class HexTile implements GameTile
 		}
 	}
 	
+	public List<HexTile> getHexTilesAround(int radius)
+	{
+		List<HexTile> l = new ArrayList<HexTile>();
+		getHexTilesAroundHelper(l, this, radius);
+		this.unmark();		
+		return l;
+	}
+	
+	private void getHexTilesAroundHelper(List<HexTile> list, HexTile tile, int radius)
+	{
+		if (!tile.isMarked())
+			list.add(tile);
+		tile.mark();
+		
+		
+		if (radius > 0)
+		{
+			
+			Direction d = Direction.N;
+			do
+			{
+				if (tile.hasNeighbor(d))
+					getTilesAroundHelper(list, tile.getNeighbor(d), radius - 1);
+				d = d.clockwise();
+			} while (d != Direction.N);
+		}
+	}
+	
 	public int getDistanceFrom(GameTile t)
 	{
 		return (Math.abs(this.getX() - t.getX())+ Math.abs(this.getY() - t.getY())+ Math.abs(this.getZ() - t.getZ()))/2;

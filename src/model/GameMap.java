@@ -1,5 +1,6 @@
 package src.model;
 
+import java.util.List;
 import java.util.Set;
 
 import src.model.enums.Direction;
@@ -37,10 +38,16 @@ public class GameMap
 		 	 startingLocation2.getNeighborHex(Direction.S) != null;
 		 	 startingLocation2 = startingLocation2.getNeighborHex(Direction.S));
 		
-		startingLocation1.setTerrainType(rand.defaultValue());
+		List<HexTile> startAreasList = startingLocation1.getHexTilesAround(2);
+		startAreasList.addAll(startingLocation2.getHexTilesAround(2));
+		
+		for (HexTile t : startAreasList)
+		{
+			t.setTerrainType(rand.defaultValue());
+		}
+		
 		startingLocation1.setResources(resourceGrabber.getResources(false));
 		
-		startingLocation2.setTerrainType(rand.defaultValue());
 		startingLocation2.setResources(resourceGrabber.getResources(false));
 		
 		
