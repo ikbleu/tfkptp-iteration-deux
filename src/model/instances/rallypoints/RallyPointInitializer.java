@@ -4,6 +4,8 @@ import src.model.Player;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.units.RangedManager;
+import src.model.interfaces.ViewVisitor;
+import src.model.interfaces.vGroup;
 import src.util.Hand;
 
 public class RallyPointInitializer {
@@ -11,7 +13,7 @@ public class RallyPointInitializer {
 	{
 		final Hand< Device > rpHand = p.handFactory().make( Device.class );
 		final Hand< Device > armyHand = p.handFactory().make( Device.class );
-		Device d = new Device()
+		Device d = new vGroup()
 		{
 			public String context()
 			{
@@ -20,7 +22,7 @@ public class RallyPointInitializer {
 			
 			public String meaning()
 			{
-				return "Rally Point";
+				return "groupRallyPoint";
 			}
 			
 			public void direct(KeyEventInterpreterBuilder builder)
@@ -33,8 +35,20 @@ public class RallyPointInitializer {
 				// TODO Auto-generated method stub
 				return meaning();
 			}
+
+			@Override
+			public String token() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+			
+			@Override
+			public void accept(ViewVisitor v) {
+				// TODO Auto-generated method stub
+				
+			}
 		};
-		Device d2 = new Device()
+		Device d2 = new vGroup()
 		{
 			public String context()
 			{
@@ -43,7 +57,7 @@ public class RallyPointInitializer {
 			
 			public String meaning()
 			{
-				return "Army";
+				return "groupArmy";
 			}
 			
 			public void direct(KeyEventInterpreterBuilder builder)
@@ -55,6 +69,18 @@ public class RallyPointInitializer {
 			public String comparable() {
 				// TODO Auto-generated method stub
 				return meaning();
+			}
+
+			@Override
+			public String token() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+			
+			@Override
+			public void accept(ViewVisitor v) {
+				// TODO Auto-generated method stub
+				
 			}
 		};
 		

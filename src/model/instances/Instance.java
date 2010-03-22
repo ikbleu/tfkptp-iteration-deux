@@ -21,6 +21,7 @@ import src.model.interfaces.InstanceVisitor;
 import src.model.interfaces.MovementListener;
 import src.model.interfaces.StatsListener;
 import src.model.interfaces.ViewListener;
+import src.model.interfaces.ViewVisitor;
 import src.model.interfaces.vInstance;
 import src.model.interfaces.LocatableVisitor;
 import src.model.interfaces.vInstanceVisitor;
@@ -291,4 +292,10 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		return queue.peek().token();
 	}
 	private LinkedList< Command > queue = new LinkedList< Command >();
+
+	@Override
+	public void accept(ViewVisitor v) {
+		// TODO Auto-generated method stub
+		v.visitInstance( this );
+	}
 }

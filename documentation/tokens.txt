@@ -1,5 +1,33 @@
 TOKENS USED:
 
+**Groups
+groupUnit
+groupStructure
+groupRallyPoint
+groupArmy
+
+**Types
+typeEntire
+typeBG
+typeReinf
+typeRanged
+typeColonist
+typeMelee
+typeExplorer
+typeFortress
+typeObsTower
+typeCapital
+typeUniversity
+typeMine
+typeFarm
+typePowerPlant
+
+**Instances
+token (see below)
+
+**Commands
+(see below)
+
 **Stats
 statHealth
 statInfluenceRadius

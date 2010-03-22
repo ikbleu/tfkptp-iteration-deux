@@ -5,9 +5,11 @@ import src.model.control.Behavior;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.Instance;
+import src.model.interfaces.ViewVisitor;
+import src.model.interfaces.vCommand;
 import src.util.Hand;
 
-public abstract class CommandFactory implements Device {
+public abstract class CommandFactory implements Device, vCommand {
 	public CommandFactory( Player p, String token, int numTicks )
 	{
 		this( p, token, numTicks, false );
@@ -72,5 +74,10 @@ public abstract class CommandFactory implements Device {
 	final public void removeArgument( Argument a )
 	{
 		hand.remove( a );
+	}
+	
+	public void accept( ViewVisitor v )
+	{
+		v.visitCommand( this );
 	}
 }

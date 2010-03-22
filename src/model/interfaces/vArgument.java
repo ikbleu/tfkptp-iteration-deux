@@ -1,5 +1,7 @@
 package src.model.interfaces;
 
-public interface vArgument {
+import src.model.control.Behavior;
+
+public interface vArgument extends Behavior {
 	public String token();
 }

@@ -1,5 +1,7 @@
 package src.model.interfaces;
 
-public interface vType {
+import src.model.control.Device;
+
+public interface vType extends Device {
 	public String token();
 }

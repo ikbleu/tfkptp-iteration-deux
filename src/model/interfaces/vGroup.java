@@ -1,5 +1,7 @@
 package src.model.interfaces;
 
-public interface vGroup {
+import src.model.control.Device;
+
+public interface vGroup extends Device {
 	public String token();
 }

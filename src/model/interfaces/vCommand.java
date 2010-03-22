@@ -1,5 +1,7 @@
 package src.model.interfaces;
 
-public interface vCommand {
+import src.model.control.Device;
+
+public interface vCommand extends Device {
 	public String token();
 }
