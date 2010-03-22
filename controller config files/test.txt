@@ -1,75 +1,95 @@
+begincontext
 DDcont::4
-    BBmean:41
-    BBmean:42
-    BBmean:43
+    BBmean:41				Z
+    BBmean:42				Y
+    BBmean:43				X
+begincontext
 DDcont::5
-    BBmean:51
-    BBmean:52
-    BBmean:53
+    BBmean:51				W
+    BBmean:52				V
+    BBmean:53				U
+begincontext
 DDcont::6
-    BBmean:61
-    BBmean:62
-    BBmean:63
+    BBmean:61				T
+    BBmean:62				S
+    BBmean:63				R
+begincontext
 BBcont:41
-    41:a
-    41:b
-    41:c
-    41:d
-    41:e
-    41:f
+    41:a					A
+    41:b					B
+    41:c					C
+    41:d					D
+    41:e					E
+    41:f					F
+begincontext
 BBcont:42
-    42:a
-    42:b
-    42:c
-    42:d
-    42:e
-    42:f
+    42:a					A
+    42:b					B
+    42:c					C
+    42:d					D
+    42:e					E
+    42:f					F
+begincontext
 BBcont:43
-    43:a
-    43:b
-    43:c
-    43:d
-    43:e
-    43:f
+    43:a					A
+    43:b					B
+    43:c					C
+    43:d					D
+    43:e					E
+    43:f					F
+begincontext
 BBcont:51
-    51:a
-    51:b
-    51:c
-    51:d
-    51:e
-    51:f
+    51:a					A
+    51:b					B
+    51:c					C
+    51:d					D
+    51:e					E
+    51:f					F
+begincontext
 BBcont:52
-    52:a
-    52:b
-    52:c
-    52:d
-    52:e
-    52:f
+    52:a					A
+    52:b					B
+    52:c					C
+    52:d					D
+    52:e					E
+    52:f					F
+begincontext
 BBcont:53
-    53:a
-    53:b
-    53:c
-    53:d
-    53:e
-    53:f
+    53:a					A
+    53:b					B
+    53:c					C
+    53:d					D
+    53:e					E
+    53:f					F
+begincontext
 BBcont:61
-    61:a
-    61:b
-    61:c
-    61:d
-    61:e
-    61:f
+    61:a					A
+    61:b					B
+    61:c					C
+    61:d					D
+    61:e					E
+    61:f					F
+begincontext
 BBcont:62
-    62:a
-    62:b
-    62:c
-    62:d
-    62:e
-    62:f
+    62:a					A
+    62:b					B
+    62:c					C
+    62:d					D
+    62:e					E
+    62:f					F
+begincontext
 BBcont:63
-    63:a
-    63:b
-    63:c
-    63:d
-    63:e
-    63:f
+    63:a					A
+    63:b					B
+    63:c					C
+    63:d					D
+    63:e					E
+    63:f					F
+begincontext
+ModelControl
+	hud						H
+begincontext
+Hud
+	DDMean::4				4
+	DDMean::5				5
+	DDMean::6				6

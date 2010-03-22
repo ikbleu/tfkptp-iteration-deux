@@ -27,8 +27,7 @@ public class KeyMap implements
 	KeyMapInterface
 	{
 	
-	//These variables represent the configuration of all the controls in the game.
-
+	//This Map represents the configuration of all the controls in the game.
 	private Map< String, List<Binding> > contextToBindings;
     private MahBuilder mahbuilder;
 
