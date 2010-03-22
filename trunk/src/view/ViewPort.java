@@ -18,7 +18,7 @@ public class ViewPort extends HasAnImage{
     SakuraMap sakura;
     private int wid;
     private int hei;
-    private boolean workerMode = true;
+    private boolean workerMode = false;
 
     ViewPort(int wid, int hei, SakuraMap sakura){
         this.sakura = sakura;

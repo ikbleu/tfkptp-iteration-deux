@@ -43,6 +43,8 @@ class BobTheMapBuilder implements MapBuilder{
         private int imageSpacing = 2;
         private Font f1 = new Font( "Times Roman", Font.PLAIN, 13 );
 
+
+
         private Graphics2D graphix;
 
         private int centerX = 100;
@@ -147,6 +149,12 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.setColor(Color.WHITE);
                 graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
             }
+            if(visibility.equals("shrouded")){
+                graphix.drawImage(graphicsT.getGraphic("shrouded"), 0, 0, null);
+            }
+            if(visibility.equals("non visible")){
+                graphix.drawImage(graphicsT.getGraphic("non visible"), 0, 0, null);
+            }
         }
         else{
             imageBuffer = null;
@@ -210,6 +218,12 @@ class BobTheMapBuilder implements MapBuilder{
             }
             if(workerGroups.containsKey(("wgStaff"))){
                 graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
+            }
+            if(visibility.equals("shrouded")){
+                graphix.drawImage(graphicsT.getGraphic("shrouded"), 0, 0, null);
+            }
+            if(visibility.equals("non visible")){
+                graphix.drawImage(graphicsT.getGraphic("non visible"), 0, 0, null);
             }
         }
         else{

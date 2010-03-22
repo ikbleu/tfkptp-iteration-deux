@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.io.File;
 import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
+import java.awt.Color;
 
 
 /**
@@ -20,10 +22,27 @@ import javax.imageio.ImageIO;
 class GraphicsTableSingleton {
 
     HashMap< String, BufferedImage > graphics;
+    private BufferedImage unvisible = new BufferedImage( 200, 173,
+                                        BufferedImage.TYPE_INT_ARGB );
+
+    private BufferedImage shrouded = new BufferedImage( 200, 173,
+                                        BufferedImage.TYPE_INT_ARGB );
+
+    private Graphics2D graphiz = unvisible.createGraphics();
+
+    private Graphics2D graphize = shrouded.createGraphics();
 
     private GraphicsTableSingleton(){
         graphics = new HashMap<String, BufferedImage>();
         try{
+            graphiz.setColor(new Color(0,0,0,50));
+            graphiz.fillRect(0,0,200,173);
+            graphize.setColor(Color.BLACK);
+            graphiz.fillRect(0,0,200,173);
+
+            graphics.put( "shrouded", shrouded);
+            graphics.put( "non visible", unvisible);
+
             graphics.put( "hud", ImageIO.read(new File("artwork/unicornhud.png")));
 
             graphics.put( "Stars", ImageIO.read(new File("artwork/rbStar.jpg")));
