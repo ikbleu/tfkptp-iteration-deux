@@ -4,6 +4,8 @@ import src.model.Player;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.GeneralUnitManager;
+import src.model.interfaces.ViewVisitor;
+import src.model.interfaces.vGroup;
 import src.util.Hand;
 
 public final class UnitInitializer {
@@ -11,7 +13,7 @@ public final class UnitInitializer {
 	{
 		GeneralUnitManager m = new GeneralUnitManager();
 		final Hand< Device > hand = p.handFactory().make( Device.class );
-		Device d = new Device()
+		Device d = new vGroup()
 		{
 			public String context()
 			{
@@ -20,7 +22,7 @@ public final class UnitInitializer {
 			
 			public String meaning()
 			{
-				return "Unit";
+				return "groupUnit";
 			}
 			
 			public void direct(KeyEventInterpreterBuilder builder)
@@ -30,6 +32,17 @@ public final class UnitInitializer {
 
 			@Override
 			public String comparable() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+			
+			public void accept( ViewVisitor v )
+			{
+				v.visitGroup( this );
+			}
+
+			@Override
+			public String token() {
 				// TODO Auto-generated method stub
 				return meaning();
 			}

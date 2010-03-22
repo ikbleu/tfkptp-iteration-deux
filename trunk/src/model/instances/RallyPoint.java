@@ -13,9 +13,13 @@ import src.model.enums.Direction;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayerVisitor;
 import src.model.interfaces.MovementListener;
+import src.model.interfaces.ViewListener;
+import src.model.interfaces.ViewVisitor;
+import src.model.interfaces.vInstance;
 import src.model.interfaces.vInstanceVisitor;
 import src.model.interfaces.vRallyPoint;
 import src.model.interfaces.InstanceVisitor;
+import src.model.interfaces.vType;
 import src.model.interfaces.vUnit;
 import src.util.Hand;
 import src.model.interfaces.InstanceAdapter;
@@ -26,7 +30,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 	{
 		super( p, id, g );
 		final Hand< Device > armyHand = p.handFactory().make( Device.class );
-		armyDevice = new Device()
+		armyDevice = new vInstance()
 		{
 
 			@Override
@@ -53,6 +57,28 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 				return meaning();
 			}
 			
+			public void accept( ViewVisitor v )
+			{
+				v.visitInstance( this );
+			}
+
+			public void accept(vInstanceVisitor v) {}
+
+			public void addViewListener(ViewListener vl) {}
+
+			public String getCurrentAction() {
+				return "cmdNone";
+			}
+			
+			public String token()
+			{
+				return token();
+			}
+			
+			public int id()
+			{
+				return id();
+			}
 		};
 		
 		entireHand = p.handFactory().make( Device.class );
@@ -62,7 +88,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		reinfHand = p.handFactory().make( Device.class );
 		reinfList = new LinkedList< vUnit >();
 		
-		armyHand.add( new Device()
+		armyHand.add( new vType()
 		{
 			public String context() {
 				return "Type";
@@ -73,7 +99,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			}
 			
 			public String meaning() {
-				return "Entire";
+				return "typeEntire";
 			}
 
 			@Override
@@ -81,8 +107,20 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 				// TODO Auto-generated method stub
 				return meaning();
 			}
+
+			@Override
+			public String token() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+
+			@Override
+			public void accept(ViewVisitor v) {
+				// TODO Auto-generated method stub
+				v.visitType( this );
+			}
 		});
-		armyHand.add( new Device()
+		armyHand.add( new vType()
 		{
 			public String context() {
 				return "Type";
@@ -93,7 +131,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			}
 			
 			public String meaning() {
-				return "BattleGroup";
+				return "typeBG";
 			}
 
 			@Override
@@ -101,8 +139,20 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 				// TODO Auto-generated method stub
 				return meaning();
 			}
+
+			@Override
+			public String token() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+
+			@Override
+			public void accept(ViewVisitor v) {
+				// TODO Auto-generated method stub
+				v.visitType( this );
+			}
 		});
-		armyHand.add( new Device()
+		armyHand.add( new vType()
 		{
 			public String context() {
 				return "Type";
@@ -113,13 +163,25 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			}
 			
 			public String meaning() {
-				return "Reinforcements";
+				return "typeReinf";
 			}
 
 			@Override
 			public String comparable() {
 				// TODO Auto-generated method stub
 				return meaning();
+			}
+
+			@Override
+			public String token() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+
+			@Override
+			public void accept(ViewVisitor v) {
+				// TODO Auto-generated method stub
+				v.visitType( this );
 			}
 		});
 	}
@@ -191,7 +253,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		bgHand.remove( i );
 		reinfHand.remove( i );
 		i.accept( new InstanceAdapter() {
-			public void visitUnit( vUnit u )
+			public void visitUnit( Unit u )
 			{
 				entireList.remove( u );
 				bgList.remove( u );
@@ -221,7 +283,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 			reinfHand.add( i );
 		
 		i.accept( new InstanceAdapter() {
-			public void visitUnit( vUnit u )
+			public void visitUnit( Unit u )
 			{
 				entireList.add( u );
 				if ( DEBUGGING || location().getDistanceFrom( u.location() ) == 0 )
@@ -238,7 +300,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		// visibility radius, move speed, available commands
 		System.out.println( "the rally point is recalculating properties" );
 		i.accept( new InstanceAdapter() {
-			public void visitUnit( vUnit u )
+			public void visitUnit( Unit u )
 			{
 				List< CommandFactory > rpCommands = new LinkedList< CommandFactory >();
 				u.rallyCommands( rpCommands );
@@ -273,5 +335,11 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		setStat( "statVisibilityRadius", visRad );
 		
 		System.out.printf( "my move speed is %d and vis rad is %d\n", getStat( "statMoveSpeed" ), getStat( "statVisibilityRadius" ) );
+	}
+
+	@Override
+	public <S> Comparable<S> comparable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

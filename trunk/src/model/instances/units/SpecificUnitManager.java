@@ -21,10 +21,12 @@ import src.model.instances.RallyPoint;
 import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.InstanceAdapter;
+import src.model.interfaces.ViewVisitor;
 import src.model.interfaces.vRallyPoint;
+import src.model.interfaces.vType;
 import src.util.Hand;
 
-public abstract class SpecificUnitManager implements InstanceExistenceListener, Device {
+public abstract class SpecificUnitManager implements InstanceExistenceListener, Device, vType {
 	public SpecificUnitManager(GeneralUnitManager m, UnitFactory f, Player p, Hand< Device > h ) {
 		manager = m;
 		factory = f;
@@ -166,5 +168,16 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 	final public void direct(KeyEventInterpreterBuilder builder)
 	{
 		builder.devices( hand.spawnLens() );
+	}
+	
+	@Override
+	public void accept(ViewVisitor v) {
+		// TODO Auto-generated method stub
+		v.visitType( this );
+	}
+	
+	public String token()
+	{
+		return meaning();
 	}
 }

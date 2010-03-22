@@ -5,6 +5,8 @@ import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.units.RangedManager;
+import src.model.interfaces.ViewVisitor;
+import src.model.interfaces.vGroup;
 import src.util.Hand;
 import src.util.HandFactory;
 
@@ -13,7 +15,7 @@ public final class StructureInitializer {
 	{
 		GeneralStructureManager m = new GeneralStructureManager( p );
 		final Hand< Device > hand = p.handFactory().make( Device.class );
-		Device d = new Device()
+		Device d = new vGroup()
 		{
 			public String context()
 			{
@@ -22,7 +24,7 @@ public final class StructureInitializer {
 			
 			public String meaning()
 			{
-				return "Structure";
+				return "groupStructure";
 			}
 			
 			public void direct(KeyEventInterpreterBuilder builder)
@@ -34,6 +36,18 @@ public final class StructureInitializer {
 			public String comparable() {
 				// TODO Auto-generated method stub
 				return meaning();
+			}
+
+			@Override
+			public String token() {
+				// TODO Auto-generated method stub
+				return meaning();
+			}
+			
+			@Override
+			public void accept(ViewVisitor v) {
+				// TODO Auto-generated method stub
+				
 			}
 		};
 		

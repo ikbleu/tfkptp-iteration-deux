@@ -56,7 +56,7 @@ public class RallyPointManager implements InstanceExistenceListener {
 		--numRallyPoints;
 		rpHand.remove( i );
 		i.accept( new InstanceAdapter() {
-			public void visitRallyPoint( vRallyPoint r )
+			public void visitRallyPoint( RallyPoint r )
 			{
 				armyHand.remove( r.armyDevice() );
 			}
