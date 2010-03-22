@@ -3,6 +3,8 @@ package src.model.instances.structures;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.commands.Command;
+import src.model.commands.CommandListener;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.Instance;
@@ -28,6 +30,48 @@ abstract public class SpecificStructureManager implements InstanceExistenceListe
 		for ( Map.Entry< String, Integer > e : baseStats.entrySet() )
 			factory.modDefaultStat( e.getKey(), e.getValue() );
 		factory.modDefaultStat( "statHealth", baseStats.get( "statMaxHealth" ) );
+		
+		p.addCommandListener( "cmdRes" + researchID + "VisRadius", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statVisibilityRadius", deltaStats.get( "statVisibilityRadius" ) );
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "AtkPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statAttackPower", deltaStats.get( "statAttackPower" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "DefPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statDefensePower", deltaStats.get( "statDefensePower" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Armor", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statArmor", deltaStats.get( "statArmor" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Health", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statMaxHealth", deltaStats.get( "statMaxHealth" ));
+			}
+		});
+		
+		p.addCommandListener( "cmdRes" + researchID + "Efficiency", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					factory.modDefaultStat( "statEfficiency", deltaStats.get( "statEfficiency" ));
+			}
+		});
 	}
 	private GeneralStructureManager manager; 
 	private StructureFactory factory;
@@ -49,6 +93,52 @@ abstract public class SpecificStructureManager implements InstanceExistenceListe
 	final public Structure makeStructure( GameTile g )
 	{
 		final Structure s = factory.makeInstance( g );
+
+
+		player.addCommandListener( "cmdRes" + researchID + "VisRadius", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					s.modifyStat( "statVisibilityRadius", deltaStats.get( "statVisibilityRadius" ) );
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "AtkPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					s.modifyStat( "statAttackPower", deltaStats.get( "statAttackPower" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "DefPow", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					s.modifyStat( "statDefensePower", deltaStats.get( "statDefensePower" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Armor", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					s.modifyStat( "statArmor", deltaStats.get( "statArmor" ));
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Health", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+				{
+					s.modifyStat( "statMaxHealth", deltaStats.get( "statMaxHealth" ));
+					s.modifyStat( "statHealth", deltaStats.get( "statMaxHealth" ));
+				}
+			}
+		});
+		
+		player.addCommandListener( "cmdRes" + researchID + "Efficiency", new CommandListener() {
+			public void commandOccurred(Command c) {
+				if ( c.when() == "execute" )
+					s.modifyStat( "statEfficiency", deltaStats.get( "statEfficiency" ));
+			}
+		});
 
 		s.addInstanceExistenceListener( this );
 		s.addInstanceExistenceListener( factory );

@@ -89,7 +89,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		p.addCommandListener( "cmdRes" + researchID + "Efficiency", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute" )
-					unitFactory().modDefaultStat( "statEfficiency", deltaStats.get( "statEfficiency" ));
+					factory.modDefaultStat( "statEfficiency", deltaStats.get( "statEfficiency" ));
 			}
 		});
 	}
@@ -169,7 +169,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		final InstanceExistenceListener iel = new InstanceExistenceListener() {
 			public void delInstance(Instance i) {
 				if ( i == u )
-					Instance.removeGlobalInstanceExistenceListener( this );
+					player.removeInstanceExistenceListener( this );
 				else
 					i.accept( new InstanceAdapter() {
 						public void visitRallyPoint( RallyPoint rp )
@@ -187,7 +187,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 				});
 			}
 		};
-		Instance.addGlobalInstanceExistenceListener( iel );
+		player.addInstanceExistenceListener( iel );
 		
 		u.addInstanceExistenceListener( new InstanceExistenceListener() {
 			public void delInstance(Instance i) {
@@ -236,7 +236,10 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		player.addCommandListener( "cmdRes" + researchID + "Health", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute" )
+				{
 					u.modifyStat( "statMaxHealth", deltaStats.get( "statMaxHealth" ));
+					u.modifyStat( "statHealth", deltaStats.get( "statMaxHealth" ));
+				}
 			}
 		});
 		

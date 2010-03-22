@@ -12,7 +12,7 @@ import src.model.instances.Instance;
 import src.model.interfaces.GameTile;
 import src.util.Hand;
 
-public class CapitalManager extends SpecificStructureManager {
+public class ObservationTowerManager extends SpecificStructureManager {
 	private static final Map< String, Integer > BASE_STATS = new HashMap< String, Integer >() {{
 		put( "statMaxHealth", 500 );
 		put( "statInfluenceRadius", 0 );
@@ -39,12 +39,12 @@ public class CapitalManager extends SpecificStructureManager {
 	
 	private Player player;
 	
-	public CapitalManager(Player p, GeneralStructureManager m) {
-		super( m, new CapitalFactory( p ), p, p.handFactory().make( Device.class ), 
-				BASE_STATS, DELTA_STATS, RESOURCE_COST, "Capital" );
+	public ObservationTowerManager(Player p, GeneralStructureManager m) {
+		super( m, new FortressFactory( p ), p, p.handFactory().make( Device.class ), 
+				BASE_STATS, DELTA_STATS, RESOURCE_COST, "Fort" );
 		player = p;
 		
-		p.addCommandListener( "cmdBuildCapital", new CommandListener() {
+		p.addCommandListener( "cmdBuildFort", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute"  && canMakeStructure( c.location() ) )
 					makeStructure( c.location() );
@@ -69,7 +69,7 @@ public class CapitalManager extends SpecificStructureManager {
 	
 	public String meaning()
 	{
-		return "typeCapital";
+		return "typeFortress";
 	}
 
 	@Override
