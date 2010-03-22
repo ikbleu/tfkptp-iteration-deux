@@ -19,7 +19,6 @@ public class test {
 	{
         Model m = new Model( new HandFactoryImp() );
 		final Player p = m.human();
-        View view = new View(p.getSakuraMap());
 
 		class FakeCommand extends NoArgsCommand
 		{
@@ -50,8 +49,8 @@ public class test {
 			}
 			
 		});
-		//System.out.println( "cmdMakeColonist" );
-		//p.executeCommand( new FakeCommand( "cmdMakeColonist" ) );
+		System.out.println( "cmdMakeColonist" );
+		p.executeCommand( new FakeCommand( "cmdMakeColonist" ) );
 		/*System.out.println( "cmdArcherAP1" );
 		p.executeCommand( new NoArgsCommand( "cmdResRangedAtkPow", null, 0 ) );
 		System.out.println( "cmdMakeRanged" );
@@ -74,5 +73,6 @@ public class test {
 
 		p.vMan().update();
 		p.vMan().update();
+        View view = new View(p.getSakuraMap());
 	}
 }
