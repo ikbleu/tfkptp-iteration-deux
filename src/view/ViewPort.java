@@ -16,7 +16,7 @@ public class ViewPort extends HasAnImage{
     BufferedImage map[][];
     BobTheMapBuilder bobs[][];
     SakuraMap sakura;
-
+    private boolean workerMode = true;
 
     ViewPort(int wid, int hei){
         map = new BufferedImage[hei][wid];
@@ -29,9 +29,13 @@ public class ViewPort extends HasAnImage{
         //sakura.build(bobs);
         for(int i = 0;i<hei;++i){
             for(int j = 0; j<wid; ++j){
-                map[i][j] = bobs[i][j].buildMeViewPort();
+                map[i][j] = bobs[i][j].buildMeWorkerPort();
             }
         }
+    }
+
+    void setWorkerMode(boolean on){
+        workerMode = on;
     }
 
     BufferedImage get(int i, int j){
@@ -42,7 +46,10 @@ public class ViewPort extends HasAnImage{
         //sakura.build(bobs);
         for(int i = 0;i<bobs.length;++i){
             for(int j = 0; j<bobs[0].length; ++j){
-                map[i][j] = bobs[i][j].buildMeViewPort();
+                if(!workerMode)
+                    map[i][j] = bobs[i][j].buildMeViewPort();
+                else
+                    map[i][j] = bobs[i][j].buildMeWorkerPort();
             }
         }
     }
