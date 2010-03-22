@@ -24,6 +24,17 @@ import com.sun.opengl.util.texture.TextureIO;
 import src.model.interfaces.Displayable;
 import src.util.SimpleMovingAverageTimer;
 import src.model.interfaces.SakuraMap;
+
+//
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import javax.swing.event.MouseInputListener;
+
+import java.awt.Point;
+//
+
+
 /**
  *
  * @author rdshack
@@ -78,6 +89,20 @@ import src.model.interfaces.SakuraMap;
 		private static final int overviewHeight = 420;
 
 
+                //
+                private double dX=0;
+                private double dY=0;
+                private double friction;
+                boolean mousePressed;
+
+                private Point pickPoint= null;
+                private Point dragPoint;
+
+                private double offX=0;
+                private double offY=0;
+                MouseEvent prev;
+                //
+
                 //Textures
                 Texture hud_tex;
 		Texture commandSelection_tex;
@@ -126,6 +151,12 @@ import src.model.interfaces.SakuraMap;
 			GraphicListener listener = new GraphicListener();
 			GLCanvas canvas = new GLCanvas(new GLCapabilities());
                         canvas.addGLEventListener(listener);
+
+                        //
+                        canvas.addMouseWheelListener(listener);
+                        canvas.addMouseListener(listener);
+                        canvas.addMouseMotionListener(listener);
+                        //
 
                         getContentPane().add(canvas);
 		    
@@ -214,7 +245,8 @@ import src.model.interfaces.SakuraMap;
                 }
 
 		
-		class GraphicListener implements GLEventListener {
+		class GraphicListener implements GLEventListener, MouseWheelListener,
+											MouseInputListener {
 			
 
 			public void display(GLAutoDrawable drawable) {
@@ -430,8 +462,9 @@ import src.model.interfaces.SakuraMap;
                 
                 gl.glPushMatrix();
 	                gl.glScaled(scale, scale, 1.0f);
-	                gl.glTranslated(-.5,.5,0.0);
-	                //updateOffset();
+	                //gl.glTranslated(,.5,0.0);
+			gl.glTranslated(offX,offY,0.0);
+	                updateOffset();
 	                
 	                for(int i = 0; i < height; ++i){
 	                     for(int j =0; j < width; ++j){
@@ -441,7 +474,22 @@ import src.model.interfaces.SakuraMap;
 	                 }
 	            gl.glPopMatrix();
             }
+            //added
+            private void updateOffset() {
 
+			offX += dX;
+			offY += dY;		//y-axis inverted in java
+
+			if(!mousePressed){
+				dX = dX*(1-friction);
+				dY = dY*(1-friction);
+			}
+			else {
+				dX = 0;
+				dY = 0;
+			}
+
+		}
             private void renderViewPortHex(GL gl, double x, double y, int i, int j) {
 
             	
@@ -470,6 +518,66 @@ import src.model.interfaces.SakuraMap;
 
 				gl.glEnd();
 			}
+
+                        public void mouseClicked(MouseEvent e) {
+
+
 		}
+
+		public void mouseEntered(MouseEvent e) {
+		}
+
+
+		public void mouseExited(MouseEvent e) {
+		}
+
+
+		public void mousePressed(MouseEvent e) {
+			//dragging
+			mousePressed = true;
+			prev = e;
+			dX = 0;
+			dY = 0;
+		}
+
+		public void mouseReleased(MouseEvent e) {
+			prev = null;
+			mousePressed = false;
+			dX *= 0.15;
+			dY *= 0.15;
+		}
+
+
+		public void mouseDragged(MouseEvent e) {
+
+			dragPoint = e.getPoint();
+			mousePressed = true;
+			if(prev != null) {
+
+				int newX = e.getX();
+				int newY = e.getY();
+				dX = (newX - prev.getX())/scale/1280*10.26;
+				dY = (newY - prev.getY())/scale/800*6.39;
+			}
+			prev = e;
+
+		}
+
+
+		public void mouseMoved(MouseEvent e) {
+		}
+                public void mouseWheelMoved(MouseWheelEvent e) {
+
+			int dir = e.getWheelRotation();
+			if(dir > 0)
+				scale = Math.max(scaleFactor*scale, 0.3);
+			else
+				scale = Math.min(1/scaleFactor*scale, 1.5);
+
+		}
+		}
+
+                
+
 
 }
