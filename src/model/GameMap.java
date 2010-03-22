@@ -15,10 +15,15 @@ public class GameMap
 	ResourceMaker resourceGrabber;
 	Set<String> resourceTypes;
 	
+	private final boolean DEBUGGING = true;
+	
 	public GameMap(Model m)
 	{
 		rand = new TerrainRandomizer();
-		resourceGrabber = new ResourceMaker(m.getClock());
+		if (DEBUGGING)
+			resourceGrabber = new ResourceMaker(null);
+		else
+			resourceGrabber = new ResourceMaker(m.getClock());
 		resourceTypes = resourceGrabber.possibleResourceValues();
 		
 		origin = new HexTile(rand.random());

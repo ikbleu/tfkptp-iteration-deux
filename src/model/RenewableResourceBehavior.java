@@ -29,7 +29,7 @@ public class RenewableResourceBehavior implements ResourceBehavior, Tickable
 		
 		RENEWAL_RATE = renewalRate;
 		if (clock != null)
-			clock.register(this);
+			clock.registerPrimary(this);
 	}
 	
 	@Override
