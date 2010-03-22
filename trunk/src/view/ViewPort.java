@@ -42,8 +42,8 @@ public class ViewPort extends HasAnImage{
         }
     }
 
-    void setWorkerMode(boolean on){
-        workerMode = on;
+    void toggleViewPort(){
+        workerMode = !workerMode;
     }
 
     BufferedImage get(int i, int j){

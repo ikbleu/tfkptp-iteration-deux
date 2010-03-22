@@ -171,6 +171,10 @@ import java.awt.Point;
 		void start(){
 			animator.start();
 		}
+
+                void toggleViewPort(){
+                    viewPort.toggleViewPort();
+                }
 		
 		void updateOverview(String code, Displayable[] direct, Displayable[] dList, Displayable selected) {
 			
