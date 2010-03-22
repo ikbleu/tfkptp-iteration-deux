@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 import src.control.interfaces.*;
-import src.model.control.BindingMapBuilder;
-import src.model.control.BindingMapDirector;
 
 public class FileHandler {
 	
@@ -23,6 +21,10 @@ public class FileHandler {
         ex.printStackTrace();
 		}	
 		System.out.println(m);
+		//Change group CTRL+UP to U.
+		//implement Key map interfaces in order to change it. 
+		//try
+	//	BufferedWriter w = new BufferedWriter(new FileWriter("controller config files/controlsWritten.txt"));
 	}
 	
 	public static final String BEGINCONTEXT = "begincontext";
@@ -30,7 +32,7 @@ public class FileHandler {
 
 	public void writeFile(BindingMapDirector director, BufferedWriter writer)
 	{
-        try {
+        try {//bad. This assumes a director is a KeyMap with a valid toString method.  
             writer.write(director.toString());
             
         } catch (FileNotFoundException ex) {
