@@ -44,6 +44,8 @@ statUpMetal
 statUpEnergy
 
 **Instances
+instanceStarter 
+
 instanceRallyPoint
 instanceRanged
 instanceMelee
