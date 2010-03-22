@@ -60,20 +60,31 @@ public class KeyMap implements
 	@Override
 	/**
 	 * This method should initialize the entire KeyMap from a BindingMapBuilder
+     * @author kagioglu
 	 */
 	public void buildAll(BindingMapBuilder builder) {
-		// TODO Auto-generated method stub
-		
+		for(Map.Entry<String,List<Binding>> con : this.contextToBindings.entrySet()) {
+            builder.context(con.getKey());
+            for(Binding b : con.getValue()) {
+                builder.binding(b.key(), b.meaning());
+            }
+        }
 	}
 
 	@Override
 	/**
-	 * Adds certain bindings for a set of contexts. 
+	 * Adds certain bindings for a set of contexts.
+     * @author kagioglu
 	 */
 	public void buildForContext(Iterator<String> contexts,
 			BindingMapBuilder builder) {
-		// TODO Auto-generated method stub
-		
+		while(contexts.hasNext()) {
+            String con = contexts.next();
+            builder.context(con);
+            for(Binding b : this.contextToBindings.get(con)) {
+                builder.binding(b.key(), b.meaning());
+            }
+        }
 	}
 
 	@Override
