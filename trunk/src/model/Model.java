@@ -13,7 +13,7 @@ import src.util.HandFactory;
 
 public class Model {
 	public Player p; // TODO: remove (testing purposes)
-	private Clock c;
+	private DethKlok c;
 	private GameMap map; 
 	
 	public final int TICK_LENGTH = 1000;
@@ -27,6 +27,7 @@ public class Model {
 		
 		try {
 			c = new DethKlok(orderList, TICK_LENGTH);
+			c.start();
 		} catch (YoureDoingItWrongException e)
 		{
 			e.printStackTrace();

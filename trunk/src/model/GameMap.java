@@ -131,10 +131,10 @@ public class GameMap
 	{
 		if (isValid2DCoordinate(horiz, vert))
 		{
-			System.out.println("Grabbing tile at " + horiz + " " + vert);
+			//System.out.println("Grabbing tile at " + horiz + " " + vert);
 			GameTile gt = origin.getTileAt2DCoordinate(horiz - MAP_RADIUS, MAP_RADIUS - vert);
 			mb.setTerrain(gt.getTerrainType());
-			System.out.println(gt);
+			//System.out.println(gt);
 			return gt;
 		}
 		return null;
@@ -142,12 +142,12 @@ public class GameMap
 	
 	private boolean isValid2DCoordinate(int horiz, int vert)
 	{
-		System.out.println("Checking " + horiz + " " + vert);
+		//System.out.println("Checking " + horiz + " " + vert);
 		int i = origin.calculateDistance(horiz - MAP_RADIUS, MAP_RADIUS - vert);
-		System.out.println(i);
+		//System.out.println(i);
 		if (i > MAP_RADIUS)
 			return false;
-		System.out.println("Valid");
+		//System.out.println("Valid");
 		return true;
 	}
 	

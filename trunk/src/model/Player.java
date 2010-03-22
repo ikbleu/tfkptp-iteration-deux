@@ -105,7 +105,7 @@ public class Player implements CommandSender, InstanceExistenceListener
         return rscManager.getAllAmounts();
     }
     
-    public SakuraMap getVisibilityManager()
+    public SakuraMap getSakuraMap()
     {
     	return visManager;
     }

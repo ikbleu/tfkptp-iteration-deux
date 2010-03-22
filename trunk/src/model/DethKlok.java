@@ -44,6 +44,7 @@ public class DethKlok implements Clock
         {
             private final Map<String, Set<Tickable> >  plisteners;
             private final List<String> order;
+            private boolean tick;
             
             public DethTask( List<String> order, Map<String, Set<Tickable> > plisteners)
             {
@@ -55,8 +56,19 @@ public class DethKlok implements Clock
             {
                 synchronized ( this.plisteners )
                 {
+                	if (tick)
+                		System.out.println("TICK");
+                	else
+                		System.out.println("TOCK");
+                	
+                	tick = !tick;
+                	
                     for (int i = 0; i < order.size(); i++)
                     {
+                    	Set<Tickable> s = plisteners.get(order.get(i));
+                    	if (s == null)
+                    		break;
+                    	
                     	Iterator<Tickable> it = plisteners.get(order.get(i)).iterator();
                     	
                     	while (it.hasNext())

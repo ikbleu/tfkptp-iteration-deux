@@ -306,6 +306,11 @@ public class VisibilityMap implements HasPlayerVisitor
 		{
 			return numSoldiers;
 		}
+		
+		public String toString()
+		{
+			return type + " " + numSoldiers;
+		}
 	}
 	
 	public void explore(Map<GameTile, DecalType> tileList)
@@ -322,9 +327,11 @@ public class VisibilityMap implements HasPlayerVisitor
 			mapBuilder.setVisibility(Visibility.VISIBLE);
 			return;
 		}
+		System.out.println(location);
 		
 		if (unitsPerTile.containsKey(location))
 		{
+			System.out.println(unitsPerTile.get(location).intValue());
 			mapBuilder.setIndividualUnits(unitsPerTile.get(location).intValue());
 		}
 		
