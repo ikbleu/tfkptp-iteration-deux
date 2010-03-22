@@ -9,6 +9,8 @@ import src.model.commands.CommandListener;
 import src.model.control.Device;
 import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
+import src.model.interfaces.GameTile;
+import src.model.interfaces.MovementListener;
 import src.util.Hand;
 
 public class ExplorerManager extends SpecificUnitManager {
