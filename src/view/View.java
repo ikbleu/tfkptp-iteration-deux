@@ -18,12 +18,14 @@ import java.util.LinkedList;
 
 import java.awt.Point;
 
+import src.model.interfaces.Tickable;
+
 
 /**
  *
  * @author spock
  */
-public class View implements ViewInjection, KBinjection{
+public class View implements ViewInjection, KBinjection, Tickable{
     private ScreenManager screenManager;
     private SakuraMap sakuraMap;
     private HashMap<String,ViewInjectionElement> injections;
@@ -73,6 +75,11 @@ public class View implements ViewInjection, KBinjection{
 
     public void setHighlightTiles(LinkedList<Point> tiles){
         screenManager.setSelectedTiles(tiles);
+    }
+
+    public void tick(){
+        screenManager.updateViewPort();
+        screenManager.updateResourceInfo();
     }
 
 }
