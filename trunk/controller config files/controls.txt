@@ -70,28 +70,26 @@ endcontext
 
 begincontext
 StructureOverview
-Next				Left
-Previous			Right
+Next				Down
+Previous			Up
 endcontext
 
 begincontext
 UnitOverview
-Next				Left
-Previous			Right
+Next				Down
+Previous			Up
 endcontext
 
 begincontext
 TechTreeOverview
-Left				Left
-Right				Right
-Up					Up
-Down				Down
+Next				Down
+Previous			Up
 endcontext
 
 begincontext
 KeyEditor
-Next				Left
-Previous			Right
+Next				Down
+Previous			Up
 endcontext
 
 begincontext

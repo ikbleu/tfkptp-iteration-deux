@@ -33,7 +33,6 @@ public class Run {
 		//System.out.println(m);
 		//System.out.println("Change group CTRL+UP to U. (keycode 85)");
 		//m.bindMeaning("Group", "SpinNext", new KeyCodeAndModifiers(85, 0));
-		//System.out.println(m.getMeaning(context, visitor, key))?
 		try{
 			BufferedWriter w = new BufferedWriter(new FileWriter("controller config files/controlsWritten.txt"));
 			FileHandler.writeFile(m,w);

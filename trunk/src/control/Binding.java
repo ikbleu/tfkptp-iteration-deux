@@ -1,12 +1,14 @@
 package src.control;
 
+import src.control.interfaces.DisplayableBinding;
+
 /**
  * A Binding necessarily has a key and a meaning.  This is a relationship class.
  * 
  * @author Chris
  *
  */
-public class Binding{
+public class Binding implements DisplayableBinding{
 	
 	private String meaning;
 	private KeyCodeAndModifiers key;
@@ -21,6 +23,10 @@ public class Binding{
 	{
 		return meaning;
 	}
+	public String transKey()
+	{
+		return trans.toString(key);
+	}
 	public KeyCodeAndModifiers key()
 	{
 		return key;
@@ -33,7 +39,7 @@ public class Binding{
 	}
 	public String toString()
 	{
-		return meaning + "\t\t\t\t\t" +trans.toString(key);
+		return meaning + "\t" +trans.toString(key);
 	}
 
 }
