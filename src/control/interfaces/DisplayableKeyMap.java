@@ -25,4 +25,11 @@ public interface DisplayableKeyMap {
 	 * @return list of DisplayableBindings for a given context. 
 	 */
 	public List<DisplayableBinding> getBindingList();
+	
+	/**
+	 * 
+	 * @return the DisplayableBinding that is selected in controller. 
+	 */
+	public DisplayableBinding selected();
+
 }
