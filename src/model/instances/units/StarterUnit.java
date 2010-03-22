@@ -10,6 +10,7 @@ public class StarterUnit extends Unit {
 	public StarterUnit(Player p, int id, GameTile g) {
 		super(p, id, g);
 		// TODO Auto-generated constructor stub
+		modifyStat( "statHealth", Integer.MAX_VALUE ); // =[
 	}
 
 	@Override
