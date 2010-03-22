@@ -336,4 +336,28 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		
 		System.out.printf( "my move speed is %d and vis rad is %d\n", getStat( "statMoveSpeed" ), getStat( "statVisibilityRadius" ) );
 	}
+
+        public Map<String, Integer> getUpkeep()
+        {
+            HashMap<String, Integer> upkeepTotal = new HashMap<String, Integer>();
+            upkeepTotal.put("rscFood", 0);
+            upkeepTotal.put("rscMetal", 0);
+            upkeepTotal.put("rscEnergy",0);
+
+            for(Unit u : entireList)
+            {
+                Map<String, Integer> unitUpkeep = u.getUpkeep();
+
+                for(String type : unitUpkeep.keySet())
+                {
+                    int curTotal = upkeepTotal.get(type);
+                    
+                    int unitAmt = unitUpkeep.get(type);
+
+                    upkeepTotal.put(type, unitAmt + curTotal);
+                }
+            }
+
+            return upkeepTotal;
+        }
 }

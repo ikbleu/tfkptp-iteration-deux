@@ -7,6 +7,8 @@ import src.model.instances.Unit;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.StatsListener;
 
+import java.util.Map;
+
 class Ranged extends Unit {
 
 	public Ranged( Player p, int id, GameTile g )
@@ -25,4 +27,9 @@ class Ranged extends Unit {
 	public void exited(Instance l) {
 		// how pathetic
 	}
+
+        public void sentUpkeep(Map<String, Integer> resources)
+        {
+
+        }
 }

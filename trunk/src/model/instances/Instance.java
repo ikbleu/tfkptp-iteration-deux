@@ -293,6 +293,10 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	}
 	private LinkedList< Command > queue = new LinkedList< Command >();
 
+        public abstract Map<String, Integer> getUpkeep();
+
+        public abstract void sentUpkeep(Map<String, Integer> resources);
+
 	@Override
 	public void accept(ViewVisitor v) {
 		// TODO Auto-generated method stub
