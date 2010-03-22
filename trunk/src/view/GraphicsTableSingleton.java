@@ -40,9 +40,15 @@ class GraphicsTableSingleton {
             graphics.put( "DefendN", ImageIO.read(new File("artwork/testarrow.png")));
             graphics.put( "base", ImageIO.read(new File("artwork/castle.jpg")));
             graphics.put( "Overview", ImageIO.read(new File("artwork/overview.png")));
+
             graphics.put( "EnergyT", ImageIO.read(new File("artwork/BlackStar.PNG")));
             graphics.put( "FoodT", ImageIO.read(new File("artwork/circle.png")));
             graphics.put( "OreT", ImageIO.read(new File("artwork/DarkMoon.PNG")));
+
+            graphics.put( "itemDamage", ImageIO.read(new File("artwork/damageItem.png")));
+            graphics.put( "itemHealing", ImageIO.read(new File("artwork/healingItem.jpg")));
+            graphics.put( "itemResource", ImageIO.read(new File("artwork/resourceItem.jpg")));
+            graphics.put( "itemObstacle", ImageIO.read(new File("artwork/obstacleItem.jpg")));
         }
         catch(Exception e){
             System.out.println("Massive Fail");
