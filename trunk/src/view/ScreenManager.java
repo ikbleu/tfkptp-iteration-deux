@@ -498,8 +498,16 @@ import java.awt.Point;
 	                
 	                for(int i = 0; i < height; ++i){
 	                     for(int j =0; j < width; ++j){
-                                    if(viewPort.get(i, j)!=null)
+                                    if(viewPort.get(i, j)!=null){
+                                        if(viewPort.getScheme(i, j) == 1){
+                                            gl.glColor3d(.3,.3,.3);
+                                        }
+                                        if(viewPort.getScheme(i, j) == 2){
+                                            gl.glColor3d(0,0,0);
+                                        }
                                         renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio), i, j);
+                                    }
+                                    gl.glColor3d(1,1,1);
 	                     }
 	                 }
 	            gl.glPopMatrix();
