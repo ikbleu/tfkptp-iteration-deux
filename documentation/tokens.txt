@@ -186,3 +186,8 @@ cmdResWorkerEnergy
 cmdResWorkerBreeding
 cmdResWorkerEfficiency
 cmdResSoldierTraining
+
+** Clock
+Model
+VisUpdate
+View
