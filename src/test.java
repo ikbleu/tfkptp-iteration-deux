@@ -15,7 +15,7 @@ public class test {
 	{
                 Model m = new Model( new HandFactoryImp() );
 		Player p = m.p;
-                View view = new View(p.getVisibilityManager());
+
 		System.out.println( "cmdMakeRanged" );
 		p.executeCommand( new NoArgsCommand( "cmdMakeRanged", null, 0 ) );
 		System.out.println( "cmdArcherAP1" );
@@ -26,6 +26,8 @@ public class test {
 		
 		Unit u = SpecificUnitManager.lastUnit;
 		
+		p.vMan().update();
+		
 		p.executeCommand( new NoArgsCommand( "cmdMakeRallyPoint", null, 0 ) );
 		System.out.println( "cmdRallyPoint" );
 		RallyPointCommand rpc = new RallyPointCommand( "cmdRallyPoint", null, 0 );
@@ -33,5 +35,9 @@ public class test {
 		u.executeCommand( rpc );
 		System.out.println( "cmdDecommission" );
 		u.executeCommand( new NoArgsCommand( "cmdDecommission", null, 0 ) );
+		
+		
+		
+        View view = new View(p.getSakuraMap());
 	}
 }
