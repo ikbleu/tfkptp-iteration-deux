@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import src.model.AoEManager;
 import src.model.Player;
@@ -140,7 +141,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		setStat( s, getStat( s ) + delta );
 	}
 	
-	private List< StatsListener > statsListeners = new LinkedList< StatsListener >();
+	private List< StatsListener > statsListeners = new CopyOnWriteArrayList< StatsListener >();
 	final public void addStatsListener( StatsListener cl )
 	{
 		statsListeners.add( cl );
@@ -150,7 +151,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		statsListeners.remove( cl );
 	}
 	
-	private List< HealthListener > healthListeners = new LinkedList< HealthListener >();
+	private List< HealthListener > healthListeners = new CopyOnWriteArrayList< HealthListener >();
 	final public void addHealthListener( HealthListener cl )
 	{
 		healthListeners.add( cl );
@@ -160,7 +161,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		healthListeners.remove( cl );
 	}
 	
-	private List< ViewListener > viewListeners = new LinkedList< ViewListener >();
+	private List< ViewListener > viewListeners = new CopyOnWriteArrayList< ViewListener >();
 	final public void addViewListener( ViewListener cl )
 	{
 		viewListeners.add( cl );
@@ -170,7 +171,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		viewListeners.remove( cl );
 	}
 	
-	private List< InstanceExistenceListener > ieListeners = new LinkedList< InstanceExistenceListener >();
+	private List< InstanceExistenceListener > ieListeners = new CopyOnWriteArrayList< InstanceExistenceListener >();
 	final public void addInstanceExistenceListener( InstanceExistenceListener cl )
 	{
 		ieListeners.add( cl );
@@ -181,7 +182,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		ieListeners.remove( cl );
 	}
 	
-	private static List< InstanceExistenceListener > globalListeners = new LinkedList< InstanceExistenceListener >();
+	private static List< InstanceExistenceListener > globalListeners = new CopyOnWriteArrayList< InstanceExistenceListener >();
 	public static void addGlobalInstanceExistenceListener( InstanceExistenceListener cl )
 	{
 		globalListeners.add( cl );
@@ -195,7 +196,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	final public void addCommandListener( String token, CommandListener cl )
 	{
 		if ( ! commandListeners.containsKey( token ) )
-			commandListeners.put( token, new LinkedList< CommandListener >() );
+			commandListeners.put( token, new CopyOnWriteArrayList< CommandListener >() );
 		commandListeners.get( token ).add( cl );
 	}
 	final public void removeCommandListener( String token, CommandListener cl )
@@ -220,7 +221,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	abstract public void accept( vInstanceVisitor v );
 	abstract public void accept( InstanceVisitor v );
 	
-	private List< MovementListener > moveListeners = new LinkedList< MovementListener >();
+	private List< MovementListener > moveListeners = new CopyOnWriteArrayList< MovementListener >();
 	final public void addMovementListener( MovementListener ml )
 	{
 		moveListeners.add( ml );

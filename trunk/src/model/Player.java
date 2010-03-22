@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.commands.CommandSender;
 import src.model.control.Device;
+import src.model.instances.Instance;
+import src.model.instances.InstanceExistenceListener;
 import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.InstanceHolder;
@@ -17,7 +20,7 @@ import src.util.Hand;
 import src.util.HandFactory;
 import src.util.Lens;
 
-public class Player implements CommandSender
+public class Player implements CommandSender, InstanceExistenceListener
 {
 	GameMap map;
 	GameTile startingLocation;
@@ -33,7 +36,9 @@ public class Player implements CommandSender
 		startingLocation = startLoc;
 		myHand = handFactory.make( Device.class );
         rscManager = rm;
-        visManager = new VisibilityManager(this, map, HasPlayerManager.getInstance(), c);                
+        visManager = new VisibilityManager(this, map, HasPlayerManager.getInstance(), c);  
+        
+        Instance.addGlobalInstanceExistenceListener( this );
 	}
 	private Hand< Device > myHand;
 	
@@ -104,4 +109,26 @@ public class Player implements CommandSender
     {
     	return visManager;
     }
+    
+    private List< InstanceExistenceListener > iels = new CopyOnWriteArrayList< InstanceExistenceListener >();
+    public void addInstanceExistenceListener( InstanceExistenceListener iel )
+    {
+    	iels.add( iel );
+    }
+    public void removeInstanceExistenceListener( InstanceExistenceListener iel )
+    {
+    	iels.remove( iel );
+    }
+	
+	public void delInstance(Instance i) {
+		if ( i.getPlayer() == this )
+			for ( InstanceExistenceListener iel : iels )
+				iel.delInstance( i );
+	}
+	
+	public void newInstance(Instance i) {
+		if ( i.getPlayer() == this )
+			for ( InstanceExistenceListener iel : iels )
+				iel.newInstance( i );
+	}
 }

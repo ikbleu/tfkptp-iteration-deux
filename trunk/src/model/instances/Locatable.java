@@ -2,6 +2,7 @@ package src.model.instances;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import src.model.AoEManager;
 import src.model.interfaces.GameTile;
@@ -29,7 +30,7 @@ public abstract class Locatable implements Serializable
 		location = g;
 	}
 	
-	private List< RadiusListener > radiusListeners = new LinkedList< RadiusListener >();
+	private List< RadiusListener > radiusListeners = new CopyOnWriteArrayList< RadiusListener >();
 	final public void addRadiusListener( RadiusListener cl )
 	{
 		radiusListeners.add( cl );
