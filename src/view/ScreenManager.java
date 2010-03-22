@@ -227,7 +227,7 @@ import src.model.interfaces.SakuraMap;
                 //System.out.println(timer.marksPerSecond());
 				//render different components
 
-                renderMap(gl, 15, 15);
+                renderMap(gl, vpWidth, vpHeight);
                 renderHUD(gl);
                 renderCommandSelection(gl);
 				renderResourceInfo(gl);
@@ -430,7 +430,7 @@ import src.model.interfaces.SakuraMap;
                 
                 gl.glPushMatrix();
 	                gl.glScaled(scale, scale, 1.0f);
-	                //gl.glTranslated(offX,offY,0.0);
+	                gl.glTranslated(-.5,.5,0.0);
 	                //updateOffset();
 	                
 	                for(int i = 0; i < height; ++i){
