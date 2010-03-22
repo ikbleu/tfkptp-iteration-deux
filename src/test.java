@@ -10,6 +10,7 @@ import src.model.instances.InstanceExistenceListener;
 import src.model.instances.Unit;
 import src.model.instances.rallypoints.RallyPointManager;
 import src.model.instances.units.SpecificUnitManager;
+import src.model.instances.units.StarterUnit;
 import src.model.interfaces.GameTile;
 import src.util.handv1.HandFactoryImp;
 import src.view.View;
@@ -19,19 +20,6 @@ public class test {
 	{
         Model m = new Model( new HandFactoryImp() );
 		final Player p = m.human();
-
-		class FakeCommand extends NoArgsCommand
-		{
-			public FakeCommand( String s )
-			{
-				super( s, null, 0, true );
-			}
-			
-			public GameTile location()
-			{
-				return p.startingLocation();
-			}
-		};
 		p.addInstanceExistenceListener( new InstanceExistenceListener() {
 
 			@Override
@@ -49,8 +37,9 @@ public class test {
 			}
 			
 		});
+		StarterUnit starter = new StarterUnit( p, 0, p.startingLocation() );
 		System.out.println( "cmdMakeColonist" );
-		p.executeCommand( new FakeCommand( "cmdMakeColonist" ) );
+		starter.executeCommand( new NoArgsCommand( "cmdMakeColonist", starter, 0, true ) );
 		/*System.out.println( "cmdArcherAP1" );
 		p.executeCommand( new NoArgsCommand( "cmdResRangedAtkPow", null, 0 ) );
 		System.out.println( "cmdMakeRanged" );
