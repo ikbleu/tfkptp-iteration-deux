@@ -11,10 +11,10 @@ import src.view.MapBuilder;
 public class GameMap
 {
 	private HexTile origin, startingLocation1, startingLocation2;
-	final int MAP_RADIUS = 9;
+	private final int MAP_RADIUS = 9;
 	private StringRandomizer rand;
-	ResourceMaker resourceGrabber;
-	Set<String> resourceTypes;
+	private ResourceMaker resourceGrabber;
+	private Set<String> resourceTypes;
 	
 	private final boolean DEBUGGING = true;
 	

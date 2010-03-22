@@ -1,5 +1,7 @@
 package src.model;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,7 +50,13 @@ public class VisibilityManager implements SakuraMap, Tickable
 		playerInstances.applyToAll(gvt, player);
 		
 		Set<HasPlayer> hasPlayers = playerStuff.getThingsIn(gvt.getVisibleTiles());
-		visibleMap.updateVisibility(gvt.getVisibleTiles(), hasPlayers, items.getAllItems());
+		
+		// DEBUG
+		List<GameTile> l = gameMap.getOrigin().getTilesAround(gameMap.getMapRadius());
+		Set<GameTile> s = new HashSet<GameTile>();
+		s.addAll(l);
+		
+		visibleMap.updateVisibility(s /*gvt.getVisibleTiles()*/, hasPlayers, items.getAllItems());
 	}
 	
 	@Override
