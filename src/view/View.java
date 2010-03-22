@@ -14,6 +14,9 @@ import src.model.interfaces.SakuraMap;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.List;
+import java.util.LinkedList;
+
+import java.awt.Point;
 
 
 /**
@@ -62,10 +65,14 @@ public class View implements ViewInjection, KBinjection{
         screenManager.addKeyListener(control);
     }
 
-	//KBinjection
-	public void displayControls(DisplayableKeyMap dkm) {
-		
-		screenManager.updateKBOverview(dkm);
-	}
+    //KBinjection
+    public void displayControls(DisplayableKeyMap dkm) {
+
+            screenManager.updateKBOverview(dkm);
+    }
+
+    public void setHighlightTiles(LinkedList<Point> tiles){
+        screenManager.setSelectedTiles(tiles);
+    }
 
 }
