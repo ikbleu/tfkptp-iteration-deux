@@ -317,6 +317,12 @@ public class VisibilityMap implements HasPlayerVisitor
 	public void acceptBuilder(MapBuilder mapBuilder, GameTile location)
 	{
 		// TODO Auto-generated method stub
+		if (DEBUGGING)
+		{
+			mapBuilder.setVisibility(Visibility.VISIBLE);
+			return;
+		}
+		
 		if (unitsPerTile.containsKey(location))
 		{
 			mapBuilder.setIndividualUnits(unitsPerTile.get(location).intValue());

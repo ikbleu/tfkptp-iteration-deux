@@ -72,8 +72,7 @@ public class Player implements CommandSender
 				cl.commandOccurred( c );
 	}
 	public InstanceHolder instanceHolder() {
-		// TODO Auto-generated method stub
-		return null;
+		return AoEManager.instance();
 	}
 	
 	public void addDevice( Device d )

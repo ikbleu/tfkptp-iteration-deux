@@ -31,7 +31,8 @@ public class VisibilityManager implements SakuraMap, Tickable
 		playerInstances = player.instanceHolder();
 		try
 		{
-			c.register("VisUpdate", this);
+			if (c != null)
+				c.register("VisUpdate", this);
 		}
 		catch (Exception e)
 		{
