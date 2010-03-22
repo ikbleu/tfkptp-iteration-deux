@@ -150,10 +150,10 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
             }
             if(visibility.equals("shrouded")){
-                graphix.drawImage(graphicsT.getGraphic("shrouded"), 0, 0, null);
+                graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
             }
             if(visibility.equals("non visible")){
-                graphix.drawImage(graphicsT.getGraphic("non visible"), 0, 0, null);
+                graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
             }
         }
         else{
@@ -220,11 +220,12 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
             }
             if(visibility.equals("shrouded")){
-                graphix.drawImage(graphicsT.getGraphic("shrouded"), 0, 0, null);
+                graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
             }
             if(visibility.equals("non visible")){
-                graphix.drawImage(graphicsT.getGraphic("non visible"), 0, 0, null);
+                graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
             }
+
         }
         else{
             imageBuffer = null;
