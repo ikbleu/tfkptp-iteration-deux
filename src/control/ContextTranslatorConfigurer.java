@@ -8,6 +8,7 @@ import src.control.interfaces.ConfigurableTranslator;
  */
 class ContextTranslatorConfigurer {
     static void configure(ConfigurableTranslator ct) {
+        ct.register("Hud", "evil!!!");
         ct.register("Groups", "HUD");
         ct.register("StructureOverview", "SO");
         ct.register("UnitOverview", "UO");

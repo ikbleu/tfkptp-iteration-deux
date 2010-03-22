@@ -14,6 +14,8 @@ import src.view.ViewInjection;
 import src.control.interfaces.Function;
 
 import java.util.Hashtable;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -63,13 +65,16 @@ public class ControllerTestConfigurer {
         }
 
         Hashtable<String,KeyEventInterpreterBuilder> map = new Hashtable<String,KeyEventInterpreterBuilder>();
+        List<Device> secretlist = new ArrayList<Device>();
         ModelControl mormdorm = new ModelControl(
-            "Model",
-            FakeModelConfig.make(new Ousput()),
+            "ModelControl",
+            FakeModelConfig.make(new Ousput(), secretlist),
             map,
             someinjbuilder
         );
-        map.put("Hud", new Kibby("Hud", someinjbuilder, mormdorm));
+        for(Device devivo : secretlist) {
+            map.put(devivo.context(), new Kibby(devivo.context(), someinjbuilder, mormdorm));
+        }
         return ControllerTestConfigurer.makemenu(mormdorm);
     }
 
