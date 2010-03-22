@@ -22,6 +22,9 @@ public class ColonistManager extends SpecificUnitManager {
 		put( "statArmor", 5 );
 		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 0 );
+                put( "statUpFood", 1);
+                put( "statUpMetal", 1);
+                put( "statUpEnergy", 1);
 	}};
 	private static final Map< String, Integer > DELTA_STATS = new HashMap< String, Integer >() {{
 		put( "statMaxHealth", 50 );
@@ -34,7 +37,7 @@ public class ColonistManager extends SpecificUnitManager {
 		put( "statEfficiency", 1 );
 	}};
 	private static final Map< String, Integer > RESOURCE_COST = new HashMap< String, Integer >() {{
-		put( "rscFood", 1 );
+		put( "rscFood", 0 );
 		put( "rscMetal", 0 );
 		put( "rscEnergy", 0 );
 	}};

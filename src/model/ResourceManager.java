@@ -149,6 +149,8 @@ public class ResourceManager
                 int curVal = resources.get(type);
                 curVal -= toSpend.get(type);
                 resources.put(type, curVal);
+
+                System.out.println(type + ": " + curVal);
             }
         }
 
