@@ -126,35 +126,81 @@ public class KeyMap implements
 	 * This method adds a context to the KeyMap. 
 	 */
 	public boolean addContext(String context) {
-		// TODO Auto-generated method stub
+		contextToBindings.put(context, new ArrayList<Binding>());
 		return false;
 	}
 
 	@Override
 	/**
-	 * This method adds a meaning to key binding under a specific context 
+	 * This method adds a meaning to key binding under a specific context.
+	 * If context not found, returns
+	 * returns false if no context.
 	 */
-	public boolean bindMeaning(String context, String meaning,
+	public void bindMeaning(String context, String meaning,
 			KeyCodeAndModifiers event) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean found=false;
+		//first look for context. found
+		if(contextToBindings.containsKey(context)){
+			List<Binding> l = contextToBindings.get(context);
+			Iterator<Binding> i = l.iterator();
+			while(i.hasNext())
+			{
+				Binding b = i.next();
+				if(b.key()==event || b.meaning().compareTo(meaning)==0);
+				{
+					contextToBindings.get(context).remove(b);
+					contextToBindings.get(context).add(new Binding(meaning,event));
+					found = true;
+				}
+			}
+			if(!found)
+				contextToBindings.get(context).add(new Binding(meaning,event));	
+			
+		}
+		else{//context not found
+			this.addContext(context);
+			contextToBindings.get(context).add(new Binding(meaning,event));
+		}
 	}
+
 
 	@Override
 	/**
 	 * This method removes a context from the map. 
+	 * Returns true when context found and removed.
+	 * returns false when context not found. 
 	 */
 	public boolean removeContext(String context) {
-		// TODO Auto-generated method stub
-		return false;
+		if(contextToBindings.containsKey(context))
+		{
+			contextToBindings.remove(context);
+			return true;
+		}
+		else
+			return false;
 	}
 
 	@Override
 	/**
-	 * For a given context, it unbinds the KeyCodeAndModifiers key from the binding containing specified meaning. 
+	 * For a given context, it removes the binding specified by meaning.  
+	 * @return true if found context and meaning found, false if not. 
 	 */
 	public boolean unbindMeaning(String context, String meaning) {
-		// TODO Auto-generated method stub
+		if(contextToBindings.containsKey(context))
+		{
+			List<Binding> l = contextToBindings.get(context);
+			Iterator<Binding> i = l.iterator();
+			while(i.hasNext())
+			{
+				Binding b = i.next();
+				if(b.meaning().compareTo(meaning)==0)
+				{
+					contextToBindings.get(context).remove(b);
+					return true;
+				}
+			}			
+		}	
 		return false;
 	}
 
@@ -184,6 +230,9 @@ public class KeyMap implements
 		return toReturn;
 	}
 
+	/**
+	 * calls 1 of 3 methods in the visitor related to meaning.  
+	 */
 	public void getMeaning(String context, KeyMapVisitor visitor,
 			KeyCodeAndModifiers key) {
 		boolean found = false;
