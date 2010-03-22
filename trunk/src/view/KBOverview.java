@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import src.control.Binding;
 import src.control.interfaces.DisplayableBinding;
 import src.control.interfaces.DisplayableKeyMap;
 import src.model.interfaces.Displayable;
@@ -55,6 +57,16 @@ import src.model.interfaces.Displayable;
 
     public void refreshImage(){
     	
+    	/*context = new ArrayList<String>();
+    	context.add("unit overview");
+    	context.add("structure overview");
+    	context.add("commands");
+    	context.add("hot sauce");
+    	
+    	ArrayList<DisplayableBinding> inner = new ArrayList<DisplayableBinding>();
+    	keys.add(inner);
+
+    	*/
 
         graphix.drawImage(graphicsTable.getGraphic("Overview"), 0, 0, null);
         
