@@ -41,6 +41,7 @@ public class View implements ViewInjection{
     	
     	ViewInjectionElement vie = injections.get(code);
     	vie.injectionEffect(screenManager, code, direct, dList, selection);
+    	System.out.println("About to inject!");
     }
 
     public void injectionCloseMenu(){
