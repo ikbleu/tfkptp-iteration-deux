@@ -18,7 +18,10 @@ class HashtableTranslator implements ContextTranslator, ConfigurableTranslator {
         this.function = new Hashtable<String,String>();
     }
     public String translate(String input) {
-        return this.function.get(input);
+        if(this.function.containsKey(input)) {
+            return this.function.get(input);
+        }
+        else { throw new RuntimeException("unknown input context"); }
     }
     public void register(String input, String output) {
         this.function.put(input, output);

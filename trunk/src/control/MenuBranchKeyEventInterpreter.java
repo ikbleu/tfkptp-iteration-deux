@@ -4,28 +4,25 @@ import src.control.interfaces.KeyEventInterpreter;
 import src.control.interfaces.InterpretableKeyConfig;
 import src.control.interfaces.KeyMapVisitor;
 import src.control.interfaces.KeyEditor;
-import src.control.interfaces.Function;
 
 import java.util.Map;
 
 /**
- * quick and dirty implementation of the root key event interpreter.
- * lets get it done!
+ *
  * @author kagioglu
  */
-class Rooty implements KeyEventInterpreter, KeyMapVisitor {
+class MenuBranchKeyEventInterpreter implements KeyEventInterpreter, KeyMapVisitor {
     private final String context;
-    private final Map<String,Function> decision;
-    private KeyEventInterpreter fallback;
+    private final Map<String,KeyEventInterpreter> menus;
+    private KeyEventInterpreter current;
 
-    Rooty(
+    MenuBranchKeyEventInterpreter(
         String context,
-        Map<String,Function> decision,
-        KeyEventInterpreter fallback
+        Map<String,KeyEventInterpreter> menus
     ) {
         this.context = context;
-        this.decision = decision;
-        this.fallback = fallback;
+        this.menus = menus;
+        this.current = null;
     }
 
     private InterpretableKeyConfig tempikc = null;
@@ -41,11 +38,19 @@ class Rooty implements KeyEventInterpreter, KeyMapVisitor {
     public void contextUnknown() {
         throw new RuntimeException("context unknown!");
     }
-    public void meaningUnknown() { this.fallback.interpret(this.tempikc); }
-    public void foundMeaning(String meaning) {
-        if(this.decision.containsKey(meaning)) {
-            this.decision.get(meaning).execute();
+    public void meaningUnknown() {
+        if(this.current != null) {
+            if(this.menus.containsValue(this.current)) {
+                this.current.interpret(this.tempikc);
+            }
+            else { this.current = null; }
         }
         else { /*DO NOTHING*/ }
+    }
+    public void foundMeaning(String meaning) {
+        if(this.menus.containsKey(meaning)) {
+            this.current = this.menus.get(meaning);
+        }
+        else { throw new RuntimeException("binding to non-existant menu"); }
     }
 }
