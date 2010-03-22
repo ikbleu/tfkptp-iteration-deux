@@ -41,9 +41,11 @@ public class test {
 				i.moveTo( i.location().getNeighbor( Direction.S ) );
 				i.moveTo( i.location().getNeighbor( Direction.S ) );
 				p.vMan().update();
+				p.vMan().update();
 				i.moveTo( i.location().getNeighbor( Direction.N ) );
 				i.moveTo( i.location().getNeighbor( Direction.N ) );
 				p.vMan().update();
+				
 			}
 			
 		});
