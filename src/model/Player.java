@@ -131,4 +131,9 @@ public class Player implements CommandSender, InstanceExistenceListener
 			for ( InstanceExistenceListener iel : iels )
 				iel.newInstance( i );
 	}
+	
+	public VisibilityManager vMan()
+	{
+		return visManager;
+	}
 }
