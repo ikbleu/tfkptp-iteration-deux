@@ -1,4 +1,4 @@
-package src.model.instances.units;
+package src;
 
 import src.model.Model;
 import src.model.Player;
@@ -6,6 +6,7 @@ import src.model.commands.NoArgsCommand;
 import src.model.commands.RallyPointCommand;
 import src.model.instances.Unit;
 import src.model.instances.rallypoints.RallyPointManager;
+import src.model.instances.units.SpecificUnitManager;
 import src.util.handv1.HandFactoryImp;
 
 public class test {
