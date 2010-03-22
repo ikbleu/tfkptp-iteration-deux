@@ -28,12 +28,12 @@ public class EnumTableSingleton {
         table.put( DecalType.NONE, "no decal");
         table.put( DecalType.RED_CROSS, "red cross");
         table.put( DecalType.SKULL_XBONES, "skull xbones");
-        table.put( Direction.N, "North");
-        table.put( Direction.NE, "North East");
-        table.put( Direction.NW, "North West");
-        table.put( Direction.S, "South");
-        table.put( Direction.SE, "South East");
-        table.put( Direction.SW, "South West");
+        table.put( Direction.N, "N");
+        table.put( Direction.NE, "NE");
+        table.put( Direction.NW, "NW");
+        table.put( Direction.S, "S");
+        table.put( Direction.SE, "SE");
+        table.put( Direction.SW, "SW");
 
     }
 

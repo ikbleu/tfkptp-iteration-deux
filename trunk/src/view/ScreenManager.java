@@ -164,7 +164,7 @@ import src.util.SimpleMovingAverageTimer;
                     for(int i = 0; i < 15; ++i){
                         for(int j =0; j < 15; ++j){
                             try{
-                                ViewPortTex[i][j] = TextureIO.newTexture(graphicsTable.getGraphic("Grassland"),true);
+                                ViewPortTex[i][j] = TextureIO.newTexture(viewPort.get(i, j),true);
                             }
                             catch (Exception e) {
                                 e.printStackTrace();
