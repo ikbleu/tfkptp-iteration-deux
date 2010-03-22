@@ -1,4 +1,7 @@
-package src.model.instances;
+package src.model.instances.units;
+
+import src.model.instances.Instance;
+import src.model.instances.InstanceExistenceListener;
 
 public class GeneralUnitManager implements InstanceExistenceListener
 {

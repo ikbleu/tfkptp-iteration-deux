@@ -3,7 +3,6 @@ package src.model.instances.units;
 import src.model.Player;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
-import src.model.instances.GeneralUnitManager;
 import src.model.interfaces.ViewVisitor;
 import src.model.interfaces.vGroup;
 import src.util.Hand;

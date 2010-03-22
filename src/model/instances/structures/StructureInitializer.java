@@ -3,7 +3,7 @@ package src.model.instances.structures;
 import src.model.Player;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
-import src.model.instances.GeneralUnitManager;
+import src.model.instances.units.GeneralUnitManager;
 import src.model.instances.units.RangedManager;
 import src.model.interfaces.ViewVisitor;
 import src.model.interfaces.vGroup;

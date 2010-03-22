@@ -16,7 +16,6 @@ import src.model.commands.RallyPointCommand;
 import src.model.commands.RallyPointCommandFactory;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
-import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
 import src.model.instances.RallyPoint;
