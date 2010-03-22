@@ -355,7 +355,7 @@ class HexTile implements GameTile
 	public int calculateDistance(int horiz, int vert)
 	{
 		int k = horiz - vert;
-		
+		System.out.println ("(" + getX() + " " + getY() + " " + getZ() +") to (" + k + " " + vert + " " + horiz + ")");
 		return (Math.abs(getX() - k) + Math.abs(getY() - vert) + Math.abs(getZ() - horiz))/2;
 	}
 
