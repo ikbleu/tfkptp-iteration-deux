@@ -5,6 +5,7 @@ package src.view;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.media.opengl.GL;
@@ -21,6 +22,8 @@ import com.sun.opengl.util.ImageUtil;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureIO;
 
+import src.control.interfaces.DisplayableBinding;
+import src.control.interfaces.DisplayableKeyMap;
 import src.model.interfaces.Displayable;
 import src.util.SimpleMovingAverageTimer;
 import src.model.interfaces.SakuraMap;
@@ -57,6 +60,7 @@ import java.awt.Point;
 	 	private HUD hud;
 	 	private KeyBindingOverview keyBindingOverview;
 	 	private Overview overview;
+	 	private KBOverview kboverview;
 	 	private TechnologyTree technologyTree;
 	 	private CommandQueueOverview commandQueueOverview;
                 private CommandSelection commandSelection;
@@ -111,6 +115,7 @@ import java.awt.Point;
                 Texture ViewPortTest_tex;
                 Texture[][] ViewPortTex;
                 Texture overview_tex;
+                Texture kboverview_tex;
 		
 		private FPSAnimator animator;
 
@@ -132,6 +137,7 @@ import java.awt.Point;
 			
 			keyBindingOverview = new KeyBindingOverview();
 			overview = new Overview(overviewWidth, overviewHeight);
+			kboverview = new KBOverview(overviewWidth, overviewHeight);
 			technologyTree = new TechnologyTree();
 			commandQueueOverview = new CommandQueueOverview();
 
@@ -192,6 +198,19 @@ import java.awt.Point;
 
 		}
 		
+		void updateKBOverview(DisplayableKeyMap dkm) {
+			kboverview.setKBOverview(dkm);
+        	optionalDisplay = OptionalDisplay.KEYBINDING;
+            kboverview.refreshImage();
+            
+            try {
+                kboverview_tex = TextureIO.newTexture(overview.image(),true);
+            }
+            catch (GLException e) {
+                e.printStackTrace();
+            }
+		}
+		
 
                 void updateStatusOverview(Displayable[] d){
                     hud.setStatusOverview(d);
@@ -243,6 +262,8 @@ import java.awt.Point;
                 void initOverview(){
                     try {
                         overview_tex = TextureIO.newTexture(overview.image(),true);
+                        kboverview_tex = TextureIO.newTexture(overview.image(),true);
+                        
                     }
                     catch (GLException e) {
                         e.printStackTrace();
@@ -261,7 +282,7 @@ import java.awt.Point;
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-                //System.out.println(timer.marksPerSecond());
+                System.out.println(timer.marksPerSecond());
 				//render different components
                                 renderBG(gl);
                 renderMap(gl, vpWidth, vpHeight);
