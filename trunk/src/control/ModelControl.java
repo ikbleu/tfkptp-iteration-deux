@@ -45,7 +45,6 @@ class ModelControl implements
         this.lens = lens;
         this.buildermap = buildermap;
         this.injectionbuilder = injectionbuilder;
-        this.lens.accept(this);
     }
 
     public void setFallback(KeyEventInterpreter fallback) {
