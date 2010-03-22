@@ -5,6 +5,7 @@ import src.util.HasComparable;
 import src.util.DataVisitor;
 import java.util.TreeMap;
 import java.util.Map;
+import java.util.Collection;
 /**
  *
  * @author kagioglu
@@ -18,6 +19,11 @@ class LensImp<T extends HasComparable> implements Lens<T> {
         this.data = data;
         if(this.data.isEmpty()) { this.key = null; }
         else { this.key = this.data.firstKey(); }
+    }
+    public void fill(Collection<T> coll) {
+        synchronized(this.lock) {
+            for(T value : this.data.values()) { coll.add(value); }
+        }
     }
     public void next(DataVisitor<T> visitor) {
         synchronized(this.lock) {
