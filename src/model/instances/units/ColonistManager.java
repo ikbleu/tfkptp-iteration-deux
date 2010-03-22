@@ -18,8 +18,8 @@ public class ColonistManager extends SpecificUnitManager {
 		put( "statMaxHealth", 500 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 1 );
-		put( "statDefPow", 1 );
+		put( "statAttackPower", 1 );
+		put( "statDefensePower", 1 );
 		put( "statArmor", 5 );
 		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 0 );
@@ -28,8 +28,8 @@ public class ColonistManager extends SpecificUnitManager {
 		put( "statMaxHealth", 50 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 1 );
-		put( "statDefPow", 1 );
+		put( "statAttackPower", 1 );
+		put( "statDefensePower", 1 );
 		put( "statArmor", 1 );
 		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 1 );

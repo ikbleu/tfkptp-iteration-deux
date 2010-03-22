@@ -18,8 +18,8 @@ public class RangedManager extends SpecificUnitManager {
 		put( "statMaxHealth", 100 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 6 );
-		put( "statDefPow", 2 );
+		put( "statAttackPower", 6 );
+		put( "statDefensePower", 2 );
 		put( "statArmor", 20 );
 		put( "statMoveSpeed", 3 );
 		put( "statEfficiency", 0 );
@@ -28,8 +28,8 @@ public class RangedManager extends SpecificUnitManager {
 		put( "statMaxHealth", 10 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 2 );
-		put( "statDefPow", 1 );
+		put( "statAttackPower", 2 );
+		put( "statDefensePower", 1 );
 		put( "statArmor", 5 );
 		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 1 );
