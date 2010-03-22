@@ -7,15 +7,15 @@ import src.model.interfaces.GameTile;
 
 import java.util.Map;
 
-class Ranged extends Unit {
+class Melee extends Unit {
 
-	public Ranged( Player p, int id, GameTile g )
+	public Melee( Player p, int id, GameTile g )
 	{
 		super( p, id, g );
 	}
 	
 	public String token() {
-		return "instanceRanged";
+		return "instanceMelee";
 	}
 	
 	public void entered(Instance l) {
