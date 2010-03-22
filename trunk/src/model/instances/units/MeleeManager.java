@@ -18,8 +18,8 @@ public class MeleeManager extends SpecificUnitManager {
 		put( "statMaxHealth", 150 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 5 );
-		put( "statDefPow", 2 );
+		put( "statAttackPower", 5 );
+		put( "statDefensePower", 2 );
 		put( "statArmor", 30 );
 		put( "statMoveSpeed", 3 );
 		put( "statEfficiency", 0 );
@@ -28,8 +28,8 @@ public class MeleeManager extends SpecificUnitManager {
 		put( "statMaxHealth", 10 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 2 );
-		put( "statDefPow", 1 );
+		put( "statAttackPower", 2 );
+		put( "statDefensePower", 1 );
 		put( "statArmor", 5 );
 		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 1 );
