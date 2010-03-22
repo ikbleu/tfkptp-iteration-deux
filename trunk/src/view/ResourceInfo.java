@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.Font;
+import java.util.Map;
 /**
  *
  * @author spock
@@ -35,8 +36,11 @@ import java.awt.Font;
         refreshImage();
      }
      
-     void setResources(int[] res){
-        resources = res;
+     void setResources(Map<String, Integer> resource){
+        resources[0] = resource.get("rscEnergy");
+        resources[1] = resource.get("rscMetal");
+        resources[2] = resource.get("rscFood");
+        refreshImage();
      }
 
      void refreshImage(){

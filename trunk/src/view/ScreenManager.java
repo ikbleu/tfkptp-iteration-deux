@@ -35,6 +35,7 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.event.MouseInputListener;
 
 import java.awt.Point;
+import java.util.LinkedList;
 //
 
 
@@ -67,7 +68,8 @@ import java.awt.Point;
                 private ResourceInfo resourceInfo;
 
                 private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
-	 	
+	 	private LinkedList<Point> selectedTiles = new LinkedList<Point>();
+
 	 	private OptionalDisplay optionalDisplay;
 	 	private SimpleMovingAverageTimer timer;
 
@@ -144,6 +146,8 @@ import java.awt.Point;
                         commandSelection = new CommandSelection(null);
                         resourceInfo = new ResourceInfo();
 
+                        resourceInfo.setResources(sakura.getPlayerResources());
+
                         
 			
 			optionalDisplay = OptionalDisplay.KEYBINDING;
@@ -180,6 +184,10 @@ import java.awt.Point;
 
                 void toggleViewPort(){
                     viewPort.toggleViewPort();
+                }
+
+                void setSelectedTiles(LinkedList<Point> tiles){
+                    selectedTiles = tiles;
                 }
 		
 		void updateOverview(String code, Displayable[] direct, Displayable[] dList, Displayable selected) {
