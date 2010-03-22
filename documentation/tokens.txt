@@ -19,6 +19,14 @@ instanceMelee
 instanceExplorer
 instanceColonist
 
+instanceCapital
+instanceFortress
+instanceObsTower
+instanceFarm
+instancePowerPlant
+instanceUniversity
+instanceMine
+
 **WorkerGroups
 wgBreeding
 wgGrain
