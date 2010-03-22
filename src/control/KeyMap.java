@@ -33,11 +33,15 @@ public class KeyMap implements
 	 * This method adds a binding (key to meaning) to the current Builder context. 
 	 */
 	public void binding(KeyCodeAndModifiers event, String meaning) {
-		//
-		if(!contextToBindings.containsKey(currentBuilderContext))
-			contextToBindings.get(meaning).add(new Binding(meaning, event));
-		else
-			System.out.println("KeyMap context either not found or not set!");
+		//System.out.println("binding called. CurrentContext:"+currentBuilderContext);
+		if(contextToBindings.containsKey(currentBuilderContext))
+		{
+			Binding b = new Binding(meaning,event);
+			contextToBindings.get(currentBuilderContext).add(b);
+			//System.out.println("added binding:"+b);
+		}
+		else{}
+			//System.out.println("KeyMap context "+currentBuilderContext+"already in contextToBindings.");
 		
 	}
 
@@ -49,16 +53,23 @@ public class KeyMap implements
 	public void context(String context) {
 		contextToBindings.put(context, new ArrayList<Binding>());
 		currentBuilderContext = context;
+	//	System.out.println("Made new context "+context+" in map with its own empty list of bindings.");
 		
 	}
 
 	@Override
+	/**
+	 * This method should initialize the entire KeyMap from a BindingMapBuilder
+	 */
 	public void buildAll(BindingMapBuilder builder) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
+	/**
+	 * Adds certain bindings for a set of contexts. 
+	 */
 	public void buildForContext(Iterator<String> contexts,
 			BindingMapBuilder builder) {
 		// TODO Auto-generated method stub
@@ -103,20 +114,25 @@ public class KeyMap implements
 	}
 	public String toString()
 	{
-		String toReturn=null;
+		//System.out.println("In toString:");
+		String toReturn="";
 		Set<Entry<String, List<Binding>>>  s = contextToBindings.entrySet();
 		Iterator<Entry<String,List<Binding>>> i = s.iterator();
 		while(i.hasNext())
 		{
+			//System.out.println(toReturn);
 			Entry<String,List<Binding>> e = i.next();
+			toReturn = toReturn.concat("begincontext\n");
 			toReturn=toReturn.concat(e.getKey()+'\n');
+			//System.out.println(toReturn);
 			Iterator<Binding> bindingListIterator = e.getValue().iterator();
-			while(bindingListIterator.hasNext())
+			while(bindingListIterator.hasNext()) 
 			{
 				Binding b = bindingListIterator.next();
-				toReturn = toReturn.concat(b.toString());
+				toReturn = toReturn.concat(b.toString())+'\n';
+				//System.out.println("Binding:"+toReturn);
 			}
-			toReturn = toReturn.concat(" \n");
+			toReturn=toReturn.concat("endcontext\n");
 		}
 		return toReturn;
 	}
