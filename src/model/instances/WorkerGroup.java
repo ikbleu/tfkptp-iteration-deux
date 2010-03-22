@@ -12,6 +12,7 @@ import src.model.interfaces.HasPlayer;
 import src.model.interfaces.HasPlayerVisitor;
 
 import java.util.Map;
+import java.util.HashMap;
 
 import src.model.WorkerManager;
 
@@ -208,5 +209,32 @@ public abstract class WorkerGroup extends Locatable implements HasPlayer
     public void doDestruction()
     {
         manager.workersRemoved(numWorkers);
+    }
+
+    public Map<String, Integer> getUpkeep()
+    {
+        HashMap<String, Integer> upkeep = new HashMap<String, Integer>();
+        upkeep.put("rscFood", getStat("statUpFood") * numWorkers);
+        upkeep.put("rscMetal", getStat("statUpMetal") * numWorkers);
+        upkeep.put("rscEnergy", getStat("statUpEnergy") * numWorkers);
+
+        return upkeep;
+    }
+
+    public void sentUpkeep(Map<String, Integer> resources)
+    {
+        int rscNeeded = (getStat("statUpFood") + getStat("statUpMetal") +
+                getStat("statUpEnergy")) * numWorkers;
+        int rscReceived = resources.get("rscFood") + resources.get("rscMetal") +
+                resources.get("rscEnergy");
+
+        if(rscNeeded > rscReceived)
+        {
+            double lifeRatio = ((double) rscReceived) / ((double) rscNeeded);
+            int numToDie = (int) (numWorkers * (1d - lifeRatio));
+            numToDie = Math.max(numToDie, 0);
+
+            removeWorkers(numToDie);
+        }
     }
 }
