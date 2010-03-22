@@ -7,8 +7,8 @@ import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.control.Device;
-import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
+import src.model.instances.units.GeneralUnitManager;
 import src.model.interfaces.GameTile;
 import src.util.Hand;
 
