@@ -22,7 +22,7 @@ public class Run {
 	{
 		KeyMap m = new KeyMap();
 		l = new Listener(kei,m);
-		//need to initialize kei
+		kei = ControllerTestConfigurer.root();
 		BufferedReader r;
 		try{
 		r = new BufferedReader(new FileReader("controller config files/test.txt"));
