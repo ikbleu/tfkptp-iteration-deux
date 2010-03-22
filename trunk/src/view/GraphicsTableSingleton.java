@@ -97,6 +97,9 @@ class GraphicsTableSingleton {
             graphics.put( "itemResource", ImageIO.read(new File("artwork/resourceItem.jpg")));
             graphics.put( "itemObstacle", ImageIO.read(new File("artwork/obstacleItem.jpg")));
 
+            graphics.put( "skull xbones", ImageIO.read(new File("artwork/skull.jpg")));
+            graphics.put( "red cross", ImageIO.read(new File("artwork/cross.jpg")));
+
             graphics.put( "space", ImageIO.read(new File("artwork/space2.jpg")));
         }
         catch(Exception e){
