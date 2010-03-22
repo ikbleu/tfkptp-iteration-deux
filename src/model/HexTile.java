@@ -361,11 +361,13 @@ class HexTile implements GameTile
 
 	public GameTile getTileAt2DCoordinate(int horiz, int vert)
 	{
+		System.out.println((horiz-vert) + " " + vert + " " + horiz);
 		return getTileAt(horiz, vert);
 	}
 	
 	private GameTile getTileAt(int horiz, int vert)
 	{
+		
 		if (getZ() == horiz && getY() == vert)
 			return this;
 		
