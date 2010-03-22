@@ -214,7 +214,6 @@ import java.util.LinkedList;
 		
 		void updateKBOverview(DisplayableKeyMap dkm) {
 			kboverview.setKBOverview(dkm);
-        	optionalDisplay = OptionalDisplay.KEYBINDING;
             kboverview.refreshImage();
             System.out.println("UPDATING THAT KB");
             
@@ -711,6 +710,7 @@ import java.util.LinkedList;
 							optionalDisplay = OptionalDisplay.KEYBINDING;
 							
 					}
+					
 					
 				}
 
