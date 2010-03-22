@@ -29,6 +29,8 @@ import src.util.SimpleMovingAverageTimer;
 import src.model.interfaces.SakuraMap;
 
 //
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
@@ -129,9 +131,11 @@ import java.util.LinkedList;
 			scale = 1.0;
 			panX = 0;
 			panY = 0;
+			
+			friction = 1.0;
 
-                        vpWidth = sakura.mapWidth();
-                        vpHeight = sakura.mapHeight();
+            vpWidth = sakura.mapWidth();
+            vpHeight = sakura.mapHeight();
 			
 			viewPort = new ViewPort(mapWidth, mapHeight, sakura);
                         ViewPortTex = new Texture[mapHeight][mapWidth];
@@ -150,7 +154,7 @@ import java.util.LinkedList;
 
                         
 			
-			optionalDisplay = OptionalDisplay.KEYBINDING;
+			optionalDisplay = OptionalDisplay.NONE;
 
 			setSize(windowWidth, windowHeight);
 			setTitle("Robot Unicorns...ATTACK!");
@@ -162,6 +166,7 @@ import java.util.LinkedList;
 			GraphicListener listener = new GraphicListener();
 			GLCanvas canvas = new GLCanvas(new GLCapabilities());
                         canvas.addGLEventListener(listener);
+                        canvas.addKeyListener(listener);
 
                         //
                         canvas.addMouseWheelListener(listener);
@@ -282,8 +287,9 @@ import java.util.LinkedList;
 
 		
 		class GraphicListener implements GLEventListener, MouseWheelListener,
-											MouseInputListener {
+											MouseInputListener, KeyListener {
 			
+
 
 			public void display(GLAutoDrawable drawable) {
 				
@@ -597,6 +603,7 @@ import java.util.LinkedList;
 			}
 
 		}
+            
             private void renderViewPortHex(GL gl, double x, double y, int i, int j) {
 
             	
@@ -663,8 +670,8 @@ import java.util.LinkedList;
 
 				int newX = e.getX();
 				int newY = e.getY();
-				dX = (newX - prev.getX())/scale/1280*10.26;
-				dY = (newY - prev.getY())/scale/800*6.39;
+				dX = (newX - prev.getX())/scale/370;
+				dY = (newY - prev.getY())/scale/220;
 			}
 			prev = e;
 
@@ -682,6 +689,39 @@ import java.util.LinkedList;
 				scale = Math.min(1/scaleFactor*scale, 1.5);
 
 		}
+
+
+
+
+				public void keyPressed(KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+
+
+
+				public void keyReleased(KeyEvent e) {
+					System.out.println("I hear a key");
+					if(e.getKeyCode() == KeyEvent.VK_K) {
+						System.out.println("i hear k");
+						if (optionalDisplay == OptionalDisplay.KEYBINDING)
+							optionalDisplay = OptionalDisplay.NONE;
+						else
+							optionalDisplay = OptionalDisplay.KEYBINDING;
+							
+					}
+					
+				}
+
+
+
+
+				public void keyTyped(KeyEvent e) {
+					
+
+					
+				}
 		}
 
                 
