@@ -273,6 +273,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 	public void addUnit( Unit u )
 	{
 		u.addInstanceExistenceListener( this );
+                player().unregisterUpkeep(u);
 	}
 
 	@Override
@@ -294,6 +295,7 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 	public void removeUnit( Unit u )
 	{
 		delInstance( u );
+                player().registerUpkeep(u);
 	}
 
 	@Override

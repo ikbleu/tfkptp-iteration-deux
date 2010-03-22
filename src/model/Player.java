@@ -26,7 +26,7 @@ public class Player implements CommandSender, InstanceExistenceListener
 	GameTile startingLocation;
         ResourceManager rscManager;
         VisibilityManager visManager;
-        public UpkeepManager upMan;
+        UpkeepManager upMan;
 	
 	public Player( boolean isH, HandFactory hF, GameMap m, GameTile startLoc,
                 ResourceManager rm, Clock c)
