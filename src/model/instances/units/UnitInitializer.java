@@ -49,6 +49,9 @@ public final class UnitInitializer {
 		};
 		
 		hand.add( new RangedManager( p, m ) );
+		hand.add( new ColonistManager( p, m ) );
+		hand.add( new ExplorerManager( p, m ) );
+		hand.add( new MeleeManager( p, m ) );
 		// TODO: other managers
 		
 		p.addDevice( d );

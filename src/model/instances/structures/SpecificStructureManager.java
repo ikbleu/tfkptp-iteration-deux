@@ -1,5 +1,7 @@
 package src.model.instances.structures;
 
+import java.util.Map;
+
 import src.model.Player;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
@@ -12,19 +14,32 @@ import src.model.interfaces.vType;
 import src.util.Hand;
 
 abstract public class SpecificStructureManager implements InstanceExistenceListener, vType {
-	public SpecificStructureManager(GeneralStructureManager m, StructureFactory f, Player p, Hand< Device > h ) {
+	public SpecificStructureManager(GeneralStructureManager m, StructureFactory f, Player p, Hand< Device > h,
+			Map< String, Integer > baseStats, final Map< String, Integer > deltaStats, Map< String, Integer > resourceCost,
+			String researchID  ) {
 		manager = m;
 		factory = f;
 		hand = h;
 		player = p;
+		this.deltaStats = deltaStats;
+		this.researchID = researchID;
+		this.resourceCost = resourceCost;
+		
+		for ( Map.Entry< String, Integer > e : baseStats.entrySet() )
+			factory.modDefaultStat( e.getKey(), e.getValue() );
+		factory.modDefaultStat( "statHealth", baseStats.get( "statMaxHealth" ) );
 	}
 	private GeneralStructureManager manager; 
 	private StructureFactory factory;
 	private Hand< Device > hand;
 	private Player player;
+	private Map< String, Integer > deltaStats;
+	private String researchID;
+	private Map< String, Integer > resourceCost;
 	
-	public boolean canMakeUnit( GameTile g )
+	public boolean canMakeStructure( GameTile g )
 	{
+		// TODO: check resources
 		return canMakeSpecificStructure( g ) && manager.canMakeStructure( g );
 	}
 	
