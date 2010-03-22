@@ -1,22 +1,35 @@
 package src.model;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import src.model.exceptions.YoureDoingItWrongException;
 import src.model.interfaces.Clock;
 import src.model.interfaces.Tickable;
 
 public class DethKlok implements Clock
 {
-    private final Collection< Tickable > primaryCollection, secondaryCollection;
+    private Map<String, Set<Tickable> > collection;
     private Timer timer;
     private long msecsPerTick;
+    private final List<String> orderedList;
     
-    public DethKlok( long msecs ) {
-        this.primaryCollection = new LinkedList< Tickable >();
-        this.secondaryCollection = new LinkedList< Tickable >();
+    public DethKlok( List<String> possibleValues, long msecs ) throws YoureDoingItWrongException
+    {
+    	for (int i = 0; i < possibleValues.size(); i++)
+    		for (int j = i + 1; j < possibleValues.size(); j++)
+    			if (possibleValues.get(i).equals(possibleValues.get(j)))
+    				throw new YoureDoingItWrongException("Can't have duplicate values inside the clock's tier list");
+    	
+    	orderedList = possibleValues;
+        collection = new Hashtable<String, Set<Tickable> >();
         this.initializeTimer();
         msecsPerTick = msecs;
     }
@@ -30,35 +43,25 @@ public class DethKlok implements Clock
     {
         class DethTask extends TimerTask
         {
-            private final Collection< Tickable > plisteners, slisteners;
+            private final Map<String, Set<Tickable> >  plisteners;
+            private final List<String> order;
             
-            public DethTask( Collection<Tickable> plisteners, Collection<Tickable> slisteners) {
+            public DethTask( List<String> order, Map<String, Set<Tickable> > plisteners)
+            {
                 this.plisteners = plisteners;
-                this.slisteners = slisteners;
+                this.order = order;
             }
             
             public void run()
             {
                 synchronized ( this.plisteners )
                 {
-                    for ( Tickable listener : plisteners )
-                    {
-                        listener.tick();
-                    }
-                }
-                
-                synchronized ( this.slisteners )
-                {
-                    for ( Tickable listener : slisteners )
-                    {
-                        listener.tick();
-                    }
+                    
                 }
             }
         }
         
-        this.timer.scheduleAtFixedRate( new DethTask( this.primaryCollection, this.secondaryCollection ),
-                                        msecsPerTick, msecsPerTick );
+        this.timer.scheduleAtFixedRate( new DethTask( this.orderedList, this.collection), msecsPerTick, msecsPerTick );
     }
     
     
@@ -75,38 +78,39 @@ public class DethKlok implements Clock
     }
 
 	@Override
-	public void registerPrimary(Tickable ticker)
+	public void register(String tierOrderToken, Tickable ticker) throws YoureDoingItWrongException
 	{
 		// TODO Auto-generated method stub
-		synchronized ( this.primaryCollection )
+		synchronized ( this.collection )
         {
-            this.primaryCollection.add( ticker );
+            if (!this.orderedList.contains(tierOrderToken))
+            	throw new YoureDoingItWrongException("Invalid tier ID");
+            
+            Set<Tickable> s;
+            if (this.collection.containsKey(tierOrderToken))
+            	s = collection.get(tierOrderToken);
+            else
+            	s = new HashSet<Tickable>();
+            
+            s.add(ticker);
+            collection.put(tierOrderToken, s);
         }
-	}
-
-	@Override
-	public void registerSecondary(Tickable ticker)
-	{
-		// TODO Auto-generated method stub
-		synchronized ( this.secondaryCollection )
-        {
-            this.secondaryCollection.add( ticker );
-        }
-		
 	}
 
 	@Override
 	public void remove(Tickable ticker)
 	{
 		// TODO Auto-generated method stub
-		synchronized ( this.primaryCollection )
+		synchronized ( this.collection )
         {
-            this.primaryCollection.remove( ticker );
-        }
-		
-		synchronized ( this.secondaryCollection )
-        {
-            this.secondaryCollection.remove( ticker );
+            for (int i = 0; i < orderedList.size(); i++)
+            {
+            	if (collection.get(orderedList.get(i)).contains(ticker))
+            	{
+            		collection.get(orderedList.get(i)).remove(ticker);
+            		break;
+            	}
+            }
         }
 	}
 }

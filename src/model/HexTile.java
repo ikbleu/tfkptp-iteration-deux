@@ -50,6 +50,11 @@ class HexTile implements GameTile
 		return neighbors.get(dir);
 	}
 	
+	public HexTile getHexNeighbor(Direction dir)
+	{
+		return neighbors.get(dir);
+	}
+	
 	public HexTile getNeighborHex(Direction dir)
 	{
 		return neighbors.get(dir);
@@ -250,7 +255,7 @@ class HexTile implements GameTile
 			do
 			{
 				if (tile.hasNeighbor(d))
-					getTilesAroundHelper(list, tile.getNeighbor(d), radius - 1);
+					getHexTilesAroundHelper(list, tile.getHexNeighbor(d), radius - 1);
 				d = d.clockwise();
 			} while (d != Direction.N);
 		}
