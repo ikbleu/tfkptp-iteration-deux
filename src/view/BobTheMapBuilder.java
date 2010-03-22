@@ -158,6 +158,7 @@ class BobTheMapBuilder implements MapBuilder{
         terrain = null;
         individualUnits = -1;
         player = null;
+        rallyPoints = new LinkedList<RallyPointV>();
         return imageBuffer;
     }
 
@@ -208,6 +209,17 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
             }
         }
+        structure = null;
+        soldiers = -1;
+        resources = null;
+        item = null;
+        decal = null;
+        rallyPoints = null;
+        visibility = null;
+        terrain = null;
+        individualUnits = -1;
+        player = null;
+        workerGroups = new HashMap<String, Integer>();
         return imageBuffer;
     }
 

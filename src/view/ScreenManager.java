@@ -23,6 +23,7 @@ import com.sun.opengl.util.texture.TextureIO;
 
 import src.model.interfaces.Displayable;
 import src.util.SimpleMovingAverageTimer;
+import src.model.interfaces.SakuraMap;
 /**
  *
  * @author rdshack
@@ -40,27 +41,29 @@ import src.util.SimpleMovingAverageTimer;
 	 	private static final long serialVersionUID = 100;
 	 	
 	 	private ViewPort viewPort;
+                private int vpWidth;
+                private int vpHeight;
 	 	private HUD hud;
 	 	private KeyBindingOverview keyBindingOverview;
 	 	private Overview overview;
 	 	private TechnologyTree technologyTree;
 	 	private CommandQueueOverview commandQueueOverview;
-        private CommandSelection commandSelection;
-        private ResourceInfo resourceInfo;
+                private CommandSelection commandSelection;
+                private ResourceInfo resourceInfo;
 
-        private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
+                private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
 	 	
 	 	private OptionalDisplay optionalDisplay;
 	 	private SimpleMovingAverageTimer timer;
 
-        private double screenRatio = 1.6;
+                private double screenRatio = 1.6;
 		
 		private double scale;
 		private double panX;
 		private double panY;
 
-        private double hexWidth = .200;
-        private double hexHeight = .173205;
+                private double hexWidth = .200;
+                private double hexHeight = .173205;
 		
 		private GLCanvas canvas;
 		
@@ -85,7 +88,7 @@ import src.util.SimpleMovingAverageTimer;
 		
 		private FPSAnimator animator;
 
-		ScreenManager(int mapWidth, int mapHeight){
+		ScreenManager(int mapWidth, int mapHeight, SakuraMap sakura){
 			
 			timer = new SimpleMovingAverageTimer();
 			timer.start();
@@ -93,8 +96,11 @@ import src.util.SimpleMovingAverageTimer;
 			scale = 1.0;
 			panX = 0;
 			panY = 0;
+
+                        vpWidth = sakura.mapWidth();
+                        vpHeight = sakura.mapHeight();
 			
-			viewPort = new ViewPort(mapWidth, mapHeight);
+			viewPort = new ViewPort(mapWidth, mapHeight, sakura);
                         ViewPortTex = new Texture[mapHeight][mapWidth];
 			hud = new HUD(hudWidth, hudHeight);
 			
@@ -175,8 +181,8 @@ import src.util.SimpleMovingAverageTimer;
                 void updateViewPort(){
                     viewPort.refreshImage();
                     //for testing
-                    for(int i = 0; i < 15; ++i){
-                        for(int j =0; j < 15; ++j){
+                    for(int i = 0; i < vpHeight; ++i){
+                        for(int j =0; j < vpWidth; ++j){
                             try{
                                 ViewPortTex[i][j] = TextureIO.newTexture(viewPort.get(i, j),true);
                             }

@@ -13,8 +13,7 @@ import src.model.interfaces.Displayable;
  */
 public class ViewTest {
     public static void main(String[] args) {
-        View viewTest = new View();
-        Displayable[] dt = new Displayable[1];
-        viewTest.injectionFairyLily("TT", dt, dt, dt[0]);
+        //View viewTest = new View();
+        //viewTest.injectionFairyLily("SO", dt, dt, dt[0]);
     }
 }

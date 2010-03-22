@@ -21,10 +21,11 @@ public class View implements ViewInjection{
     private SakuraMap sakuraMap;
     private HashMap<String,ViewInjectionElement> injections;
 
-    public View(){
+    public View(SakuraMap sakura){
     	GraphicsTableSingleton.getInstance();
-    	
-        screenManager = new ScreenManager(15, 15);
+
+
+        screenManager = new ScreenManager(sakura.mapWidth(), sakura.mapHeight(), sakura);
         screenManager.start();
         
         injections = new HashMap<String,ViewInjectionElement>();
