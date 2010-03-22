@@ -93,7 +93,7 @@ class GraphicsTableSingleton {
             graphics.put( "OreT", ImageIO.read(new File("artwork/DarkMoon.PNG")));
 
             graphics.put( "itemDamage", ImageIO.read(new File("artwork/damageItem.png")));
-            graphics.put( "itemHealing", ImageIO.read(new File("artwork/healingItem.jpg")));
+            graphics.put( "itemHeal", ImageIO.read(new File("artwork/healingItem.jpg")));
             graphics.put( "itemResource", ImageIO.read(new File("artwork/resourceItem.jpg")));
             graphics.put( "itemObstacle", ImageIO.read(new File("artwork/obstacleItem.jpg")));
 
