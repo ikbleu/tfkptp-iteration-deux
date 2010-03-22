@@ -8,11 +8,14 @@ import src.model.instances.Unit;
 import src.model.instances.rallypoints.RallyPointManager;
 import src.model.instances.units.SpecificUnitManager;
 import src.util.handv1.HandFactoryImp;
+import src.view.View;
 
 public class test {
 	public static void main( String[] args )
 	{
-		Player p = new Model( new HandFactoryImp() ).p;
+                Model m = new Model( new HandFactoryImp() );
+		Player p = m.p;
+                View view = new View(p.getVisibilityManager());
 		System.out.println( "cmdMakeRanged" );
 		p.executeCommand( new NoArgsCommand( "cmdMakeRanged", null, 0 ) );
 		System.out.println( "cmdArcherAP1" );
