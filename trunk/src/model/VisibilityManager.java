@@ -54,6 +54,7 @@ public class VisibilityManager implements SakuraMap, Tickable
 	public void build(MapBuilder[][] b) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < b.length; i++)
+		{	
 			for (int j = 0; j < b[i].length;j++)
 			{
 				GameTile loc = gameMap.acceptBuilder(b[i][j], i, j);
@@ -62,7 +63,7 @@ public class VisibilityManager implements SakuraMap, Tickable
 					visibleMap.acceptBuilder(b[i][j], loc);
 				}
 			}
-
+		}
 	}
 
 	public void exploreTiles(Map<GameTile, DecalType> exploredTiles)
