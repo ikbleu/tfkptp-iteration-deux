@@ -59,7 +59,7 @@ class GraphicsTableSingleton {
             graphics.put( "instanceFarm", ImageIO.read(new File("artwork/barnn.jpg")));
             graphics.put( "instancePowerPlant", ImageIO.read(new File("artwork/powerplantt.jpg")));
             graphics.put( "instanceUniversity", ImageIO.read(new File("artwork/univ.jpg")));
-            //graphics.put( "instanceMine", ImageIO.read(new File("artwork/minee.gif")));
+            graphics.put( "instanceMine", ImageIO.read(new File("artwork/smallmine.png")));
 
             graphics.put( "instanceCapitalB", ImageIO.read(new File("artwork/castleB.jpg")));
             graphics.put( "instanceFortressB", ImageIO.read(new File("artwork/fortB.jpg")));
@@ -67,8 +67,7 @@ class GraphicsTableSingleton {
             graphics.put( "instanceFarmB", ImageIO.read(new File("artwork/barnB.jpg")));
             graphics.put( "instancePowerPlantB", ImageIO.read(new File("artwork/powerplantB.jpg")));
             graphics.put( "instanceUniversityB", ImageIO.read(new File("artwork/univB.jpg")));
-            //graphics.put( "instanceMineB", ImageIO.read(new File("artwork/mineB.gif")));
-            System.out.println("greetings");
+            graphics.put( "instanceMineB", ImageIO.read(new File("artwork/bigmine.png")));
 
             graphics.put( "instanceRangedB", ImageIO.read(new File("artwork/rbuniB.jpg")));
             graphics.put( "instanceMeleeB", ImageIO.read(new File("artwork/rbdolphB.jpg")));

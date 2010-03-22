@@ -85,7 +85,7 @@ import src.model.interfaces.vInstance;
         graphix.setFont(f1);
         //testdata
         soType = new LinkedList<String>();
-        soType.add("Colonist");
+        soType.add("instanceExplorer");
         soHealth = new LinkedList<Integer>();
         soHealth.add(76);
         //more testing
