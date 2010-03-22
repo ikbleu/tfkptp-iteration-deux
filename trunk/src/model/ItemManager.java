@@ -16,8 +16,11 @@ import src.model.instances.Obstacle;
 import src.model.instances.OneShotItem;
 import src.model.interfaces.ItemEffect;
 import src.model.instances.itemeffects.Bomb;
+import src.model.instances.itemeffects.Soma;
 
 import java.util.Random;
+
+import src.util.RandomChooser;
 
 /**
  * Creates and manages items on the game map, as well as distributing ticks
@@ -30,9 +33,20 @@ public class ItemManager implements ItemVisibilityHolder
     // Gee, I wonder what this is.
     private List<Item> itemList;
 
+    private RandomChooser<ItemEffect> effectChooser;
+
     private ItemManager()
     {
         itemList = new ArrayList<Item>();
+
+        Random rand = new Random(System.currentTimeMillis());
+
+        effectChooser = new RandomChooser<ItemEffect>();
+        effectChooser.add(new Bomb(rand.nextInt(15) + 1, 1, 0.5), 200);
+        effectChooser.add(new Soma(15, 1, 0.5), 200);
+        effectChooser.add(new Soma(50, 2, 0.5), 50);
+        effectChooser.add(new Bomb(rand.nextInt(25) + 25, 2, 0.5), 50);
+        effectChooser.add(new Bomb(Integer.MAX_VALUE, 30, 0), 1);
     }
 
     private static class ItemManagerHolder
@@ -54,10 +68,16 @@ public class ItemManager implements ItemVisibilityHolder
 
         Random rand = new Random(System.currentTimeMillis());
 
+        GameTile start1 = theMap.getStartingLocation1();
+        GameTile start2 = theMap.getStartingLocation2();
+
         for(GameTile gt : allTiles)
         {
-            if(gt != theMap.getStartingLocation1() && gt != theMap.getStartingLocation2() && rand.nextInt(10) > 7)
+            if(gt.getDistanceFrom(start1) > 2 && gt.getDistanceFrom(start2) > 2 &&
+                    rand.nextInt(10) > 6)
+            {
                 makeNewItem(gt);
+            }
         }
     }
 
@@ -75,27 +95,7 @@ public class ItemManager implements ItemVisibilityHolder
 
     private void makeNewOneShot(GameTile location)
     {
-        Random rand = new Random(System.currentTimeMillis());
-
-        ItemEffect effect = new Bomb(0, 0, 0);
-
-        int option = rand.nextInt(1000);
-
-        if(option >= 0 && option < 800)
-        {
-            // Small bomb
-            effect = new Bomb(rand.nextInt(15) + 1, 1, 0.5);
-        }
-        if(option >= 800 && option < 999)
-        {
-            // Large bomb
-            effect = new Bomb(rand.nextInt(50) + 1, 2, 0.5);
-        }
-        if(option == 999)
-        {
-            // Friggin nuke! EVERYTHING DIES.
-            effect = new Bomb(Integer.MAX_VALUE, 30, 0);
-        }
+        ItemEffect effect = effectChooser.get();
 
         itemList.add(new OneShotItem(effect.type(), location, effect));
     }
