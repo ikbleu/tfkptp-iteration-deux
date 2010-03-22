@@ -80,11 +80,6 @@ public class ItemManager implements ItemVisibilityHolder
         GameTile start1 = theMap.getStartingLocation1();
         GameTile start2 = theMap.getStartingLocation2();
 
-        // TODO: Remove below debugging code.
-        GameTile special = start1.getNeighbor(Direction.S);
-        ItemEffect specialEffect = new Bomb(15, 1, 0.5);
-        itemList.put(special, new OneShotItem(specialEffect.type(), special, specialEffect));
-        // End debug code.
 
         for(GameTile gt : allTiles)
         {
