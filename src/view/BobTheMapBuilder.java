@@ -14,7 +14,10 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.RenderingHints;
+import java.awt.Font;
 
 
 /**
@@ -34,8 +37,16 @@ class BobTheMapBuilder implements MapBuilder{
         private String terrain;
         private String player;
         private BufferedImage imageBuffer;
-        private EnumTableSingleton enumT;
-        private GraphicsTableSingleton graphicsT;
+        private EnumTableSingleton enumT = EnumTableSingleton.getInstance();
+        private GraphicsTableSingleton graphicsT = GraphicsTableSingleton.getInstance();
+        private int idsSize = 25;
+        private int imageSpacing = 2;
+        private Font f1 = new Font( "Times Roman", Font.PLAIN, 13 );
+
+        private Graphics2D graphix;
+
+        private int centerX = 100;
+        private int centerY = 87;
 
 
     BobTheMapBuilder(){
@@ -47,6 +58,31 @@ class BobTheMapBuilder implements MapBuilder{
         rallyPoints = null;
         visibility = null;
         terrain = null;
+        individualUnits = -1;
+        player = null;
+    }
+
+    BobTheMapBuilder(String imfake){
+        structure = "base";
+        soldiers = -1;
+        resources = null;
+        item = "base";
+        decal = "base";
+        rallyPoints = new LinkedList<RallyPointV>();
+        rallyPoints.add(new RallyPointV(1, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(2, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(3, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(4, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(5, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(6, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(7, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(8, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(9, Direction.N, "Defend"));
+        rallyPoints.add(new RallyPointV(10, Direction.N, "Defend"));
+
+
+        visibility = null;
+        terrain = "Grassland";
         individualUnits = -1;
         player = null;
     }
@@ -87,10 +123,53 @@ class BobTheMapBuilder implements MapBuilder{
         this.player = player;
     }
 
-    void buildMe(){
+    BufferedImage buildMeViewPort(){
         if(terrain!=null){
             imageBuffer = graphicsT.getGraphic(terrain);
+            graphix = imageBuffer.createGraphics();
+            graphix.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
+                                  RenderingHints.VALUE_ANTIALIAS_ON );
+            graphix.setColor( Color.BLACK );
+            graphix.setFont(f1);
+
+            for(int i =0;i<rallyPoints.size();++i){
+                int spacing = 12;
+                System.out.println(rallyPoints.size());
+                String imageArrow = rallyPoints.get(i).status();
+                imageArrow = imageArrow + enumT.getString(rallyPoints.get(i).direction());
+                graphix.drawImage(graphicsT.getGraphic(imageArrow), centerX + (int)polarX(Math.PI/5*(i), 65.0)-spacing,
+                                  centerY + (-1)*(int)polarY(Math.PI/5*(i), 70.0)-spacing, null);
+                graphix.setColor(Color.WHITE);
+                graphix.drawString(""+rallyPoints.get(i).rallyPoint(), centerX + (int)polarX(Math.PI/5*(i), 50.0),
+                                  centerY + (-1)*(int)polarY(Math.PI/5*(i), 50.0));
+            }
+            graphix.drawImage(graphicsT.getGraphic(decal), centerX - 3*idsSize/2 - imageSpacing, centerY - idsSize/2 ,idsSize, idsSize, null);
+            graphix.drawImage(graphicsT.getGraphic(structure), centerX - idsSize/2, centerY - idsSize/2 , idsSize, idsSize, null);
+            graphix.drawImage(graphicsT.getGraphic(item), centerX + idsSize/2 + imageSpacing, centerY - idsSize/2 , idsSize, idsSize, null);
+            graphix.setColor(Color.WHITE);
+            graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
         }
+        /*add in real version
+        structure = null;
+        soldiers = -1;
+        resources = null;
+        item = null;
+        decal = null;
+        rallyPoints = null;
+        visibility = null;
+        terrain = null;
+        individualUnits = -1;
+        player = null;
+         * 
+         */
+         return imageBuffer;
+    }
+
+    private double polarX(double angle, double length){
+        return length * Math.cos(angle);
+    }
+    private double polarY(double angle, double length){
+        return length * Math.sin(angle);
     }
 
     private class RallyPointV{
@@ -102,6 +181,16 @@ class BobTheMapBuilder implements MapBuilder{
             rallyPoint = rP;
             direction = di;
             status = sta;
+        }
+
+        String status(){
+            return status;
+        }
+        Direction direction(){
+            return direction;
+        }
+        int rallyPoint(){
+            return rallyPoint;
         }
     }
 
