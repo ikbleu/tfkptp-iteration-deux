@@ -1,9 +1,8 @@
 package src.model;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -56,7 +55,15 @@ public class DethKlok implements Clock
             {
                 synchronized ( this.plisteners )
                 {
-                    
+                    for (int i = 0; i < order.size(); i++)
+                    {
+                    	Iterator<Tickable> it = plisteners.get(order.get(i)).iterator();
+                    	
+                    	while (it.hasNext())
+                    	{
+                    		it.next().tick();
+                    	}
+                    }
                 }
             }
         }
