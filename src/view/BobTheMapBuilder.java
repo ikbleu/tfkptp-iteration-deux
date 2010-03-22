@@ -149,12 +149,12 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.setColor(Color.WHITE);
                 graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
             }
-            if(visibility.equals("shrouded")){
+            /*if(visibility.equals("shrouded")){
                 graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
             }
             if(visibility.equals("non visible")){
                 graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
-            }
+            }*/
         }
         else{
             imageBuffer = null;
@@ -219,12 +219,12 @@ class BobTheMapBuilder implements MapBuilder{
             if(workerGroups.containsKey(("wgStaff"))){
                 graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
             }
-            if(visibility.equals("shrouded")){
+            /*if(visibility.equals("shrouded")){
                 graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
             }
             if(visibility.equals("non visible")){
                 graphix.drawImage(graphicsT.getGraphic(visibility), 0, 0, null);
-            }
+            }*/
 
         }
         else{
@@ -242,6 +242,17 @@ class BobTheMapBuilder implements MapBuilder{
         player = null;
         workerGroups = new HashMap<String, Integer>();
         return imageBuffer;
+    }
+
+    int coSchemer(){
+        int gr = 0;
+        if(visibility != null && visibility.equals("non visible")){
+            gr = 1;
+        }
+        if(visibility != null && visibility.equals("shrouded")){
+            gr = 2;
+        }
+        return gr;
     }
 
     private double polarX(double angle, double length){
@@ -272,6 +283,8 @@ class BobTheMapBuilder implements MapBuilder{
             return rallyPoint;
         }
     }
+
+
 
 }
 

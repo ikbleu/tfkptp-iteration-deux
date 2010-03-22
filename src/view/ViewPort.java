@@ -15,6 +15,7 @@ import src.model.interfaces.SakuraMap;
 public class ViewPort extends HasAnImage{
     BufferedImage map[][];
     BobTheMapBuilder bobs[][];
+    int coScheme[][];
     SakuraMap sakura;
     private int wid;
     private int hei;
@@ -26,6 +27,7 @@ public class ViewPort extends HasAnImage{
         this.hei = hei;
         map = new BufferedImage[hei][wid];
         bobs = new BobTheMapBuilder[hei][wid];
+        coScheme = new int[hei][wid];
         for(int i = 0;i<hei;++i){
             for(int j = 0; j<wid; ++j){
                 bobs[i][j] = new BobTheMapBuilder();
@@ -34,6 +36,7 @@ public class ViewPort extends HasAnImage{
         sakura.build(bobs);
         for(int i = 0;i<hei;++i){
             for(int j = 0; j<wid; ++j){
+                coScheme[i][j] = bobs[i][j].coSchemer();
                 map[i][j] = bobs[i][j].buildMeViewPort();
             }
         }
@@ -45,6 +48,10 @@ public class ViewPort extends HasAnImage{
 
     BufferedImage get(int i, int j){
         return map[i][j];
+    }
+
+    int getScheme(int i, int j){
+        return coScheme[i][j];
     }
 
     void refreshImage(){
