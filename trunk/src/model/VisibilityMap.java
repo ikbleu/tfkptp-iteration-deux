@@ -188,7 +188,7 @@ public class VisibilityMap implements HasPlayerVisitor
 	{
 		GameTile loc = s.location();
 		
-		structureAffectedTiles.put(loc, new StructID(s.token(),s.getStat("numSoldiers")));
+		structureAffectedTiles.put(loc, new StructID(s.token(),s.getStat("statNumSoldiers")));
 		playerAffectedTiles.put(loc, new Boolean(s.getPlayer().isHuman()));		
 	}
 
