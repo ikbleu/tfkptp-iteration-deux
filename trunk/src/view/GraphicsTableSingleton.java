@@ -37,9 +37,31 @@ class GraphicsTableSingleton {
             graphics.put( "SPARSE_FOREST", ImageIO.read(new File("artwork/sparseforest.png")));
             graphics.put( "WATER", ImageIO.read(new File("artwork/water.png")));
             graphics.put( "OUTER_SPACE", ImageIO.read(new File("artwork/pitofdeath.png")));
-            graphics.put( "DefendN", ImageIO.read(new File("artwork/testarrow.png")));
             graphics.put( "base", ImageIO.read(new File("artwork/castle.jpg")));
             graphics.put( "Overview", ImageIO.read(new File("artwork/overview.png")));
+
+            graphics.put( "DefendN", ImageIO.read(new File("artwork/arrows/DefendN.png")));
+            graphics.put( "DefendNW", ImageIO.read(new File("artwork/arrows/DefendNW.png")));
+            graphics.put( "DefendSW", ImageIO.read(new File("artwork/arrows/DefendSW.png")));
+            graphics.put( "DefendS", ImageIO.read(new File("artwork/arrows/DefendS.png")));
+            graphics.put( "DefendSE", ImageIO.read(new File("artwork/arrows/DefendSE.png")));
+            graphics.put( "DefendNE", ImageIO.read(new File("artwork/arrows/DefendNE.png")));
+
+            graphics.put( "AttackN", ImageIO.read(new File("artwork/arrows/AttackN.png")));
+            graphics.put( "AttackNW", ImageIO.read(new File("artwork/arrows/AttackNW.png")));
+            graphics.put( "AttackSW", ImageIO.read(new File("artwork/arrows/AttackSW.png")));
+            graphics.put( "AttackS", ImageIO.read(new File("artwork/arrows/AttackS.png")));
+            graphics.put( "AttackSE", ImageIO.read(new File("artwork/arrows/AttackSE.png")));
+            graphics.put( "AttackNE", ImageIO.read(new File("artwork/arrows/AttackNE.png")));
+
+            graphics.put( "MoveN", ImageIO.read(new File("artwork/arrows/MoveN.png")));
+            graphics.put( "MoveNW", ImageIO.read(new File("artwork/arrows/MoveNW.png")));
+            graphics.put( "MoveSW", ImageIO.read(new File("artwork/arrows/MoveSW.png")));
+            graphics.put( "MoveS", ImageIO.read(new File("artwork/arrows/MoveS.png")));
+            graphics.put( "MoveSE", ImageIO.read(new File("artwork/arrows/MoveSE.png")));
+            graphics.put( "MoveNE", ImageIO.read(new File("artwork/arrows/MoveNE.png")));
+
+
 
             graphics.put( "EnergyT", ImageIO.read(new File("artwork/BlackStar.PNG")));
             graphics.put( "FoodT", ImageIO.read(new File("artwork/circle.png")));
