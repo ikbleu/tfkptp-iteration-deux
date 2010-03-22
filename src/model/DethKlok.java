@@ -44,7 +44,7 @@ public class DethKlok implements Clock
         {
             private final Map<String, Set<Tickable> >  plisteners;
             private final List<String> order;
-            private boolean tick;
+            private boolean tick = true;
             
             public DethTask( List<String> order, Map<String, Set<Tickable> > plisteners)
             {
