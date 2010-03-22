@@ -1,4 +1,5 @@
 package src.control;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -7,9 +8,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import src.control.interfaces.*;
-import src.model.control.BindingMapBuilder;
-import src.model.control.BindingMapDirector;
+import src.control.interfaces.KeyMapVisitor;
+import src.control.interfaces.KeyMapInterface;
+import src.control.interfaces.EditableKeyConfig;
+import src.control.interfaces.BindingMapBuilder;
+import src.control.interfaces.BindingMapDirector;
 
 /**
  * KeyMap needs to be able to return a meaning from (1. a context String and 2. KeyCodeAndModifiers instance.)
@@ -24,38 +27,68 @@ public class KeyMap implements
 	KeyMapInterface
 	{
 	
-	//These variables represent the configuration of all the controls in the game.  
-	
-	private Map< String, List<Binding> > contextToBindings = new Hashtable< String, List<Binding> >();
+	//These variables represent the configuration of all the controls in the game.
 
-	private String currentBuilderContext;
-	@Override
-	/**
-	 * This method adds a binding (key to meaning) to the current Builder context. 
+	private Map< String, List<Binding> > contextToBindings;
+    private MahBuilder mahbuilder;
+
+    KeyMap() {
+        this.contextToBindings = new Hashtable<String,List<Binding>>();
+        this.mahbuilder = new MahBuilder(this.contextToBindings);
+    }
+    /**
+     * @author kagioglu
+     */
+	private static class MahBuilder implements BindingMapBuilder {
+        private final Map<String,List<Binding>> map;
+        private String currentContext;
+        private boolean building;
+        MahBuilder(Map<String,List<Binding>> map) {
+            this.map = map;
+            this.currentContext = null;
+            this.building = false;
+        }
+        public void start() {
+            if(this.building) { throw new RuntimeException("misuse!"); }
+            else { this.building = true; this.map.clear(); }
+        }
+        public void context(String context) {
+            if(this.building) {
+                this.currentContext = context;
+                this.map.put(context, new ArrayList<Binding>());
+            }
+            else { throw new RuntimeException("misuse"); }
+        }
+        public void binding(KeyCodeAndModifiers event, String meaning) {
+            if(this.building) {
+                this.map.get(this.currentContext).add(new Binding(meaning, event));
+            }
+            else { throw new RuntimeException("misuse"); }
+        }
+        public void end() {
+            if(this.building) { this.currentContext = null; this.building = false; }
+            else { throw new RuntimeException("misuse"); }
+        }
+    }
+
+	public void start() { this.mahbuilder.start(); }
+    public void end() { this.mahbuilder.end(); }
+
+    /**
+	 * This method adds a binding (key to meaning) to the current Builder context.
+     * @author kagioglu
 	 */
 	public void binding(KeyCodeAndModifiers event, String meaning) {
-		//System.out.println("binding called. CurrentContext:"+currentBuilderContext);
-		if(contextToBindings.containsKey(currentBuilderContext))
-		{
-			Binding b = new Binding(meaning,event);
-			contextToBindings.get(currentBuilderContext).add(b);
-			//System.out.println("added binding:"+b);
-		}
-		else{}
-			//System.out.println("KeyMap context "+currentBuilderContext+"already in contextToBindings.");
-		
+		this.mahbuilder.binding(event, meaning);
 	}
 
-	@Override
 	/**
 	 * This method sets the context for a BindingMapBuilder. Once the context is set,
-	 * Then when binding() is called, it is added to that set context. 
+	 * Then when binding() is called, it is added to that set context.
+     * @author kagioglu
 	 */
 	public void context(String context) {
-		contextToBindings.put(context, new ArrayList<Binding>());
-		currentBuilderContext = context;
-	//	System.out.println("Made new context "+context+" in map with its own empty list of bindings.");
-		
+		this.mahbuilder.context(context);
 	}
 
 	@Override
@@ -124,6 +157,8 @@ public class KeyMap implements
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+    @Override
 	public String toString()
 	{
 		//System.out.println("In toString:");
@@ -149,7 +184,6 @@ public class KeyMap implements
 		return toReturn;
 	}
 
-	@Override
 	public void getMeaning(String context, KeyMapVisitor visitor,
 			KeyCodeAndModifiers key) {
 		boolean found = false;
@@ -174,7 +208,4 @@ public class KeyMap implements
 		else
 			visitor.contextUnknown();
 	}
-
-
-	
 }
