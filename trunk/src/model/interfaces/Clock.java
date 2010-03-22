@@ -1,12 +1,13 @@
 package src.model.interfaces;
 
+import src.model.exceptions.YoureDoingItWrongException;
+
 public interface Clock
 {
-	public void registerPrimary(Tickable ticker);
-	public void registerSecondary(Tickable ticker);
 	public void remove(Tickable ticker);
 	public void start();
     
     public void stop();
+	public void register(String tierOrderToken, Tickable ticker) throws YoureDoingItWrongException;
 
 }

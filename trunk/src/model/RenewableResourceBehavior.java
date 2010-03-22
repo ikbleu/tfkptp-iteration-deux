@@ -29,7 +29,17 @@ public class RenewableResourceBehavior implements ResourceBehavior, Tickable
 		
 		RENEWAL_RATE = renewalRate;
 		if (clock != null)
-			clock.registerPrimary(this);
+		{
+			try
+			{
+				clock.register("Model", this);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				System.exit(-1);
+			}
+		}	
 	}
 	
 	@Override

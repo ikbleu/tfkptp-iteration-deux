@@ -4,14 +4,16 @@ import java.util.Map;
 import java.util.Set;
 
 import src.model.enums.DecalType;
+import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayer;
 import src.model.interfaces.InstanceHolder;
 import src.model.interfaces.ItemVisibilityHolder;
 import src.model.interfaces.SakuraMap;
+import src.model.interfaces.Tickable;
 import src.view.MapBuilder;
 
-public class VisibilityManager implements SakuraMap
+public class VisibilityManager implements SakuraMap, Tickable
 {
 	Player player;
 	VisibilityMap visibleMap;
@@ -20,13 +22,22 @@ public class VisibilityManager implements SakuraMap
 	InstanceHolder playerInstances;
 	ItemVisibilityHolder items;
 	
-	public VisibilityManager(Player player, GameMap map, HasPlayerManager m)
+	public VisibilityManager(Player player, GameMap map, HasPlayerManager m, Clock c)
 	{
 		this.player = player;
 		gameMap = map;
 		visibleMap = new VisibilityMap();
 		playerStuff = m;
 		playerInstances = player.instanceHolder();
+		try
+		{
+			c.register("VisUpdate", this);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.exit(-1);
+		}
 	}
 	
 	public void update()
@@ -73,6 +84,12 @@ public class VisibilityManager implements SakuraMap
 	public Map<String, Integer> getPlayerResources()
 	{
 		return player.resourceCount();
+	}
+
+	@Override
+	public void tick()
+	{
+		update();
 	}
 
 }

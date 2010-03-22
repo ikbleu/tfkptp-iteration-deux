@@ -9,8 +9,10 @@ import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.commands.CommandSender;
 import src.model.control.Device;
+import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.InstanceHolder;
+import src.model.interfaces.SakuraMap;
 import src.util.Hand;
 import src.util.HandFactory;
 import src.util.Lens;
@@ -20,16 +22,18 @@ public class Player implements CommandSender
 	GameMap map;
 	GameTile startingLocation;
         ResourceManager rscManager;
+        VisibilityManager visManager;
 	
 	public Player( boolean isH, HandFactory hF, GameMap m, GameTile startLoc,
-                ResourceManager rm)
+                ResourceManager rm, Clock c)
 	{
 		isHuman = isH;
 		handFactory = hF;
 		map = m;
 		startingLocation = startLoc;
 		myHand = handFactory.make( Device.class );
-                rscManager = rm;
+        rscManager = rm;
+        visManager = new VisibilityManager(this, map, HasPlayerManager.getInstance(), c);                
 	}
 	private Hand< Device > myHand;
 	
@@ -92,8 +96,13 @@ public class Player implements CommandSender
 		return startingLocation;
 	}
 
-        public Map<String, Integer> resourceCount()
-        {
-            return rscManager.getAllAmounts();
-        }
+    public Map<String, Integer> resourceCount()
+    {
+        return rscManager.getAllAmounts();
+    }
+    
+    public SakuraMap getVisibilityManager()
+    {
+    	return visManager;
+    }
 }
