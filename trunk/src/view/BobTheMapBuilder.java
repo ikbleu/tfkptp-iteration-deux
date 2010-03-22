@@ -32,7 +32,7 @@ class BobTheMapBuilder implements MapBuilder{
         private HashMap<String, Integer> workerGroups = new HashMap<String, Integer>();
         private String item;
         private String decal;
-        private LinkedList<RallyPointV> rallyPoints;
+        private LinkedList<RallyPointV> rallyPoints = new LinkedList<RallyPointV>();
         private String visibility;
         private String terrain;
         private String player;
@@ -65,26 +65,20 @@ class BobTheMapBuilder implements MapBuilder{
     BobTheMapBuilder(String imfake){
         structure = "base";
         soldiers = -1;
-        resources = null;
-        item = "base";
-        decal = "base";
-        rallyPoints = new LinkedList<RallyPointV>();
-        rallyPoints.add(new RallyPointV(1, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(2, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(3, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(4, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(5, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(6, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(7, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(8, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(9, Direction.N, "Defend"));
-        rallyPoints.add(new RallyPointV(10, Direction.N, "Defend"));
+        resources = new HashMap<String, Integer>();
+        resources.put("Food", 25);
+        resources.put("Ore", 25);
+        resources.put("Energy", 25);
+
+        workerGroups.put("wgIdle", 10);
+        workerGroups.put("wgStaff", 10);
+        workerGroups.put("wgBreeding", 10);
+        workerGroups.put("wgGrain", 10);
 
 
         visibility = null;
         terrain = "Grassland";
-        individualUnits = -1;
-        player = null;
+        
     }
 
 
@@ -132,7 +126,7 @@ class BobTheMapBuilder implements MapBuilder{
             graphix.setColor( Color.BLACK );
             graphix.setFont(f1);
 
-            for(int i =0;i<rallyPoints.size();++i){
+            for(int i = 0;i<rallyPoints.size();++i){
                 int spacing = 12;
                 //System.out.println(rallyPoints.size());
                 String imageArrow = rallyPoints.get(i).status();
@@ -143,13 +137,17 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.drawString(""+rallyPoints.get(i).rallyPoint(), centerX + (int)polarX(Math.PI/5*(i), 50.0),
                                   centerY + (-1)*(int)polarY(Math.PI/5*(i), 50.0));
             }
+            if(decal != null)
             graphix.drawImage(graphicsT.getGraphic(decal), centerX - 3*idsSize/2 - imageSpacing, centerY - idsSize/2 ,idsSize, idsSize, null);
+            if(structure != null)
             graphix.drawImage(graphicsT.getGraphic(structure), centerX - idsSize/2, centerY - idsSize/2 , idsSize, idsSize, null);
+            if(item!=null);
             graphix.drawImage(graphicsT.getGraphic(item), centerX + idsSize/2 + imageSpacing, centerY - idsSize/2 , idsSize, idsSize, null);
-            graphix.setColor(Color.WHITE);
-            graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
+            if(individualUnits != -1){
+                graphix.setColor(Color.WHITE);
+                graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
+            }
         }
-        /*add in real version
         structure = null;
         soldiers = -1;
         resources = null;
@@ -160,9 +158,57 @@ class BobTheMapBuilder implements MapBuilder{
         terrain = null;
         individualUnits = -1;
         player = null;
-         * 
-         */
-         return imageBuffer;
+        return imageBuffer;
+    }
+
+    BufferedImage buildMeWorkerPort(){
+        if(terrain!=null){
+            imageBuffer = graphicsT.getGraphic(terrain);
+            graphix = imageBuffer.createGraphics();
+            graphix.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
+                                  RenderingHints.VALUE_ANTIALIAS_ON );
+            graphix.setColor( Color.BLACK );
+            graphix.setFont(f1);
+
+            graphix.setColor(Color.BLACK);
+            if(structure != null)
+            graphix.drawImage(graphicsT.getGraphic(structure), centerX - idsSize/2, centerY - idsSize/2 , idsSize, idsSize, null);
+            if(resources.get("Energy")!=null){
+                graphix.setColor(Color.WHITE);
+                graphix.drawImage(graphicsT.getGraphic("EnergyT"), centerX - 8*imageSpacing, centerY - idsSize - 20, 30,30, null);
+                graphix.drawString(""+resources.get("Energy"), centerX - 5*imageSpacing, centerY - idsSize );          
+            }
+            if(resources.get("Ore")!=null){
+                graphix.drawImage(graphicsT.getGraphic("OreT"), centerX - 28*imageSpacing, centerY - idsSize - 20, 30,30, null);
+                graphix.drawString(""+resources.get("Ore"), centerX - 25*imageSpacing, centerY - idsSize );
+            }
+            if(resources.get("Food")!=null){
+                graphix.drawImage(graphicsT.getGraphic("FoodT"), centerX + 12*imageSpacing, centerY - idsSize - 20, 30,30, null);
+                graphix.drawString(""+resources.get("Food"), centerX + 15*imageSpacing, centerY - idsSize );
+            }
+            if(workerGroups.get("wgGrain")!=null){
+                graphix.drawImage(graphicsT.getGraphic("FoodT"), centerX - 8*imageSpacing, centerY + 2*idsSize - 20, 30,30, null);
+                graphix.drawString(""+workerGroups.get("wgGrain"), centerX - 5*imageSpacing, centerY + 2*idsSize );
+            }
+            if(workerGroups.get("wgOre")!=null){
+                graphix.drawImage(graphicsT.getGraphic("OreT"), centerX - 8*imageSpacing, centerY + 2*idsSize - 20, 30,30, null);
+                graphix.drawString(""+workerGroups.get("wgOre"), centerX - 5*imageSpacing, centerY + 2*idsSize );
+            }
+            if(workerGroups.get("wgFuel")!=null){
+                graphix.drawImage(graphicsT.getGraphic("EnergyT"), centerX - 8*imageSpacing, centerY + 2*idsSize - 20, 30,30, null);
+                graphix.drawString(""+workerGroups.get("wgFuel"), centerX - 5*imageSpacing, centerY + 2*idsSize );
+            }
+            if(workerGroups.get("wgIdle")!=null){
+                graphix.drawString("I: "+workerGroups.get("wgIdle"), centerX + 1*idsSize , centerY + 2*imageSpacing);
+            }
+            if(workerGroups.get("wgBreeding")!=null){
+                graphix.drawString("B: "+workerGroups.get("wgBreeding"), centerX - 2*idsSize - 3*imageSpacing, centerY + 2*imageSpacing);
+            }
+            if(workerGroups.get("wgStaff")!=null){
+                graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
+            }
+        }
+        return imageBuffer;
     }
 
     private double polarX(double angle, double length){
