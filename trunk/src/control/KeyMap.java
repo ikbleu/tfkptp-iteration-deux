@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import src.control.interfaces.DisplayableBinding;
+import src.control.interfaces.DisplayableKeyMap;
 import src.control.interfaces.KeyMapVisitor;
 import src.control.interfaces.KeyMapInterface;
 import src.control.interfaces.EditableKeyConfig;
@@ -24,9 +26,11 @@ public class KeyMap implements
 	BindingMapBuilder, 
 	BindingMapDirector, 
 	EditableKeyConfig,
-	KeyMapInterface
+	KeyMapInterface,
+	DisplayableKeyMap
 	{
 	
+	private String currentDisplayContext;
 	//This Map represents the configuration of all the controls in the game.
 	private Map< String, List<Binding> > contextToBindings;
     private MahBuilder mahbuilder;
@@ -254,5 +258,30 @@ public class KeyMap implements
 		}
 		else
 			visitor.contextUnknown();
+	}
+	@Override
+	public String context() {
+		// TODO Auto-generated method stub
+		return currentDisplayContext;
+	}
+	@Override
+	public List<DisplayableBinding> getBindingList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean hasNext() {
+		//Set<Entry<Map<String,Binding>>>contextToBindings.entrySet()
+		return false;
+	}
+	@Override
+	public void nextContext() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public DisplayableBinding selected() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
