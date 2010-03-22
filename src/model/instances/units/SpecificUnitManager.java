@@ -42,6 +42,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		
 		for ( Map.Entry< String, Integer > e : baseStats.entrySet() )
 			factory.modDefaultStat( e.getKey(), e.getValue() );
+		factory.modDefaultStat( "statHealth", baseStats.get( "statMaxHealth" ) );
 		
 		p.addCommandListener( "cmdRes" + researchID + "VisRadius", new CommandListener() {
 			public void commandOccurred(Command c) {
