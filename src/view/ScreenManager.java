@@ -133,7 +133,19 @@ import src.util.SimpleMovingAverageTimer;
 			animator.start();
 		}
 		
-		void updateOverview(Displayable[] direct, Displayable[] dList, Displayable selected) {
+		void updateOverview(String code, Displayable[] direct, Displayable[] dList, Displayable selected) {
+			
+			overview.setOverview(code, direct, dList, selected);
+        	optionalDisplay = OptionalDisplay.OVERVIEW;
+            overview.refreshImage();
+            
+            try {
+                overview_tex = TextureIO.newTexture(overview.image(),true);
+            }
+            catch (GLException e) {
+                e.printStackTrace();
+            }
+
 
 		}
 
@@ -183,9 +195,7 @@ import src.util.SimpleMovingAverageTimer;
                     }
                 }
                 
-                void updateOverview(){
-                	optionalDisplay = OptionalDisplay.OVERVIEW;
-                    overview.refreshImage();
+                void initOverview(){
                     try {
                         overview_tex = TextureIO.newTexture(overview.image(),true);
                     }
@@ -365,8 +375,8 @@ import src.util.SimpleMovingAverageTimer;
                                         updateViewPort();
                                          updateStatusOverview(null);
                                          updateResourceInfo();
+                                         initOverview();
                                          updateCommandSelection(null);
-                                         updateOverview();
                                          
 					
 				} 

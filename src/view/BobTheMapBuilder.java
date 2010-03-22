@@ -134,7 +134,7 @@ class BobTheMapBuilder implements MapBuilder{
 
             for(int i =0;i<rallyPoints.size();++i){
                 int spacing = 12;
-                System.out.println(rallyPoints.size());
+                //System.out.println(rallyPoints.size());
                 String imageArrow = rallyPoints.get(i).status();
                 imageArrow = imageArrow + enumT.getString(rallyPoints.get(i).direction());
                 graphix.drawImage(graphicsT.getGraphic(imageArrow), centerX + (int)polarX(Math.PI/5*(i), 65.0)-spacing,
