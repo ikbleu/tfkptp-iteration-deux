@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -21,16 +22,21 @@ public class FileHandler {
         ex.printStackTrace();
 		}	
 		System.out.println(m);
-		//Change group CTRL+UP to U.
-		m.bindMeaning("Group", "SpinNext", new KeyCodeAndModifiers(2, 38));
-		//try
-	//	BufferedWriter w = new BufferedWriter(new FileWriter("controller config files/controlsWritten.txt"));
+		System.out.println("Change group CTRL+UP to U. (keycode 85)");
+		m.bindMeaning("Group", "SpinNext", new KeyCodeAndModifiers(85, 0));
+		try{
+			BufferedWriter w = new BufferedWriter(new FileWriter("controller config files/controlsWritten.txt"));
+			writeFile(m,w);
+		}catch (IOException ex){
+			ex.printStackTrace();
+		}
+		
 	}
 	
 	public static final String BEGINCONTEXT = "begincontext";
 	public static final String ENDCONTEXT = "endcontext";
 
-	public void writeFile(BindingMapDirector director, BufferedWriter writer)
+	public static void writeFile(BindingMapDirector director, BufferedWriter writer)
 	{
         try {//bad. This assumes a director is a KeyMap with a valid toString method.  
             writer.write(director.toString());
@@ -61,7 +67,7 @@ public class FileHandler {
 	{
 		 try {
 	          	String line = null;
-	            
+	            builder.start();
 	            while ((line = reader.readLine()) != null) {
 	            	//System.out.println("Building new file line.");
 	                //Print for debug
@@ -100,7 +106,7 @@ public class FileHandler {
 	                		//simply don't add it to KeyMap.                  		
 	                }
 	            }
-	            
+	            builder.end();
 	        } catch (FileNotFoundException ex) {
 	            ex.printStackTrace();
 	        } catch (IOException ex) {

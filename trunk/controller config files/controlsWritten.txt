@@ -1,0 +1,87 @@
+begincontext
+Command
+SpinNext					Up
+SpinPrevious					Down
+endcontext
+begincontext
+Type
+SpinNext					Ctrl+Left
+SpinPrevious					Ctrl+Right
+endcontext
+begincontext
+StructureOverview
+Next					Left
+Previous					Right
+endcontext
+begincontext
+IntegerArgs
+0					0
+1					1
+2					2
+3					3
+4					4
+5					5
+6					6
+7					7
+8					8
+9					9
+endcontext
+begincontext
+DirectionArgs
+NW					NumPad-7
+N					NumPad-8
+NE					NumPad-9
+SW					NumPad-1
+S					NumPad-2
+SE					NumPad-3
+endcontext
+begincontext
+StructureArgs
+University					U
+Tower					T
+Farm					F
+Mine					M
+Capitol					C
+endcontext
+begincontext
+UnitArgs			
+Ranged					R
+Melee					M
+Explorer					E
+Colonist					C
+endcontext
+begincontext
+UnitOverview
+Next					Left
+Previous					Right
+endcontext
+begincontext
+KeyEditor
+Next					Left
+Previous					Right
+endcontext
+begincontext
+Instance
+SpinNext					Left
+SpinPrevious					Right
+endcontext
+begincontext
+Group
+SpinNext					U
+SpinPrevious					Ctrl+Down
+endcontext
+begincontext
+TechTreeOverview
+Left					Left
+Right					Right
+Up					Up
+Down					Down
+endcontext
+begincontext
+CloseMenu
+CloseMenu					Escape
+endcontext
+begincontext
+NoArgs				
+NoArgs					N
+endcontext

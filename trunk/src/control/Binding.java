@@ -25,6 +25,12 @@ public class Binding{
 	{
 		return key;
 	}
+	public void setMeaning(String meaning){
+		this.meaning = meaning;
+	}
+	public void setKey(KeyCodeAndModifiers key){
+		this.key = key;
+	}
 	public String toString()
 	{
 		return meaning + "\t\t\t\t\t" +trans.toString(key);
