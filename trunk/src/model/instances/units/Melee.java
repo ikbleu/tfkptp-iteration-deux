@@ -25,9 +25,4 @@ class Melee extends Unit {
 	public void exited(Instance l) {
 		// how pathetic
 	}
-
-    public void sentUpkeep(Map<String, Integer> resources)
-    {
-
-    }
 }

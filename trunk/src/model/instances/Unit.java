@@ -78,13 +78,18 @@ public abstract class Unit extends Instance implements vUnit {
 		return rallyPoint != null;
 	}
 
-        public Map<String, Integer> getUpkeep()
-        {
-            Map<String, Integer> upkeep = new HashMap<String, Integer>();
-            upkeep.put("rscFood", getStat("statUpFood"));
-            upkeep.put("rscMetal", getStat("statUpMetal"));
-            upkeep.put("rscEnergy", getStat("statUpEnergy"));
+    public Map<String, Integer> getUpkeep()
+    {
+        Map<String, Integer> upkeep = new HashMap<String, Integer>();
+        upkeep.put("rscFood", getStat("statUpFood"));
+        upkeep.put("rscMetal", getStat("statUpMetal"));
+        upkeep.put("rscEnergy", getStat("statUpEnergy"));
 
-            return upkeep;
-        }
+        return upkeep;
+    }
+
+    public void sentUpkeep(Map<String, Integer> resources)
+    {
+
+    }
 }
