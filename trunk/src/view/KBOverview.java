@@ -57,16 +57,7 @@ import src.model.interfaces.Displayable;
 
     public void refreshImage(){
     	
-    	/*context = new ArrayList<String>();
-    	context.add("unit overview");
-    	context.add("structure overview");
-    	context.add("commands");
-    	context.add("hot sauce");
-    	
-    	ArrayList<DisplayableBinding> inner = new ArrayList<DisplayableBinding>();
-    	keys.add(inner);
 
-    	*/
 
         graphix.drawImage(graphicsTable.getGraphic("Overview"), 0, 0, null);
         
@@ -81,7 +72,7 @@ import src.model.interfaces.Displayable;
         for(String con : context) {
         	graphix.drawString(con, 60, 150+28*drawPos++);
         	
-        	for(DisplayableBinding db : keys.get(listNum)) {
+        	for(DisplayableBinding db : keys.get(listNum++)) {
         		
         		if(db == selected)
         			graphix.setColor(Color.PINK);
