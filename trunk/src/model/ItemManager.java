@@ -53,7 +53,8 @@ public class ItemManager implements ItemVisibilityHolder
 
     public void setMap(GameMap theMap)
     {
-        itemList = new ArrayList<Item>();
+        for(Item i : itemList)
+            removeItem(i);
 
         GameTile center = theMap.getOrigin();
         int radius = theMap.getMapRadius();
@@ -127,5 +128,6 @@ public class ItemManager implements ItemVisibilityHolder
     public void removeItem(Item it)
     {
             itemList.remove(it);
+            it.destroy();
     }
 }
