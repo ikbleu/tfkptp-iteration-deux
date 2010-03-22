@@ -18,6 +18,7 @@ import java.util.LinkedList;
 
 import java.awt.Point;
 
+import src.model.interfaces.Clock;
 import src.model.interfaces.Tickable;
 
 
@@ -31,7 +32,7 @@ public class View implements ViewInjection, KBinjection, Tickable{
     private HashMap<String,ViewInjectionElement> injections;
     private boolean ready;
 
-    public View(SakuraMap sakura){
+    public View(SakuraMap sakura, Clock clock ){
     	GraphicsTableSingleton.getInstance();
 
         screenManager = new ScreenManager(sakura.mapWidth(), sakura.mapHeight(), sakura);
@@ -42,6 +43,8 @@ public class View implements ViewInjection, KBinjection, Tickable{
         injections.put("SO", new OverviewInjection());
         injections.put("TT", new TechTreeInjection());
         injections.put("KB", new KeyBindingInjection());
+
+        clock.start();
     }
 
     public void injectionFairyLily(String code,
