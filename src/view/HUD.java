@@ -85,13 +85,9 @@ import src.model.interfaces.vInstance;
         graphix.setFont(f1);
         //testdata
         soType = new LinkedList<String>();
-        soType.add("Dolphin");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
-        soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
-        soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");soType.add("Unicorn");
+        soType.add("Colonist");
         soHealth = new LinkedList<Integer>();
-        soHealth.add(76);soHealth.add(76);soHealth.add(76);soHealth.add(76);soHealth.add(76);soHealth.add(76);
-        soHealth.add(85);soHealth.add(85);soHealth.add(85);soHealth.add(85);soHealth.add(85);soHealth.add(85);
-        soHealth.add(100);soHealth.add(100);soHealth.add(100);
+        soHealth.add(76);
         //more testing
         soStats = new HashMap<String, Integer>();
         soStats.put("Attack", 88);
