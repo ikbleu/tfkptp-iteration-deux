@@ -177,6 +177,7 @@ public class VisibilityMap implements HasPlayerVisitor
 
 	public void visitRallyPoint(RallyPoint rp)
 	{
+		System.out.println("HPVisiting RallyPoint " + rp.token());
 		GameTile loc = rp.location();
 		RPPointingID rpid = new RPPointingID(rp);
 		
@@ -198,6 +199,7 @@ public class VisibilityMap implements HasPlayerVisitor
 
 	public void visitStructure(Structure s)
 	{
+		System.out.println("HPVisiting structure " + s.token());
 		GameTile loc = s.location();
 		
 		structureAffectedTiles.put(loc, new StructID(s.token(),s.getStat("statNumSoldiers")));
@@ -206,8 +208,12 @@ public class VisibilityMap implements HasPlayerVisitor
 
 	public void visitUnit(Unit u)
 	{
-		if (u.isInRallyPoint())
+		System.out.println("HPVisiting Unit " + u.token());
+		
+		if (u.token().equals("instanceStarter") || u.isInRallyPoint())
 			return;
+		
+		System.out.println("Unit ain't a starter or in group");
 		
 		GameTile loc = u.location();
 		
@@ -228,6 +234,8 @@ public class VisibilityMap implements HasPlayerVisitor
 
 	public void visitWorkerGroup(WorkerGroup wg)
 	{
+		System.out.println("HPVisiting WorkerGroup " + wg.token());
+		
 		GameTile loc = wg.location();
 		WorkerID wgid = new WorkerID(wg);
 		
