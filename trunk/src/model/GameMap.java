@@ -53,6 +53,11 @@ public class GameMap
 		
 	}
 	
+	public Set<String> getResourceTypes()
+	{
+		return resourceTypes;
+	}
+	
 	public GameTile getOrigin()
 	{
 		return origin;
@@ -86,7 +91,7 @@ public class GameMap
 	private void populate(HexTile tile)
 	{
 		Direction d = Direction.N;
-		System.out.println("Making tile " + tile.getX() + " " + tile.getY() + " " + tile.getZ() + "...");
+		//System.out.println("Making tile " + tile.getX() + " " + tile.getY() + " " + tile.getZ() + "...");
 		do
 		{
 			tile.setNeighbor(d, new HexTile(rand.random(), tile,d));

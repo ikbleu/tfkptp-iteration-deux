@@ -54,12 +54,17 @@ public class Model {
 		StructureInitializer.initialize( human, wm );
 		RallyPointInitializer.initialize( human, wm );
 		
-		c.start();
+		//c.start();
 	}
 	
 	public Clock getClock()
 	{
 		return c;
+	}
+	
+	public void startClock()
+	{
+		c.start();
 	}
 	
 	public Player human()

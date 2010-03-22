@@ -1,12 +1,11 @@
 package src.model;
 
-//import java.util.HashSet;
-//import java.util.List;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import src.model.enums.DecalType;
-//import src.model.enums.Direction;
 import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayer;
@@ -45,7 +44,7 @@ public class VisibilityManager implements SakuraMap, Tickable
 		}
 	}
 	
-	//private boolean DEBUG = true;
+	private boolean DEBUG = true;
 	
 	public void update()
 	{
@@ -54,13 +53,14 @@ public class VisibilityManager implements SakuraMap, Tickable
 		
 		Set<HasPlayer> hasPlayers = playerStuff.getThingsIn(gvt.getVisibleTiles());
 		
-		/*/ DEBUG
-		List<GameTile> l = (DEBUG) ? gameMap.getStartingLocation1().getTilesAround(3) : gameMap.getStartingLocation1().getNeighbor(Direction.S).getNeighbor(Direction.S).getTilesAround(3);
-		DEBUG = false;
+		// DEBUG
+		List<GameTile> l = (DEBUG) ? gameMap.getOrigin().getTilesAround(3) : gameMap.getStartingLocation2().getTilesAround(3);
+		DEBUG = !DEBUG;
 		Set<GameTile> s = new HashSet<GameTile>();
 		s.addAll(l);
-		*/
-		visibleMap.updateVisibility(gvt.getVisibleTiles(), hasPlayers, items.getAllItems());
+		s.addAll(gvt.getVisibleTiles());
+		
+		visibleMap.updateVisibility(s /*gvt.getVisibleTiles()*/, hasPlayers, items.getAllItems());
 	}
 	
 	@Override
