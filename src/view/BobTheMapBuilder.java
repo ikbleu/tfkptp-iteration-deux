@@ -185,16 +185,16 @@ class BobTheMapBuilder implements MapBuilder{
             graphix.setColor(Color.BLACK);
             if(structure != null)
             graphix.drawImage(graphicsT.getGraphic(structure), centerX - idsSize/2, centerY - idsSize/2 , idsSize, idsSize, null);
-            if(resources.containsKey("Energy")){
+            if(resources.containsKey("Energy") && resources.get("Energy")!=-1){
                 graphix.setColor(Color.WHITE);
                 graphix.drawImage(graphicsT.getGraphic("EnergyT"), centerX - 8*imageSpacing, centerY - idsSize - 20, 30,30, null);
                 graphix.drawString(""+resources.get("Energy"), centerX - 5*imageSpacing, centerY - idsSize );          
             }
-            if(resources.containsKey(("Ore"))){
+            if(resources.containsKey(("Ore")) && resources.get("Ore")!=-1){
                 graphix.drawImage(graphicsT.getGraphic("OreT"), centerX - 28*imageSpacing, centerY - idsSize - 20, 30,30, null);
                 graphix.drawString(""+resources.get("Ore"), centerX - 25*imageSpacing, centerY - idsSize );
             }
-            if(resources.containsKey(("Food"))){
+            if(resources.containsKey(("Food")) && resources.get("Food")!=-1){
                 graphix.drawImage(graphicsT.getGraphic("FoodT"), centerX + 12*imageSpacing, centerY - idsSize - 20, 30,30, null);
                 graphix.drawString(""+resources.get("Food"), centerX + 15*imageSpacing, centerY - idsSize );
             }
