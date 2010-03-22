@@ -87,7 +87,7 @@ BBcont:63
     63:f					F
 begincontext
 ModelControl
-	hud						H
+	Hud						H
 begincontext
 Hud
 	DDMean::4				4
@@ -96,3 +96,6 @@ Hud
 begincontext
 Menu
 	Model					M
+begincontext
+Root
+	Escape					Escape
