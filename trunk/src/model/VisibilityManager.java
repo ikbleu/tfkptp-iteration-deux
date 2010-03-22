@@ -53,14 +53,14 @@ public class VisibilityManager implements SakuraMap, Tickable
 		
 		Set<HasPlayer> hasPlayers = playerStuff.getThingsIn(gvt.getVisibleTiles());
 		
-		// DEBUG
+		/*/ DEBUG
 		int i = (DEBUG) ? 4 : 2;
 		DEBUG = false;
 		List<GameTile> l = gameMap.getStartingLocation1().getTilesAround(i);
 		Set<GameTile> s = new HashSet<GameTile>();
 		s.addAll(l);
-		
-		visibleMap.updateVisibility(s /*gvt.getVisibleTiles()*/, hasPlayers, items.getAllItems());
+		*/
+		visibleMap.updateVisibility(gvt.getVisibleTiles(), hasPlayers, items.getAllItems());
 	}
 	
 	@Override
