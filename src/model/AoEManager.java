@@ -199,7 +199,7 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
         if(registeredListener)
             unregisterListening(thing, prev, thing.influenceRadius());
 
-        registerLocation(thing);
+        registerLocation(thing, thing.location());
 
         if(registeredListener)
             registerListening(thing);
