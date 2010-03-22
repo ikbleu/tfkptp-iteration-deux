@@ -568,7 +568,9 @@ import java.util.LinkedList;
                          
                 
                 gl.glPushMatrix();
+                	gl.glTranslated(0.5,0.5,0.0);
 	                gl.glScaled(scale, scale, 1.0f);
+	                gl.glTranslated(-0.5,-0.5,0.0);
 	                //gl.glTranslated(,.5,0.0);
 			gl.glTranslated(offX,offY,0.0);
 	                updateOffset();
