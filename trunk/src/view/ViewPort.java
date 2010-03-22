@@ -5,7 +5,6 @@
 
 package src.view;
 
-import apple.laf.CoreUIConstants.Widget;
 import java.awt.image.BufferedImage;
 import src.model.interfaces.SakuraMap;
 
