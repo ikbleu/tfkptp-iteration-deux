@@ -2,6 +2,7 @@ package src.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 import src.model.exceptions.YoureDoingItWrongException;
 import src.model.instances.rallypoints.RallyPointInitializer;
@@ -33,10 +34,23 @@ public class Model {
 		}
 		
 		map = new GameMap(this);
+
+                ItemManager im = ItemManager.getInstance();
+                im.setMap(map);
+
+                HashMap<String, Integer> startRsc = new HashMap<String, Integer>();
+                startRsc.put("rscFood", 999);
+                startRsc.put("rscMetal", 200);
+                startRsc.put("rscEnergy", 200);
+
+                ResourceManager rm = new ResourceManager(startRsc);
 		
-		human = new Player( true, hFact, map, map.getStartingLocation1(), null, c);
+		human = new Player( true, hFact, map, map.getStartingLocation1(), rm, c);
+                rm.setPlayer(human);
 		p = human; // TODO: remove
 		// TODO: ai? map?
+
+                WorkerManager wm = new WorkerManager(human, rm);
 		
 		UnitInitializer.initialize( human );
 		StructureInitializer.initialize( human );

@@ -90,6 +90,6 @@ public abstract class Unit extends Instance implements vUnit {
 
     public void sentUpkeep(Map<String, Integer> resources)
     {
-
+        
     }
 }

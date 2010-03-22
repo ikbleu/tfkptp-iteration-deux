@@ -35,10 +35,14 @@ public class ResourceManager
 
     private Player owner;
 
-    public ResourceManager(Player p, Map<String, Integer> startResources)
+    public ResourceManager(Map<String, Integer> startResources)
     {
+        this.resources = new HashMap<String, Integer>();
+
         for(String type : startResources.keySet())
+        {
             this.resources.put(type, startResources.get(type));
+        }
 
         conversions = new HashMap<String, String>();
         conversions.put("rscOre", "rscMetal");
@@ -55,8 +59,12 @@ public class ResourceManager
         rawResources.put("rscGrain", 0);
         rawResources.put("rscFuel", 0);
 
-        owner = p;
+        owner = null;
+    }
 
+    public void setPlayer(Player p)
+    {
+        owner = p;
         initCommListeners();
     }
 
@@ -147,7 +155,7 @@ public class ResourceManager
         return canSpend;
     }
 
-    public void harvested(String type, int amountHarvested, int numWorkers)
+    public void harvested(String type, int amountHarvested)
     {
         int curVal = rawResources.get(type);
         rawResources.put(type, curVal + amountHarvested);

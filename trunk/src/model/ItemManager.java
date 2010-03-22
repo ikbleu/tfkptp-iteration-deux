@@ -60,7 +60,7 @@ public class ItemManager implements ItemVisibilityHolder
         List<GameTile> allTiles = center.getTilesAround(radius);
 
         Random rand = new Random(System.currentTimeMillis());
-
+        effectChooser = new RandomChooser<ItemEffect>();
         effectChooser.add(new Bomb(rand.nextInt(15) + 1, 1, 0.5), 200);
         effectChooser.add(new Soma(15, 1, 0.5), 200);
         effectChooser.add(new Soma(50, 2, 0.5), 50);

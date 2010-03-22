@@ -31,6 +31,8 @@ public class WorkerManager implements WorkerGroupFactory
 {
     private Player owner;
 
+    private ResourceManager rscMan;
+
     private HasPlayerManager hpm = HasPlayerManager.getInstance();
 
     private Map<String, Integer> breedStats;
@@ -41,7 +43,8 @@ public class WorkerManager implements WorkerGroupFactory
     private List<WorkerGroup> active;
 
     // The map of groups of workers dedicated to harvesting and their locations.
-    private Map<GameTile, HarvestingGroup> harvesters;
+    private static Map<GameTile, HarvestingGroup> harvesters =
+            new HashMap<GameTile, HarvestingGroup>();
 
     // Total number of workers that can be in existance.
     private static final int MAX_WORKERS = 100;
@@ -65,9 +68,10 @@ public class WorkerManager implements WorkerGroupFactory
     // Total number of workers currently in existance.
     private int totalWorkers;
 
-    public WorkerManager(Player owner)
+    public WorkerManager(Player owner, ResourceManager rscMan)
     {
         this.owner = owner;
+        this.rscMan = rscMan;
 
         totalWorkers = 0;
 
@@ -82,9 +86,9 @@ public class WorkerManager implements WorkerGroupFactory
         harvestStats = new HashMap<String, Integer>();
 
         harvestStats.put("density", BASE_DENSITY);
-        harvestStats.put("oreRate", BASE_HARVEST_RATE);
-        harvestStats.put("grainRate", BASE_HARVEST_RATE);
-        harvestStats.put("fuelRate", BASE_HARVEST_RATE);
+        harvestStats.put("rscOreRate", BASE_HARVEST_RATE);
+        harvestStats.put("rscGrainRate", BASE_HARVEST_RATE);
+        harvestStats.put("rscFuelRate", BASE_HARVEST_RATE);
         harvestStats.put("statUpFood", BASE_UP_FOOD);
         harvestStats.put("statUpMetal", BASE_UP_METAL);
         harvestStats.put("statUpEnergy", BASE_UP_ENERGY);
@@ -97,7 +101,6 @@ public class WorkerManager implements WorkerGroupFactory
         normalStats.put("statUpEnergy", BASE_UP_ENERGY);
 
         active = new ArrayList<WorkerGroup>();
-        harvesters = new HashMap<GameTile, HarvestingGroup>();
 
         initCommListeners();
     }
@@ -131,8 +134,8 @@ public class WorkerManager implements WorkerGroupFactory
             {
                 if(com.when().equals("execute"))
                 {
-                    int prevRate = harvestStats.get("oreRate");
-                    harvestStats.put("oreRate", prevRate + DELTA_HARVEST_RATE);
+                    int prevRate = harvestStats.get("rscOreRate");
+                    harvestStats.put("rscOreRate", prevRate + DELTA_HARVEST_RATE);
                 }
             }
         });
@@ -142,8 +145,8 @@ public class WorkerManager implements WorkerGroupFactory
             {
                 if(com.when().equals("execute"))
                 {
-                    int prevRate = harvestStats.get("grainRate");
-                    harvestStats.put("grainRate", prevRate + DELTA_HARVEST_RATE);
+                    int prevRate = harvestStats.get("rscGrainRate");
+                    harvestStats.put("rscGrainRate", prevRate + DELTA_HARVEST_RATE);
                 }
             }
         });
@@ -152,8 +155,8 @@ public class WorkerManager implements WorkerGroupFactory
             {
                 if(com.when().equals("execute"))
                 {
-                    int prevRate = harvestStats.get("fuelRate");
-                    harvestStats.put("fuelRate", prevRate + DELTA_HARVEST_RATE);
+                    int prevRate = harvestStats.get("rscFuelRate");
+                    harvestStats.put("rscFuelRate", prevRate + DELTA_HARVEST_RATE);
                 }
             }
         });
@@ -301,9 +304,37 @@ public class WorkerManager implements WorkerGroupFactory
      */
     public HarvestingGroup newHarvestingGroup(GameTile location, String resourceType)
     {
-        HarvestingGroup newHGroup = new HarvestingGroup(location, harvestStats, this, resourceType);
+        if(!supportsHarvesters(location))
+            throw new RuntimeException("Can't place harvesters on top of other harvesters.");
+
+        HarvestingGroup newHGroup = new HarvestingGroup(location, harvestStats,
+                this, resourceType, rscMan);
         harvesters.put(location, newHGroup);
         return newHGroup;
+    }
+
+    public boolean supportsHarvesters(GameTile location)
+    {
+        return !harvesters.containsKey(location);
+    }
+
+    public boolean moveHarvesters(HarvestingGroup hg, GameTile target)
+    {
+        if(!supportsHarvesters(target) || !hg.move(target))
+            return false;
+
+        harvesters.remove(hg.location());
+        harvesters.put(target, hg);
+
+        return true;
+    }
+
+    public void removeHarvesters(HarvestingGroup hg, GameTile target)
+    {
+        if(harvesters.get(target) != hg)
+            throw new RuntimeException("Trying to remove the wrong harvesting group.");
+
+        harvesters.remove(target);
     }
 
     /**
