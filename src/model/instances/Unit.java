@@ -2,6 +2,8 @@ package src.model.instances;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import src.model.Player;
 import src.model.commands.CommandFactory;
@@ -75,4 +77,14 @@ public abstract class Unit extends Instance implements vUnit {
 	{
 		return rallyPoint != null;
 	}
+
+        public Map<String, Integer> getUpkeep()
+        {
+            Map<String, Integer> upkeep = new HashMap<String, Integer>();
+            upkeep.put("rscFood", getStat("statUpFood"));
+            upkeep.put("rscMetal", getStat("statUpMetal"));
+            upkeep.put("rscEnergy", getStat("statUpEnergy"));
+
+            return upkeep;
+        }
 }

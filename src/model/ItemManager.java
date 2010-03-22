@@ -40,13 +40,6 @@ public class ItemManager implements ItemVisibilityHolder
         itemList = new ArrayList<Item>();
 
         Random rand = new Random(System.currentTimeMillis());
-
-        effectChooser = new RandomChooser<ItemEffect>();
-        effectChooser.add(new Bomb(rand.nextInt(15) + 1, 1, 0.5), 200);
-        effectChooser.add(new Soma(15, 1, 0.5), 200);
-        effectChooser.add(new Soma(50, 2, 0.5), 50);
-        effectChooser.add(new Bomb(rand.nextInt(25) + 25, 2, 0.5), 50);
-        effectChooser.add(new Bomb(Integer.MAX_VALUE, 30, 0), 1);
     }
 
     private static class ItemManagerHolder
@@ -67,6 +60,14 @@ public class ItemManager implements ItemVisibilityHolder
         List<GameTile> allTiles = center.getTilesAround(radius);
 
         Random rand = new Random(System.currentTimeMillis());
+
+        effectChooser.add(new Bomb(rand.nextInt(15) + 1, 1, 0.5), 200);
+        effectChooser.add(new Soma(15, 1, 0.5), 200);
+        effectChooser.add(new Soma(50, 2, 0.5), 50);
+        effectChooser.add(new Bomb(rand.nextInt(25) + 25, 2, 0.5), 50);
+
+        // B***H I'VE GOT A BOMB!
+        effectChooser.add(new Bomb(Integer.MAX_VALUE, theMap.getDiameter(), 0), 1);
 
         GameTile start1 = theMap.getStartingLocation1();
         GameTile start2 = theMap.getStartingLocation2();
