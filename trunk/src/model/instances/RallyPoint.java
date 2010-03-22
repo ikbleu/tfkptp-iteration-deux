@@ -336,10 +336,4 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		
 		System.out.printf( "my move speed is %d and vis rad is %d\n", getStat( "statMoveSpeed" ), getStat( "statVisibilityRadius" ) );
 	}
-
-	@Override
-	public <S> Comparable<S> comparable() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
