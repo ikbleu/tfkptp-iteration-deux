@@ -1,87 +1,117 @@
 begincontext
-Command
-SpinNext					Up
-SpinPrevious					Down
+BBcont:41
+41:a	A
+41:b	B
+41:c	C
+41:d	D
+41:e	E
+41:f	F
 endcontext
 begincontext
-Type
-SpinNext					Ctrl+Left
-SpinPrevious					Ctrl+Right
+Root
+Escape	Escape
 endcontext
 begincontext
-StructureOverview
-Next					Left
-Previous					Right
+BBcont:63
+63:a	A
+63:b	B
+63:c	C
+63:d	D
+63:e	E
+63:f	F
 endcontext
 begincontext
-IntegerArgs
-0					0
-1					1
-2					2
-3					3
-4					4
-5					5
-6					6
-7					7
-8					8
-9					9
+DDcont::6
+BBmean:61	T
+BBmean:62	S
+BBmean:63	R
 endcontext
 begincontext
-DirectionArgs
-NW					NumPad-7
-N					NumPad-8
-NE					NumPad-9
-SW					NumPad-1
-S					NumPad-2
-SE					NumPad-3
+BBcont:62
+62:a	A
+62:b	B
+62:c	C
+62:d	D
+62:e	E
+62:f	F
 endcontext
 begincontext
-StructureArgs
-University					U
-Tower					T
-Farm					F
-Mine					M
-Capitol					C
+DDcont::5
+BBmean:51	W
+BBmean:52	V
+BBmean:53	U
 endcontext
 begincontext
-UnitArgs			
-Ranged					R
-Melee					M
-Explorer					E
-Colonist					C
+BBcont:61
+61:a	A
+61:b	B
+61:c	C
+61:d	D
+61:e	E
+61:f	F
 endcontext
 begincontext
-UnitOverview
-Next					Left
-Previous					Right
+DDcont::4
+BBmean:41	Z
+BBmean:42	Y
+BBmean:43	X
 endcontext
 begincontext
-KeyEditor
-Next					Left
-Previous					Right
+Menu
+Model	M
 endcontext
 begincontext
-Instance
-SpinNext					Left
-SpinPrevious					Right
+ModelControl
+Hud	H
 endcontext
 begincontext
-Group
-SpinNext					U
-SpinPrevious					Ctrl+Down
+Hud
+DDMean::4	4
+DDMean::5	5
+DDMean::6	6
 endcontext
 begincontext
-TechTreeOverview
-Left					Left
-Right					Right
-Up					Up
-Down					Down
+BBcont:53
+53:a	A
+53:b	B
+53:c	C
+53:d	D
+53:e	E
+53:f	F
 endcontext
 begincontext
-CloseMenu
-CloseMenu					Escape
+BBcont:52
+52:a	A
+52:b	B
+52:c	C
+52:d	D
+52:e	E
+52:f	F
 endcontext
 begincontext
-NoArgs				
-NoArgs					N
+BBcont:51
+51:a	A
+51:b	B
+51:c	C
+51:d	D
+51:e	E
+51:f	F
+endcontext
+begincontext
+BBcont:43
+43:a	A
+43:b	B
+43:c	C
+43:d	D
+43:e	E
+43:f	F
+endcontext
+begincontext
+BBcont:42
+42:a	A
+42:b	B
+42:c	C
+42:d	D
+42:e	E
+42:f	F
 endcontext
