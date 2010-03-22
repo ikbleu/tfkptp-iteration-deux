@@ -27,6 +27,7 @@ public class test {
 		Unit u = SpecificUnitManager.lastUnit;
 		
 		p.vMan().update();
+		p.vMan().update();
 		
 		p.executeCommand( new NoArgsCommand( "cmdMakeRallyPoint", null, 0 ) );
 		System.out.println( "cmdRallyPoint" );

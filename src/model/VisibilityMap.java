@@ -46,7 +46,7 @@ public class VisibilityMap implements HasPlayerVisitor
 	private Map<GameTile, Boolean> playerAffectedTiles;
 	private Map<GameTile, Set<WorkerID> > workerAffectedTiles;
 	
-	private final boolean DEBUGGING = false;
+	private final boolean DEBUGGING = true;
 
 	public VisibilityMap()
 	{
@@ -336,7 +336,7 @@ public class VisibilityMap implements HasPlayerVisitor
 		// TODO Auto-generated method stub
 		if (DEBUGGING)
 		{
-			mapBuilder.setVisibility(Visibility.VISIBLE);
+			mapBuilder.setVisibility(Visibility.NON_VISIBLE);
 			return;
 		}
 		System.out.println(location);
