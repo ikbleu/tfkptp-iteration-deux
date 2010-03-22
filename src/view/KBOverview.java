@@ -30,6 +30,7 @@ import src.model.interfaces.Displayable;
     KBOverview(int wid, int hei){
     	
     	context = new ArrayList<String>();
+    	keys = new ArrayList<List<DisplayableBinding>>();
     	title = "Keyboard Control";
     	selected = null;
 

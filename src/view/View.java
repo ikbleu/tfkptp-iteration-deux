@@ -24,10 +24,10 @@ public class View implements ViewInjection, KBinjection{
     private ScreenManager screenManager;
     private SakuraMap sakuraMap;
     private HashMap<String,ViewInjectionElement> injections;
+    private boolean ready;
 
     public View(SakuraMap sakura){
     	GraphicsTableSingleton.getInstance();
-
 
         screenManager = new ScreenManager(sakura.mapWidth(), sakura.mapHeight(), sakura);
         screenManager.start();

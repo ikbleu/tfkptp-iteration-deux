@@ -30,12 +30,15 @@ public class KeyMap implements
 	DisplayableKeyMap
 	{
 	
-	private String currentDisplayContext;
 	//This Map represents the configuration of all the controls in the game.
 	private Map< String, List<Binding> > contextToBindings;
     private MahBuilder mahbuilder;
+    
+	private String currentDisplayContext;
+	private Iterator<Entry<String,List<Binding>>> displayContextSetIterator;
+	private Map.Entry<String,List<Binding>> displayCurrentEntry;
 
-    KeyMap() {
+    public KeyMap() {
         this.contextToBindings = new Hashtable<String,List<Binding>>();
         this.mahbuilder = new MahBuilder(this.contextToBindings);
     }
@@ -50,6 +53,7 @@ public class KeyMap implements
             this.map = map;
             this.currentContext = null;
             this.building = false;
+            
         }
         public void start() {
             if(this.building) { throw new RuntimeException("misuse!"); }
@@ -75,7 +79,12 @@ public class KeyMap implements
     }
 
 	public void start() { this.mahbuilder.start(); }
-    public void end() { this.mahbuilder.end(); }
+    public void end() { 
+    displayContextSetIterator = contextToBindings.entrySet().iterator();
+    displayCurrentEntry = displayContextSetIterator.next();	
+    System.out.println("Finished reading file/building.");
+    		this.mahbuilder.end(); 
+    }
 
     /**
 	 * This method adds a binding (key to meaning) to the current Builder context.
@@ -261,23 +270,19 @@ public class KeyMap implements
 	}
 	@Override
 	public String context() {
-		// TODO Auto-generated method stub
-		return currentDisplayContext;
+		return displayCurrentEntry.getKey();
 	}
 	@Override
 	public List<DisplayableBinding> getBindingList() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<DisplayableBinding>(displayCurrentEntry.getValue());
 	}
 	@Override
 	public boolean hasNext() {
-		//Set<Entry<Map<String,Binding>>>contextToBindings.entrySet()
-		return false;
+		return displayContextSetIterator.hasNext();
 	}
 	@Override
 	public void nextContext() {
-		// TODO Auto-generated method stub
-		
+		displayCurrentEntry = displayContextSetIterator.next();		
 	}
 	@Override
 	public DisplayableBinding selected() {

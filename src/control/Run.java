@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 import src.control.interfaces.KeyEventInterpreter;
+import src.view.View;
 
 public class Run {
 	
