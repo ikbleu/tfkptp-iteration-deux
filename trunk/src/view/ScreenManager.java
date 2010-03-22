@@ -146,7 +146,7 @@ import java.awt.Point;
 
                         
 			
-			optionalDisplay = OptionalDisplay.NONE;
+			optionalDisplay = OptionalDisplay.KEYBINDING;
 
 			setSize(windowWidth, windowHeight);
 			setTitle("Robot Unicorns...ATTACK!");
@@ -187,6 +187,7 @@ import java.awt.Point;
 			overview.setOverview(code, direct, dList, selected);
         	optionalDisplay = OptionalDisplay.OVERVIEW;
             overview.refreshImage();
+            System.out.println("UPDATING THAT over");
             
             try {
                 overview_tex = TextureIO.newTexture(overview.image(),true);
@@ -202,9 +203,10 @@ import java.awt.Point;
 			kboverview.setKBOverview(dkm);
         	optionalDisplay = OptionalDisplay.KEYBINDING;
             kboverview.refreshImage();
+            System.out.println("UPDATING THAT KB");
             
             try {
-                kboverview_tex = TextureIO.newTexture(overview.image(),true);
+                kboverview_tex = TextureIO.newTexture(kboverview.image(),true);
             }
             catch (GLException e) {
                 e.printStackTrace();
@@ -262,7 +264,7 @@ import java.awt.Point;
                 void initOverview(){
                     try {
                         overview_tex = TextureIO.newTexture(overview.image(),true);
-                        kboverview_tex = TextureIO.newTexture(overview.image(),true);
+                        kboverview_tex = TextureIO.newTexture(kboverview.image(),true);
                         
                     }
                     catch (GLException e) {
@@ -282,7 +284,7 @@ import java.awt.Point;
 				GL gl = drawable.getGL();
 				gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
 
-                System.out.println(timer.marksPerSecond());
+                //System.out.println(timer.marksPerSecond());
 				//render different components
                                 renderBG(gl);
                 renderMap(gl, vpWidth, vpHeight);
@@ -290,13 +292,17 @@ import java.awt.Point;
                 renderCommandSelection(gl);
 				renderResourceInfo(gl);
 				
+
 				switch(optionalDisplay) {
 					case OVERVIEW: renderOverview(gl); break;
+					case KEYBINDING: renderKBOverview(gl); break;
 				}
 
 			}
 
-            private void renderBG(GL gl) {
+
+
+			private void renderBG(GL gl) {
 
 
                 background_tex.bind();
@@ -443,6 +449,36 @@ import java.awt.Point;
                 gl.glPopMatrix();
             	
             }
+            
+            private void renderKBOverview(GL gl) {
+                double oWidth = .35;
+                double oHeight = .60;
+
+                kboverview_tex.bind();
+
+
+                gl.glPushMatrix();
+
+                gl.glBegin(GL.GL_POLYGON);
+
+                	gl.glTexCoord2d(0.0, 0.0);
+                	gl.glVertex2d(0.4,0.1);
+
+                	gl.glTexCoord2d(1.0, 0.0);
+                	gl.glVertex2d(0.4+oWidth, 0.1);
+
+                	gl.glTexCoord2d(1.0, 1.0);
+                	gl.glVertex2d(0.4+oWidth, 0.1+oHeight);
+
+                	gl.glTexCoord2d(0.0, 1.0);
+                	gl.glVertex2d(0.4, 0.1+oHeight);
+
+
+                gl.glEnd();
+
+                gl.glPopMatrix();
+				
+			}
 			
 			public void displayChanged(GLAutoDrawable drawable, boolean arg1, boolean arg2) {
 			
