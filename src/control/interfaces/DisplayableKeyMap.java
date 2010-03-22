@@ -3,6 +3,7 @@ package src.control.interfaces;
 import java.util.List;
 
 public interface DisplayableKeyMap {
+	
 	/**
 	 * @return the current DisplayableKeyMap context String.
 	 */
@@ -13,6 +14,7 @@ public interface DisplayableKeyMap {
 	 * @return true if there is another context. False if none. 
 	 */
 	public boolean hasNext();
+	
 	/**
 	 * changes the current context to the next one.
 	 */
