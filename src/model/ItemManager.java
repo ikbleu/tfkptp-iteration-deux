@@ -36,9 +36,13 @@ public class ItemManager implements ItemVisibilityHolder
 
     private RandomChooser<ItemEffect> effectChooser;
 
+    private Random rand;
+
     private ItemManager()
     {
         itemList = new ArrayList<Item>();
+
+        rand = new Random(System.currentTimeMillis());
     }
 
     private static class ItemManagerHolder
@@ -62,7 +66,6 @@ public class ItemManager implements ItemVisibilityHolder
         List<GameTile> allTiles = center.getTilesAround(radius);
         System.out.println("numTiles: " + allTiles.size());
 
-        Random rand = new Random(System.currentTimeMillis());
         effectChooser = new RandomChooser<ItemEffect>();
         effectChooser.add(new Bomb(rand.nextInt(15) + 1, 1, 0.5), 200);
         effectChooser.add(new Soma(15, 1, 0.5), 200);
@@ -98,14 +101,14 @@ public class ItemManager implements ItemVisibilityHolder
 
     private void makeNewItem(GameTile location)
     {
-        Random rand = new Random(System.currentTimeMillis());
-
         int option = rand.nextInt(100);
 
         if(option >= 0 && option < 70)
             makeNewOneShot(location);
         else
+        {
             makeNewObstacle(location);
+        }
     }
 
     private void makeNewOneShot(GameTile location)
