@@ -1,7 +1,13 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.tools.JavaFileManager.Location;
 
+import src.control.FileHandler;
+import src.control.KeyMap;
 import src.model.Model;
 import src.model.Player;
 import src.model.commands.Command;
@@ -71,15 +77,24 @@ public class test {
 		u.executeCommand( new NoArgsCommand( "cmdDecommission", null, 0 ) );*/
 		
 
-		p.vMan().update();
-		p.vMan().update();
-        View view = new View(p.getSakuraMap());
-        try{
-            m.getClock().register("View", view);
+		try{
+            m.getClock().register("VisUpdate", p.vMan());
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
+        
+        KeyMap controls = new KeyMap();
+        BufferedReader r;
+		try{
+		r = new BufferedReader(new FileReader("controller config files/simpleControls.txt"));
+		FileHandler.readFile(controls,r);
+		}catch (IOException ex) {
+        ex.printStackTrace();
+		}	
+		
+        View view = new View(p.getSakuraMap(), m.getClock());
+        view.displayControls(controls);
 	}
 }
