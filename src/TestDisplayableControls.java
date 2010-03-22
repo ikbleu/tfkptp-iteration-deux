@@ -75,7 +75,7 @@ public class TestDisplayableControls {
         KeyMap controls = new KeyMap();
         BufferedReader r;
 		try{
-		r = new BufferedReader(new FileReader("controller config files/controls.txt"));
+		r = new BufferedReader(new FileReader("controller config files/simpleControls.txt"));
 		FileHandler.readFile(controls,r);
 		}catch (IOException ex) {
         ex.printStackTrace();
