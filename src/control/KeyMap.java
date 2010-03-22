@@ -144,10 +144,14 @@ public class KeyMap implements
 			while(i.hasNext())
 			{
 				Binding b = i.next();
-				if(b.key()==event || b.meaning().compareTo(meaning)==0);
+				if(b.key()==event)
 				{
-					contextToBindings.get(context).remove(b);
-					contextToBindings.get(context).add(new Binding(meaning,event));
+					b.setMeaning(meaning);
+					found = true;
+				}
+				else if( b.meaning().compareTo(meaning)==0)
+				{
+					b.setKey(event);
 					found = true;
 				}
 			}

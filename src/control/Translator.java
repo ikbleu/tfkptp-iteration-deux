@@ -20,7 +20,6 @@ public class Translator
 {
 //This stores all keys that have been entered for toString and their corresponding string representation. 
 private static Map< String, KeyCodeAndModifiers > repToKey = new Hashtable< String, KeyCodeAndModifiers >();
-private static Map< KeyCodeAndModifiers, String > keyToRep = new Hashtable<KeyCodeAndModifiers , String >();
 private RepToKey r;
 
 //initialize repToKey with all key<->stringRepresentations saved when 
@@ -28,7 +27,8 @@ private RepToKey r;
 Translator(){
 	r = readObject("controller config files/repToKey.dat");
 	//System.out.println("Read RepToKey from file.Here it is: \n"+r);
-	repToKey = r.repToKey();
+	if(r != null)
+		repToKey = r.repToKey();
 }
 
 public KeyCodeAndModifiers toKeyCodeAndModifiers(String keyRepresentation)
@@ -68,8 +68,7 @@ public String toString(KeyCodeAndModifiers key) {
     }
     else
     */
-    	keyText = KeyEvent.getKeyText(keyCode);
-    
+    keyText = KeyEvent.getKeyText(keyCode);
 	String modifiers = KeyEvent.getModifiersExText(key.getModifiers());
 	String toReturn;
 	
@@ -83,7 +82,6 @@ public String toString(KeyCodeAndModifiers key) {
 	//repToKey is <StringRep, KeyCodeAndMofifiers>
 	if(!repToKey.containsKey(toReturn)){
 		repToKey.put(toReturn,k);
-		keyToRep.put(k,toReturn);
 		System.out.println("Put "+toReturn+" "+k+"into map.");
 		//save this map to a file in controller config files
 		writeObject(new RepToKey(repToKey),"controller config files/repToKey.dat");
