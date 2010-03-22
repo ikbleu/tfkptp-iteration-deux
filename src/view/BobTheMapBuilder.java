@@ -121,10 +121,13 @@ class BobTheMapBuilder implements MapBuilder{
 
     BufferedImage buildMeViewPort(){
         if(terrain!=null){
-            imageBuffer = graphicsT.getGraphic(terrain);
+            //imageBuffer = (graphicsT.getGraphic(terrain)).clone()
+            imageBuffer = new BufferedImage(200, 173,
+                                        BufferedImage.TYPE_INT_ARGB);
             graphix = imageBuffer.createGraphics();
             graphix.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
                                   RenderingHints.VALUE_ANTIALIAS_ON );
+            graphix.drawImage(graphicsT.getGraphic(terrain), 0, 0, null);
             graphix.setColor( Color.BLACK );
             graphix.setFont(f1);
 
