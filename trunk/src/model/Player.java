@@ -26,6 +26,7 @@ public class Player implements CommandSender, InstanceExistenceListener
 	GameTile startingLocation;
         ResourceManager rscManager;
         VisibilityManager visManager;
+        public UpkeepManager upMan;
 	
 	public Player( boolean isH, HandFactory hF, GameMap m, GameTile startLoc,
                 ResourceManager rm, Clock c)
@@ -39,6 +40,7 @@ public class Player implements CommandSender, InstanceExistenceListener
         visManager = new VisibilityManager(this, map, HasPlayerManager.getInstance(), c);  
         
         Instance.addGlobalInstanceExistenceListener( this );
+        upMan = new UpkeepManager(rm);
 	}
 	private Hand< Device > myHand;
 	
@@ -103,6 +105,16 @@ public class Player implements CommandSender, InstanceExistenceListener
     public Map<String, Integer> resourceCount()
     {
         return rscManager.getAllAmounts();
+    }
+
+    public void registerUpkeep(Instance i)
+    {
+        upMan.register(i);
+    }
+
+    public void unregisterUpkeep(Instance i)
+    {
+        upMan.unregister(i);
     }
     
     public SakuraMap getSakuraMap()

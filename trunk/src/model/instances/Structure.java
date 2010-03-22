@@ -13,6 +13,8 @@ import src.model.interfaces.InstanceVisitor;
 import src.model.instances.WorkerGroup;
 import src.model.instances.workergroups.NormalWorkerGroup;
 
+import java.util.HashMap;
+
 public abstract class Structure extends Instance implements vStructure {
 
         private WorkerManager wm;
@@ -43,13 +45,17 @@ public abstract class Structure extends Instance implements vStructure {
 	
 	@Override
 	public Map<String, Integer> getUpkeep() {
-		// TODO Auto-generated method stub
-		return null;
+		HashMap<String, Integer> structUpkeep = new HashMap<String, Integer>();
+                structUpkeep.put("rscFood", getStat("statUpFood"));
+                structUpkeep.put("rscMetal", getStat("statUpMetal"));
+                structUpkeep.put("rscEnergy", getStat("statUpEnergy"));
+
+                return structUpkeep;
 	}
 
 	@Override
 	public void sentUpkeep(Map<String, Integer> resources) {
-		// TODO Auto-generated method stub
+		System.out.println("OH SNAP upkeep!");
 		
 	}
 
@@ -80,7 +86,7 @@ public abstract class Structure extends Instance implements vStructure {
             }
         }
 
-        protected NormalWorkerGroup getStaff()
+        public NormalWorkerGroup getStaff()
         {
             return staff;
         }

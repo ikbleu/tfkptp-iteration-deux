@@ -35,4 +35,9 @@ public class DirectionCommandFactory extends CommandFactory {
 		// TODO Auto-generated method stub
 		return meaning();
 	}
+
+        public String context()
+        {
+            return "singleDirection";
+        }
 }

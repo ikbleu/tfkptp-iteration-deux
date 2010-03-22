@@ -58,6 +58,11 @@ public class RallyPointCommandFactory extends CommandFactory {
 		});
 	}
 
+        public String context()
+        {
+            return "rallyPointArg";
+        }
+
 	@Override
 	public String comparable() {
 		// TODO Auto-generated method stub

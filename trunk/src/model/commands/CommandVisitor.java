@@ -5,4 +5,5 @@ public interface CommandVisitor {
 	public void visitRallyPointCommand( RallyPointCommand mc );
 	public void visitNoArgsCommand(NoArgsCommand noArgsCommand);
 	public void visitDirectionCommand(DirectionCommand directionCommand);
+        public void visitWorkerCommand(WorkerCommand workerCommand);
 }

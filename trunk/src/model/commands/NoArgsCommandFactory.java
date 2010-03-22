@@ -27,6 +27,11 @@ public class NoArgsCommandFactory extends CommandFactory {
 		return new NoArgsCommand( token(), i, numTicks(), isInstant() );
 	}
 
+        public String context()
+        {
+            return "noArguments";
+        }
+
 	@Override
 	public String comparable() {
 		// TODO Auto-generated method stub

@@ -59,7 +59,7 @@ public abstract class CommandFactory implements Device, vCommand {
 		return hand;
 	}
 	
-	final public String context() { return "Command"; }
+	public abstract String context();
 	final public String meaning() { return token(); }
 	final public void direct(KeyEventInterpreterBuilder builder)
 	{

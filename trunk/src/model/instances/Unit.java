@@ -90,7 +90,7 @@ public abstract class Unit extends Instance implements vUnit {
 
     public void sentUpkeep(Map<String, Integer> resources)
     {
-        
+        System.out.println("OH SNAP upkeep!");
     }
 
     public void receiveWorkers(WorkerGroup wg, int numWorkers) {}

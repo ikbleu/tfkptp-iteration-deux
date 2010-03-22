@@ -391,6 +391,16 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
                     upkeepTotal.put(type, unitAmt + curTotal);
                 }
             }
+            
+            Map<String, Integer> workerUpkeep = workers.getUpkeep();
+
+            for(String type : upkeepTotal.keySet())
+            {
+                int curTotal = upkeepTotal.get(type);
+                int workerAmt = workerUpkeep.get(type);
+
+                upkeepTotal.put(type, curTotal + workerAmt);
+            }
 
             return upkeepTotal;
         }
@@ -403,11 +413,16 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
          */
         public void sentUpkeep(Map<String, Integer> resources)
         {
-        	
+        	System.out.println("OH SNAP Upkeep.");
         }
         
         public boolean isInBattleGroup( Unit u )
         {
         	return bgList.contains( u );
+        }
+
+        public NormalWorkerGroup getWorkers()
+        {
+            return workers;
         }
 }

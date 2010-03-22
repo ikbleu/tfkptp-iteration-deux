@@ -44,6 +44,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		
 		for ( InstanceExistenceListener il : globalListeners )
 			il.newInstance( this );
+
+                p.registerUpkeep(this);
 	}
 	private Hand< Device > commandHand;
 	
@@ -137,6 +139,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 				il.delInstance( this );
 		AoEManager.instance().unregisterLocation( this );
 		HasPlayerManager.getInstance().remove( location(), this );
+                player.unregisterUpkeep(this);
 	}
 	
 	final public void modifyStat( String s, int delta )
@@ -261,7 +264,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 
 	public List<GameTile> getVisibleTiles() {
 		int visRad = getStat("statVisibilityRadius");
-		System.out.println("Visibility Radius " + visRad);
+		System.out.println("Visibility Radius: " + visRad);
                 return location().getTilesAround(visRad);
 	}
 
