@@ -39,6 +39,9 @@ statMoveSpeed
 statEfficiency
 statNumSoldiers
 statMaxHealth
+statUpFood
+statUpMetal
+statUpEnergy
 
 **Instances
 instanceRallyPoint
