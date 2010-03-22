@@ -11,26 +11,26 @@ import src.model.instances.GeneralUnitManager;
 import src.model.instances.Instance;
 import src.util.Hand;
 
-public class MeleeManager extends SpecificUnitManager {
-	private static final int MAX_MELEE = 10;
+public class ColonistManager extends SpecificUnitManager {
+	private static final int MAX_COLONISTS = 10;
 	
 	private static final Map< String, Integer > BASE_STATS = new HashMap< String, Integer >() {{
-		put( "statMaxHealth", 150 );
+		put( "statMaxHealth", 500 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 5 );
-		put( "statDefPow", 2 );
-		put( "statArmor", 30 );
-		put( "statMoveSpeed", 3 );
+		put( "statAtkPow", 1 );
+		put( "statDefPow", 1 );
+		put( "statArmor", 5 );
+		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 0 );
 	}};
 	private static final Map< String, Integer > DELTA_STATS = new HashMap< String, Integer >() {{
-		put( "statMaxHealth", 10 );
+		put( "statMaxHealth", 50 );
 		put( "statInfluenceRadius", 0 );
 		put( "statVisibilityRadius", 1 );
-		put( "statAtkPow", 2 );
+		put( "statAtkPow", 1 );
 		put( "statDefPow", 1 );
-		put( "statArmor", 5 );
+		put( "statArmor", 1 );
 		put( "statMoveSpeed", 1 );
 		put( "statEfficiency", 1 );
 	}};
@@ -42,12 +42,12 @@ public class MeleeManager extends SpecificUnitManager {
 	
 	private Player player;
 	
-	public MeleeManager(Player p, GeneralUnitManager m) {
-		super( m, new MeleeFactory( p ), p, p.handFactory().make( Device.class ), 
-				BASE_STATS, DELTA_STATS, RESOURCE_COST, "Melee" );
+	public ColonistManager(Player p, GeneralUnitManager m) {
+		super( m, new ColonistFactory( p ), p, p.handFactory().make( Device.class ), 
+				BASE_STATS, DELTA_STATS, RESOURCE_COST, "Colonist" );
 		player = p;
 		
-		p.addCommandListener( "cmdMakeMelee", new CommandListener() {
+		p.addCommandListener( "cmdMakeColonist", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute"  && canMakeUnit() )
 					makeUnit( c.location() );
@@ -57,21 +57,21 @@ public class MeleeManager extends SpecificUnitManager {
 	
 	protected boolean canMakeSpecificUnit()
 	{
-		return numMelee < MAX_MELEE;
+		return numColonists < MAX_COLONISTS;
 	}
 	
-	private int numMelee = 0;
+	private int numColonists = 0;
 	protected void doDelInstance(Instance i) {
-		--numMelee;
+		--numColonists;
 	}
 	
 	protected void doNewInstance( final Instance i ) {
-		++numMelee;
+		++numColonists;
 	}
 	
 	public String meaning()
 	{
-		return "typeMelee";
+		return "typeColonist";
 	}
 
 	@Override

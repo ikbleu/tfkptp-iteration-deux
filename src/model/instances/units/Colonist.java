@@ -7,15 +7,15 @@ import src.model.interfaces.GameTile;
 
 import java.util.Map;
 
-class Ranged extends Unit {
+class Colonist extends Unit {
 
-	public Ranged( Player p, int id, GameTile g )
+	public Colonist( Player p, int id, GameTile g )
 	{
 		super( p, id, g );
 	}
 	
 	public String token() {
-		return "instanceRanged";
+		return "instanceColonist";
 	}
 	
 	public void entered(Instance l) {
