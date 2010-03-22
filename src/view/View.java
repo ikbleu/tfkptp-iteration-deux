@@ -49,6 +49,10 @@ public class View implements ViewInjection{
         
     }
 
+    public void toggleViewPort(){
+        screenManager.toggleViewPort();
+    }
+
     public void register(SakuraMap sakura, KeyListener control){
         sakuraMap = sakura;
         screenManager.addKeyListener(control);

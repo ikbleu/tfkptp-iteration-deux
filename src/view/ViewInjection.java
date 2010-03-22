@@ -17,4 +17,5 @@ public interface ViewInjection {
                                             Displayable[] dList,
                                             Displayable selection);
     public abstract void injectionCloseMenu();
+    public abstract void toggleViewPort();
 }
