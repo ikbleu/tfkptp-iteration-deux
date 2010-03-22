@@ -117,8 +117,8 @@ import java.awt.Color;
          */
         
         groupBox = "Unit";
-        typeBox = "Unicorn";
-        instanceBox = "Unicorn 3";
+        typeBox = "Narwhal";
+        instanceBox = "Narwhal 3";
 
         boxNumber = 0;
         if(groupBox!=null){

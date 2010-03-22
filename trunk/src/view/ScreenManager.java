@@ -68,6 +68,7 @@ import java.util.LinkedList;
 	 	private CommandQueueOverview commandQueueOverview;
                 private CommandSelection commandSelection;
                 private ResourceInfo resourceInfo;
+                private SakuraMap sakura;
 
                 private GraphicsTableSingleton graphicsTable = GraphicsTableSingleton.getInstance();
 	 	private LinkedList<Point> selectedTiles = new LinkedList<Point>();
@@ -133,6 +134,7 @@ import java.util.LinkedList;
 			panY = 0;
 			
 			friction = 1.0;
+                        this.sakura = sakura;
 
             vpWidth = sakura.mapWidth();
             vpHeight = sakura.mapHeight();
@@ -264,6 +266,7 @@ import java.util.LinkedList;
                 }
 
                 void updateResourceInfo(){
+                    resourceInfo.setResources(sakura.getPlayerResources());
                     resourceInfo.refreshImage();
                     try {
                         resourceInfo_tex = TextureIO.newTexture(resourceInfo.image(),true);
