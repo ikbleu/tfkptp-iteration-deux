@@ -69,7 +69,7 @@ public class TestDisplayableControls {
 
 		p.vMan().update();
 		p.vMan().update();
-        View view = new View(p.getSakuraMap());
+        View view = new View(p.getSakuraMap(), m.getClock());
         
         //load controls from file into KeyMap object.
         KeyMap controls = new KeyMap();
