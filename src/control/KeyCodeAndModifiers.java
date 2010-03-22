@@ -36,4 +36,8 @@ public class KeyCodeAndModifiers implements Serializable{
 		}
 		return false;		
 	}
+	public String toString()
+	{
+		return keyCode +" "+ modifiers;
+	}
 }

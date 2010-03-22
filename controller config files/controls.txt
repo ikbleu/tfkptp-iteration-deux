@@ -48,23 +48,24 @@ endcontext
 
 begincontext
 StructureArgs
-University			u
-Tower				t
-Farm				f
-Mine				m
-Capitol				c
+University			U
+Tower				T
+Farm				F
+Mine				M
+Capitol				C
 endcontext
 
 begincontext
 UnitArgs			
-Ranged				r
-Melee				m
-Explorer			e
-Colonist			c
+Ranged				R
+Melee				M
+Explorer			E
+Colonist			C
 endcontext
 
 begincontext
-NoArgs				n
+NoArgs				
+NoArgs				N
 endcontext
 
 begincontext
@@ -94,9 +95,7 @@ Previous			Right
 endcontext
 
 begincontext
-CloseMenu			Esc
+CloseMenu
+CloseMenu			Escape
 endcontext
-
-EndGame				CTRL+ALT+Q
-UnboundAction		
 					

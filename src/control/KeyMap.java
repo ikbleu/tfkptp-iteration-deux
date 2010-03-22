@@ -20,7 +20,8 @@ import src.model.control.BindingMapDirector;
 public class KeyMap implements 
 	BindingMapBuilder, 
 	BindingMapDirector, 
-	EditableKeyConfig
+	EditableKeyConfig,
+	KeyMapInterface
 	{
 	
 	//These variables represent the configuration of all the controls in the game.  
@@ -146,6 +147,32 @@ public class KeyMap implements
 			toReturn=toReturn.concat("endcontext\n");
 		}
 		return toReturn;
+	}
+
+	@Override
+	public void getMeaning(String context, KeyMapVisitor visitor,
+			KeyCodeAndModifiers key) {
+		boolean found = false;
+		if(contextToBindings.containsKey(context))
+		{
+		//Search for the given context
+		//if context found, then search Bindings for a meaning match for the key
+			List<Binding> l = contextToBindings.get(context);
+			Iterator<Binding> i = l.iterator();
+			while(i.hasNext())
+			{
+				Binding b = i.next();
+				if(b.key()==key)
+				{
+					visitor.foundMeaning(b.meaning());
+					found = true;
+				}
+			}
+			if(!found)
+				visitor.meaningUnknown();		
+		}
+		else
+			visitor.contextUnknown();
 	}
 
 
