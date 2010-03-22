@@ -44,6 +44,8 @@ public class VisibilityManager implements SakuraMap, Tickable
 		}
 	}
 	
+	private boolean DEBUG = true;
+	
 	public void update()
 	{
 		GetVisibleTiles gvt = new GetVisibleTiles();
@@ -52,7 +54,9 @@ public class VisibilityManager implements SakuraMap, Tickable
 		Set<HasPlayer> hasPlayers = playerStuff.getThingsIn(gvt.getVisibleTiles());
 		
 		// DEBUG
-		List<GameTile> l = gameMap.getOrigin().getTilesAround(gameMap.getMapRadius());
+		int i = (DEBUG) ? 4 : 2;
+		DEBUG = false;
+		List<GameTile> l = gameMap.getOrigin().getTilesAround(i);
 		Set<GameTile> s = new HashSet<GameTile>();
 		s.addAll(l);
 		
