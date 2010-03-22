@@ -74,5 +74,12 @@ public class test {
 		p.vMan().update();
 		p.vMan().update();
         View view = new View(p.getSakuraMap());
+        try{
+            m.getClock().register("View", view);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 	}
 }
