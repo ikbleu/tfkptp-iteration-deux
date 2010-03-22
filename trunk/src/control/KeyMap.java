@@ -121,16 +121,13 @@ public class KeyMap implements
         }
 	}
 
-	@Override
 	/**
 	 * This method adds a context to the KeyMap. 
 	 */
-	public boolean addContext(String context) {
+	public void addContext(String context) {
 		contextToBindings.put(context, new ArrayList<Binding>());
-		return false;
 	}
 
-	@Override
 	/**
 	 * This method adds a meaning to key binding under a specific context.
 	 * If context not found, returns
@@ -165,7 +162,6 @@ public class KeyMap implements
 	}
 
 
-	@Override
 	/**
 	 * This method removes a context from the map. 
 	 * Returns true when context found and removed.
@@ -181,7 +177,6 @@ public class KeyMap implements
 			return false;
 	}
 
-	@Override
 	/**
 	 * For a given context, it removes the binding specified by meaning.  
 	 * @return true if found context and meaning found, false if not. 
