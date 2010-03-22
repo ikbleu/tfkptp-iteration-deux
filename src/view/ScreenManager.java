@@ -15,6 +15,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.swing.JFrame;
 import com.sun.opengl.util.Animator;
+import com.sun.opengl.util.FPSAnimator;
 import com.sun.opengl.util.ImageUtil;
 
 import com.sun.opengl.util.texture.Texture;
@@ -82,7 +83,7 @@ import src.util.SimpleMovingAverageTimer;
                 Texture[][] ViewPortTex;
                 Texture overview_tex;
 		
-		private Animator animator;
+		private FPSAnimator animator;
 
 		ScreenManager(int mapWidth, int mapHeight){
 			
@@ -122,7 +123,7 @@ import src.util.SimpleMovingAverageTimer;
 
                         getContentPane().add(canvas);
 		    
-                        animator = new Animator(canvas);
+                        animator = new FPSAnimator(canvas, 60);
 
                         
 		    
