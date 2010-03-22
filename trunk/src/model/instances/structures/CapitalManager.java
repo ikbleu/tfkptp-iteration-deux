@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.control.Device;
@@ -39,11 +40,11 @@ public class CapitalManager extends SpecificStructureManager {
 	
 	private Player player;
 	
-	public CapitalManager(Player p, GeneralStructureManager m) {
-		super( m, new CapitalFactory( p ), p, p.handFactory().make( Device.class ), 
+	public CapitalManager(Player p, GeneralStructureManager m, WorkerManager wm) {
+		super( m, new CapitalFactory( p, wm ), p, p.handFactory().make( Device.class ),
 				BASE_STATS, DELTA_STATS, RESOURCE_COST, "Capital" );
 		player = p;
-		
+
 		p.addCommandListener( "cmdBuildCapital", new CommandListener() {
 			public void commandOccurred(Command c) {
 				if ( c.when() == "execute"  && canMakeStructure( c.location() ) )

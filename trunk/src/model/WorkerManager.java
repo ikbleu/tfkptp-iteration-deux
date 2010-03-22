@@ -349,4 +349,10 @@ public class WorkerManager implements WorkerGroupFactory
     {
         return new NormalWorkerGroup(location, normalStats, this, staff);
     }
+
+    public NormalWorkerGroup newNormalWorkerGroup(GameTile location, boolean staff,
+            int startAmt)
+    {
+        return new NormalWorkerGroup(location, normalStats, this, staff, startAmt);
+    }
 }

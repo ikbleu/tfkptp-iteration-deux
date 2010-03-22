@@ -1,6 +1,7 @@
 package src.model.instances.structures;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.instances.Instance;
 import src.model.instances.Structure;
 import src.model.instances.Unit;
@@ -10,9 +11,9 @@ import java.util.Map;
 
 class PowerPlant extends Structure {
 
-	public PowerPlant( Player p, int id, GameTile g )
+	public PowerPlant( Player p, int id, GameTile g, WorkerManager wm )
 	{
-		super( p, id, g );
+		super( p, id, g, wm );
 	}
 	
 	public String token() {

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.WorkerManager;
+import src.model.instances.workergroups.NormalWorkerGroup;
 import src.model.commands.CommandFactory;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
@@ -26,9 +28,13 @@ import src.model.interfaces.InstanceAdapter;
 
 public class RallyPoint extends Instance implements vRallyPoint, InstanceExistenceListener, MovementListener {
 	private static final boolean DEBUGGING = false; // TODO: remove
-	public RallyPoint( Player p, int id, GameTile g )
+	public RallyPoint( Player p, int id, GameTile g, WorkerManager wm )
 	{
 		super( p, id, g );
+
+                this.wm = wm;
+                workers = null;
+
 		final Hand< Device > armyHand = p.handFactory().make( Device.class );
 		armyDevice = new vInstance()
 		{
@@ -192,7 +198,29 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 	private List< Unit > entireList;
 	private List< Unit > bgList;
 	private List< Unit > reinfList;
-	
+
+        private WorkerManager wm;
+        private NormalWorkerGroup workers;
+
+        public void receiveWorkers(WorkerGroup wg, int numWorkers)
+        {
+            if(workers == null)
+                workers = wm.newNormalWorkerGroup(location(), false);
+
+            wg.transferWorkers(workers, numWorkers);
+        }
+
+        public void sendWorkers(WorkerGroup wg, int numWorkers)
+        {
+            workers.transferWorkers(wg, numWorkers);
+
+            if(workers.numWorkers() == 0)
+            {
+                workers.destroy();
+                workers = null;
+            }
+        }
+
 	final public void accept( InstanceVisitor iv )
 	{
 		iv.visitRallyPoint( this );

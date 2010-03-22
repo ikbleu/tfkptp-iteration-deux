@@ -264,6 +264,10 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		System.out.println("Visibility Radius " + visRad);
                 return location().getTilesAround(visRad);
 	}
+
+        public abstract void receiveWorkers(WorkerGroup wg, int numWorkers);
+
+        public abstract void sendWorkers(WorkerGroup wg, int numWorkers);
 	
 	public Player getPlayer()
 	{

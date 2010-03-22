@@ -4,6 +4,8 @@
 
 package src.model;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +34,7 @@ import src.util.RandomChooser;
 public class ItemManager implements ItemVisibilityHolder
 {
     // Gee, I wonder what this is.
-    private List<Item> itemList;
+    private Map<GameTile, Item> itemList;
 
     private RandomChooser<ItemEffect> effectChooser;
 
@@ -40,7 +42,7 @@ public class ItemManager implements ItemVisibilityHolder
 
     private ItemManager()
     {
-        itemList = new ArrayList<Item>();
+        itemList = new HashMap<GameTile, Item>();
 
         rand = new Random(System.currentTimeMillis());
     }
@@ -57,7 +59,7 @@ public class ItemManager implements ItemVisibilityHolder
 
     public void setMap(GameMap theMap)
     {
-        for(Item i : itemList)
+        for(Item i : itemList.values())
             removeItem(i);
 
         GameTile center = theMap.getOrigin();
@@ -81,7 +83,7 @@ public class ItemManager implements ItemVisibilityHolder
         // TODO: Remove below debugging code.
         GameTile special = start1.getNeighbor(Direction.S);
         ItemEffect specialEffect = new Bomb(15, 1, 0.5);
-        itemList.add(new OneShotItem(specialEffect.type(), special, specialEffect));
+        itemList.put(special, new OneShotItem(specialEffect.type(), special, specialEffect));
         // End debug code.
 
         for(GameTile gt : allTiles)
@@ -115,22 +117,29 @@ public class ItemManager implements ItemVisibilityHolder
     {
         ItemEffect effect = effectChooser.get();
 
-        itemList.add(new OneShotItem(effect.type(), location, effect));
+        itemList.put(location, new OneShotItem(effect.type(), location, effect));
     }
 
     private void makeNewObstacle(GameTile location)
     {
-        itemList.add(new Obstacle("itemObstacle", location));
+        itemList.put(location, new Obstacle("itemObstacle", location));
     }
 
     public List<Item> getAllItems()
     {
-        return Collections.unmodifiableList(itemList);
+        ArrayList<Item> zeList = new ArrayList<Item>();
+        zeList.addAll(itemList.values());
+        return Collections.unmodifiableList(zeList);
+    }
+
+    public Item getItemAt(GameTile location)
+    {
+        return itemList.get(location);
     }
 
     public void removeItem(Item it)
     {
-            itemList.remove(it);
+            itemList.remove(it.location());
             it.destroy();
     }
 }

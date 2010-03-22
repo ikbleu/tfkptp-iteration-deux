@@ -1,6 +1,7 @@
 package src.model.instances.rallypoints;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.control.Device;
@@ -16,9 +17,10 @@ public class RallyPointManager implements InstanceExistenceListener {
 	private static final int MAX_RALLY_POINTS = 10;
 	public static RallyPoint lastRP = null; // TODO: remove
 	
-	public RallyPointManager( final Player p, Hand< Device > rpH, Hand< Device > aH )
+	public RallyPointManager( final Player p, Hand< Device > rpH, Hand< Device > aH,
+                WorkerManager wm)
 	{
-		factory = new RallyPointFactory( p );
+		factory = new RallyPointFactory( p, wm );
 		this.rpHand = rpH;
 		this.armyHand = aH;
 		p.addCommandListener( "cmdMakeRallyPoint", new CommandListener() {

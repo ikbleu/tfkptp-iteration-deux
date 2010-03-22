@@ -1,18 +1,22 @@
 package src.model.instances.structures;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.instances.Instance;
 import src.model.interfaces.GameTile;
 import src.util.IntRecycler;
 
 class UniversityFactory extends StructureFactory {
-	public UniversityFactory( Player p )
+    private WorkerManager wm;
+
+	public UniversityFactory( Player p, WorkerManager wm )
 	{
 		super( p );
+                this.wm = wm;
 	}
 	
-	public ObservationTower doMakeInstance( GameTile loc ) {
-		return new ObservationTower( player(), rec.next(), loc );
+	public University doMakeInstance( GameTile loc ) {
+		return new University( player(), rec.next(), loc, wm );
 	}
 	
 	private IntRecycler rec = new IntRecycler();

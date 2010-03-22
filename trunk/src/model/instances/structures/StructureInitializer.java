@@ -5,13 +5,14 @@ import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.units.GeneralUnitManager;
 import src.model.instances.units.RangedManager;
+import src.model.WorkerManager;
 import src.model.interfaces.ViewVisitor;
 import src.model.interfaces.vGroup;
 import src.util.Hand;
 import src.util.HandFactory;
 
 public final class StructureInitializer {
-	public static void initialize( final Player p )
+	public static void initialize( final Player p, WorkerManager wm )
 	{
 		GeneralStructureManager m = new GeneralStructureManager( p );
 		final Hand< Device > hand = p.handFactory().make( Device.class );
