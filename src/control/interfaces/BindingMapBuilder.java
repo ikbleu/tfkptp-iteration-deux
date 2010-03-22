@@ -1,7 +1,10 @@
 package src.control.interfaces;
-import src.control.*;
+
+import src.control.KeyCodeAndModifiers;
 
 public interface BindingMapBuilder {
-	public void context(String context);
-	public void binding(KeyCodeAndModifiers event, String meaning); 
+    void start();
+	void context(String context);
+	void binding(KeyCodeAndModifiers event, String meaning);
+    void end();
 }
