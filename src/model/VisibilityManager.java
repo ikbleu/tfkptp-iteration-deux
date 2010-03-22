@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import src.model.enums.DecalType;
+import src.model.enums.Direction;
 import src.model.interfaces.Clock;
 import src.model.interfaces.GameTile;
 import src.model.interfaces.HasPlayer;
@@ -54,9 +55,8 @@ public class VisibilityManager implements SakuraMap, Tickable
 		Set<HasPlayer> hasPlayers = playerStuff.getThingsIn(gvt.getVisibleTiles());
 		
 		/*/ DEBUG
-		int i = (DEBUG) ? 4 : 2;
+		List<GameTile> l = (DEBUG) ? gameMap.getStartingLocation1().getTilesAround(3) : gameMap.getStartingLocation1().getNeighbor(Direction.S).getNeighbor(Direction.S).getTilesAround(3);
 		DEBUG = false;
-		List<GameTile> l = gameMap.getStartingLocation1().getTilesAround(i);
 		Set<GameTile> s = new HashSet<GameTile>();
 		s.addAll(l);
 		*/
