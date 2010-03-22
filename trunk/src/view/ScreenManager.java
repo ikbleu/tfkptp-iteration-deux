@@ -184,7 +184,8 @@ import src.model.interfaces.SakuraMap;
                     for(int i = 0; i < vpHeight; ++i){
                         for(int j =0; j < vpWidth; ++j){
                             try{
-                                ViewPortTex[i][j] = TextureIO.newTexture(viewPort.get(i, j),true);
+                                if(viewPort.get(i, j)!=null)
+                                    ViewPortTex[i][j] = TextureIO.newTexture(viewPort.get(i, j),true);
                             }
                             catch (Exception e) {
                                 e.printStackTrace();
@@ -434,7 +435,8 @@ import src.model.interfaces.SakuraMap;
 	                
 	                for(int i = 0; i < height; ++i){
 	                     for(int j =0; j < width; ++j){
-	                            renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio), i, j);
+                                    if(viewPort.get(i, j)!=null)
+                                        renderViewPortHex(gl, beginX+i*.150, beginY + (i+(j*2))*.0866025 *(screenRatio), i, j);
 	                     }
 	                 }
 	            gl.glPopMatrix();
