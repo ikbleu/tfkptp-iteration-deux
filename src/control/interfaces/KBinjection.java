@@ -1,4 +1,4 @@
-package src.control;
+package src.control.interfaces;
 import java.util.List;
 import src.control.interfaces.DisplayableBinding;
 
