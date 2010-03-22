@@ -1,7 +1,6 @@
 package src.control;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,15 +17,12 @@ public class FileHandler {
 		KeyMap m = new KeyMap();
 		BufferedReader r;
 		try{
-		r = new BufferedReader(new FileReader("control config files/controls.txt"));
+		r = new BufferedReader(new FileReader("controller config files/controls.txt"));
 		readFile(m,r);
-		}catch (FileNotFoundException ex) {
-        ex.printStackTrace();
 		}catch (IOException ex) {
-        ex.printStackTrace(); 
-        System.out.println(m);
-	}
-    
+        ex.printStackTrace();
+		}	
+		System.out.println(m);
 	}
 	
 	public static final String BEGINCONTEXT = "begincontext";
@@ -34,19 +30,46 @@ public class FileHandler {
 
 	public void writeFile(BindingMapDirector director, BufferedWriter writer)
 	{
-	}
+        try {
+            writer.write(director.toString());
+            
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            //Close the BufferedWriter
+            try {
+                if (writer != null) {
+                    writer.flush();
+                    writer.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+	
+	/**
+	 * This method builds the BindingMapBuilder (KeyMap) object from a file specified in reader. 
+	 * @param builder
+	 * @param reader
+	 */
 	public static void readFile(BindingMapBuilder builder, BufferedReader reader)
 	{
 		 try {
 	          	String line = null;
 	            
 	            while ((line = reader.readLine()) != null) {
+	            	//System.out.println("Building new file line.");
 	                //Print for debug
-	                System.out.println(line);
+	                //System.out.println(line);
 	                //Process data.  
 	                if(line.compareTo(BEGINCONTEXT)==0)
 	                {
-	                	builder.context(reader.readLine());
+	                	String temp = reader.readLine();
+	                	builder.context(temp);
+	                	//System.out.println("Set Builder context: "+temp);
 	                }
 	                else if(line.compareTo(ENDCONTEXT)==0)
 	                {
@@ -54,17 +77,22 @@ public class FileHandler {
 	                }
 	                else //a possible complete binding
 	                {
-	                	String bindingLine = null;
 	                	String meaning, stringRepresentation;
-	                	StringTokenizer st = new StringTokenizer(bindingLine);
+	                	StringTokenizer st = new StringTokenizer(line);
 	                	
 	                	if(st.countTokens()==2) // complete binding
 	                	{
 	                		meaning = st.nextToken();
 	                		stringRepresentation = st.nextToken();
-		                	builder.binding(Translator.toKeyCodeAndModifiers(stringRepresentation), meaning);
+	                		Translator trans = new Translator();
+		                	builder.binding(trans.toKeyCodeAndModifiers(stringRepresentation), meaning);
+		                	//System.out.println("Set binding "+meaning+" "+stringRepresentation);
+		                	//System.out.println("stringRepresentation is:"+trans.toKeyCodeAndModifiers(stringRepresentation));
 	                	}
-	                	else{} //Incomplete binding or Unbound meaning
+	                	else{
+	                		//System.out.println("This line did not have two tokens. Did nothing. ");
+	                		//System.out.println("Incomplete binding or Unbound meaning: "+line);
+	                	}
 	                		//invalid. Cannot add a binding unless binding is complete. 
 	                		//every binding must be complete.  (had key and meaning) 
 	                		//simply don't add it to KeyMap.                  		

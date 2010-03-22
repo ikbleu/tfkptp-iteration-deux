@@ -2,7 +2,10 @@ package src.control;
 
 import java.io.Serializable;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * wrapper class so we can save RepToKey to a file as an object.
@@ -21,6 +24,19 @@ public class RepToKey implements Serializable{
 	}
 	public Map< String, KeyCodeAndModifiers > repToKey(){
 		return repToKey;
+	}
+	public String toString()
+	{
+		String toReturn="";
+		Set<Entry<String, KeyCodeAndModifiers>>  s = repToKey.entrySet();
+		Iterator<Entry<String,KeyCodeAndModifiers>> i = s.iterator();
+		while(i.hasNext())
+		{
+			Entry<String,KeyCodeAndModifiers> e = i.next();
+			toReturn=toReturn.concat(e.getKey()+"\t\t"+e.getValue()+'\n');
+		}
+		toReturn = toReturn+'\n';
+		return toReturn;
 	}
 	
 }

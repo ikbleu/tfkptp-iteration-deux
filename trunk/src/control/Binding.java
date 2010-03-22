@@ -10,6 +10,7 @@ public class Binding{
 	
 	private String meaning;
 	private KeyCodeAndModifiers key;
+	private Translator trans = new Translator();
 	
 	Binding(String meaning, KeyCodeAndModifiers key)
 	{
@@ -26,7 +27,7 @@ public class Binding{
 	}
 	public String toString()
 	{
-		return meaning + "\t\t\t\t\t ModifiersCode: "+ key.getModifiers() +"KeCode: "+ key.getKeyCode();
+		return meaning + "\t\t\t\t\t" +trans.toString(key);
 	}
 
 }

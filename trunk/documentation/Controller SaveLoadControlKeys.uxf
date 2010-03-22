@@ -72,19 +72,11 @@ buildForContext(contexts: Iterator&lt;String&gt;, builder: BindingMapBuilder): v
 BindingMapBuilder
 --
 context(context: String): void
-binding(event: KeyCodeAndModifiers, meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>336</x><y>696</y><w>144</w><h>56</h></coordinates><panel_attributes>KeyCodeAndModifiers
+binding(event: KeyCodeAndModifiers, meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>448</x><y>760</y><w>144</w><h>56</h></coordinates><panel_attributes>KeyCodeAndModifiers
 --
 --
 getKeyCode() : int
-getModifiers() : int</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>432</x><y>368</y><w>120</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;104;56</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>8</x><y>640</y><w>144</w><h>40</h></coordinates><panel_attributes>KeyMapWriter
---
-save(BindingMapDirector)</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>160</x><y>640</y><w>144</w><h>48</h></coordinates><panel_attributes>KeyMapReader
---
-load(BindingMapBuilder)</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>264</x><y>480</y><w>40</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>24;24;24;24;24;160</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>56</x><y>480</y><w>224</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>208;24;24;160</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>8</x><y>288</y><w>80</w><h>48</h></coordinates><panel_attributes>Initializer
---
-KeyMap
-controls: File
-</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>816</x><y>440</y><w>224</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+getModifiers() : int</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>432</x><y>368</y><w>120</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;104;56</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>816</x><y>440</y><w>224</w><h>80</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 BindingVisitor
 --
 contextUnknown(): void
@@ -100,4 +92,4 @@ meaningUnknown(): void
 foundMeaning(meaning: String): void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>560</x><y>312</y><w>440</w><h>48</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 KeyMapInterface
 --
-getMeaning(context : String,visitor : KeyMapVisitor, key : KeyCodeAndModifiers) : String</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>632</x><y>336</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;24;88</additional_attributes></element></umlet_diagram>
+getMeaning(context : String,visitor : KeyMapVisitor, key : KeyCodeAndModifiers):void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>632</x><y>336</y><w>40</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>24;24;24;88</additional_attributes></element></umlet_diagram>
