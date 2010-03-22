@@ -147,11 +147,11 @@ public class VisibilityMap implements HasPlayerVisitor
 		{
 			GameTile loc = i.next();
 			
-			if (exploredTiles.containsKey(loc))
-			{
+			/*if (exploredTiles.containsKey(loc))
+			{*/
 				resourcesOnTile.put(loc, loc.getResources());
 				
-			}
+			/*}
 			else
 			{
 				Map<String, Integer> m = resourcesOnTile.get(loc);
@@ -171,7 +171,7 @@ public class VisibilityMap implements HasPlayerVisitor
 						m.put(j.next(), new Integer(-1));
 					resourcesOnTile.put(loc, m);
 				}
-			}
+			}*/
 		}
 	}
 
