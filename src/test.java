@@ -1,10 +1,13 @@
 package src;
 
+import javax.tools.JavaFileManager.Location;
+
 import src.model.Model;
 import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.NoArgsCommand;
 import src.model.commands.RallyPointCommand;
+import src.model.enums.Direction;
 import src.model.instances.Instance;
 import src.model.instances.InstanceExistenceListener;
 import src.model.instances.Unit;
@@ -20,6 +23,7 @@ public class test {
 	{
         Model m = new Model( new HandFactoryImp() );
 		final Player p = m.human();
+		StarterUnit starter = new StarterUnit( p, 0, p.startingLocation() );
 		p.addInstanceExistenceListener( new InstanceExistenceListener() {
 
 			@Override
@@ -34,10 +38,15 @@ public class test {
 				System.out.println( "new Instance: " + i.token() );
 				GameTile g = i.location();
 				System.out.printf( "Location: %d %d %d\n",g.getX(), g.getY(), g.getZ() );
+				i.moveTo( i.location().getNeighbor( Direction.S ) );
+				i.moveTo( i.location().getNeighbor( Direction.S ) );
+				p.vMan().update();
+				i.moveTo( i.location().getNeighbor( Direction.N ) );
+				i.moveTo( i.location().getNeighbor( Direction.N ) );
+				p.vMan().update();
 			}
 			
 		});
-		StarterUnit starter = new StarterUnit( p, 0, p.startingLocation() );
 		System.out.println( "cmdMakeColonist" );
 		starter.executeCommand( new NoArgsCommand( "cmdMakeColonist", starter, 0, true ) );
 		/*System.out.println( "cmdArcherAP1" );
