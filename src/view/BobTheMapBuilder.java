@@ -148,6 +148,9 @@ class BobTheMapBuilder implements MapBuilder{
                 graphix.drawString("IU: "+individualUnits, centerX - 5*imageSpacing, centerY - idsSize );
             }
         }
+        else{
+            imageBuffer = null;
+        }
         structure = null;
         soldiers = -1;
         resources = null;
@@ -208,6 +211,9 @@ class BobTheMapBuilder implements MapBuilder{
             if(workerGroups.get("wgStaff")!=null){
                 graphix.drawString("S: "+workerGroups.get("wgStaff"), centerX + 1*idsSize, centerY + 2*idsSize);
             }
+        }
+        else{
+            imageBuffer = null;
         }
         structure = null;
         soldiers = -1;
