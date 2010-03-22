@@ -6,9 +6,10 @@ import java.util.List;
 import src.model.HasPlayerManager;
 import src.model.Player;
 import src.model.instances.Instance;
+import src.model.instances.InstanceExistenceListener;
 import src.model.interfaces.GameTile;
 
-public class GeneralStructureManager {
+public class GeneralStructureManager implements InstanceExistenceListener {
 	private int numStructures = 0;
 	private List< GameTile > invalid = new LinkedList< GameTile >();
 	

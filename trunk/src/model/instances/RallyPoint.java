@@ -82,11 +82,11 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		};
 		
 		entireHand = p.handFactory().make( Device.class );
-		entireList = new LinkedList< vUnit >();
+		entireList = new LinkedList< Unit >();
 		bgHand = p.handFactory().make( Device.class );
-		bgList = new LinkedList< vUnit >();
+		bgList = new LinkedList< Unit >();
 		reinfHand = p.handFactory().make( Device.class );
-		reinfList = new LinkedList< vUnit >();
+		reinfList = new LinkedList< Unit >();
 		
 		armyHand.add( new vType()
 		{
@@ -189,9 +189,9 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 	private Hand< Device > entireHand;
 	private Hand< Device > bgHand;
 	private Hand< Device > reinfHand;
-	private List< vUnit > entireList;
-	private List< vUnit > bgList;
-	private List< vUnit > reinfList;
+	private List< Unit > entireList;
+	private List< Unit > bgList;
+	private List< Unit > reinfList;
 	
 	final public void accept( InstanceVisitor iv )
 	{

@@ -126,15 +126,16 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		
 		u.addInstanceExistenceListener( new InstanceExistenceListener() {
 			public void delInstance(Instance i) {
-				
+				Instance.removeGlobalInstanceExistenceListener( iel );
 			}
 			public void newInstance(Instance i) {
-				Instance.removeGlobalInstanceExistenceListener( iel );
+				
 			}
 		});
 
 		u.addInstanceExistenceListener( this );
 		u.addInstanceExistenceListener( factory );
+		u.addInstanceExistenceListener( manager );
 		lastUnit = u; // TODO: remove
 		return u;
 	}
@@ -148,14 +149,12 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 	
 	public void delInstance(Instance i) {
 		hand.remove( i );
-		manager.delInstance( i );
 		doDelInstance( i );
 	}
 	abstract protected void doDelInstance( Instance i );
 	
 	public void newInstance(Instance i) {
 		hand.add( i );
-		manager.newInstance( i );
 		doNewInstance( i );
 	}
 	abstract protected void doNewInstance( Instance i );
