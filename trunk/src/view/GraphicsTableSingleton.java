@@ -25,13 +25,21 @@ class GraphicsTableSingleton {
         graphics = new HashMap<String, BufferedImage>();
         try{
             graphics.put( "hud", ImageIO.read(new File("artwork/unicornhud.png")));
+
             graphics.put( "Stars", ImageIO.read(new File("artwork/rbStar.jpg")));
             graphics.put( "rbDust", ImageIO.read(new File("artwork/rbDust.jpg")));
             graphics.put( "Dreams", ImageIO.read(new File("artwork/rbDream.jpg")));
-            graphics.put( "Unicorn", ImageIO.read(new File("artwork/rbuni.jpg")));
-            graphics.put( "Dolphin", ImageIO.read(new File("artwork/rbdolph.jpg")));
-            graphics.put( "UnicornB", ImageIO.read(new File("artwork/rbuniB.jpg")));
-            graphics.put( "DolphinB", ImageIO.read(new File("artwork/rbdolphB.jpg")));
+
+            graphics.put( "Ranged", ImageIO.read(new File("artwork/rbuni.jpg")));
+            graphics.put( "Melee", ImageIO.read(new File("artwork/rbdolph.jpg")));
+            graphics.put( "Explorer", ImageIO.read(new File("artwork/narwhal.jpg")));
+            graphics.put( "Colonist", ImageIO.read(new File("artwork/rainbowBrite.jpg")));
+
+            graphics.put( "RangedB", ImageIO.read(new File("artwork/rbuniB.jpg")));
+            graphics.put( "MeleeB", ImageIO.read(new File("artwork/rbdolphB.jpg")));
+            graphics.put( "ExplorerB", ImageIO.read(new File("artwork/narwhalB.jpg")));
+            graphics.put( "ColonistB", ImageIO.read(new File("artwork/rainbowBriteB.jpg")));
+
             graphics.put( "Command", ImageIO.read(new File("artwork/rbCommand.jpg")));
             graphics.put( "GRASSLAND", ImageIO.read(new File("artwork/grassland.png")));
             graphics.put( "SPARSE_FOREST", ImageIO.read(new File("artwork/sparseforest.png")));
