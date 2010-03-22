@@ -9,7 +9,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
+import src.control.interfaces.DisplayableBinding;
 import src.model.interfaces.Displayable;
 
 /**
@@ -76,11 +78,7 @@ import src.model.interfaces.Displayable;
 
     public void refreshImage(){
     	
-    	//testing
-    	dir = new String[] {"RallyPoint2", "Archer1"};
-    	instance = new String[] {"Shoot", "Move", "Swim", "Jump", "Eat", "Bake", "Fly", "Smooch", "Jog", "Write Poetry", "Sing", "Stalk", "Skip", "Dream", "Go on a Road Trip", "Paint", "Eat Sushi"};
-    	
-    	
+
         graphix.drawImage(graphicsTable.getGraphic("Overview"), 0, 0, null);
         
         graphix.setFont(f1);
@@ -109,4 +107,6 @@ import src.model.interfaces.Displayable;
         if(subTitle!=null)
         	graphix.drawString(subTitle, 60, 450);
     }
+
+
 }
