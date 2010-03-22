@@ -182,4 +182,5 @@ cmdResWorkerMetal
 cmdResWorkerFood
 cmdResWorkerEnergy
 cmdResWorkerBreeding
+cmdResWorkerEfficiency
 cmdResSoldierTraining

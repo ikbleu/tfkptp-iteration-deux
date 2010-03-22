@@ -50,11 +50,17 @@ public class WorkerManager implements WorkerGroupFactory
     private static final int BASE_BREED_RATE = 100;
     private static final int BASE_DENSITY = 1;
     private static final int BASE_HARVEST_RATE = 10;
+    private static final int BASE_UP_FOOD = 4;
+    private static final int BASE_UP_METAL = 0;
+    private static final int BASE_UP_ENERGY = 0;
 
     // Stat modifications
     private static final int DELTA_BREED_RATE = -10;
     private static final int DELTA_DENSITY = 1;
     private static final int DELTA_HARVEST_RATE = 1;
+    private static final int DELTA_UP_FOOD = -1;
+    private static final int DELTA_UP_METAL = 0;
+    private static final int DELTA_UP_ENERGY = 0;
 
     // Total number of workers currently in existance.
     private int totalWorkers;
@@ -68,18 +74,27 @@ public class WorkerManager implements WorkerGroupFactory
         breedStats = new HashMap<String, Integer>();
 
         breedStats.put("density", MAX_WORKERS);
-        breedStats.put("breedingRate", 100);
+        breedStats.put("breedingRate", BASE_BREED_RATE);
+        breedStats.put("statUpFood", BASE_UP_FOOD);
+        breedStats.put("statUpMetal", BASE_UP_METAL);
+        breedStats.put("statUpEnergy", BASE_UP_ENERGY);
 
         harvestStats = new HashMap<String, Integer>();
 
-        harvestStats.put("density", 1);
-        harvestStats.put("oreRate", 10);
-        harvestStats.put("grainRate", 10);
-        harvestStats.put("fuelRate", 10);
+        harvestStats.put("density", BASE_DENSITY);
+        harvestStats.put("oreRate", BASE_HARVEST_RATE);
+        harvestStats.put("grainRate", BASE_HARVEST_RATE);
+        harvestStats.put("fuelRate", BASE_HARVEST_RATE);
+        harvestStats.put("statUpFood", BASE_UP_FOOD);
+        harvestStats.put("statUpMetal", BASE_UP_METAL);
+        harvestStats.put("statUpEnergy", BASE_UP_ENERGY);
 
         normalStats = new HashMap<String, Integer>();
 
         normalStats.put("density", MAX_WORKERS);
+        normalStats.put("statUpFood", BASE_UP_FOOD);
+        normalStats.put("statUpMetal", BASE_UP_METAL);
+        normalStats.put("statUpEnergy", BASE_UP_ENERGY);
 
         active = new ArrayList<WorkerGroup>();
         harvesters = new HashMap<GameTile, HarvestingGroup>();
@@ -139,6 +154,31 @@ public class WorkerManager implements WorkerGroupFactory
                 {
                     int prevRate = harvestStats.get("fuelRate");
                     harvestStats.put("fuelRate", prevRate + DELTA_HARVEST_RATE);
+                }
+            }
+        });
+        owner.addCommandListener("cmdResWorkerEfficiency", new CommandListener() {
+            public void commandOccurred(Command com)
+            {
+                if(com.when().equals("execute"))
+                {
+                    int foodUpkeep = harvestStats.get("statUpFood");
+                    foodUpkeep = Math.max(0, foodUpkeep + DELTA_UP_FOOD);
+                    harvestStats.put("statUpFood", foodUpkeep);
+                    breedStats.put("statUpFood", foodUpkeep);
+                    normalStats.put("statUpFood", foodUpkeep);
+
+                    int metalUpkeep = harvestStats.get("statUpMetal");
+                    metalUpkeep = Math.max(0, metalUpkeep + DELTA_UP_METAL);
+                    harvestStats.put("statUpMetal", metalUpkeep);
+                    breedStats.put("statUpMetal", metalUpkeep);
+                    normalStats.put("statUpMetal", metalUpkeep);
+
+                    int energyUpkeep = harvestStats.get("statUpEnergy");
+                    energyUpkeep = Math.max(0, energyUpkeep + DELTA_UP_ENERGY);
+                    harvestStats.put("statUpEnergy", energyUpkeep);
+                    breedStats.put("statUpEnergy", energyUpkeep);
+                    normalStats.put("statUpEnergy", energyUpkeep);
                 }
             }
         });
