@@ -50,6 +50,18 @@ public abstract class Structure extends Instance implements vStructure {
                 structUpkeep.put("rscMetal", getStat("statUpMetal"));
                 structUpkeep.put("rscEnergy", getStat("statUpEnergy"));
 
+                if(staff != null)
+                {
+                    Map<String, Integer> staffUpkeep = staff.getUpkeep();
+
+                    for(String type : structUpkeep.keySet())
+                    {
+                        int curTotal = structUpkeep.get(type);
+                        int staffAmt = staffUpkeep.get(type);
+                        structUpkeep.put(type, curTotal + staffAmt);
+                    }
+                }
+
                 return structUpkeep;
 	}
 
