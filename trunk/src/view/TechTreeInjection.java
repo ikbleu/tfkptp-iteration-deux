@@ -9,7 +9,7 @@ class TechTreeInjection implements ViewInjectionElement {
 	public void injectionEffect(ScreenManager sm, String code,
 			Displayable[] direct, Displayable[] dList, Displayable selection) {
 		
-		
+		sm.updateOverview(code, direct, dList, selection);
 	}
 	
 }
