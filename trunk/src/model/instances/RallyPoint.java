@@ -25,7 +25,7 @@ import src.util.Hand;
 import src.model.interfaces.InstanceAdapter;
 
 public class RallyPoint extends Instance implements vRallyPoint, InstanceExistenceListener, MovementListener {
-	private static final boolean DEBUGGING = true; // TODO: remove
+	private static final boolean DEBUGGING = false; // TODO: remove
 	public RallyPoint( Player p, int id, GameTile g )
 	{
 		super( p, id, g );

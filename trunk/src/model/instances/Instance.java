@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import src.model.AoEManager;
+import src.model.HasPlayerManager;
 import src.model.Player;
 import src.model.commands.Command;
 import src.model.commands.CommandFactory;
@@ -39,6 +40,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		commandHand = p.handFactory().make( Device.class );
 		
 		AoEManager.instance().registerLocation( this );
+		HasPlayerManager.getInstance().add( location(), this );
 		
 		for ( InstanceExistenceListener il : globalListeners )
 			il.newInstance( this );
@@ -134,6 +136,7 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		for ( InstanceExistenceListener il : globalListeners )
 				il.delInstance( this );
 		AoEManager.instance().unregisterLocation( this );
+		HasPlayerManager.getInstance().remove( location(), this );
 	}
 	
 	final public void modifyStat( String s, int delta )
@@ -246,6 +249,8 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 	
 	public void moveTo( GameTile loc )
 	{
+		try { HasPlayerManager.getInstance().move(loc, location(), this); }
+		catch ( Exception e ) {}
 		GameTile prev = location();
 		setLocation( loc );
 		for ( MovementListener ml : moveListeners )

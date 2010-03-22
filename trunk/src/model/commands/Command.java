@@ -36,10 +36,9 @@ public abstract class Command {
 		return instance;
 	}
 	
-	final public GameTile location()
+	public GameTile location()
 	{
-		// return instance.location(); // TODO: uncomment this line
-		return null;
+		return instance.location(); // TODO: uncomment this line
 	}
 	
 	final public int numTicks()
