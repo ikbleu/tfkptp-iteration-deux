@@ -337,6 +337,12 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		System.out.printf( "my move speed is %d and vis rad is %d\n", getStat( "statMoveSpeed" ), getStat( "statVisibilityRadius" ) );
 	}
 
+        /**
+         * Returns the amount of upkeep required by all units and workers
+         * assigned to this rally point.
+         *
+         * @return the upkeep required by this rally point.
+         */
         public Map<String, Integer> getUpkeep()
         {
             HashMap<String, Integer> upkeepTotal = new HashMap<String, Integer>();
@@ -359,5 +365,16 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
             }
 
             return upkeepTotal;
+        }
+
+        /**
+         * Reacts to the amount of resources sent for upkeep. If it was not
+         * enough, resources are evenly distributed among units and workers.
+         *
+         * @param resources the resources for upkeep.
+         */
+        public void sentUpkeep(Map<String, Integer> resources)
+        {
+
         }
 }
