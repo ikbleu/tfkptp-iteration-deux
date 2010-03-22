@@ -59,6 +59,7 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
     {
     	if ( DEBUGGING ) return;
         registerLocation(thing, thing.location());
+        thing.addMovementListener(this);
     }
 
     private void registerLocation(Instance thing, GameTile location)
@@ -122,6 +123,7 @@ public class AoEManager implements MovementListener, RadiusListener, InstanceHol
     {
     	if ( DEBUGGING ) return;
         unregisterLocation(thing, thing.location());
+        thing.removeMovementListener(this);
     }
 
     private void unregisterLocation(Instance thing, GameTile location)
