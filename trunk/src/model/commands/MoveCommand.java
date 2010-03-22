@@ -9,6 +9,9 @@ public class MoveCommand extends Command {
 	public MoveCommand(String token, Instance i, int numTicks) {
 		super(token, i, numTicks);
 	}
+	public MoveCommand(String token, Instance i, int numTicks, boolean isInstant) {
+		super(token, i, numTicks, isInstant);
+	}
 
 	public void accept(CommandVisitor c) {
 		c.visitMoveCommand( this );

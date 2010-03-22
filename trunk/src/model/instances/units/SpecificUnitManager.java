@@ -93,7 +93,7 @@ public abstract class SpecificUnitManager implements InstanceExistenceListener, 
 		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdPowerDown", 1 ));
 		final RallyPointCommandFactory rpcf = new RallyPointCommandFactory(player,"cmdRallyPoint", 0);
 		u.addSelectableCommand( rpcf );
-		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdDecommission", 0));
+		u.addSelectableCommand( new NoArgsCommandFactory(player, "cmdDecommission", 0, true));
 		
 		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdAttack", 0));
 		u.addRallyPointCommand( new DirectionCommandFactory(player, "cmdDefend", 0));

@@ -42,6 +42,8 @@ itemResource
 itemObstacle
 
 **Commands
+cmdNone
+
 cmdMakeRanged
 cmdMakeMelee
 cmdMakeExplorer

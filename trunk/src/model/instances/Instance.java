@@ -275,4 +275,20 @@ public abstract class Instance extends Locatable implements vInstance, CommandSe
 		// TODO Auto-generated method stub
 		return meaning();
 	}
+	
+	public void addCommandToQueue( Command c )
+	{
+		if ( c.isInstant() )
+			executeCommand( c );
+		else
+			queue.add( c );
+	}
+	
+	final public String getCurrentAction()
+	{
+		if ( queue.size() == 0 )
+			return "cmdNone";
+		return queue.peek().token();
+	}
+	private LinkedList< Command > queue = new LinkedList< Command >();
 }

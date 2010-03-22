@@ -6,7 +6,9 @@ public class NoArgsCommand extends Command {
 
 	public NoArgsCommand(String token, Instance i, int numTicks) {
 		super(token, i, numTicks);
-		// TODO Auto-generated constructor stub
+	}
+	public NoArgsCommand(String token, Instance i, int numTicks, boolean isInstant) {
+		super(token, i, numTicks, isInstant);
 	}
 
 	@Override

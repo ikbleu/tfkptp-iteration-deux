@@ -7,15 +7,24 @@ public class NoArgsCommandFactory extends CommandFactory {
 	public NoArgsCommandFactory( Player p, String token, int numTicks ) { 
 		super( p, token, numTicks );
 	}
+	public NoArgsCommandFactory( Player p, String token, int numTicks, boolean isInstant ) { 
+		super( p, token, numTicks, isInstant );
+	}
 	
 	protected void doSetInstance( final Instance i )
 	{
-		// no arguments
+		addArgument( new Argument( "NONE" ) {
+			public void execute()
+			{
+				NoArgsCommand d = makeCommand( i );
+				i.addCommandToQueue( d );
+			}
+		});
 	}
 	
 	public NoArgsCommand makeCommand(Instance i)
 	{
-		return new NoArgsCommand( token(), i, numTicks() );
+		return new NoArgsCommand( token(), i, numTicks(), isInstant() );
 	}
 
 	@Override

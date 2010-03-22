@@ -8,6 +8,9 @@ public class DirectionCommand extends Command {
 	public DirectionCommand(String token, Instance i, int numTicks) {
 		super(token, i, numTicks);
 	}
+	public DirectionCommand(String token, Instance i, int numTicks, boolean isInstant) {
+		super(token, i, numTicks, isInstant);
+	}
 	
 	public void accept(CommandVisitor c) {
 		c.visitDirectionCommand(this);

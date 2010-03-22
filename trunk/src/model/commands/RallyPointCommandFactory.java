@@ -14,6 +14,9 @@ public class RallyPointCommandFactory extends CommandFactory {
 	public RallyPointCommandFactory( Player p, String token, int numTicks ) { 
 		super( p, token, numTicks );
 	}
+	public RallyPointCommandFactory( Player p, String token, int numTicks, boolean isInstant ) { 
+		super( p, token, numTicks, isInstant );
+	}
 	
 	protected void doSetInstance( final Instance i )
 	{
@@ -24,14 +27,14 @@ public class RallyPointCommandFactory extends CommandFactory {
 				{
 					RallyPointCommand d = makeCommand( i );
 					d.setRallyPoint( rp );
-					i.executeCommand( d );
+					i.addCommandToQueue( d );
 				}
 			});
 	}
 	
 	public RallyPointCommand makeCommand(Instance i)
 	{
-		return new RallyPointCommand( token(), i, numTicks() );
+		return new RallyPointCommand( token(), i, numTicks(), isInstant() );
 	}
 	
 	{

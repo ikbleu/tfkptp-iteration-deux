@@ -8,6 +8,9 @@ public class DirectionCommandFactory extends CommandFactory {
 	public DirectionCommandFactory( Player p, String token, int numTicks ) { 
 		super( p, token, numTicks );
 	}
+	public DirectionCommandFactory( Player p, String token, int numTicks, boolean isInstant ) { 
+		super( p, token, numTicks, isInstant );
+	}
 	
 	protected void doSetInstance( final Instance i )
 	{
@@ -17,14 +20,14 @@ public class DirectionCommandFactory extends CommandFactory {
 				{
 					DirectionCommand d = makeCommand( i );
 					d.setDirection( dir );
-					i.executeCommand( d );
+					i.addCommandToQueue( d );
 				}
 			});
 	}
 	
 	public DirectionCommand makeCommand(Instance i)
 	{
-		return new DirectionCommand( token(), i, numTicks() );
+		return new DirectionCommand( token(), i, numTicks(), isInstant() );
 	}
 
 	@Override

@@ -6,14 +6,25 @@ import src.model.interfaces.GameTile;
 public abstract class Command {
 	public Command( String token, Instance i, int numTicks )
 	{
+		this( token, i, numTicks, false );
+	}
+	public Command( String token, Instance i, int numTicks, boolean inst )
+	{
 		this.token = token;
 		this.numTicks = numTicks;
 		instance = i;
+		isInstant = inst;
 	}
 	private Instance instance;
 	private String token;
 	private String when = "execute"; 
 	private int numTicks;
+	private boolean isInstant;
+	
+	final public boolean isInstant()
+	{
+		return isInstant;
+	}
 	
 	final public String token()
 	{

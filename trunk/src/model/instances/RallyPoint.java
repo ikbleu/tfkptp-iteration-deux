@@ -171,11 +171,6 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
 		throw new RuntimeException("TODO");
 	}
 	
-	public String getCurrentAction()
-	{
-		throw new RuntimeException("TODO");
-	}
-	
 	public void accept( HasPlayerVisitor v )
 	{
 		v.visitRallyPoint( this );

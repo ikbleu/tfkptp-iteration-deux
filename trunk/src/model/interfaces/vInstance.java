@@ -5,4 +5,6 @@ public interface vInstance
 	public void accept( vInstanceVisitor v );
 	
 	public void addViewListener( ViewListener vl );
+	
+	public String getCurrentAction();
 }
