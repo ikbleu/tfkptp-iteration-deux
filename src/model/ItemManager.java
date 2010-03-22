@@ -39,8 +39,6 @@ public class ItemManager implements ItemVisibilityHolder
     private ItemManager()
     {
         itemList = new ArrayList<Item>();
-
-        Random rand = new Random(System.currentTimeMillis());
     }
 
     private static class ItemManagerHolder
@@ -55,10 +53,13 @@ public class ItemManager implements ItemVisibilityHolder
 
     public void setMap(GameMap theMap)
     {
+        itemList = new ArrayList<Item>();
+
         GameTile center = theMap.getOrigin();
         int radius = theMap.getMapRadius();
 
         List<GameTile> allTiles = center.getTilesAround(radius);
+        System.out.println("numTiles: " + allTiles.size());
 
         Random rand = new Random(System.currentTimeMillis());
         effectChooser = new RandomChooser<ItemEffect>();
@@ -81,8 +82,13 @@ public class ItemManager implements ItemVisibilityHolder
 
         for(GameTile gt : allTiles)
         {
+            boolean makeItem = false;
+            int randNum = rand.nextInt(10);
+            if(randNum > 6)
+                makeItem = true;
+
             if(gt.getDistanceFrom(start1) > 2 && gt.getDistanceFrom(start2) > 2 &&
-                    rand.nextInt(10) > 6)
+                    makeItem)
             {
                 makeNewItem(gt);
             }
