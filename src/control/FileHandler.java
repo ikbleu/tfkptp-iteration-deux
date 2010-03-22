@@ -22,7 +22,7 @@ public class FileHandler {
 		}	
 		System.out.println(m);
 		//Change group CTRL+UP to U.
-		//implement Key map interfaces in order to change it. 
+		m.bindMeaning("Group", "SpinNext", new KeyCodeAndModifiers(2, 38));
 		//try
 	//	BufferedWriter w = new BufferedWriter(new FileWriter("controller config files/controlsWritten.txt"));
 	}
