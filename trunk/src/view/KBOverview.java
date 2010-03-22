@@ -52,6 +52,8 @@ import src.model.interfaces.Displayable;
     		dkm.nextContext();
     		cn++;
     	}
+		context.add(dkm.context());
+		keys.add(dkm.getBindingList());
 
     	
     }
@@ -77,8 +79,8 @@ import src.model.interfaces.Displayable;
         		
         		if(db == selected)
         			graphix.setColor(Color.PINK);
-        		graphix.drawString( db.meaning(), 80, 150+28);
-        		graphix.drawString( db.meaning(), 250, 150+28*drawPos++);
+        		graphix.drawString( db.meaning(), 80, 150+28*drawPos);
+        		graphix.drawString( db.transKey(), 250, 150+28*drawPos++);
         	}
         	graphix.setColor(Color.WHITE);
         }
