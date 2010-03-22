@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.control.Device;
@@ -39,8 +40,8 @@ public class UniversityManager extends SpecificStructureManager {
 	
 	private Player player;
 	
-	public UniversityManager(Player p, GeneralStructureManager m) {
-		super( m, new CapitalFactory( p ), p, p.handFactory().make( Device.class ), 
+	public UniversityManager(Player p, GeneralStructureManager m, WorkerManager wm) {
+		super( m, new UniversityFactory( p, wm ), p, p.handFactory().make( Device.class ),
 				BASE_STATS, DELTA_STATS, RESOURCE_COST, "ObsTower" );
 		player = p;
 		

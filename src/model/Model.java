@@ -51,8 +51,8 @@ public class Model {
                 WorkerManager wm = new WorkerManager(human, rm);
 		
 		UnitInitializer.initialize( human );
-		StructureInitializer.initialize( human );
-		RallyPointInitializer.initialize( human );
+		StructureInitializer.initialize( human, wm );
+		RallyPointInitializer.initialize( human, wm );
 		
 		c.start();
 	}

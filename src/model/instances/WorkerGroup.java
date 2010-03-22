@@ -41,11 +41,17 @@ public abstract class WorkerGroup extends Locatable implements HasPlayer
     public WorkerGroup(GameTile location, Map<String, Integer> stats,
             WorkerManager manager)
     {
-        super(location);
+        this(location, stats, manager, 0);
+    }
 
+    public WorkerGroup(GameTile location, Map<String, Integer> stats,
+            WorkerManager manager, int numWorkers)
+    {
+        super(location);
         this.stats = stats;
         this.manager = manager;
         numWorkers = 0;
+        addWorkers(numWorkers);
     }
 
     /**

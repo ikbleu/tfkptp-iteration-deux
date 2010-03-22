@@ -92,6 +92,10 @@ public abstract class Unit extends Instance implements vUnit {
     {
         
     }
+
+    public void receiveWorkers(WorkerGroup wg, int numWorkers) {}
+
+    public void sendWorkers(WorkerGroup wg, int numWorkers) {}
     
     public boolean isInBattleGroup()
     {

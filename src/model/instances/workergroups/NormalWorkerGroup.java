@@ -27,6 +27,13 @@ public class NormalWorkerGroup extends WorkerGroup
         this.staff = staff;
     }
 
+    public NormalWorkerGroup(GameTile location, Map<String, Integer> stats,
+            WorkerManager manager, boolean staff, int startAmt)
+    {
+        super(location, stats, manager, startAmt);
+        this.staff = staff;
+    }
+
     public String token()
     {
         if(staff)

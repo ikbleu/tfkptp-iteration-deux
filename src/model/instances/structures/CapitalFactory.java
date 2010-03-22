@@ -1,18 +1,23 @@
 package src.model.instances.structures;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.instances.Instance;
 import src.model.interfaces.GameTile;
 import src.util.IntRecycler;
 
 class CapitalFactory extends StructureFactory {
-	public CapitalFactory( Player p )
+
+    private WorkerManager wm;
+
+	public CapitalFactory( Player p, WorkerManager wm )
 	{
 		super( p );
+                this.wm = wm;
 	}
 	
 	public Capital doMakeInstance( GameTile loc ) {
-		return new Capital( player(), rec.next(), loc );
+		return new Capital( player(), rec.next(), loc, wm );
 	}
 	
 	private IntRecycler rec = new IntRecycler();

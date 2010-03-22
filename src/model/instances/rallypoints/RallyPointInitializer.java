@@ -1,6 +1,7 @@
 package src.model.instances.rallypoints;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.control.Device;
 import src.model.control.KeyEventInterpreterBuilder;
 import src.model.instances.units.RangedManager;
@@ -9,7 +10,7 @@ import src.model.interfaces.vGroup;
 import src.util.Hand;
 
 public class RallyPointInitializer {
-	public static void initialize( final Player p )
+	public static void initialize( final Player p, WorkerManager wm )
 	{
 		final Hand< Device > rpHand = p.handFactory().make( Device.class );
 		final Hand< Device > armyHand = p.handFactory().make( Device.class );
@@ -84,7 +85,7 @@ public class RallyPointInitializer {
 			}
 		};
 		
-		new RallyPointManager( p, rpHand, armyHand );
+		new RallyPointManager( p, rpHand, armyHand, wm );
 		
 		p.addDevice( d );
 		p.addDevice( d2 );

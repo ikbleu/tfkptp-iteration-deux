@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import src.model.Player;
+import src.model.WorkerManager;
 import src.model.commands.Command;
 import src.model.commands.CommandListener;
 import src.model.control.Device;
@@ -39,8 +40,8 @@ public class FortressManager extends SpecificStructureManager {
 	
 	private Player player;
 	
-	public FortressManager(Player p, GeneralStructureManager m) {
-		super( m, new FortressFactory( p ), p, p.handFactory().make( Device.class ), 
+	public FortressManager(Player p, GeneralStructureManager m, WorkerManager wm) {
+		super( m, new FortressFactory( p, wm ), p, p.handFactory().make( Device.class ),
 				BASE_STATS, DELTA_STATS, RESOURCE_COST, "Fort" );
 		player = p;
 		
