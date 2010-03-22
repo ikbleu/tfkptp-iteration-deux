@@ -35,10 +35,10 @@ class GraphicsTableSingleton {
     private GraphicsTableSingleton(){
         graphics = new HashMap<String, BufferedImage>();
         try{
-            graphiz.setColor(new Color(0,0,0,50));
+            graphiz.setColor(new Color(0,0,0, 2));
             graphiz.fillRect(0,0,200,173);
             graphize.setColor(Color.BLACK);
-            graphiz.fillRect(0,0,200,173);
+            graphize.fillRect(0,0,200,173);
 
             graphics.put( "shrouded", shrouded);
             graphics.put( "non visible", unvisible);
