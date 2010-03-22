@@ -104,6 +104,7 @@ import java.awt.Point;
                 //
 
                 //Textures
+                Texture background_tex;
                 Texture hud_tex;
 		Texture commandSelection_tex;
                 Texture resourceInfo_tex;
@@ -258,7 +259,7 @@ import java.awt.Point;
 
                 //System.out.println(timer.marksPerSecond());
 				//render different components
-
+                                renderBG(gl);
                 renderMap(gl, vpWidth, vpHeight);
                 renderHUD(gl);
                 renderCommandSelection(gl);
@@ -269,6 +270,34 @@ import java.awt.Point;
 				}
 
 			}
+
+            private void renderBG(GL gl) {
+
+
+                background_tex.bind();
+
+	    		gl.glPushMatrix();
+
+	    			gl.glBegin(GL.GL_POLYGON);
+
+	    				gl.glTexCoord2d(0,1);
+	    				gl.glVertex2d(0,1);
+
+	    				gl.glTexCoord2d(0,0);
+	    				gl.glVertex2d(0,0);
+
+	    				gl.glTexCoord2d(1, 0);
+	    				gl.glVertex2d(1, 0);
+
+	    				gl.glTexCoord2d(1, 1);
+	    				gl.glVertex2d(1, 1);
+
+
+	    			gl.glEnd();
+
+                gl.glPopMatrix();
+
+            }
             
             private void renderHUD(GL gl) {
             	 
@@ -418,6 +447,7 @@ import java.awt.Point;
                                          updateResourceInfo();
                                          initOverview();
                                          updateCommandSelection(null);
+                                         background_tex = TextureIO.newTexture(graphicsTable.getGraphic("space"),true);
                                          
 					
 				} 

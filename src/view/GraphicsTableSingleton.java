@@ -96,6 +96,8 @@ class GraphicsTableSingleton {
             graphics.put( "itemHealing", ImageIO.read(new File("artwork/healingItem.jpg")));
             graphics.put( "itemResource", ImageIO.read(new File("artwork/resourceItem.jpg")));
             graphics.put( "itemObstacle", ImageIO.read(new File("artwork/obstacleItem.jpg")));
+
+            graphics.put( "space", ImageIO.read(new File("artwork/space2.jpg")));
         }
         catch(Exception e){
             System.out.println("Massive Fail");
