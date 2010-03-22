@@ -1,8 +1,0 @@
-Item Plan
---------------
-
-Obstacles will not really contain any additional data (other than the item type that all items have), and will simply be used to determine if a tile has been blocked off by an obstacle.
-
-One-Shot items will have a radius as well as the logic required to execute their effect. When a unit moves onto a tile, a visitor will be sent to the tile to determine if there exists a one-shot item on that tile, and if so, use the item. The visitor will contain a reference to the player (for resource-granting items) and a reference to the game map and the tile being visited (for damaging and healing items). The needed references will be passed to the item and the item will execute its effect.
-
-For damaging/healing items, the references to both the game map and tile are required so that the item can get a list of tiles around the tile the item is on (for items with an area effect) and lists of units on those tiles.

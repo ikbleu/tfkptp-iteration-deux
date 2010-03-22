@@ -22,4 +22,9 @@ public class CommandAdapter implements CommandVisitor {
 		
 	}
 
+        public void visitWorkerCommand(WorkerCommand workerCommand)
+        {
+            
+        }
+
 }

@@ -31,6 +31,11 @@ public class MoveCommandFactory extends CommandFactory {
 		return new MoveCommand( token(), i, numTicks(), isInstant() );
 	}
 
+        public String context()
+        {
+            return "directionAccumulation";
+        }
+
 	@Override
 	public String comparable() {
 		// TODO Auto-generated method stub
