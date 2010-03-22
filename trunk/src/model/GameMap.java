@@ -131,7 +131,7 @@ public class GameMap
 	{
 		if (isValid2DCoordinate(horiz, vert))
 		{
-			GameTile gt = origin.getTileAt2DCoordinate(horiz,vert);
+			GameTile gt = origin.getTileAt2DCoordinate(horiz - MAP_RADIUS,vert + MAP_RADIUS);
 			mb.setTerrain(gt.getTerrainType());
 			return gt;
 		}
@@ -140,7 +140,7 @@ public class GameMap
 	
 	private boolean isValid2DCoordinate(int horiz, int vert)
 	{
-		if (origin.calculateDistance(horiz - MAP_RADIUS, vert - MAP_RADIUS) > MAP_RADIUS)
+		if (origin.calculateDistance(horiz - MAP_RADIUS, vert + MAP_RADIUS) > MAP_RADIUS)
 			return false;
 		
 		return true;
