@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -17,15 +18,16 @@ public class Run {
     static Listener l;
     static JFrame frame = new JFrame();
     static DisplayApp app = new DisplayApp();
-    static KeyEventInterpreter kei;
     
 	public static void main(String[] args)
 	{
 		KeyMap m = new KeyMap();
+		KeyEventInterpreter kei = ControllerTestConfigurer.root();
 		l = new Listener(kei,m);
-		kei = ControllerTestConfigurer.root();
 		BufferedReader r;
 		try{
+            System.out.println(new File("bllalkakak").getAbsoluteFile());
+            
 		r = new BufferedReader(new FileReader("controller config files/test.txt"));
 		FileHandler.readFile(m,r);
 		}catch (IOException ex) {

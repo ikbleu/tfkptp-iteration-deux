@@ -256,7 +256,7 @@ public class KeyMap implements
 			while(i.hasNext())
 			{
 				Binding b = i.next();
-				if(b.key()==key)
+				if(b.key().getKeyCode() == key.getKeyCode() && b.key().getKeyCode() == key.getKeyCode())
 				{
 					visitor.foundMeaning(b.meaning());
 					found = true;
