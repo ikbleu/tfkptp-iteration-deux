@@ -95,4 +95,4 @@ Hud
 	DDMean::6				6
 begincontext
 Menu
-	Model					m
+	Model					M
