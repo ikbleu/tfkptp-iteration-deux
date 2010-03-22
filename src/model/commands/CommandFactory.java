@@ -10,13 +10,24 @@ import src.util.Hand;
 public abstract class CommandFactory implements Device {
 	public CommandFactory( Player p, String token, int numTicks )
 	{
+		this( p, token, numTicks, false );
+	}
+	public CommandFactory( Player p, String token, int numTicks, boolean isInstant )
+	{
 		hand = p.handFactory().make( Behavior.class );
 		this.token = token;
 		this.numTicks = numTicks;
+		this.isInstant = isInstant;
 	}
 	private Hand< Behavior > hand;
 	private String token;
 	private int numTicks;
+	private boolean isInstant;
+	
+	final public boolean isInstant()
+	{
+		return isInstant;
+	}
 	
 	abstract public Command makeCommand( Instance i );
 	final public void setInstance( Instance i )
