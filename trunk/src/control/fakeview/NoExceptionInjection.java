@@ -15,4 +15,9 @@ public class NoExceptionInjection implements ViewInjection {
         Displayable selection
     ) {}
     public void injectionCloseMenu() {}
+	@Override
+	public void toggleViewPort() {
+		// TODO Auto-generated method stub
+		
+	}
 }

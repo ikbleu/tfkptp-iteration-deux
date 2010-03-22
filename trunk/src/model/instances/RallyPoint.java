@@ -377,4 +377,9 @@ public class RallyPoint extends Instance implements vRallyPoint, InstanceExisten
         {
         	
         }
+        
+        public boolean isInBattleGroup( Unit u )
+        {
+        	return bgList.contains( u );
+        }
 }

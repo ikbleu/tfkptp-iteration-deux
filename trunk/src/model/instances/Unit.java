@@ -92,4 +92,9 @@ public abstract class Unit extends Instance implements vUnit {
     {
         
     }
+    
+    public boolean isInBattleGroup()
+    {
+    	return isInRallyPoint() && rallyPoint.isInBattleGroup( this );
+    }
 }
