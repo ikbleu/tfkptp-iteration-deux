@@ -34,7 +34,7 @@ public class ColonistManager extends SpecificUnitManager {
 		put( "statEfficiency", 1 );
 	}};
 	private static final Map< String, Integer > RESOURCE_COST = new HashMap< String, Integer >() {{
-		put( "rscFood", 0 );
+		put( "rscFood", 1 );
 		put( "rscMetal", 0 );
 		put( "rscEnergy", 0 );
 	}};

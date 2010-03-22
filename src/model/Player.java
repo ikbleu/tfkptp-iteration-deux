@@ -37,10 +37,19 @@ public class Player implements CommandSender, InstanceExistenceListener
 		startingLocation = startLoc;
 		myHand = handFactory.make( Device.class );
         rscManager = rm;
-        visManager = new VisibilityManager(this, map, HasPlayerManager.getInstance(), c);  
+        visManager = new VisibilityManager(this, map, HasPlayerManager.getInstance(), c);
         
         Instance.addGlobalInstanceExistenceListener( this );
         upMan = new UpkeepManager(rm);
+        try
+        {
+            c.register("Model", upMan);
+            c.register("VisUpdate", visManager);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 	}
 	private Hand< Device > myHand;
 	
