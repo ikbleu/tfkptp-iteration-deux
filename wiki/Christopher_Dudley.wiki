@@ -9,7 +9,10 @@
 || 03-04 || 1 hour || Design ||
 || 03-18 || 8 hours || Design ||
 || 03-19 || 5 hours || Implementation ||
-|| 03-20 || 3 hours || Implementation ||
+|| 03-20 || 16 hours || Implementation ||
+|| 03-21 || 16 hours || Implementation ||
+|| 03-22 || 7 hours || Implementation ||
+|| ----- || *60 hours* || *Total* ||
 
 == Verbose ==
 
