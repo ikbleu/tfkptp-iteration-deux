@@ -54,3 +54,19 @@
 ==== Day 15 ====
 ===== Time 15:00 to 17:00 =====
   * talked to Chris about controller.
+==== Day 19 ====
+===== Time 18:00 to 23:59 =====
+  * design controller and model
+==== Day 20 ====
+===== Time 00:01 to 01:00 =====
+  * design controller and model
+===== Time 13:00 to 23:59 =====
+  * design controller and model
+==== Day 21 ====
+===== Time 00:01 to 03:30 =====
+  * design controller and model
+===== Time 14:00 to 23:59 =====
+  * design and coding controller
+==== Day 22 ====
+===== Time 00:01 to 17:00 =====
+  * coding and debugging controller
