@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><umlet_diagram><help_text>// Uncomment the following line to change the fontsize:
+// fontsize=14
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on UML elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold ⌘ to select multiple elements
+// Use ⌘+mouse to select via lasso
+//
+// Use ± or ⌘+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press ⌘+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text><zoom_level>10</zoom_level><element><type>com.umlet.element.base.Class</type><coordinates><x>20</x><y>10</y><w>500</w><h>250</h></coordinates><panel_attributes>WorkerManager
+--
+--
++becomeActive(WorkerGroup wg) : void
++becomeInactive(WorkerGroup wg) : void
++workersAdded(num : int) : void
++workerRemoved(num : int) : void
++numWorkersLeft() : int
++move(wg : WorkerGroup, dest : GameTile) : boolean
++player() : Player
++newBreedingGroup(...) : BreedingGroup
++newHarvestingGroup(...) : HarvestingGroup
++supportsHarvesters(gt : GameTile) : boolean
++moveHarvesters(hg : HarvestingGroup, target : GameTile) : boolean
++removeHarvesters(hg : HarvestingGroup, target : GameTile) : boolean
++newNormalWorkerGroup(...) : NormalWorkerGroup</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>60</x><y>330</y><w>400</w><h>170</h></coordinates><panel_attributes>WorkerGroup
+{abstract}
+--
+--
++numWorkers() : int
++transferWorkers(target : WorkerGroup, num : int) : void
+#addWorkers(num : int) : void
+#removeWorkers(num : int) : void
+#numWorkersLeft() : int
++move(target : GameTile) : boolean
+...</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>220</x><y>230</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>30;30;30;100</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>60</x><y>540</y><w>150</w><h>30</h></coordinates><panel_attributes>NormalWorkerGroup</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>250</x><y>540</y><w>120</w><h>50</h></coordinates><panel_attributes>BreedingGroup
+--
+--
++breed() : void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Class</type><coordinates><x>410</x><y>540</y><w>140</w><h>50</h></coordinates><panel_attributes>HarvestingGroup
+--
+--
++harvest() : void</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>470</x><y>230</y><w>50</w><h>330</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>30;30;30;310</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>110</x><y>470</y><w>150</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;30;130;50;30;50;30;70</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>210</x><y>470</y><w>110</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;30;30;50;90;50;90;70</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>210</x><y>470</y><w>280</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;30;30;50;260;50;260;70</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>560</x><y>80</y><w>310</w><h>70</h></coordinates><panel_attributes>ResourceManager
+--
+--
++harvested(rscType : String, amt : int) : void
+...</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>500</x><y>120</y><w>80</w><h>440</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>60;30;30;420</additional_attributes></element><element><type>com.umlet.element.base.Note</type><coordinates><x>580</x><y>190</y><w>320</w><h>180</h></coordinates><panel_attributes>WorkerGroups notify the manager of
+changes to their number of workers.
+Only way to add workers is via breeding,
+WorkerManager restricts additions by
+this method to maximum amount of workers.
+New WG methods parameterize groups
+accordingly.
+WorkerManager restricts movement and
+creation of harvesting groups so that 2 may
+not appear on the same tile.
+bg=blue</panel_attributes><additional_attributes/></element></umlet_diagram>
